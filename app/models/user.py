@@ -3,6 +3,7 @@ from sqlalchemy import DateTime
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import func
+
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
@@ -51,12 +52,27 @@ class User(Base):
         server_default=func.now(),
         onupdate=func.now()
     )
+
     categories = relationship(
-    "Category",
-    back_populates="user"
+        "Category",
+        back_populates="user",
+        cascade="all, delete-orphan"
     )
 
     notes = relationship(
-    "Note",
-    back_populates="user"
+        "Note",
+        back_populates="user",
+        cascade="all, delete-orphan"
+    )
+
+    feedbacks = relationship(
+        "ClassificationFeedback",
+        back_populates="user",
+        cascade="all, delete-orphan"
+    )
+
+    evaluation_records = relationship(
+        "EvaluationDataset",
+        back_populates="user",
+        cascade="all, delete-orphan"
     )

@@ -23,13 +23,25 @@ class Category(Base):
         nullable=False
     )
 
+    description: Mapped[str | None] = mapped_column(
+        String(500),
+        nullable=True
+    )
+
     user_id: Mapped[int] = mapped_column(
-        ForeignKey("users.id")
+        ForeignKey("users.id"),
+        nullable=False
     )
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         default=datetime.utcnow
+    )
+
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
     )
 
     user = relationship(
@@ -39,5 +51,6 @@ class Category(Base):
 
     notes = relationship(
         "Note",
-        back_populates="category"
+        back_populates="category",
+        cascade="all, delete-orphan"
     )

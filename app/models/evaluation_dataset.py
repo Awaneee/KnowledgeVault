@@ -1,11 +1,10 @@
 from datetime import datetime
 
-from pgvector.sqlalchemy import Vector
-
 from sqlalchemy import DateTime
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import String
+from sqlalchemy import Text
 
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
@@ -14,28 +13,24 @@ from sqlalchemy.orm import relationship
 from app.database.base import Base
 
 
-class Embedding(Base):
-    __tablename__ = "embeddings"
+class EvaluationDataset(Base):
+    __tablename__ = "evaluation_datasets"
 
     id: Mapped[int] = mapped_column(
         Integer,
         primary_key=True
     )
 
-    note_id: Mapped[int] = mapped_column(
-        ForeignKey("notes.id", ondelete="CASCADE"),
-        unique=True,
-        nullable=False
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id", ondelete="CASCADE")
     )
 
-    embedding_model: Mapped[str] = mapped_column(
-        String(100),
-        default="all-MiniLM-L6-v2"
+    note_text: Mapped[str] = mapped_column(
+        Text
     )
 
-    embedding_vector = mapped_column(
-        Vector(384),
-        nullable=False
+    expected_category: Mapped[str] = mapped_column(
+        String(100)
     )
 
     created_at: Mapped[datetime] = mapped_column(
@@ -43,7 +38,7 @@ class Embedding(Base):
         default=datetime.utcnow
     )
 
-    note = relationship(
-        "Note",
-        back_populates="embedding"
+    user = relationship(
+        "User",
+        back_populates="evaluation_records"
     )
