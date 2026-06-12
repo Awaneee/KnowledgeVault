@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+.pytest_cache/
+.env
+
+uploads/
+
+*.pyc
+*.pyo
+*.pyd
+
+.idea/
+.vscode/
+
+alembic.ini.bak
