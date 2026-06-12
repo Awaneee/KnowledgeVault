@@ -9,6 +9,8 @@ from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
 from app.database.base import Base
+from app.models.classification_feedback import ClassificationFeedback
+from app.models.evaluation_dataset import EvaluationDataset
 
 
 class User(Base):

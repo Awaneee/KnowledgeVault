@@ -1,0 +1,27 @@
+from sqlalchemy.orm import Session
+
+from app.models.embedding import Embedding
+
+
+class EmbeddingRepository:
+    def __init__(self, db: Session):
+        self.db = db
+
+    def create_embedding(
+        self,
+        note_id: int,
+        embedding_model: str,
+        embedding_vector: list[float]
+    ) -> Embedding:
+
+        embedding = Embedding(
+            note_id=note_id,
+            embedding_model=embedding_model,
+            embedding_vector=embedding_vector
+        )
+
+        self.db.add(embedding)
+        self.db.commit()
+        self.db.refresh(embedding)
+
+        return embedding
