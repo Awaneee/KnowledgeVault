@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 
 from app.core.embedding_model import embedding_model
 from app.repositories.embedding_repository import EmbeddingRepository
+from app.services.cache_service import CacheService
 
 
 class EmbeddingService:
@@ -25,3 +26,51 @@ class EmbeddingService:
             embedding_model=self.MODEL_NAME,
             embedding_vector=vector
         )
+
+    def search_notes(
+        self,
+        query: str,
+        user_id: int,
+        limit: int = 5
+    ):
+        cache_key = (
+            f"semantic_search:"
+            f"{user_id}:"
+            f"{query.lower()}"
+        )
+
+        cached_result = CacheService.get(
+            cache_key
+        )
+
+        if cached_result:
+            print("CACHE HIT")
+            return cached_result
+
+        print("CACHE MISS")
+
+        query_vector = embedding_model.encode(
+            query
+        ).tolist()
+
+        notes = self.repo.search_similar_notes(
+            query_vector=query_vector,
+            user_id=user_id,
+            limit=limit
+        )
+
+        response = [
+            {
+                "id": note.id,
+                "title": note.title,
+                "content": note.content
+            }
+            for note in notes
+        ]
+
+        CacheService.set(
+            cache_key,
+            response
+        )
+
+        return response

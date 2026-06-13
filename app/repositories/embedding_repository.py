@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
 from app.models.embedding import Embedding
+from app.models.notes import Note
 
 
 class EmbeddingRepository:
@@ -25,3 +26,23 @@ class EmbeddingRepository:
         self.db.refresh(embedding)
 
         return embedding
+
+    def search_similar_notes(
+        self,
+        query_vector: list[float],
+        user_id: int,
+        limit: int = 5
+    ) -> list[Note]:
+
+        return (
+            self.db.query(Note)
+            .join(Embedding)
+            .filter(Note.user_id == user_id)
+            .order_by(
+                Embedding.embedding_vector.cosine_distance(
+                    query_vector
+                )
+            )
+            .limit(limit)
+            .all()
+        )

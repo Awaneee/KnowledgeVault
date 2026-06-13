@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-
-from app.repositories.note_repository import NoteRepository
 from app.schemas.note import NoteCreate
 from app.schemas.note import NoteResponse
+from app.schemas.note import NoteSearchResponse
+from app.repositories.note_repository import NoteRepository
 from app.services.embedding_service import EmbeddingService
 
 
@@ -46,3 +46,18 @@ class NoteService:
             NoteResponse.model_validate(note)
             for note in notes
         ]
+    def search_notes(
+        self,
+        query: str,
+        user_id: int
+    ) -> list[NoteSearchResponse]:
+
+        notes = self.embedding_service.search_notes(
+        query=query,
+        user_id=user_id
+    )
+
+        return [
+          NoteSearchResponse.model_validate(note)
+          for note in notes
+    ]
