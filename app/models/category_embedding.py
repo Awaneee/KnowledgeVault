@@ -14,16 +14,19 @@ from sqlalchemy.orm import relationship
 from app.database.base import Base
 
 
-class Embedding(Base):
-    __tablename__ = "embeddings"
+class CategoryEmbedding(Base):
+    __tablename__ = "category_embeddings"
 
     id: Mapped[int] = mapped_column(
         Integer,
         primary_key=True
     )
 
-    note_id: Mapped[int] = mapped_column(
-        ForeignKey("notes.id", ondelete="CASCADE"),
+    category_id: Mapped[int] = mapped_column(
+        ForeignKey(
+            "categories.id",
+            ondelete="CASCADE"
+        ),
         unique=True,
         nullable=False
     )
@@ -43,13 +46,7 @@ class Embedding(Base):
         default=datetime.utcnow
     )
 
-    note = relationship(
-        "Note",
+    category = relationship(
+        "Category",
         back_populates="embedding"
-    )
-    embedding = relationship(
-    "CategoryEmbedding",
-    back_populates="category",
-    uselist=False,
-    cascade="all, delete-orphan"
     )

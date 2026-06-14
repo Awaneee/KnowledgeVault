@@ -8,5 +8,6 @@ from app.models.notes import Note
 from app.models.attachment import Attachment
 
 from app.models.embedding import Embedding
+from app.models.category_embedding import CategoryEmbedding
 from app.models.classification_feedback import ClassificationFeedback
 from app.models.evaluation_dataset import EvaluationDataset 
