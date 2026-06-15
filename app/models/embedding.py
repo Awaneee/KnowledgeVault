@@ -47,9 +47,3 @@ class Embedding(Base):
         "Note",
         back_populates="embedding"
     )
-    embedding = relationship(
-    "CategoryEmbedding",
-    back_populates="category",
-    uselist=False,
-    cascade="all, delete-orphan"
-    )

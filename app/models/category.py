@@ -54,3 +54,10 @@ class Category(Base):
         back_populates="category",
         cascade="all, delete-orphan"
     )
+
+    embedding = relationship(
+        "CategoryEmbedding",
+        back_populates="category",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
