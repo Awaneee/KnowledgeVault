@@ -74,3 +74,24 @@ class EmbeddingService:
         )
 
         return response
+
+    def get_related_notes(
+        self,
+        note_id: int,
+        user_id: int,
+        limit: int = 5
+    ):
+        notes = self.repo.get_related_notes(
+            note_id=note_id,
+            user_id=user_id,
+            limit=limit
+        )
+
+        return [
+            {
+                "id": note.id,
+                "title": note.title,
+                "content": note.content
+            }
+            for note in notes
+        ]

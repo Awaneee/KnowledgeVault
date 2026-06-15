@@ -6,16 +6,19 @@ from fastapi import (
     Depends,
     File,
     UploadFile,
+    HTTPException,
 )
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.auth import get_current_user
 from app.database.session import get_db
 from app.models.user import User
+
 from app.schemas.note import NoteCreate
 from app.schemas.upload import PDFUploadResponse
+
 from app.services.note_service import NoteService
-from app.services.pdf_services import PDFService
+from app.services.document_service import DocumentService
 
 
 router = APIRouter(
@@ -25,10 +28,10 @@ router = APIRouter(
 
 
 @router.post(
-    "/pdf",
+    "/file",
     response_model=PDFUploadResponse
 )
-def upload_pdf(
+def upload_file(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
     current_user: User = Depends(
@@ -54,8 +57,28 @@ def upload_pdf(
             file.file.read()
         )
 
+    allowed_extensions = {
+        ".pdf",
+        ".txt",
+        ".docx"
+    }
+
+    extension = (
+        file_path.suffix.lower()
+    )
+
+    if extension not in allowed_extensions:
+        file_path.unlink(
+            missing_ok=True
+        )
+
+        raise HTTPException(
+            status_code=400,
+            detail="Unsupported file type"
+        )
+
     extracted_text = (
-        PDFService.extract_text(
+        DocumentService.extract_text(
             str(file_path)
         )
     )
@@ -72,6 +95,6 @@ def upload_pdf(
     )
 
     return PDFUploadResponse(
-        message="PDF processed successfully",
+        message="File processed successfully",
         note_id=note.id
     )

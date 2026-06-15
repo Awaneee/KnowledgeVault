@@ -46,3 +46,37 @@ class EmbeddingRepository:
             .limit(limit)
             .all()
         )
+
+    def get_related_notes(
+        self,
+        note_id: int,
+        user_id: int,
+        limit: int = 5
+    ) -> list[Note]:
+
+        source_embedding = (
+            self.db.query(Embedding)
+            .filter(
+                Embedding.note_id == note_id
+            )
+            .first()
+        )
+
+        if not source_embedding:
+            return []
+
+        return (
+            self.db.query(Note)
+            .join(Embedding)
+            .filter(
+                Note.user_id == user_id,
+                Note.id != note_id
+            )
+            .order_by(
+                Embedding.embedding_vector.cosine_distance(
+                    source_embedding.embedding_vector
+                )
+            )
+            .limit(limit)
+            .all()
+        )

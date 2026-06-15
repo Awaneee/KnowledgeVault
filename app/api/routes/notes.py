@@ -5,6 +5,7 @@ from app.database.session import get_db
 from app.api.dependencies.auth import get_current_user
 from app.models.user import User
 from app.services.note_service import NoteService
+
 from app.schemas.note import (
     NoteCreate,
     NoteResponse,
@@ -63,6 +64,23 @@ def search_notes(
 
     return service.search_notes(
         query=q,
+        user_id=current_user.id
+    )
+
+
+@router.get(
+    "/{note_id}/related",
+    response_model=list[NoteSearchResponse]
+)
+def get_related_notes(
+    note_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    service = NoteService(db)
+
+    return service.get_related_notes(
+        note_id=note_id,
         user_id=current_user.id
     )
 
