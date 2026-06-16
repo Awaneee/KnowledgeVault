@@ -77,3 +77,11 @@ class Note(Base):
         uselist=False,
         cascade="all, delete-orphan"
     )
+
+    # Chunk-based retrieval: one note → many chunks
+    chunks = relationship(
+        "DocumentChunk",
+        back_populates="note",
+        cascade="all, delete-orphan",
+        order_by="DocumentChunk.chunk_index"
+    )
