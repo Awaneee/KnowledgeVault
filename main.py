@@ -9,3 +9,13 @@ app.include_router(notes.router)
 app.include_router(attachment.router)
 app.include_router(upload.router)
 app.include_router(topics.router)
+from app.api.routes.retrieve import router as retrieve_router
+
+app.include_router(retrieve_router)
+from app.api.routes.ask import (
+    router as ask_router
+)
+
+app.include_router(
+    ask_router
+)
