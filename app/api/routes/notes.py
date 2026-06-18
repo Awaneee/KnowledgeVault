@@ -8,6 +8,7 @@ from app.services.note_service import NoteService
 
 from app.schemas.note import (
     NoteCreate,
+    NoteCreateResponse,
     NoteResponse,
     NoteSearchResponse,
 )
@@ -20,7 +21,7 @@ router = APIRouter(
 
 @router.post(
     "/",
-    response_model=NoteResponse,
+    response_model=NoteCreateResponse,
     status_code=201
 )
 def create_note(

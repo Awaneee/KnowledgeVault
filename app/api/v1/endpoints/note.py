@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.database.session import get_db
-from app.schemas.note import NoteCreate, NoteResponse
+from app.schemas.note import NoteCreate, NoteCreateResponse, NoteResponse
 from app.services.note_service import NoteService
 
 router = APIRouter(
@@ -16,7 +16,7 @@ TEMP_USER_ID = 1
 
 @router.post(
     "/",
-    response_model=NoteResponse,
+    response_model=NoteCreateResponse,
     status_code=201
 )
 def create_note(

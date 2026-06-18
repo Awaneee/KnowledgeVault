@@ -3,11 +3,12 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+from app.schemas.intent import IntentCategoryResponse
+from app.schemas.intent import NoteIntentResponse
+
 
 class NoteCreate(BaseModel):
-    title: str
-    content: Optional[str] = None
-    category_id: Optional[int] = None
+    content: str
 
 
 class NoteResponse(BaseModel):
@@ -16,9 +17,16 @@ class NoteResponse(BaseModel):
     content: Optional[str]
     user_id: int
     category_id: Optional[int]
+    auto_title_source: Optional[str] = None
+    organization_status: Optional[str] = None
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+class NoteCreateResponse(NoteResponse):
+    intent: Optional[NoteIntentResponse] = None
+    intent_category: Optional[IntentCategoryResponse] = None
 
 
 class NoteSearchResponse(BaseModel):

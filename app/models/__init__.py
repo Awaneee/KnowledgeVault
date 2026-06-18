@@ -5,3 +5,7 @@ from app.models.category_embedding import CategoryEmbedding
 from app.models.embedding import Embedding
 from app.models.document_chunk import DocumentChunk
 from app.models.chunk_embedding import ChunkEmbedding
+from app.models.intent_category import IntentCategory
+from app.models.intent_category_embedding import IntentCategoryEmbedding
+from app.models.note_intent import NoteIntent
+from app.models.note_intent_assignment import NoteIntentAssignment

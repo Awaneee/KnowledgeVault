@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.routes import categories, notes, attachment, auth,upload,topics
+from app.api.routes import categories, notes, attachment, auth, upload, topics, intents
 
 app = FastAPI(title="KnowledgeVault")
 
@@ -9,6 +9,7 @@ app.include_router(notes.router)
 app.include_router(attachment.router)
 app.include_router(upload.router)
 app.include_router(topics.router)
+app.include_router(intents.router)
 from app.api.routes.retrieve import router as retrieve_router
 
 app.include_router(retrieve_router)

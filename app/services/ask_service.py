@@ -13,14 +13,18 @@ class AskService:
         question: str,
         user_id: int
     ):
-        chunks = self.chunk_service.retrieve(
+        chunks = self.chunk_service.retrieve_hybrid(
             query=question,
             user_id=user_id,
             limit=5
         )
 
         context = "\n\n".join(
-            chunk["chunk_text"]
+            (
+                f"Category: {chunk.get('intent_category') or 'Semantic match'}\n"
+                f"Note: {chunk['note_title']}\n"
+                f"{chunk['chunk_text']}"
+            )
             for chunk in chunks
         )
 

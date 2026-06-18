@@ -6,15 +6,24 @@ class LLMService:
     MODEL = "llama3:latest"
 
     @classmethod
-    def generate(cls, prompt: str):
+    def generate(
+        cls,
+        prompt: str,
+        response_format: str | None = None
+    ):
+        payload = {
+            "model": cls.MODEL,
+            "prompt": prompt,
+            "stream": False
+        }
+
+        if response_format:
+            payload["format"] = response_format
 
         response = requests.post(
             cls.OLLAMA_URL,
-            json={
-                "model": cls.MODEL,
-                "prompt": prompt,
-                "stream": False
-            }
+            json=payload,
+            timeout=30
         )
 
         response.raise_for_status()

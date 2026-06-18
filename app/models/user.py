@@ -78,3 +78,9 @@ class User(Base):
         back_populates="user",
         cascade="all, delete-orphan"
     )
+
+    intent_categories = relationship(
+        "IntentCategory",
+        back_populates="user",
+        cascade="all, delete-orphan"
+    )

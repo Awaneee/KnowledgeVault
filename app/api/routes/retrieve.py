@@ -23,6 +23,8 @@ class RetrieveRequest(BaseModel):
 class ChunkResult(BaseModel):
     chunk_text: str
     note_title: str
+    source: str | None = None
+    intent_category: str | None = None
 
     model_config = {"from_attributes": True}
 
@@ -57,6 +59,40 @@ def retrieve_chunks(
         ChunkResult(
             chunk_text=r["chunk_text"],
             note_title=r["note_title"]
+        )
+        for r in results
+    ]
+
+
+@router.post(
+    "/hybrid",
+    response_model=list[ChunkResult]
+)
+def retrieve_hybrid_chunks(
+    body: RetrieveRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Intent-aware chunk retrieval.
+
+    Useful for queries like "what should I tell Sid?" where
+    purpose matters more than topic similarity.
+    """
+    chunk_service = ChunkService(db)
+
+    results = chunk_service.retrieve_hybrid(
+        query=body.query,
+        user_id=current_user.id,
+        limit=5
+    )
+
+    return [
+        ChunkResult(
+            chunk_text=r["chunk_text"],
+            note_title=r["note_title"],
+            source=r.get("source"),
+            intent_category=r.get("intent_category")
         )
         for r in results
     ]

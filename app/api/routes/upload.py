@@ -19,7 +19,6 @@ from app.schemas.upload import PDFUploadResponse
 
 from app.services.note_service import NoteService
 from app.services.document_service import DocumentService
-from app.services.chunk_service import ChunkService
 
 
 router = APIRouter(
@@ -84,27 +83,17 @@ def upload_file(
         )
     )
 
-    # ── Step 1: create note + whole-note embedding (existing) ──
     note_service = NoteService(db)
 
     note = note_service.create_note(
         NoteCreate(
-            title=file.filename,
-            content=extracted_text,
-            category_id=None
+            content=extracted_text
         ),
         user_id=current_user.id
-    )
-
-    # ── Step 2: chunk the extracted text and embed each chunk ──
-    chunk_service = ChunkService(db)
-
-    chunk_service.process_note(
-        note_id=note.id,
-        text=extracted_text
     )
 
     return PDFUploadResponse(
         message="File processed successfully",
         note_id=note.id
     )
+

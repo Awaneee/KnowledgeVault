@@ -32,6 +32,18 @@ class Note(Base):
         default="manual_note"
     )
 
+    auto_title_source = Column(
+        String,
+        nullable=False,
+        default="heuristic"
+    )
+
+    organization_status = Column(
+        String,
+        nullable=False,
+        default="pending"
+    )
+
     user_id = Column(
         Integer,
         ForeignKey("users.id"),
@@ -84,4 +96,17 @@ class Note(Base):
         back_populates="note",
         cascade="all, delete-orphan",
         order_by="DocumentChunk.chunk_index"
+    )
+
+    intent = relationship(
+        "NoteIntent",
+        back_populates="note",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
+
+    intent_assignments = relationship(
+        "NoteIntentAssignment",
+        back_populates="note",
+        cascade="all, delete-orphan"
     )
