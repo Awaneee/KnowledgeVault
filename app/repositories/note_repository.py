@@ -56,3 +56,10 @@ class NoteRepository:
             .filter(Note.user_id == user_id)
             .all()
         )
+
+    def get_note_by_id(self, note_id: int) -> Note | None:
+        return (
+            self.db.query(Note)
+            .filter(Note.id == note_id)
+            .first()
+        )

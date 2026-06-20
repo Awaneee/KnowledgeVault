@@ -14,7 +14,6 @@ from app.schemas.intent import NoteIntentResponse
 from app.services.chunk_service import ChunkService
 from app.services.embedding_service import EmbeddingService
 from app.services.intent_category_service import IntentCategoryService
-from app.services.title_generation_service import TitleGenerationService
 
 
 logger = logging.getLogger(__name__)
@@ -48,16 +47,16 @@ class NoteService:
         self.embedding_service = EmbeddingService(db)
         self.chunk_service = ChunkService(db)
         self.intent_category_service = IntentCategoryService(db)
-        self.title_generation_service = TitleGenerationService()
 
     def create_note(
         self,
         data: NoteCreate,
         user_id: int,
     ) -> NoteCreateResponse:
-        title, title_source = self.title_generation_service.generate(
-            data.content
-        )
+        title = (data.content or "").strip()
+        if len(title) > 120:
+            title = title[:120]
+        title_source = "content"
 
         note = self.repo.create_note(
             title=title,
@@ -68,59 +67,13 @@ class NoteService:
             organization_status="pending"
         )
 
-        text_for_embedding = (
-            f"{note.title}\n{note.content or ''}"
-        )
-
-        self.embedding_service.generate_and_store(
+        from app.services.queue_service import QueueService
+        QueueService.enqueue_note_processing(
             note_id=note.id,
-            text=text_for_embedding,
+            user_id=user_id
         )
 
-        self.chunk_service.process_note(
-            note_id=note.id,
-            text=note.content or note.title
-        )
-
-        intent_result = None
-
-        try:
-            intent_result = self.intent_category_service.process_note(
-                note_id=note.id,
-                user_id=user_id,
-                title=note.title,
-                content=note.content
-            )
-            note = self.repo.update_organization_status(
-                note_id=note.id,
-                status="organized"
-            ) or note
-        except Exception as exc:
-            logger.exception(
-                "%s\nINTENT ORGANIZATION FAILED\n%s\n\nType: %s\nMessage: %s\n\n%s",
-                "=" * 80,
-                "=" * 80,
-                type(exc).__name__,
-                exc,
-                traceback.format_exc()
-            )
-            self.repo.db.rollback()
-            note = self.repo.update_organization_status(
-                note_id=note.id,
-                status="failed"
-            ) or note
-
-        response = NoteCreateResponse.model_validate(note)
-
-        if intent_result:
-            response.intent = NoteIntentResponse.model_validate(
-                intent_result["intent"]
-            )
-            response.intent_category = IntentCategoryResponse.model_validate(
-                intent_result["category"]
-            )
-
-        return response
+        return NoteCreateResponse.model_validate(note)
 
     def get_notes(
         self,
