@@ -49,7 +49,15 @@ Answer:
             prompt
         )
 
+        sources = list(
+            dict.fromkeys(
+                chunk["note_title"]
+                for chunk in chunks
+            )
+        )
+
         return {
             "question": question,
-            "answer": answer
+            "answer": answer,
+            "sources": sources
         }
