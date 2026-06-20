@@ -1,3 +1,6 @@
+import logging
+import traceback
+
 from sqlalchemy.orm import Session
 
 from app.schemas.note import NoteCreate
@@ -14,7 +17,32 @@ from app.services.intent_category_service import IntentCategoryService
 from app.services.title_generation_service import TitleGenerationService
 
 
+logger = logging.getLogger(__name__)
+
+
 class NoteService:
+    def create_notes_bulk(
+    self,
+    notes: list[str],
+    user_id: int
+    ) -> list[NoteCreateResponse]:
+
+      results = []
+
+      for content in notes:
+        try:
+            result = self.create_note(
+                NoteCreate(content=content),
+                user_id=user_id
+            )
+            results.append(result)
+
+        except Exception as e:
+            print(
+                f"Failed to create note: {content} | {e}"
+            )
+
+      return results
     def __init__(self, db: Session):
         self.repo = NoteRepository(db)
         self.embedding_service = EmbeddingService(db)
@@ -67,7 +95,15 @@ class NoteService:
                 note_id=note.id,
                 status="organized"
             ) or note
-        except Exception:
+        except Exception as exc:
+            logger.exception(
+                "%s\nINTENT ORGANIZATION FAILED\n%s\n\nType: %s\nMessage: %s\n\n%s",
+                "=" * 80,
+                "=" * 80,
+                type(exc).__name__,
+                exc,
+                traceback.format_exc()
+            )
             self.repo.db.rollback()
             note = self.repo.update_organization_status(
                 note_id=note.id,

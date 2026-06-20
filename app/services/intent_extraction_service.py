@@ -1,10 +1,14 @@
 import json
+import logging
 import re
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
 
 from app.services.llm_service import LLMService
+
+
+logger = logging.getLogger(__name__)
 
 
 class IntentExtractionService:
@@ -56,10 +60,21 @@ class IntentExtractionService:
     ) -> dict:
         text = self._build_text(title, content)
 
+        logger.info(
+            "\n%s\nINTENT EXTRACTION INPUT\n%s\n%s",
+            "=" * 80,
+            "=" * 80,
+            text
+        )
+
         try:
             llm_result = self._extract_with_llm(text)
             return self._normalize(llm_result, text)
-        except Exception:
+        except Exception as exc:
+            logger.exception(
+                "INTENT EXTRACTION FAILED\nERROR: %s\n\nFALLING BACK TO RULES",
+                exc
+            )
             return self._extract_with_rules(text)
 
     def extract_query_intent(
@@ -92,22 +107,126 @@ You classify personal knowledge notes by intent.
 Current date: {date.today().isoformat()}
 Input type: {"query" if is_query else "note"}
 
-Return strict JSON with exactly these keys:
-intent_type, action, actor, object, due_date, temporal_text, urgency,
-category_hint, confidence, reasoning_summary.
+Return STRICT JSON with exactly these keys:
+intent_type
+action
+actor
+object
+due_date
+temporal_text
+urgency
+category_hint
+confidence
+reasoning_summary
+
+Allowed intent types:
+communication
+todo
+study
+reminder
+idea
+reference
+question
+event
+general
+
+IMPORTANT:
+Classify based on WHY the note exists,
+not simply what topic it mentions.
+
+Examples:
+
+Communication:
+Tell Sid about internship
+→ communication
+Inform Sid about capstone
+→ communication
+Discuss project with Sid
+→ communication
+Email Google support
+→ communication
+Call professor tomorrow
+→ communication
+
+Todo:
+Pay rent
+→ todo
+Buy groceries
+→ todo
+Eat medicine tomorrow
+→ todo
+Prepare for test by July 16
+→ todo
+Complete assignment
+→ todo
+Revise OOP
+→ todo
+
+Study:
+Learn graph algorithms
+→ study
+Practice dynamic programming
+→ study
+Study operating systems
+→ study
+
+Reference:
+Docker Containers
+→ reference
+Redis Caching
+→ reference
+Machine Learning Embeddings
+→ reference
+Repository Pattern
+→ reference
+Transformer Attention Mechanism
+→ reference
+PostgreSQL Indexing
+→ reference
+
+Idea:
+Idea for interview preparation app
+→ idea
+Build AI resume reviewer
+→ idea
+Startup idea around MCP servers
+→ idea
+Design a new dress collection
+→ idea
+Painting concept for portfolio
+→ idea
+
+Question:
+How does Kafka work?
+→ question
+What is JWT?
+→ question
+
+Event:
+Team agreed to use PostgreSQL
+→ event
+Meeting with professor on Monday
+→ event
+Capstone review scheduled for July 10
+→ event
+
+Reminder:
+Call mom tomorrow
+→ reminder
+Renew driving license next week
+→ reminder
+Doctor appointment tomorrow
+→ reminder
 
 Rules:
-- intent_type must be one of: communication, todo, study, reminder, idea,
-  reference, question, event, general.
 - due_date must be ISO YYYY-MM-DD or null.
-- actor is the person or group involved, or null.
-- confidence is a number from 0 to 1.
-- category_hint should be a short human category name.
-- Use todo for practical tasks such as "Revise OOP", "Eat medicine tomorrow",
-  and "Prepare for test by July 16".
-- Use communication when the user needs to tell, inform, discuss, ask, message,
-  call, email, or share something with a person.
+- actor is the person or organization involved if any.
+- confidence must be between 0 and 1.
+- category_hint should be short and human friendly.
 - Return JSON only.
+- Do not invent information.
+- No markdown.
+- No explanation outside JSON.
 
 Input:
 {text}
@@ -118,7 +237,12 @@ Input:
             response_format="json"
         )
 
-        return json.loads(response)
+        logger.info("OLLAMA RAW RESPONSE:\n%s", response)
+
+        parsed = json.loads(response)
+        logger.info("PARSED INTENT JSON:\n%s", parsed)
+
+        return parsed
 
     def _normalize(
         self,
@@ -171,6 +295,8 @@ Input:
         self,
         text: str
     ) -> dict:
+        logger.warning("RULE-BASED EXTRACTION ACTIVATED")
+
         lowered = text.lower()
         words = re.findall(r"\b[a-zA-Z]+\b", text)
         first_word = words[0].lower() if words else ""
@@ -204,7 +330,7 @@ Input:
 
         due_date, temporal_text = self._infer_due_date(lowered)
 
-        return {
+        result = {
             "intent_type": intent_type,
             "action": action,
             "actor": actor,
@@ -220,6 +346,31 @@ Input:
             "prompt_version": self.PROMPT_VERSION,
             "source_text": text
         }
+
+        logger.info(
+            "Detected intent_type: %s\n"
+            "Detected action: %s\n"
+            "Detected actor: %s\n"
+            "Confidence: %s",
+            intent_type,
+            action,
+            actor,
+            confidence
+        )
+        logger.info(
+            "RULE RESULT:\n%s",
+            json.dumps(
+                {
+                    "intent_type": intent_type,
+                    "action": action,
+                    "actor": actor,
+                    "confidence": confidence
+                },
+                indent=4
+            )
+        )
+
+        return result
 
     def _find_actor_after_preposition(
         self,

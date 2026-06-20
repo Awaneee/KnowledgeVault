@@ -5,6 +5,13 @@ from app.database.session import get_db
 from app.api.dependencies.auth import get_current_user
 from app.models.user import User
 from app.services.note_service import NoteService
+from app.schemas.note import (
+    NoteCreate,
+    BulkNoteCreate,
+    NoteCreateResponse,
+    NoteResponse,
+    NoteSearchResponse,
+)
 
 from app.schemas.note import (
     NoteCreate,
@@ -33,6 +40,21 @@ def create_note(
 
     return service.create_note(
         data,
+        user_id=current_user.id
+    )
+@router.post(
+    "/bulk",
+    response_model=list[NoteCreateResponse]
+)
+def create_notes_bulk(
+    data: BulkNoteCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    service = NoteService(db)
+
+    return service.create_notes_bulk(
+        notes=data.notes,
         user_id=current_user.id
     )
 
@@ -145,3 +167,4 @@ def get_note_attachments(
         )
 
     return note.attachments
+

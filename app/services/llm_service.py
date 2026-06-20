@@ -3,7 +3,7 @@ import requests
 
 class LLMService:
     OLLAMA_URL = "http://localhost:11434/api/generate"
-    MODEL = "llama3:latest"
+    MODEL = "phi3:mini"
 
     @classmethod
     def generate(
@@ -23,7 +23,7 @@ class LLMService:
         response = requests.post(
             cls.OLLAMA_URL,
             json=payload,
-            timeout=30
+            timeout=60
         )
 
         response.raise_for_status()

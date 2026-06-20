@@ -9,6 +9,8 @@ from app.schemas.intent import NoteIntentResponse
 
 class NoteCreate(BaseModel):
     content: str
+class BulkNoteCreate(BaseModel):
+    notes: list[str]
 
 
 class NoteResponse(BaseModel):
