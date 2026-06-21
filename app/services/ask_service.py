@@ -1,3 +1,5 @@
+import time
+
 from sqlalchemy.orm import Session
 
 from app.services.chunk_service import ChunkService
@@ -13,10 +15,16 @@ class AskService:
         question: str,
         user_id: int
     ):
+        start = time.time()
+
         chunks = self.chunk_service.retrieve_hybrid(
             query=question,
             user_id=user_id,
-            limit=5
+            limit=3
+        )
+
+        print(
+            f"RETRIEVAL: {time.time() - start:.2f}s"
         )
 
         context = "\n\n".join(
@@ -29,11 +37,19 @@ class AskService:
         )
 
         prompt = f"""
-You are a helpful assistant.
+You are a retrieval assistant.
 
-Answer the user's question using ONLY the provided context.
+Use ONLY the provided notes.
 
-If the answer cannot be found in the context, say:
+DO NOT infer.
+DO NOT guess.
+DO NOT add information that is not present.
+DO NOT explain your reasoning.
+
+If the user asks for a list, return a simple bullet list.
+
+If the answer cannot be found in the context, say exactly:
+
 "I could not find that information in your notes."
 
 Context:
@@ -45,8 +61,19 @@ Question:
 Answer:
 """
 
+        llm_start = time.time()
+
         answer = LLMService.generate(
-            prompt
+            prompt=prompt,
+            model=LLMService.ASK_MODEL
+        )
+
+        print(
+            f"LLM: {time.time() - llm_start:.2f}s"
+        )
+
+        print(
+            f"TOTAL: {time.time() - start:.2f}s"
         )
 
         sources = list(

@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class IntentExtractionService:
     PROMPT_VERSION = "intent-v1"
-    MODEL_NAME = LLMService.MODEL
+    MODEL_NAME = LLMService.INTENT_MODEL
 
     INTENT_TYPES = {
         "communication",
@@ -53,6 +53,120 @@ class IntentExtractionService:
         "study"
     }
 
+    # --- Query-time fast classifier (no LLM) ---------------------------
+    # Used only by extract_query_intent_fast(). Keyword-anchored rather
+    # than capitalization-anchored, since chat queries are typically
+    # lowercase ("things to tell sid", "what should i tell sid").
+
+    QUERY_COMMUNICATION_KEYWORDS = {
+        "tell",
+        "inform",
+        "discuss",
+        "ask",
+        "message",
+        "call",
+        "email",
+        "share",
+        "meet",
+        "talk"
+    }
+
+    QUERY_TODO_KEYWORDS = {
+        "todo",
+        "to-do",
+        "task",
+        "tasks",
+        "pending",
+        "finish",
+        "complete",
+        "submit",
+        "buy",
+        "pay"
+    }
+
+    QUERY_STUDY_KEYWORDS = {
+        "study",
+        "studies",
+        "learn",
+        "learning",
+        "revise",
+        "revision",
+        "practice"
+    }
+
+    QUERY_IDEA_KEYWORDS = {
+        "idea",
+        "ideas",
+        "startup",
+        "concept",
+        "concepts",
+        "brainstorm"
+    }
+
+    QUERY_REFERENCE_KEYWORDS = {
+        "reference",
+        "references",
+        "docs",
+        "documentation",
+        "notes"
+    }
+
+    QUERY_EVENT_KEYWORDS = {
+        "event",
+        "events",
+        "meeting",
+        "meetings",
+        "scheduled",
+        "schedule"
+    }
+
+    QUERY_REMINDER_KEYWORDS = {
+        "remind",
+        "reminder",
+        "reminders",
+        "appointment",
+        "appointments"
+    }
+
+    QUERY_QUESTION_KEYWORDS = {
+        "what",
+        "how",
+        "why",
+        "when",
+        "where",
+        "who",
+        "which"
+    }
+
+    # Checked in priority order: first matching group wins. Communication
+    # is checked first since "tell sid" style phrasing is the most
+    # actor-specific and most common Ask query in practice.
+    QUERY_INTENT_KEYWORD_GROUPS = (
+        ("communication", QUERY_COMMUNICATION_KEYWORDS),
+        ("reminder", QUERY_REMINDER_KEYWORDS),
+        ("study", QUERY_STUDY_KEYWORDS),
+        ("idea", QUERY_IDEA_KEYWORDS),
+        ("reference", QUERY_REFERENCE_KEYWORDS),
+        ("event", QUERY_EVENT_KEYWORDS),
+        ("todo", QUERY_TODO_KEYWORDS)
+    )
+
+    # Words stripped out before scanning for a leftover actor name in a
+    # query like "things to tell sid about the internship".
+    QUERY_STOPWORDS = {
+        "i", "me", "my", "what", "should", "do", "need", "to", "the",
+        "a", "an", "about", "for", "with", "on", "is", "are", "of",
+        "things", "thing", "tell", "inform", "discuss", "ask", "message",
+        "call", "email", "share", "meet", "talk", "todo", "to-do", "task",
+        "tasks", "pending", "finish", "complete", "submit", "buy", "pay",
+        "study", "studies", "learn", "learning", "revise", "revision",
+        "practice", "idea", "ideas", "startup", "concept", "concepts",
+        "brainstorm", "reference", "references", "docs", "documentation",
+        "notes", "note", "event", "events", "meeting", "meetings",
+        "scheduled", "schedule", "remind", "reminder", "reminders",
+        "appointment", "appointments"
+    }
+
     def extract(
         self,
         title: str,
@@ -86,6 +200,91 @@ class IntentExtractionService:
             return self._normalize(llm_result, query)
         except Exception:
             return self._extract_with_rules(query)
+
+    def extract_query_intent_fast(
+        self,
+        query: str
+    ) -> dict:
+        """
+        Lightweight, keyword-based intent classifier for Ask-time queries.
+
+        No LLM call — pure regex/keyword matching, runs in microseconds.
+        Used by IntentCategoryService.find_categories_for_query() so that
+        Ask retrieval never has to wait on Phi3. Accuracy is intentionally
+        looser than the LLM path (extract_query_intent); this only needs
+        to be good enough to route to the right category, and falls back
+        to a vector search anyway if it can't find an exact rule match.
+        """
+        logger.info("FAST QUERY CLASSIFIER ACTIVATED (no LLM)")
+
+        lowered = query.lower().strip()
+        words = re.findall(r"[a-z0-9']+", lowered)
+        word_set = set(words)
+
+        intent_type = "general"
+        confidence = 0.5
+
+        for candidate_type, keywords in self.QUERY_INTENT_KEYWORD_GROUPS:
+            if word_set & keywords:
+                intent_type = candidate_type
+                confidence = 0.65
+                break
+
+        if intent_type == "general" and word_set & self.QUERY_QUESTION_KEYWORDS:
+            intent_type = "question"
+            confidence = 0.55
+
+        actor = None
+        if intent_type == "communication":
+            actor = self._find_query_actor(words)
+            if actor:
+                confidence = 0.72
+
+        result = {
+            "intent_type": intent_type,
+            "action": next(iter(word_set & self.QUERY_COMMUNICATION_KEYWORDS), None)
+            if intent_type == "communication" else None,
+            "actor": actor,
+            "object": None,
+            "due_date": None,
+            "temporal_text": None,
+            "urgency": "medium",
+            "category_hint": None,
+            "confidence": confidence,
+            "reasoning_summary": "Fast keyword-based query classification.",
+            "raw_llm_json": None,
+            "model_name": "heuristic-fast",
+            "prompt_version": self.PROMPT_VERSION,
+            "source_text": query
+        }
+
+        logger.info(
+            "FAST QUERY RESULT: intent_type=%s actor=%s confidence=%s",
+            intent_type,
+            actor,
+            confidence
+        )
+
+        return result
+
+    def _find_query_actor(
+        self,
+        words: list[str]
+    ) -> str | None:
+        """
+        Picks the most likely actor name out of a lowercase query's
+        remaining words after stripping known stopwords/keywords.
+        Takes the last leftover word, since actor names in these query
+        patterns ("things to tell sid", "what should i tell sid about
+        the internship") tend to appear right after the action keyword
+        and before any trailing "about X" object.
+        """
+        leftover = [w for w in words if w not in self.QUERY_STOPWORDS]
+
+        if not leftover:
+            return None
+
+        return leftover[0]
 
     def _build_text(
         self,
@@ -234,7 +433,10 @@ Input:
 
         response = LLMService.generate(
             prompt=prompt,
-            response_format="json"
+            response_format="json",
+            model=LLMService.INTENT_MODEL
+            
+            
         )
 
         logger.info("OLLAMA RAW RESPONSE:\n%s", response)

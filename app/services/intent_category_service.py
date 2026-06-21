@@ -137,7 +137,14 @@ class IntentCategoryService:
         user_id: int,
         limit: int = 3
     ) -> list[IntentCategory]:
-        intent = self.extractor.extract_query_intent(query)
+        # Query-time path: no LLM call. extract_query_intent_fast() is a
+        # pure keyword classifier (sub-millisecond). The Phi3-backed
+        # extract_query_intent() is intentionally NOT used here — it was
+        # the source of the ~60-70s Ask retrieval latency. Note creation
+        # (process_note -> self.extractor.extract) still uses the LLM
+        # and is unaffected by this change, since it runs in the
+        # background Redis worker, not on the request path.
+        intent = self.extractor.extract_query_intent_fast(query)
 
         exact = self.category_repo.find_rule_match(
             user_id=user_id,
