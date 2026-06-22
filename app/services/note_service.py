@@ -20,33 +20,37 @@ logger = logging.getLogger(__name__)
 
 
 class NoteService:
-    def create_notes_bulk(
-    self,
-    notes: list[str],
-    user_id: int
-    ) -> list[NoteCreateResponse]:
-
-      results = []
-
-      for content in notes:
-        try:
-            result = self.create_note(
-                NoteCreate(content=content),
-                user_id=user_id
-            )
-            results.append(result)
-
-        except Exception as e:
-            print(
-                f"Failed to create note: {content} | {e}"
-            )
-
-      return results
     def __init__(self, db: Session):
         self.repo = NoteRepository(db)
         self.embedding_service = EmbeddingService(db)
         self.chunk_service = ChunkService(db)
         self.intent_category_service = IntentCategoryService(db)
+
+    def create_notes_bulk(
+        self,
+        notes: list[str],
+        user_id: int
+    ) -> list[NoteCreateResponse]:
+        # create_notes_bulk was previously defined BEFORE __init__,
+        # which means self.repo/embedding_service etc. would not exist
+        # when it ran. Also replaced silent print() with logger.exception
+        # so bulk failures are actually visible in logs with tracebacks.
+        results = []
+
+        for content in notes:
+            try:
+                result = self.create_note(
+                    NoteCreate(content=content),
+                    user_id=user_id
+                )
+                results.append(result)
+
+            except Exception:
+                logger.exception(
+                    f"Failed to create note for user {user_id}: {content[:80]!r}"
+                )
+
+        return results
 
     def create_note(
         self,

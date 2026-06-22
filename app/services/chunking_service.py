@@ -1,30 +1,32 @@
 class ChunkingService:
     """
     Splits plain text into ordered chunks of approximately
-    CHUNK_SIZE characters. Splits on sentence boundaries
-    ('. ') where possible to avoid cutting mid-sentence;
-    falls back to a hard character split when a single
-    sentence exceeds the target size.
+    CHUNK_SIZE characters with OVERLAP characters of carry-over
+    from the previous chunk.
+
+    Overlap prevents context loss at chunk boundaries — without it,
+    a sentence that spans two chunks is split cold, so neither chunk
+    contains enough context to answer a question about that sentence.
+    50-character overlap is conservative; increase to 100-150 if
+    retrieval quality on boundary-spanning content is still poor.
     """
 
     CHUNK_SIZE: int = 500
-    OVERLAP: int = 0  # reserved for future sliding-window RAG
+    OVERLAP: int = 50
 
     @staticmethod
     def split(text: str) -> list[str]:
         """
         Return a list of non-empty chunk strings in order.
-        Guarantees that every chunk is <= CHUNK_SIZE * 2 chars
-        and that the concatenation of all chunks covers the
-        full input text (no content is dropped).
+        Each chunk (except the first) begins with up to OVERLAP
+        characters carried over from the end of the previous chunk,
+        ensuring no context is lost at boundaries.
         """
         text = text.strip()
 
         if not text:
             return []
 
-        # Split on sentence-ending punctuation followed by
-        # whitespace so we can re-join cleanly.
         sentences = ChunkingService._split_sentences(text)
 
         chunks: list[str] = []
@@ -34,22 +36,31 @@ class ChunkingService:
         for sentence in sentences:
             sentence_len = len(sentence)
 
-            # If adding this sentence would exceed the target,
-            # flush the current buffer first.
             if current and current_len + sentence_len > ChunkingService.CHUNK_SIZE:
-                chunks.append(" ".join(current).strip())
-                current = []
-                current_len = 0
+                chunk_text = " ".join(current).strip()
+                chunks.append(chunk_text)
 
-            # A single sentence longer than CHUNK_SIZE gets its
-            # own chunk (hard-split by character).
+                # Carry the tail of the current chunk into the next one
+                # so queries that straddle a boundary still find a match.
+                overlap_text = chunk_text[-ChunkingService.OVERLAP:] if ChunkingService.OVERLAP > 0 else ""
+                current = [overlap_text] if overlap_text else []
+                current_len = len(overlap_text)
+
             if sentence_len > ChunkingService.CHUNK_SIZE:
                 hard_chunks = ChunkingService._hard_split(sentence)
-                chunks.extend(hard_chunks)
+                # Apply overlap between hard-split pieces too
+                for i, hc in enumerate(hard_chunks):
+                    if i == 0:
+                        chunks.append(hc)
+                    else:
+                        prev_tail = hard_chunks[i - 1][-ChunkingService.OVERLAP:] if ChunkingService.OVERLAP > 0 else ""
+                        chunks.append((prev_tail + " " + hc).strip() if prev_tail else hc)
+                current = []
+                current_len = 0
                 continue
 
             current.append(sentence)
-            current_len += sentence_len + 1  # +1 for the space
+            current_len += sentence_len + 1
 
         if current:
             chunks.append(" ".join(current).strip())

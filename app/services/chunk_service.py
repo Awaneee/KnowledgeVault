@@ -132,25 +132,31 @@ class ChunkService:
                 if not chunks:
                     continue
 
-                chunk = chunks[0]
-                key = (note.title, chunk.chunk_index, chunk.chunk_text)
+                # Use ALL chunks from the note ranked by chunk_index,
+                # not just chunks[0]. Taking only the first chunk meant
+                # the RAG system could only ever see the opening of each
+                # note regardless of where the relevant content actually
+                # was, breaking retrieval for anything beyond the first
+                # ~500 characters of a note.
+                for chunk in sorted(chunks, key=lambda c: c.chunk_index):
+                    key = (note.title, chunk.chunk_index, chunk.chunk_text)
 
-                if key in seen:
-                    continue
+                    if key in seen:
+                        continue
 
-                seen.add(key)
-                results.append(
-                    {
-                        "chunk_text": chunk.chunk_text,
-                        "chunk_index": chunk.chunk_index,
-                        "note_title": note.title,
-                        "source": "intent",
-                        "intent_category": category.name
-                    }
-                )
+                    seen.add(key)
+                    results.append(
+                        {
+                            "chunk_text": chunk.chunk_text,
+                            "chunk_index": chunk.chunk_index,
+                            "note_title": note.title,
+                            "source": "intent",
+                            "intent_category": category.name
+                        }
+                    )
 
-                if len(results) >= limit:
-                    return results
+                    if len(results) >= limit:
+                        return results
 
         semantic_results = self.retrieve(
             query=query,
