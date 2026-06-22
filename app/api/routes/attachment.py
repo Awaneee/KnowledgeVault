@@ -23,8 +23,7 @@ def upload_attachment(
     current_user: User = Depends(get_current_user)
 ):
     note_repo = NoteRepository(db)
-    note = note_repo.get_notes_by_user(current_user.id)
-    matched_note = next((n for n in note if n.id == note_id), None)
+    matched_note = note_repo.get_note_by_id(note_id)
     if not matched_note:
         raise HTTPException(status_code=404, detail="Note not found")
     if matched_note.user_id != current_user.id:
@@ -52,7 +51,7 @@ def list_attachments(
     current_user: User = Depends(get_current_user)
 ):
     service = AttachmentService(db)
-    return service.get_attachments()
+    return service.get_attachments(current_user.id)
 
 
 @router.get("/{attachment_id}", response_model=AttachmentResponse)

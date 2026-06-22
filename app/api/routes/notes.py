@@ -13,13 +13,6 @@ from app.schemas.note import (
     NoteSearchResponse,
 )
 
-from app.schemas.note import (
-    NoteCreate,
-    NoteCreateResponse,
-    NoteResponse,
-    NoteSearchResponse,
-)
-
 router = APIRouter(
     prefix="/notes",
     tags=["notes"]
@@ -119,28 +112,21 @@ def get_note(
 ):
     service = NoteService(db)
 
-    notes = service.repo.get_notes_by_user(
-        current_user.id
-    )
+    note = service.repo.get_note_by_id(note_id)
 
-    match = next(
-        (n for n in notes if n.id == note_id),
-        None
-    )
-
-    if not match:
+    if not note:
         raise HTTPException(
             status_code=404,
             detail="Note not found"
         )
 
-    if match.user_id != current_user.id:
+    if note.user_id != current_user.id:
         raise HTTPException(
             status_code=403,
             detail="Access forbidden"
         )
 
-    return match
+    return note
 
 
 @router.get("/{note_id}/attachments")
@@ -151,19 +137,18 @@ def get_note_attachments(
 ):
     service = NoteService(db)
 
-    notes = service.repo.get_notes_by_user(
-        current_user.id
-    )
-
-    note = next(
-        (n for n in notes if n.id == note_id),
-        None
-    )
+    note = service.repo.get_note_by_id(note_id)
 
     if not note:
         raise HTTPException(
             status_code=404,
             detail="Note not found"
+        )
+
+    if note.user_id != current_user.id:
+        raise HTTPException(
+            status_code=403,
+            detail="Access forbidden"
         )
 
     return note.attachments

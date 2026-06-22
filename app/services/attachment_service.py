@@ -22,9 +22,9 @@ class AttachmentService:
 
         return AttachmentResponse.model_validate(attachment)
 
-    def get_attachments(self) -> list[AttachmentResponse]:
+    def get_attachments(self, user_id: int) -> list[AttachmentResponse]:
 
-        attachments = self.repo.get_attachments()
+        attachments = self.repo.get_attachments_by_user(user_id)
 
         return [
             AttachmentResponse.model_validate(a)

@@ -44,9 +44,29 @@ def upload_file(
         exist_ok=True
     )
 
+    allowed_extensions = {
+        ".pdf",
+        ".txt",
+        ".docx"
+    }
+
+    # Validate the extension BEFORE writing anything to disk, and take
+    # only the extension from the client-supplied filename - never the
+    # filename itself. file.filename is attacker-controlled; building a
+    # path directly from it (e.g. "../../something") risks writing
+    # outside uploads_dir. The actual on-disk name is always a fresh
+    # uuid4, so the original filename can't influence the path at all.
+    original_extension = Path(file.filename or "").suffix.lower()
+
+    if original_extension not in allowed_extensions:
+        raise HTTPException(
+            status_code=400,
+            detail="Unsupported file type"
+        )
+
     file_path = (
         uploads_dir
-        / f"{uuid.uuid4()}_{file.filename}"
+        / f"{uuid.uuid4()}{original_extension}"
     )
 
     with open(
@@ -57,31 +77,18 @@ def upload_file(
             file.file.read()
         )
 
-    allowed_extensions = {
-        ".pdf",
-        ".txt",
-        ".docx"
-    }
-
-    extension = (
-        file_path.suffix.lower()
-    )
-
-    if extension not in allowed_extensions:
-        file_path.unlink(
-            missing_ok=True
+    try:
+        extracted_text = (
+            DocumentService.extract_text(
+                str(file_path)
+            )
         )
-
+    except Exception:
+        file_path.unlink(missing_ok=True)
         raise HTTPException(
             status_code=400,
-            detail="Unsupported file type"
+            detail="Could not read file - it may be corrupted or not a valid file of its declared type"
         )
-
-    extracted_text = (
-        DocumentService.extract_text(
-            str(file_path)
-        )
-    )
 
     note_service = NoteService(db)
 

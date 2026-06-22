@@ -31,8 +31,8 @@ def main():
                 processing_service = NoteProcessingService(db)
                 processing_service.process_note(note_id, user_id)
                 logger.info(f"NOTE ORGANIZED {note_id}")
-            except Exception as e:
-                logger.info(f"NOTE FAILED {note_id}")
+            except Exception:
+                logger.exception(f"NOTE FAILED {note_id}")
             finally:
                 db.close()
 

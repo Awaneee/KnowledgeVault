@@ -109,6 +109,18 @@ class NoteService:
         user_id: int
     ) -> list[NoteSearchResponse]:
 
+        # Ownership check happens here, before the note_id ever reaches
+        # the embedding repository. Without this, get_related_notes
+        # would use *any* note's embedding as the similarity anchor
+        # regardless of who owns it - meaning a caller could pass
+        # another user's note_id and learn which of their own notes
+        # are semantically close to that private note's content, even
+        # though the private note itself is never returned directly.
+        source_note = self.repo.get_note_by_id(note_id)
+
+        if not source_note or source_note.user_id != user_id:
+            return []
+
         notes = self.embedding_service.get_related_notes(
             note_id=note_id,
             user_id=user_id

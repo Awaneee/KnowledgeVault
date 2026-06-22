@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from app.models.attachment import Attachment
+from app.models.notes import Note
 
 
 class AttachmentRepository:
@@ -24,8 +25,13 @@ class AttachmentRepository:
         self.db.refresh(attachment)
         return attachment
 
-    def get_attachments(self) -> list[Attachment]:
-        return self.db.query(Attachment).all()
+    def get_attachments_by_user(self, user_id: int) -> list[Attachment]:
+        return (
+            self.db.query(Attachment)
+            .join(Note, Note.id == Attachment.note_id)
+            .filter(Note.user_id == user_id)
+            .all()
+        )
 
     def get_attachments_by_note(self, note_id: int) -> list[Attachment]:
         return self.db.query(Attachment).filter(Attachment.note_id == note_id).all()
