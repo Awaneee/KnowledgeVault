@@ -177,3 +177,10 @@ class IntentCategoryRepository:
             .limit(limit)
             .all()
         )
+
+    def count_by_user(self, user_id: int) -> int:
+        return (
+            self.db.query(IntentCategory)
+            .filter(IntentCategory.user_id == user_id)
+            .count()
+        )

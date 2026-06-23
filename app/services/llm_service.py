@@ -2,10 +2,10 @@ import json
 
 import requests
 
+from app.core.config import settings
+
 
 class LLMService:
-    OLLAMA_URL = "http://localhost:11434/api/generate"
-
     INTENT_MODEL = "phi3:mini"
     TITLE_MODEL = "phi3:mini"
     ASK_MODEL = "llama3"
@@ -31,7 +31,7 @@ class LLMService:
         print("USING MODEL:", selected_model)
 
         response = requests.post(
-            cls.OLLAMA_URL,
+            settings.OLLAMA_URL,
             json=payload,
             timeout=120
         )
@@ -67,7 +67,7 @@ class LLMService:
         }
 
         with requests.post(
-            cls.OLLAMA_URL,
+            settings.OLLAMA_URL,
             json=payload,
             timeout=120,
             stream=True

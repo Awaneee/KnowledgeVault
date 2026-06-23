@@ -165,6 +165,17 @@ class IntentCategoryService:
             limit=limit
         )
 
+    # Maximum number of intent categories a single user can have.
+    # Without a cap, every unique actor/intent combination creates a
+    # new category indefinitely. At scale this produces hundreds of
+    # near-duplicate categories ("Work Tasks", "Work Items", etc.)
+    # that degrade retrieval quality and slow category search queries.
+    # When the cap is reached we fall back to the closest vector match
+    # regardless of the compatibility check, so notes still get
+    # categorized - just into the best existing bucket rather than a
+    # new one.
+    MAX_CATEGORIES_PER_USER = 50
+
     def _find_or_create_category(
         self,
         user_id: int,
@@ -194,6 +205,25 @@ class IntentCategoryService:
                 candidate = candidates[0]
                 if self._compatible(candidate, intent):
                     return candidate, "vector"
+
+        # Check category count before creating a new one.
+        # If the user is at or above the cap, reuse the closest vector
+        # match (even if not perfectly compatible) rather than creating
+        # another category that pushes the total higher.
+        current_count = self.category_repo.count_by_user(user_id)
+        if current_count >= self.MAX_CATEGORIES_PER_USER:
+            vector = embedding_model.encode(
+                self._intent_signature(intent)
+            ).tolist()
+
+            fallback = self.category_repo.search_by_embedding(
+                user_id=user_id,
+                query_vector=vector,
+                limit=1
+            )
+
+            if fallback:
+                return fallback[0], "cap_fallback"
 
         name = self._generate_category_name(intent)
         description = self._generate_description(intent)
