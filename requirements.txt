@@ -12,7 +12,7 @@ python-multipart
 pydantic-settings
 
 sentence-transformers
-torch
+
 
 pgvector
 
@@ -22,3 +22,6 @@ requests
 
 numpy
 scikit-learn
+
+pymupdf
+python-docx

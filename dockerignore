@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Environment files - never bake secrets into the image
+.env
+
+# Git
+.git/
+.gitignore
+
+# Uploads - mounted as a volume, not baked into image
+uploads/
+
+# Test files
+test_*.py
+*.test.py
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+*.md
+*.pdf
+Statement of Purpose.pdf
