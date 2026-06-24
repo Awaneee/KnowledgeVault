@@ -42,7 +42,9 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('chunk_id')
     )
-    op.drop_table('vector_test2')
+    op.execute(
+    "DROP TABLE IF EXISTS vector_test2"
+    )
     # ### end Alembic commands ###
 
 

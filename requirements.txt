@@ -6,7 +6,6 @@ psycopg2-binary
 alembic
 
 python-jose[cryptography]
-passlib[bcrypt]
 python-multipart
 
 pydantic-settings
@@ -22,6 +21,8 @@ requests
 
 numpy
 scikit-learn
-
+email-validator
 pymupdf
 python-docx
+passlib[bcrypt]==1.7.4
+bcrypt==4.1.3

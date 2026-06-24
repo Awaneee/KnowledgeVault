@@ -30,8 +30,8 @@ services:
     restart: unless-stopped
     volumes:
       - redis_data:/data
-    ports:
-      - "6379:6379"
+    # ports:
+      # - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -48,11 +48,11 @@ services:
     container_name: kv_migrate
     env_file: .env
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+     DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     command: >
       sh -c "
-        echo 'Waiting for postgres...' &&
-        until pg_isready -h postgres -U ${POSTGRES_USER}; do sleep 1; done &&
+        echo 'Waiting 15 seconds for postgres...' &&
+        sleep 15 &&
         echo 'Running migrations...' &&
         alembic upgrade head &&
         echo 'Migrations complete.'
@@ -60,7 +60,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-
+  
   # ─────────────────────────────────────────────
   # FastAPI application
   # ─────────────────────────────────────────────

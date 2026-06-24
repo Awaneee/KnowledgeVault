@@ -17,14 +17,21 @@ down_revision: Union[str, Sequence[str], None] = "11e5884eca2c"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
+from alembic import op
 
+
+
+
+    # existing code below
 def upgrade() -> None:
     """Upgrade schema."""
 
     # ==========================================================
     # Evaluation Dataset
     # ==========================================================
-
+    op.execute(
+        "CREATE EXTENSION IF NOT EXISTS vector;"
+    )
     op.create_table(
         "evaluation_datasets",
         sa.Column("id", sa.Integer(), nullable=False),
