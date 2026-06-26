@@ -1,0 +1,155 @@
+benchmark_id,strategy,query,difficulty,precision_at_k,recall_at_k,hit,reciprocal_rank,latency_ms,predicted_intent,expected_intent,intent_correct,predicted_category,expected_category,category_correct,relevant_note_ids,retrieved_note_ids,error
+1,semantic,What startup ideas do I have?,easy,0.0,0.0,False,0.0,2724.19,,idea,,,Ideas,,52,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+2,semantic,Show my AI research reading goals,easy,0.0,0.0,False,0.0,2709.56,,study,,,Study Tasks,,51,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+3,semantic,How can I improve my health?,medium,0.0,0.0,False,0.0,2687.47,,todo,,,To Do,,"49,50",,Error 11001 connecting to redis:6379. getaddrinfo failed.
+4,semantic,Show my finance reminders,easy,0.0,0.0,False,0.0,2688.55,,todo,,,To Do,,48,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+5,semantic,Evaluation report work,medium,0.0,0.0,False,0.0,2714.2,,reference,,,Reference Notes,,47,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+6,semantic,Markdown support,easy,0.0,0.0,False,0.0,2701.71,,reference,,,Reference Notes,,46,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+7,semantic,Improve search latency,easy,0.0,0.0,False,0.0,2728.68,,reference,,,Reference Notes,,45,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+8,semantic,Attachment upload feature,easy,0.0,0.0,False,0.0,2690.03,,reference,,,Reference Notes,,44,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+9,semantic,Flutter improvements,easy,0.0,0.0,False,0.0,2696.03,,reference,,,Reference Notes,,43,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+10,semantic,Networking concepts,easy,0.0,0.0,False,0.0,2679.99,,study,,,Study Tasks,,41,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+11,semantic,Object oriented programming revision,easy,0.0,0.0,False,0.0,2708.75,,study,,,Study Tasks,,40,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+12,semantic,Interview preparation,medium,0.0,0.0,False,0.0,2718.67,,study,,,Study Tasks,,"38,39",,Error 11001 connecting to redis:6379. getaddrinfo failed.
+13,semantic,Portfolio website,easy,0.0,0.0,False,0.0,2695.4,,todo,,,To Do,,37,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+14,semantic,Documentation tasks,easy,0.0,0.0,False,0.0,2696.77,,todo,,,To Do,,36,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+15,semantic,Deploy KnowledgeVault,easy,0.0,0.0,False,0.0,2688.83,,todo,,,To Do,,35,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+16,semantic,Update GitHub README,easy,0.0,0.0,False,0.0,2705.0,,todo,,,To Do,,34,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+17,semantic,Resume preparation,easy,0.0,0.0,False,0.0,2705.73,,todo,,,To Do,,33,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+18,semantic,Weekend trip,easy,0.0,0.0,False,0.0,2720.48,,todo,,,To Do,,32,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+19,semantic,Bills to pay,medium,0.0,0.0,False,0.0,2701.08,,todo,,,To Do,,"29,31",,Error 11001 connecting to redis:6379. getaddrinfo failed.
+20,semantic,Doctor appointment,easy,0.0,0.0,False,0.0,2701.57,,todo,,,To Do,,30,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+21,semantic,Shopping list,medium,0.0,0.0,False,0.0,2712.72,,todo,,,To Do,,"27,28",,Error 11001 connecting to redis:6379. getaddrinfo failed.
+22,semantic,Things I need to tell Sid,easy,0.0,0.0,False,0.0,2683.99,,communication,,,Things to Tell Sid,,26,,Error 11001 connecting to redis:6379. getaddrinfo failed.
+1,intent,What startup ideas do I have?,easy,0.0,0.0,False,0.0,228.74,,idea,,,Ideas,,52,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+2,intent,Show my AI research reading goals,easy,0.0,0.0,False,0.0,50.78,,study,,,Study Tasks,,51,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+3,intent,How can I improve my health?,medium,0.0,0.0,False,0.0,151.83,,todo,,,To Do,,"49,50",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+4,intent,Show my finance reminders,easy,0.0,0.0,False,0.0,157.16,,todo,,,To Do,,48,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+5,intent,Evaluation report work,medium,0.0,0.0,False,0.0,45.14,,reference,,,Reference Notes,,47,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+6,intent,Markdown support,easy,0.0,0.0,False,0.0,52.99,,reference,,,Reference Notes,,46,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+7,intent,Improve search latency,easy,0.0,0.0,False,0.0,42.28,,reference,,,Reference Notes,,45,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+8,intent,Attachment upload feature,easy,0.0,0.0,False,0.0,46.17,,reference,,,Reference Notes,,44,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+9,intent,Flutter improvements,easy,0.0,0.0,False,0.0,42.46,,reference,,,Reference Notes,,43,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+10,intent,Networking concepts,easy,0.0,0.0,False,0.0,158.09,,study,,,Study Tasks,,41,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+11,intent,Object oriented programming revision,easy,0.0,0.0,False,0.0,42.47,,study,,,Study Tasks,,40,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+12,intent,Interview preparation,medium,0.0,0.0,False,0.0,42.38,,study,,,Study Tasks,,"38,39",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+13,intent,Portfolio website,easy,0.0,0.0,False,0.0,42.93,,todo,,,To Do,,37,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+14,intent,Documentation tasks,easy,0.0,0.0,False,0.0,45.72,,todo,,,To Do,,36,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+15,intent,Deploy KnowledgeVault,easy,0.0,0.0,False,0.0,51.8,,todo,,,To Do,,35,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+16,intent,Update GitHub README,easy,0.0,0.0,False,0.0,46.91,,todo,,,To Do,,34,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+17,intent,Resume preparation,easy,0.0,0.0,False,0.0,43.43,,todo,,,To Do,,33,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+18,intent,Weekend trip,easy,0.0,0.0,False,0.0,41.82,,todo,,,To Do,,32,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+19,intent,Bills to pay,medium,0.0,0.0,False,0.0,47.1,,todo,,,To Do,,"29,31",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+20,intent,Doctor appointment,easy,0.0,0.0,False,0.0,41.33,,todo,,,To Do,,30,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+21,intent,Shopping list,medium,0.0,0.0,False,0.0,42.0,,todo,,,To Do,,"27,28",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+22,intent,Things I need to tell Sid,easy,0.0,0.0,False,0.0,45.59,,communication,,,Things to Tell Sid,,26,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+1,hybrid,What startup ideas do I have?,easy,0.0,0.0,False,0.0,44.38,,idea,,,Ideas,,52,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+2,hybrid,Show my AI research reading goals,easy,0.0,0.0,False,0.0,158.16,,study,,,Study Tasks,,51,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+3,hybrid,How can I improve my health?,medium,0.0,0.0,False,0.0,46.0,,todo,,,To Do,,"49,50",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+4,hybrid,Show my finance reminders,easy,0.0,0.0,False,0.0,45.9,,todo,,,To Do,,48,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+5,hybrid,Evaluation report work,medium,0.0,0.0,False,0.0,156.86,,reference,,,Reference Notes,,47,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+6,hybrid,Markdown support,easy,0.0,0.0,False,0.0,59.11,,reference,,,Reference Notes,,46,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+7,hybrid,Improve search latency,easy,0.0,0.0,False,0.0,43.62,,reference,,,Reference Notes,,45,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+8,hybrid,Attachment upload feature,easy,0.0,0.0,False,0.0,41.82,,reference,,,Reference Notes,,44,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+9,hybrid,Flutter improvements,easy,0.0,0.0,False,0.0,42.72,,reference,,,Reference Notes,,43,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+10,hybrid,Networking concepts,easy,0.0,0.0,False,0.0,41.27,,study,,,Study Tasks,,41,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+11,hybrid,Object oriented programming revision,easy,0.0,0.0,False,0.0,43.0,,study,,,Study Tasks,,40,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+12,hybrid,Interview preparation,medium,0.0,0.0,False,0.0,41.32,,study,,,Study Tasks,,"38,39",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+13,hybrid,Portfolio website,easy,0.0,0.0,False,0.0,41.41,,todo,,,To Do,,37,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+14,hybrid,Documentation tasks,easy,0.0,0.0,False,0.0,44.75,,todo,,,To Do,,36,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+15,hybrid,Deploy KnowledgeVault,easy,0.0,0.0,False,0.0,43.36,,todo,,,To Do,,35,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+16,hybrid,Update GitHub README,easy,0.0,0.0,False,0.0,43.24,,todo,,,To Do,,34,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+17,hybrid,Resume preparation,easy,0.0,0.0,False,0.0,49.07,,todo,,,To Do,,33,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+18,hybrid,Weekend trip,easy,0.0,0.0,False,0.0,166.31,,todo,,,To Do,,32,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+19,hybrid,Bills to pay,medium,0.0,0.0,False,0.0,44.78,,todo,,,To Do,,"29,31",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+20,hybrid,Doctor appointment,easy,0.0,0.0,False,0.0,42.36,,todo,,,To Do,,30,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+21,hybrid,Shopping list,medium,0.0,0.0,False,0.0,41.62,,todo,,,To Do,,"27,28",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+22,hybrid,Things I need to tell Sid,easy,0.0,0.0,False,0.0,41.97,,communication,,,Things to Tell Sid,,26,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)"

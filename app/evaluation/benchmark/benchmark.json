@@ -1,0 +1,201 @@
+
+[
+  {
+    "id": "1",
+    "query": "What startup ideas do I have?",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [52],
+    "difficulty": "easy",
+    "tags": ["startup", "idea"]
+  },
+  {
+    "id": "2",
+    "query": "Show my AI research reading goals",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [51],
+    "difficulty": "easy",
+    "tags": ["ai", "study"]
+  },
+  {
+    "id": "3",
+    "query": "How can I improve my health?",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [49,50],
+    "difficulty": "medium",
+    "tags": ["health"]
+  },
+  {
+    "id": "4",
+    "query": "Show my finance reminders",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [48],
+    "difficulty": "easy",
+    "tags": ["finance"]
+  },
+  {
+    "id": "5",
+    "query": "Evaluation report work",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [47],
+    "difficulty": "medium",
+    "tags": ["evaluation"]
+  },
+  {
+    "id": "6",
+    "query": "Markdown support",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [46],
+    "difficulty": "easy",
+    "tags": ["markdown"]
+  },
+  {
+    "id": "7",
+    "query": "Improve search latency",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [45],
+    "difficulty": "easy",
+    "tags": ["search"]
+  },
+  {
+    "id": "8",
+    "query": "Attachment upload feature",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [44],
+    "difficulty": "easy",
+    "tags": ["attachments"]
+  },
+  {
+    "id": "9",
+    "query": "Flutter improvements",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [43],
+    "difficulty": "easy",
+    "tags": ["flutter"]
+  },
+  {
+    "id": "10",
+    "query": "Networking concepts",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [41],
+    "difficulty": "easy",
+    "tags": ["networking"]
+  },
+  {
+    "id": "11",
+    "query": "Object oriented programming revision",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [40],
+    "difficulty": "easy",
+    "tags": ["oop"]
+  },
+  {
+    "id": "12",
+    "query": "Interview preparation",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [38,39],
+    "difficulty": "medium",
+    "tags": ["interview"]
+  },
+  {
+    "id": "13",
+    "query": "Portfolio website",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [37],
+    "difficulty": "easy",
+    "tags": ["portfolio"]
+  },
+  {
+    "id": "14",
+    "query": "Documentation tasks",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [36],
+    "difficulty": "easy",
+    "tags": ["documentation"]
+  },
+  {
+    "id": "15",
+    "query": "Deploy KnowledgeVault",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [35],
+    "difficulty": "easy",
+    "tags": ["docker"]
+  },
+  {
+    "id": "16",
+    "query": "Update GitHub README",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [34],
+    "difficulty": "easy",
+    "tags": ["github"]
+  },
+  {
+    "id": "17",
+    "query": "Resume preparation",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [33],
+    "difficulty": "easy",
+    "tags": ["resume"]
+  },
+  {
+    "id": "18",
+    "query": "Weekend trip",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [32],
+    "difficulty": "easy",
+    "tags": ["travel"]
+  },
+  {
+    "id": "19",
+    "query": "Bills to pay",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [29,31],
+    "difficulty": "medium",
+    "tags": ["bills"]
+  },
+  {
+    "id": "20",
+    "query": "Doctor appointment",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [30],
+    "difficulty": "easy",
+    "tags": ["health"]
+  },
+  {
+    "id": "21",
+    "query": "Shopping list",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [27,28],
+    "difficulty": "medium",
+    "tags": ["shopping"]
+  },
+  {
+    "id": "22",
+    "query": "Things I need to tell Sid",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [26],
+    "difficulty": "easy",
+    "tags": ["sid"]
+  }
+]

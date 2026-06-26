@@ -35,11 +35,12 @@ class ChunkEmbeddingRepository:
         """
         Bulk-insert chunk embeddings in one commit.
 
-        Each dict must have:
-            chunk_id        : int
-            embedding_model : str
-            embedding_vector: list[float]
+        Each dict must contain:
+            chunk_id
+            embedding_model
+            embedding_vector
         """
+
         embeddings = [
             ChunkEmbedding(
                 chunk_id=r["chunk_id"],
@@ -62,16 +63,31 @@ class ChunkEmbeddingRepository:
         query_vector: list[float],
         user_id: int,
         limit: int = 5
-    ) -> list[tuple[DocumentChunk, str]]:
+    ) -> list[tuple[DocumentChunk, Note]]:
         """
-        Return the top-k chunks closest to query_vector for a
-        given user, along with the parent note title.
+        Returns:
 
-        Returns a list of (DocumentChunk, note_title) tuples
-        ordered by ascending cosine distance.
+            (
+                DocumentChunk,
+                Note
+            )
+
+        Returning the Note object instead of only the title gives
+        downstream services access to:
+
+        - note.id
+        - note.title
+        - any future metadata
+
+        This is required by the evaluation framework to compute
+        Recall@K, Precision@K, MRR, etc.
         """
+
         rows = (
-            self.db.query(DocumentChunk, Note.title)
+            self.db.query(
+                DocumentChunk,
+                Note
+            )
             .join(
                 ChunkEmbedding,
                 ChunkEmbedding.chunk_id == DocumentChunk.id
@@ -80,7 +96,9 @@ class ChunkEmbeddingRepository:
                 Note,
                 Note.id == DocumentChunk.note_id
             )
-            .filter(Note.user_id == user_id)
+            .filter(
+                Note.user_id == user_id
+            )
             .order_by(
                 ChunkEmbedding.embedding_vector.cosine_distance(
                     query_vector
@@ -90,4 +108,4 @@ class ChunkEmbeddingRepository:
             .all()
         )
 
-        return rows   # list of (DocumentChunk, str)
+        return rows

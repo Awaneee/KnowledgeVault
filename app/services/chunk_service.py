@@ -10,10 +10,16 @@ from app.services.chunking_service import ChunkingService
 class ChunkService:
     """
     Orchestrates the full chunk pipeline for a single note:
-        text → chunks → store chunks → generate embeddings → store embeddings
 
-    Deliberately kept separate from NoteService so each service
-    retains a single responsibility.
+        text
+            ↓
+        chunks
+            ↓
+        store chunks
+            ↓
+        embeddings
+            ↓
+        store embeddings
     """
 
     MODEL_NAME = "all-MiniLM-L6-v2"
@@ -29,27 +35,21 @@ class ChunkService:
         note_id: int,
         text: str
     ) -> int:
-        """
-        Chunk *text*, persist chunks and their embeddings for
-        *note_id*.  Returns the number of chunks created.
-        """
+
         chunk_texts = ChunkingService.split(text)
 
         if not chunk_texts:
             return 0
 
-        # Persist chunks (bulk insert)
         chunks = self.chunk_repo.create_chunks(
             note_id=note_id,
             texts=chunk_texts
         )
 
-        # Encode all chunk texts in one batch call for efficiency
         vectors = embedding_model.encode(
             chunk_texts
         ).tolist()
 
-        # Build bulk-insert payload
         records = [
             {
                 "chunk_id": chunk.id,
@@ -70,15 +70,9 @@ class ChunkService:
         limit: int = 5
     ) -> list[dict]:
         """
-        Semantic chunk retrieval.
-
-        Returns a list of dicts:
-            {
-                "chunk_text"  : str,
-                "chunk_index" : int,
-                "note_title"  : str
-            }
+        Pure semantic retrieval.
         """
+
         query_vector = embedding_model.encode(query).tolist()
 
         rows = self.embedding_repo.search_similar_chunks(
@@ -89,11 +83,12 @@ class ChunkService:
 
         return [
             {
+                "note_id": note.id,
+                "note_title": note.title,
                 "chunk_text": chunk.chunk_text,
-                "chunk_index": chunk.chunk_index,
-                "note_title": note_title
+                "chunk_index": chunk.chunk_index
             }
-            for chunk, note_title in rows
+            for chunk, note in rows
         ]
 
     def retrieve_hybrid(
@@ -103,28 +98,39 @@ class ChunkService:
         limit: int = 5
     ) -> list[dict]:
         """
-        Intent-aware retrieval.
+        Hybrid Retrieval
 
-        First pulls chunks from notes whose extracted intent matches
-        the query, then fills remaining slots with semantic pgvector
-        results. Duplicate chunks are removed by note title/index/text.
+        Phase 1
+            Intent retrieval
+
+        Phase 2
+            Semantic retrieval
+
+        Duplicate chunks are removed.
         """
+
         results = []
         seen = set()
 
-        intent_categories = self.intent_category_service.find_categories_for_query(
-            query=query,
-            user_id=user_id,
-            limit=3
+        intent_categories = (
+            self.intent_category_service.find_categories_for_query(
+                query=query,
+                user_id=user_id,
+                limit=3
+            )
         )
 
         for category in intent_categories:
-            notes = self.intent_category_service.get_notes_for_category(
-                intent_category_id=category.id,
-                user_id=user_id
+
+            notes = (
+                self.intent_category_service.get_notes_for_category(
+                    intent_category_id=category.id,
+                    user_id=user_id
+                )
             )
 
             for note in notes:
+
                 chunks = self.chunk_repo.get_chunks_by_note(
                     note_id=note.id
                 )
@@ -132,24 +138,28 @@ class ChunkService:
                 if not chunks:
                     continue
 
-                # Use ALL chunks from the note ranked by chunk_index,
-                # not just chunks[0]. Taking only the first chunk meant
-                # the RAG system could only ever see the opening of each
-                # note regardless of where the relevant content actually
-                # was, breaking retrieval for anything beyond the first
-                # ~500 characters of a note.
-                for chunk in sorted(chunks, key=lambda c: c.chunk_index):
-                    key = (note.title, chunk.chunk_index, chunk.chunk_text)
+                for chunk in sorted(
+                    chunks,
+                    key=lambda c: c.chunk_index
+                ):
+
+                    key = (
+                        note.id,
+                        chunk.chunk_index,
+                        chunk.chunk_text
+                    )
 
                     if key in seen:
                         continue
 
                     seen.add(key)
+
                     results.append(
                         {
+                            "note_id": note.id,
+                            "note_title": note.title,
                             "chunk_text": chunk.chunk_text,
                             "chunk_index": chunk.chunk_index,
-                            "note_title": note.title,
                             "source": "intent",
                             "intent_category": category.name
                         }
@@ -165,8 +175,9 @@ class ChunkService:
         )
 
         for item in semantic_results:
+
             key = (
-                item["note_title"],
+                item["note_id"],
                 item["chunk_index"],
                 item["chunk_text"]
             )
@@ -175,8 +186,10 @@ class ChunkService:
                 continue
 
             seen.add(key)
+
             item["source"] = "semantic"
             item["intent_category"] = None
+
             results.append(item)
 
             if len(results) >= limit:
