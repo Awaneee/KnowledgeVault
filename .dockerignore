@@ -1,0 +1,54 @@
+# Version control
+.git
+.gitignore
+.agents
+.codex
+
+# Python caches and test artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Secrets and local env files
+.env
+.env.*
+!.env.example
+
+# Runtime data
+uploads/
+evaluation_results/
+*.csv
+*.log
+
+# Local reports/documents not needed in the image
+*.pdf
+Statement of Purpose.pdf
+
+# Node/build outputs if present
+node_modules/
+dist/
+build/
+
+# Editor and OS metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Docker/dev-only files that should not affect application image layers
+docker-compose*.yml
+dockerignore

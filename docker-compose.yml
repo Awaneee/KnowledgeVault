@@ -1,8 +1,11 @@
-services:
+name: knowledgevault
 
-  # ─────────────────────────────────────────────
-  # PostgreSQL with pgvector extension
-  # ─────────────────────────────────────────────
+x-app-image: &app-image knowledgevault-backend:local
+x-app-env: &app-env
+  DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+  REDIS_URL: redis://redis:6379/0
+
+services:
   postgres:
     image: pgvector/pgvector:pg16
     container_name: kv_postgres
@@ -21,34 +24,24 @@ services:
       timeout: 5s
       retries: 10
 
-  # ─────────────────────────────────────────────
-  # Redis
-  # ─────────────────────────────────────────────
   redis:
     image: redis:7-alpine
     container_name: kv_redis
     restart: unless-stopped
     volumes:
       - redis_data:/data
-    # ports:
-      # - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 3s
       retries: 10
 
-  # ─────────────────────────────────────────────
-  # Alembic migrations
-  # Runs once and exits. API and worker wait for
-  # this to complete before starting.
-  # ─────────────────────────────────────────────
   migrate:
-    build: .
+    image: *app-image
     container_name: kv_migrate
     env_file: .env
     environment:
-     DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      <<: *app-env
     command: >
       sh -c "
         echo 'Waiting 15 seconds for postgres...' &&
@@ -60,20 +53,17 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-  
-  # ─────────────────────────────────────────────
-  # FastAPI application
-  # ─────────────────────────────────────────────
+
   api:
-    build: .
+    image: *app-image
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: kv_api
     restart: unless-stopped
     env_file: .env
     environment:
-      # These override whatever is in .env so localhost values
-      # don't break service-to-service communication inside Docker
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-      REDIS_URL: redis://redis:6379/0
+      <<: *app-env
     ports:
       - "8000:8000"
     command: uvicorn main:app --host 0.0.0.0 --port 8000
@@ -87,17 +77,13 @@ services:
     volumes:
       - uploads_data:/app/uploads
 
-  # ─────────────────────────────────────────────
-  # Background worker
-  # ─────────────────────────────────────────────
   worker:
-    build: .
+    image: *app-image
     container_name: kv_worker
     restart: unless-stopped
     env_file: .env
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-      REDIS_URL: redis://redis:6379/0
+      <<: *app-env
     command: python -m app.workers.note_worker
     depends_on:
       postgres:

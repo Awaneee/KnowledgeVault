@@ -109,3 +109,46 @@ class ChunkEmbeddingRepository:
         )
 
         return rows
+
+    def search_similar_chunks_with_distance(
+        self,
+        query_vector: list[float],
+        user_id: int,
+        limit: int = 10
+    ) -> list[tuple[DocumentChunk, Note, float]]:
+        """
+        Return chunk matches with their cosine distance.
+
+        The existing search_similar_chunks() API is kept for callers that only
+        need ranked objects. Hybrid retrieval needs the distance so semantic
+        evidence can be fused with intent evidence instead of concatenating
+        two independently-ranked lists.
+        """
+        distance = ChunkEmbedding.embedding_vector.cosine_distance(
+            query_vector
+        ).label("distance")
+
+        return (
+            self.db.query(
+                DocumentChunk,
+                Note,
+                distance
+            )
+            .join(
+                ChunkEmbedding,
+                ChunkEmbedding.chunk_id == DocumentChunk.id
+            )
+            .join(
+                Note,
+                Note.id == DocumentChunk.note_id
+            )
+            .filter(
+                Note.user_id == user_id
+            )
+            .order_by(
+                distance,
+                DocumentChunk.id
+            )
+            .limit(limit)
+            .all()
+        )

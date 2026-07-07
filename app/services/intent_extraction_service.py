@@ -103,12 +103,20 @@ class IntentExtractionService:
         "brainstorm"
     }
 
+    # "notes" is intentionally not a reference-intent keyword.
+    # "notes" is the generic noun for the entire app — it appears in
+    # almost every retrieval query ("show my notes", "what notes do I
+    # have") and was silently classifying them all as reference intent,
+    # routing them to reference categories regardless of what
+    # the user actually wanted.  It already lives in QUERY_STOPWORDS
+    # (where it correctly suppresses actor extraction), so removing it
+    # here has no other side-effect.  The remaining four keywords are
+    # specific enough to be genuine reference-intent signals.
     QUERY_REFERENCE_KEYWORDS = {
         "reference",
         "references",
         "docs",
-        "documentation",
-        "notes"
+        "documentation"
     }
 
     QUERY_EVENT_KEYWORDS = {
@@ -155,7 +163,7 @@ class IntentExtractionService:
     # query like "things to tell sid about the internship".
     QUERY_STOPWORDS = {
         "i", "me", "my", "what", "should", "do", "need", "to", "the",
-        "a", "an", "about", "for", "with", "on", "is", "are", "of",
+        "a", "an", "about", "for", "with", "on", "in", "at", "is", "are", "of",
         "things", "thing", "tell", "inform", "discuss", "ask", "message",
         "call", "email", "share", "meet", "talk", "todo", "to-do", "task",
         "tasks", "pending", "finish", "complete", "submit", "buy", "pay",
@@ -165,6 +173,36 @@ class IntentExtractionService:
         "notes", "note", "event", "events", "meeting", "meetings",
         "scheduled", "schedule", "remind", "reminder", "reminders",
         "appointment", "appointments"
+    }
+
+    # Generic single-token words that are very unlikely to be
+    # person names even after stopword filtering.  Kept intentionally
+    # small — the goal is to block obvious false positives ("team",
+    # "project", "work", "all", "us", "them") without over-filtering
+    # real short names (e.g. "sid", "raj", "mom", "dad").
+    _ACTOR_GENERIC_WORDS = {
+        "team", "project", "work", "group", "class", "course",
+        "everyone", "all", "us", "them", "people", "person",
+        "someone", "anyone", "no", "yes", "sir", "ma'am",
+        "management", "department", "company", "org", "office",
+        "staff", "admin", "system", "service", "server", "client",
+        "user", "users", "manager", "lead", "head", "hr",
+        "internship", "interview", "assignment", "deadline", "report",
+        "presentation", "capstone", "semester", "college", "university",
+        "professor", "faculty", "lab", "exam", "test", "quiz",
+        "module", "chapter", "topic", "subject", "problem", "solution",
+        "update", "status", "feedback", "review", "discussion",
+        "issue", "ticket", "request", "feature", "bug", "fix",
+        "important", "urgent", "asap", "later", "soon", "quick",
+        "new", "old", "big", "small", "good", "bad", "best", "next",
+        "first", "last", "latest", "current", "upcoming", "recent",
+        "other", "another", "same", "different", "possible", "available"
+    }
+
+    GENERIC_OBJECT_WORDS = {
+        "general", "study", "todo", "to do", "task", "tasks", "note",
+        "notes", "thing", "things", "item", "items", "object", "topic",
+        "work", "personal"
     }
 
     def extract(
@@ -214,6 +252,10 @@ class IntentExtractionService:
         looser than the LLM path (extract_query_intent); this only needs
         to be good enough to route to the right category, and falls back
         to a vector search anyway if it can't find an exact rule match.
+
+        A pseudo-object is extracted for all intent types so
+        _intent_signature() has meaningful content tokens instead of only
+        broad intent labels like "todo" or "general".
         """
         logger.info("FAST QUERY CLASSIFIER ACTIVATED (no LLM)")
 
@@ -234,18 +276,44 @@ class IntentExtractionService:
             intent_type = "question"
             confidence = 0.55
 
+        # Structured actor extraction for communication queries.
         actor = None
         if intent_type == "communication":
             actor = self._find_query_actor(words)
             if actor:
                 confidence = 0.72
 
+        # Extract pseudo_object for all non-communication intents
+        # (and for communication intents when actor extraction leaves
+        # residual content words).
+        #
+        # Strategy: strip stopwords and the matched intent-type keyword
+        # itself, then take up to 4 of the remaining content tokens.
+        # This produces signatures like:
+        #   "todo buy groceries"      instead of "todo"
+        #   "study dynamic programming" instead of "study"
+        #   "reference docker containers" instead of "reference"
+        #   "question kafka partitions" instead of "question"
+        # All-MiniLM-L6-v2 embeds these to meaningfully different vectors,
+        # breaking the convergence to the same category.
+        pseudo_object = self._extract_pseudo_object(
+            words=words,
+            intent_type=intent_type,
+            actor=actor
+        )
+
+        # action is only extracted for communication intent (unchanged).
+        action = (
+            next(iter(word_set & self.QUERY_COMMUNICATION_KEYWORDS), None)
+            if intent_type == "communication"
+            else None
+        )
+
         result = {
             "intent_type": intent_type,
-            "action": next(iter(word_set & self.QUERY_COMMUNICATION_KEYWORDS), None)
-            if intent_type == "communication" else None,
+            "action": action,
             "actor": actor,
-            "object": None,
+            "object": pseudo_object,
             "due_date": None,
             "temporal_text": None,
             "urgency": "medium",
@@ -259,32 +327,118 @@ class IntentExtractionService:
         }
 
         logger.info(
-            "FAST QUERY RESULT: intent_type=%s actor=%s confidence=%s",
+            "FAST QUERY RESULT: intent_type=%s actor=%s object=%s confidence=%s",
             intent_type,
             actor,
+            pseudo_object,
             confidence
         )
 
         return result
+
+    def _extract_pseudo_object(
+        self,
+        words: list[str],
+        intent_type: str,
+        actor: str | None
+    ) -> str | None:
+        """
+        Extract meaningful content tokens from the query to use as a
+        pseudo-object when the fast classifier has no real object.
+
+        Filters out:
+        - QUERY_STOPWORDS (intent keywords, function words)
+        - the intent_type string itself (avoids "todo todo …")
+        - the extracted actor (already captured separately)
+        - single-character tokens (noise)
+
+        Returns up to 4 content tokens joined as a string, or None if
+        nothing meaningful survives filtering.  The 4-token cap prevents
+        very long queries from dominating the embedding space and biasing
+        cosine similarity toward shared surface tokens rather than intent.
+        """
+        exclude = self.QUERY_STOPWORDS | {intent_type}
+        if actor:
+            exclude = exclude | {actor.lower()}
+
+        content_words = [
+            w for w in words
+            if w not in exclude and len(w) > 1
+        ]
+
+        if not content_words:
+            return None
+
+        return " ".join(content_words[:4])
 
     def _find_query_actor(
         self,
         words: list[str]
     ) -> str | None:
         """
-        Picks the most likely actor name out of a lowercase query's
-        remaining words after stripping known stopwords/keywords.
-        Takes the last leftover word, since actor names in these query
-        patterns ("things to tell sid", "what should i tell sid about
-        the internship") tend to appear right after the action keyword
-        and before any trailing "about X" object.
+        Structured actor extraction for communication queries.
+
+        Previous implementation returned the first non-stopword token
+        regardless of what it was.  For queries like
+        "things to discuss in the team meeting about project delivery" this
+        produced "team" as the actor, creating spurious communication/team
+        categories and causing rule-match misses on every subsequent query.
+
+        New strategy (three-pass, no LLM):
+
+        Pass 1 — post-verb position (highest precision):
+            Scan the original (lowercased) query for a communication keyword
+            followed immediately by a short word.  "tell sid", "ask mom",
+            "message raj" — the token right after the verb is almost always
+            the actor in these short imperative patterns.
+
+        Pass 2 — post-preposition position:
+            Look for "to/with/for <word>" where <word> is not in stopwords
+            and not in the generic-word guard list.  Covers "discuss with
+            sid", "share with professor mehta".  We only accept the first
+            such match to avoid picking up trailing "about the project" noise.
+
+        If neither pass finds a plausible actor, returns None.
+        Returning None is always safer than returning a wrong actor, because
+        a wrong actor creates a spurious category that never matches again.
         """
-        leftover = [w for w in words if w not in self.QUERY_STOPWORDS]
+        # Pass 1: token immediately after a communication keyword.
+        # Uses word-position index to stay O(n), no regex needed.
+        comm_keywords = self.QUERY_COMMUNICATION_KEYWORDS
+        for i, word in enumerate(words):
+            if word in comm_keywords and i + 1 < len(words):
+                candidate = words[i + 1]
+                if (
+                    candidate not in self.QUERY_STOPWORDS
+                    and candidate not in self._ACTOR_GENERIC_WORDS
+                    and len(candidate) > 1
+                ):
+                    logger.debug(
+                        "Actor extracted (pass 1, post-verb): %s", candidate
+                    )
+                    return self._clean_actor(candidate)
 
-        if not leftover:
-            return None
+        # Pass 2: word after "to/with/for" that follows a communication
+        # keyword somewhere earlier in the query.
+        prepositions = {"to", "with", "for"}
+        found_comm = any(w in comm_keywords for w in words)
+        if found_comm:
+            for i, word in enumerate(words):
+                if word in prepositions and i + 1 < len(words):
+                    candidate = words[i + 1]
+                    if (
+                        candidate not in self.QUERY_STOPWORDS
+                        and candidate not in self._ACTOR_GENERIC_WORDS
+                        and len(candidate) > 1
+                    ):
+                        logger.debug(
+                            "Actor extracted (pass 2, post-preposition): %s",
+                            candidate
+                        )
+                        return self._clean_actor(candidate)
 
-        return leftover[0]
+        logger.debug("Actor extraction: no plausible actor found")
+        return None
 
     def _build_text(
         self,
@@ -435,8 +589,8 @@ Input:
             prompt=prompt,
             response_format="json",
             model=LLMService.INTENT_MODEL
-            
-            
+
+
         )
 
         logger.info("OLLAMA RAW RESPONSE:\n%s", response)
@@ -474,11 +628,19 @@ Input:
             data.get("confidence")
         )
 
+        object_text = self._clean_text(data.get("object"))
+        if self._is_weak_object(object_text, intent_type):
+            object_text = self._clean_text(
+                self._infer_object(text, action, actor)
+            )
+            if self._is_weak_object(object_text, intent_type):
+                object_text = None
+
         return {
             "intent_type": intent_type,
             "action": action,
             "actor": actor,
-            "object": self._clean_text(data.get("object")),
+            "object": object_text,
             "due_date": due_date,
             "temporal_text": self._clean_text(data.get("temporal_text")),
             "urgency": self._clean_token(data.get("urgency")) or "medium",
@@ -530,6 +692,7 @@ Input:
             action = "do"
             confidence = max(confidence, 0.66)
 
+        actor = self._clean_actor(actor)
         due_date, temporal_text = self._infer_due_date(lowered)
 
         result = {
@@ -740,6 +903,23 @@ Input:
 
         return min(max(confidence, 0.0), 1.0)
 
+    def _is_weak_object(
+        self,
+        value: str | None,
+        intent_type: str | None
+    ) -> bool:
+        if not value:
+            return True
+
+        lowered = value.strip().lower()
+        if lowered in self.GENERIC_OBJECT_WORDS:
+            return True
+
+        if intent_type and lowered == intent_type:
+            return True
+
+        return len(lowered) < 3
+
     def _clean_token(
         self,
         value
@@ -759,6 +939,18 @@ Input:
         if not cleaned or cleaned.lower() in {"self", "me", "myself", "none"}:
             return None
 
+        # Reject composite actor strings produced by confused LLM responses
+        # such as "You/Your assistant" or "Sid, Mom".  A real actor is a
+        # single name or organisation with no slash or comma separators.
+        if "/" in cleaned or "," in cleaned:
+            return None
+
+        # Normalise to title-case so "sid" and "Sid" resolve to the same
+        # category.  This prevents duplicate actor-specific categories when
+        # the fast classifier (lowercase) and the LLM path produce different
+        # casing for the same person.
+        cleaned = cleaned.title()
+
         return cleaned[:120]
 
     def _clean_text(
@@ -766,6 +958,13 @@ Input:
         value
     ) -> str | None:
         if value is None:
+            return None
+
+        # Reject structured types that the LLM occasionally returns instead of
+        # a plain string (e.g. {"items": ["milk"]} for the `object` field).
+        # Calling str() on these produces Python repr strings like
+        # "{'items': ['milk']}" which then leak into category names.
+        if isinstance(value, (dict, list)):
             return None
 
         cleaned = str(value).strip()
