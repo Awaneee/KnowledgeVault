@@ -41,6 +41,7 @@ class IntentRepository:
             "temporal_text",
             "urgency",
             "confidence",
+            "extraction_quality_score",
             "reasoning_summary",
             "raw_llm_json",
             "model_name",

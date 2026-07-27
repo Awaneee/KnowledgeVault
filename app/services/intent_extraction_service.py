@@ -130,6 +130,9 @@ class IntentExtractionService:
         "client", "api", "sdk",
     })
 
+    # Derived from TECH_MAP — used by compute_extraction_quality().
+    _QUALITY_KNOWN_TECH: frozenset = frozenset(TECH_MAP)
+
     # -----------------------------------------------------------------------
     # Topic validation constants
     # _TOPIC_COMMON_BUILTINS overlaps with IntentCategoryService._PYTHON_BUILTINS.
@@ -651,6 +654,7 @@ Input:
                 repairs,
             )
 
+        model_name = data.get("_provider", "unknown")
         return {
             "intent_type": intent_type,
             "action": action,
@@ -669,9 +673,17 @@ Input:
             "raw_llm_json": {
                 k: v for k, v in data.items() if k != "_provider"
             },
-            "model_name": data.get("_provider", "unknown"),
+            "model_name": model_name,
             "prompt_version": self.PROMPT_VERSION,
             "source_text": text,
+            "extraction_quality_score": self.compute_extraction_quality({
+                "intent_type": intent_type,
+                "topic": topic,
+                "actor": actor,
+                "object": obj,
+                "confidence": confidence,
+                "model_name": model_name,
+            }),
         }
 
     # --- Validators ----------------------------------------------------
@@ -892,6 +904,77 @@ Input:
             return None
 
     # ------------------------------------------------------------------
+    # Extraction quality scoring
+    # ------------------------------------------------------------------
+
+    @classmethod
+    def compute_extraction_quality(cls, intent: dict) -> float:
+        """
+        Compute a [0.0, 1.0] quality score for an extraction result.
+
+        Sub-score weights are initial estimates without corpus calibration.
+        Calibrate by comparing scores against a human-annotated sample of
+        50+ notes and adjusting weights to minimise rank disagreement.
+        Current weights: intent 35%, topic 35%, actor 15%, consistency 15%.
+        """
+        intent_type = intent.get("intent_type", "general")
+        topic       = intent.get("topic")
+        actor       = intent.get("actor")
+        obj         = intent.get("object")
+        conf        = float(intent.get("confidence") or 0.5)
+        model       = intent.get("model_name", "")
+
+        # --- Intent quality (0.0–1.0) ---
+        intent_q = 1.0
+        if intent_type == "general":
+            intent_q -= 0.25
+        if conf < 0.7:
+            intent_q -= (0.7 - conf) * 0.6
+        if model in {"heuristic", "heuristic-fast"}:
+            intent_q -= 0.30
+        intent_q = max(0.0, intent_q)
+
+        # --- Topic quality (0.0–1.0) ---
+        if not topic:
+            topic_q = 0.0
+        elif topic.lower() in cls._QUALITY_KNOWN_TECH:
+            topic_q = 1.0
+        elif len(topic.split()) >= 2:
+            topic_q = 0.85
+        elif len(topic) >= 4:
+            topic_q = 0.70
+        else:
+            topic_q = 0.30
+
+        # --- Actor quality (0.0–1.0) ---
+        if actor is None:
+            # Null actor is expected for non-communication intents.
+            actor_q = 0.8 if intent_type != "communication" else 0.1
+        elif actor.lower() in cls._QUALITY_KNOWN_TECH:
+            actor_q = 0.0  # tech term passed through as actor — wrong type
+        else:
+            words = actor.split()
+            actor_q = 0.9 if 1 <= len(words) <= 3 else 0.6
+
+        # --- Confidence consistency (0.0–1.0) ---
+        # Only penalise when the LLM claims high confidence but extracted
+        # nothing. Low-confidence extractions with null fields are expected
+        # for genuinely ambiguous notes and must NOT be penalised.
+        extracted = sum(1 for f in [topic, actor, obj] if f)
+        if conf > 0.6 and extracted == 0:
+            consistency_q = 0.3
+        else:
+            consistency_q = 0.9
+
+        score = (
+            0.35 * intent_q
+            + 0.35 * topic_q
+            + 0.15 * actor_q
+            + 0.15 * consistency_q
+        )
+        return round(max(0.0, min(1.0, score)), 4)
+
+    # ------------------------------------------------------------------
     # Rule-based fallback classifier
     # ------------------------------------------------------------------
 
@@ -976,6 +1059,7 @@ Input:
                         break
 
         due_date, temporal_text = self._infer_due_date(lowered)
+        inferred_obj = self._infer_object(text, action, actor)
 
         result = {
             "intent_type": intent_type,
@@ -983,7 +1067,7 @@ Input:
             "actor": actor,
             "topic": topic,
             "subtopic": None,
-            "object": self._infer_object(text, action, actor),
+            "object": inferred_obj,
             "due_date": due_date,
             "temporal_text": temporal_text,
             "urgency": "high" if due_date else "medium",
@@ -994,6 +1078,14 @@ Input:
             "model_name": "heuristic",
             "prompt_version": self.PROMPT_VERSION,
             "source_text": text,
+            "extraction_quality_score": self.compute_extraction_quality({
+                "intent_type": intent_type,
+                "topic": topic,
+                "actor": actor,
+                "object": inferred_obj,
+                "confidence": confidence,
+                "model_name": "heuristic",
+            }),
         }
 
         logger.info(

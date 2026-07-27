@@ -92,6 +92,11 @@ class NoteIntent(Base):
         nullable=False
     )
 
+    extraction_quality_score: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
     reasoning_summary: Mapped[str | None] = mapped_column(
         Text,
         nullable=True
