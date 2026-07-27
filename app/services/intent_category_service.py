@@ -153,6 +153,29 @@ class IntentCategoryService:
         "llm", "llms", "nlp", "ml",
     }
 
+    # ---- English function words and weak content words that are never valid
+    # single-token category names. Defense-in-depth: the primary rejection
+    # for these terms is _validate_topic() in IntentExtractionService (EXTR-002).
+    # This guard catches any that reach category naming via the rule-based
+    # fallback or future code paths not yet connected to _validate_topic().
+    _CATEGORY_INVALID_SINGLE_TOKENS: frozenset[str] = frozenset({
+        # Articles
+        "the", "a", "an",
+        # Coordinating conjunctions
+        "and", "but", "or", "nor", "so", "yet",
+        # Adverbs observed as garbage category names in the phase2 corpus
+        "also", "just", "only", "even", "still", "always", "never",
+        "instead", "rather", "however", "moreover", "meanwhile", "therefore",
+        "already",
+        # Weak adjectives seen as garbage category names
+        "common", "important", "crucial", "new", "old", "used",
+        # Verb forms seen as garbage category names
+        "added", "changed", "updated", "deleted", "modified", "created",
+        "removed", "booked", "checked", "fixed",
+        # Null/undefined values that occasionally leak through as strings
+        "none", "null", "undefined",
+    })
+
     # ---- Built-ins / keywords that must never become category names -----
     # These appear when the LLM extracts a Python token (reduce, print, id)
     # or a language keyword as the "topic" of a general-intent note.
@@ -918,6 +941,7 @@ class IntentCategoryService:
         - Python keywords: "for", "if", "class", "return", …
         - Tokens ≤ 2 characters that are not a known acronym (e.g. "Rs", "Id")
         - Tokens with no alphabetic characters at all
+        - English function words and weak content words (e.g. "Also", "Always")
 
         Multi-token names ("Study - PostgreSQL", "Communication - Sid") are
         never rejected here; their components were already validated upstream
@@ -957,6 +981,14 @@ class IntentCategoryService:
             if not any(c.isalpha() for c in cleaned):
                 logger.warning(
                     "CATEGORY NAME SANITIZED reason=no_alpha name=%r → General",
+                    name,
+                )
+                return "General"
+            # English function words and weak content words observed as garbage
+            # category names in the phase2 corpus (e.g. "Also", "Always", "None").
+            if lower in self._CATEGORY_INVALID_SINGLE_TOKENS:
+                logger.warning(
+                    "CATEGORY NAME SANITIZED reason=invalid_single_token name=%r → General",
                     name,
                 )
                 return "General"

@@ -624,3 +624,85 @@ class TestBackwardsCompatibility:
         _, method, _ = self._run_flags_off(intent_type="general", topic="Added")
         # Without the guard, "Added" creates a new category
         assert method == "created"
+
+
+# ===========================================================================
+# EXTR-003 — _CATEGORY_INVALID_SINGLE_TOKENS guard in _sanitize_category_name
+# ===========================================================================
+
+class TestSanitizeCategoryNameInvalidTokenGuard:
+    """
+    Verifies the defense-in-depth guard added by EXTR-003.
+
+    _validate_topic() in IntentExtractionService is the primary gate.
+    This guard catches any garbage single-token that reaches category naming
+    via the rule-based fallback or future code paths.
+    """
+
+    @pytest.mark.parametrize("bad", [
+        # Conjunctions
+        "Also", "also", "But", "but", "Or", "or",
+        # Adverbs observed in phase2 corpus
+        "Always", "always", "Never", "never", "Instead", "instead",
+        "However", "however", "Already", "already", "Just", "just",
+        # Weak adjectives from phase2
+        "Common", "common", "Important", "important", "Crucial", "crucial",
+        # Verb forms from phase2
+        "Added", "added", "Changed", "changed", "Updated", "updated",
+        "Deleted", "deleted", "Booked", "booked", "Fixed", "fixed",
+        # Null/undefined leakage
+        "None", "none", "Null", "null",
+    ])
+    def test_invalid_single_token_returns_general(self, bad):
+        svc = _make_service()
+        assert svc._sanitize_category_name(bad) == "General"
+
+    def test_compound_name_with_dash_bypasses_guard(self):
+        svc = _make_service()
+        # " - " in the name means it is NOT a single token — guard is skipped.
+        assert svc._sanitize_category_name("Study - PostgreSQL") == "Study - PostgreSQL"
+
+    def test_multi_word_name_with_space_bypasses_guard(self):
+        svc = _make_service()
+        # A space makes it multi-token — guard is skipped.
+        assert svc._sanitize_category_name("Flutter Application Performance") == "Flutter Application Performance"
+
+    @pytest.mark.parametrize("good", [
+        "PostgreSQL", "Flutter", "Kubernetes", "FastAPI",
+        "Tasks", "Meetings", "Ideas", "General",
+    ])
+    def test_valid_single_word_not_affected(self, good):
+        svc = _make_service()
+        assert svc._sanitize_category_name(good) == good
+
+    def test_existing_python_builtin_guard_still_works(self):
+        svc = _make_service()
+        assert svc._sanitize_category_name("print") == "General"
+        assert svc._sanitize_category_name("reduce") == "General"
+
+    def test_existing_python_keyword_guard_still_works(self):
+        svc = _make_service()
+        assert svc._sanitize_category_name("for") == "General"
+        assert svc._sanitize_category_name("class") == "General"
+
+    def test_existing_too_short_guard_still_works(self):
+        svc = _make_service()
+        # "rs" is not in _ACRONYM_WORDS, len=2 → rejected by too_short guard
+        assert svc._sanitize_category_name("rs") == "General"
+
+    def test_existing_no_alpha_guard_still_works(self):
+        svc = _make_service()
+        assert svc._sanitize_category_name("42") == "General"
+        assert svc._sanitize_category_name("---") == "General"
+
+    def test_trailing_period_still_stripped_before_guard(self):
+        svc = _make_service()
+        # Trailing punct is stripped first; result is multi-word, bypasses guard.
+        result = svc._sanitize_category_name("Flutter Application Performance.")
+        assert result == "Flutter Application Performance"
+
+    def test_guard_is_case_insensitive(self, ):
+        svc = _make_service()
+        # The check uses lower = cleaned.lower(), so case doesn't matter.
+        assert svc._sanitize_category_name("ALSO") == "General"
+        assert svc._sanitize_category_name("ALWAYS") == "General"
