@@ -51,6 +51,16 @@ class IntentCategoryRepository:
             )
         else:
             query = query.filter(IntentCategory.actor.is_(None))
+            # If no actor is specified, we must only match generic categories
+            # to prevent returning a specific topic category (like "Study - PostgreSQL")
+            # as a general fallback rule match.
+            generic_categories = {
+                "communication", "study", "reference", "ideas", "tasks",
+                "reminders", "questions", "meetings", "general",
+                "shopping", "bills", "appointments", "errands", "health",
+                "finance", "travel"
+            }
+            query = query.filter(func.lower(IntentCategory.name).in_(generic_categories))
 
         return (
             query
@@ -160,7 +170,9 @@ class IntentCategoryRepository:
         user_id: int,
         query_vector: list[float],
         limit: int = 3,
-        max_distance: float | None = None
+        max_distance: float | None = None,
+        intent_type: str | None = None,
+        actor: str | None = None,
     ) -> list[tuple[IntentCategory, float]]:
         distance_expr = IntentCategoryEmbedding.embedding_vector.cosine_distance(
             query_vector
@@ -181,6 +193,12 @@ class IntentCategoryRepository:
 
         if max_distance is not None:
             query = query.filter(distance_expr <= max_distance)
+
+        if intent_type is not None:
+            query = query.filter(IntentCategory.intent_type == intent_type)
+
+        if actor is not None:
+            query = query.filter(func.lower(IntentCategory.actor) == actor.lower())
 
         return (
             query
@@ -204,10 +222,19 @@ class IntentCategoryRepository:
         confidence: float,
         source: str = "system_generated"
     ) -> IntentCategory:
+        # DB safety truncation
+        safe_name = (name or "General")[:120]
+        
+        valid_types = {
+            "communication", "todo", "study", "reminder",
+            "idea", "reference", "question", "event", "general"
+        }
+        safe_intent_type = intent_type if intent_type in valid_types else "general"
+
         category = IntentCategory(
             user_id=user_id,
-            name=name,
-            intent_type=intent_type,
+            name=safe_name,
+            intent_type=safe_intent_type,
             actor=actor,
             action=action,
             time_scope=time_scope,
@@ -244,13 +271,11 @@ class IntentCategoryRepository:
             category.updated_at = datetime.utcnow()
             self.db.commit()
 
-    def upsert_embedding(
+    def get_embedding(
         self,
         intent_category_id: int,
-        embedding_model: str,
-        embedding_vector: list[float]
-    ) -> IntentCategoryEmbedding:
-        embedding = (
+    ) -> IntentCategoryEmbedding | None:
+        return (
             self.db.query(IntentCategoryEmbedding)
             .filter(
                 IntentCategoryEmbedding.intent_category_id == intent_category_id
@@ -258,16 +283,27 @@ class IntentCategoryRepository:
             .first()
         )
 
+    def upsert_embedding(
+        self,
+        intent_category_id: int,
+        embedding_model: str,
+        embedding_vector: list[float],
+        centroid_note_count: int = 1,
+    ) -> IntentCategoryEmbedding:
+        embedding = self.get_embedding(intent_category_id)
+
         if not embedding:
             embedding = IntentCategoryEmbedding(
                 intent_category_id=intent_category_id,
                 embedding_model=embedding_model,
-                embedding_vector=embedding_vector
+                embedding_vector=embedding_vector,
+                centroid_note_count=centroid_note_count,
             )
             self.db.add(embedding)
         else:
             embedding.embedding_model = embedding_model
             embedding.embedding_vector = embedding_vector
+            embedding.centroid_note_count = centroid_note_count
 
         self.db.commit()
         self.db.refresh(embedding)
@@ -298,8 +334,13 @@ class IntentCategoryRepository:
         )
 
     def count_by_user(self, user_id: int) -> int:
+        # Only active categories count against the cap; archived/merged ones
+        # have already been removed from the browsing and retrieval paths.
         return (
             self.db.query(IntentCategory)
-            .filter(IntentCategory.user_id == user_id)
+            .filter(
+                IntentCategory.user_id == user_id,
+                IntentCategory.status == "active",
+            )
             .count()
         )

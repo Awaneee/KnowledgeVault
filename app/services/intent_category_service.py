@@ -1,8 +1,45 @@
+"""
+Intent category service.
+
+Responsibilities
+----------------
+- Assign each processed note to an intent category.
+- Generate deterministic, concise category names (≤ 4 words) from validated
+  intent metadata — the LLM never names categories.
+- Maximise category reuse: semantic search before any new category is created.
+- Expose query-time category lookup for hybrid retrieval.
+
+Category naming rules
+---------------------
+  communication + actor   → "Communication - {Actor}"
+  communication + no actor → "Communication"
+  study + topic            → "Study - {Topic}"
+  study + no topic         → "Study"
+  reference + topic        → "Reference - {Topic}"
+  reference + no topic     → "Reference"
+  idea + topic             → "Ideas - {Topic[:2 words]}"
+  idea + no topic          → "Ideas"
+  todo + mapped bucket     → Shopping | Bills | Appointments | Errands
+  todo + no bucket         → "Tasks"
+  reminder                 → "Reminders" (or "Appointments" for medical)
+  question + topic         → "Questions - {Topic}"
+  question + no topic      → "Questions"
+  event + actor            → "Meetings - {Actor}"
+  event + topic            → "Meetings"
+  general + topic          → "{Topic[:3 words]}"
+  general + no topic       → "General"
+
+All names are hard-capped to 4 words before storage.
+"""
+
+import logging
 import re
+import time
 from dataclasses import dataclass
 
 from sqlalchemy.orm import Session
 
+from app.core.config import settings
 from app.core.embedding_model import embedding_model
 from app.models.intent_category import IntentCategory
 from app.models.note_intent import NoteIntent
@@ -10,6 +47,9 @@ from app.models.notes import Note
 from app.repositories.intent_category_repository import IntentCategoryRepository
 from app.repositories.intent_repository import IntentRepository
 from app.services.intent_extraction_service import IntentExtractionService
+
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -23,67 +63,131 @@ class CategoryMatch:
 class IntentCategoryService:
     EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 
-    # ---------------------------------------------------------------------------
-    # Similarity threshold
-    # ---------------------------------------------------------------------------
-    # Cosine distance cutoff for category vector search.  Categories further
-    # away than this value are excluded from results.
+    # ------------------------------------------------------------------
+    # Thresholds
+    # ------------------------------------------------------------------
+    # Cosine-distance cutoffs (all-MiniLM-L6-v2, English text):
+    #   < 0.20  near-paraphrase
+    #   0.20–0.40  same topic, different phrasing
+    #   0.40–0.60  related domain, loose overlap
+    #   > 0.60  essentially different topics
     #
-    # Cosine distance for all-MiniLM-L6-v2 on English text (approximate):
-    #   < 0.20  — near-paraphrase ("what should I buy" vs "things to buy")
-    #   0.20–0.40 — same topic, different phrasing
-    #   0.40–0.60 — related domain, loose semantic overlap
-    #   0.60–0.80 — different topics with some shared vocabulary
-    #   > 0.80  — essentially unrelated
+    # INGEST_REUSE_THRESHOLD — used when deciding whether to reuse an
+    # existing category during indexing.  Kept tight (0.40) to prevent
+    # accidentally merging truly different topics.
     #
-    # 0.55 is a provisional starting value. Richer query signatures place
-    # correct matches at ~0.20–0.40 and wrong
-    # matches at 0.60+.  0.55 sits between these populations.
-    #
-    # TO CALIBRATE: inspect category distances during retrieval and set this
-    # near the upper bound for correct matches. If recall drops because valid
-    # categories are excluded, raise the threshold. If wrong categories keep
-    # winning, lower it.
-    CATEGORY_SIMILARITY_THRESHOLD: float = 0.55
+    # QUERY_SIMILARITY_THRESHOLD — used during retrieval where a wider
+    # net improves recall.  0.55 sits between correct (~0.20-0.40) and
+    # wrong (0.60+) matches for typical retrieval queries.
+    INGEST_REUSE_THRESHOLD: float = 0.40
+    QUERY_SIMILARITY_THRESHOLD: float = 0.55
 
-    # ---------------------------------------------------------------------------
-    # Candidate limits
-    # ---------------------------------------------------------------------------
-    # VECTOR_CANDIDATE_LIMIT controls how many categories the embedding search
-    # fetches before merging with the exact rule match.  It is intentionally
-    # larger than the public `limit` parameter of find_categories_for_query()
-    # (default 3) so that the merge step has enough candidates to work with
-    # when the exact rule match is not in the top-N by cosine distance.
-    #
-    # Tradeoff: a higher value gives the merge step more choices but causes
-    # Postgres to score more rows.  5 is appropriate because:
-    # - typical users have fewer than 10 active categories
-    # - threshold filtering further reduces the effective set
-    # - the public API still returns at most `limit` (default 3) categories,
-    #   so the note-pool size seen by the caller does not grow
     VECTOR_CANDIDATE_LIMIT: int = 5
-    BROAD_EXACT_INTENTS = {"todo", "study", "reference", "question", "idea", "event"}
 
-    GENERIC_CATEGORY_WORDS = {
-        "general", "misc", "miscellaneous", "note", "notes", "task", "tasks",
-        "thing", "things", "item", "items", "stuff", "topic", "topics",
-        "work", "personal", "todo", "to-do", "reminder", "reference",
-        "question", "idea", "event", "study", "learn", "learning"
+    # Intent types that should create per-topic categories rather than
+    # one broad bucket per intent type.
+    TOPIC_INTENT_TYPES = {
+        "study", "reference", "question", "idea", "todo", "reminder", "event",
     }
 
-    TOPIC_SYNONYMS = {
-        "ai": "Artificial Intelligence",
-        "artificial intelligence": "Artificial Intelligence",
-        "llm": "Artificial Intelligence",
-        "llms": "Artificial Intelligence",
-        "large language model": "Artificial Intelligence",
-        "large language models": "Artificial Intelligence",
+    # Intent types that are so broad (exact rule match is acceptable) they
+    # should NOT override the rule match with a vector result.
+    BROAD_EXACT_INTENTS = {
+        "todo", "study", "reference", "question", "idea", "event",
+    }
+
+    MAX_CATEGORIES_PER_USER = 50
+
+    # ---- Todo bucket keywords ----------------------------------------
+    TODO_LABEL_KEYWORDS = (
+        ("Shopping", {"buy", "purchase", "shop", "shopping", "grocery", "groceries",
+                      "milk", "bread", "eggs", "vegetables", "fruits"}),
+        ("Bills", {"pay", "bill", "bills", "rent", "electricity", "water", "internet",
+                   "recharge", "subscription", "invoice", "fee", "payment"}),
+        ("Appointments", {"appointment", "doctor", "dentist", "meeting", "reservation",
+                          "booking", "schedule", "clinic", "hospital"}),
+        ("Errands", {"pickup", "pick", "drop", "collect", "deliver", "return",
+                     "bank", "post", "courier", "errand"}),
+        ("Health", {"medicine", "medication", "pill", "vitamin", "exercise", "gym",
+                    "workout", "health", "diet", "sleep"}),
+        ("Finance", {"invest", "investment", "stock", "stocks", "mutual", "fund",
+                     "loan", "emi", "tax", "budget", "finance", "financial"}),
+        ("Travel", {"travel", "trip", "flight", "hotel", "visa", "passport",
+                    "booking", "pack", "luggage"}),
+    )
+
+    # ---- Brand / acronym humanization --------------------------------
+    _BRAND_WORDS: dict[str, str] = {
+        "kafka": "Kafka",
+        "docker": "Docker",
+        "redis": "Redis",
+        "postgresql": "PostgreSQL",
+        "postgres": "PostgreSQL",
+        "fastapi": "FastAPI",
+        "ollama": "Ollama",
+        "mongodb": "MongoDB",
+        "sqlite": "SQLite",
+        "mysql": "MySQL",
+        "nginx": "Nginx",
+        "kubernetes": "Kubernetes",
+        "terraform": "Terraform",
+        "react": "React",
+        "nextjs": "Next.js",
+        "flutter": "Flutter",
+        "django": "Django",
+        "flask": "Flask",
+        "celery": "Celery",
+        "graphql": "GraphQL",
+        "pytorch": "PyTorch",
+        "tensorflow": "TensorFlow",
+        "langchain": "LangChain",
+        "github": "GitHub",
+        "gitlab": "GitLab",
+        "aws": "AWS",
+        "gcp": "GCP",
+        "azure": "Azure",
+    }
+    _ACRONYM_WORDS = {
+        "ai", "api", "jwt", "mcp", "dbms", "sql", "nosql",
+        "ui", "ux", "http", "https", "rest", "rpc", "rag",
+        "llm", "llms", "nlp", "ml",
+    }
+
+    # ---- Built-ins / keywords that must never become category names -----
+    # These appear when the LLM extracts a Python token (reduce, print, id)
+    # or a language keyword as the "topic" of a general-intent note.
+    # The set covers all Python 3 built-in functions and a selection of
+    # built-in types that commonly appear in code-heavy notes.
+    _PYTHON_BUILTINS: frozenset[str] = frozenset({
+        "abs", "all", "any", "ascii", "bin", "bool", "breakpoint",
+        "bytearray", "bytes", "callable", "chr", "classmethod", "compile",
+        "complex", "copyright", "credits", "delattr", "dict", "dir",
+        "divmod", "enumerate", "eval", "exec", "exit", "filter", "float",
+        "format", "frozenset", "getattr", "globals", "hasattr", "hash",
+        "help", "hex", "id", "input", "int", "isinstance", "issubclass",
+        "iter", "len", "license", "list", "locals", "map", "max",
+        "memoryview", "min", "next", "object", "oct", "open", "ord",
+        "pow", "print", "property", "quit", "range", "reduce", "repr",
+        "reversed", "round", "set", "setattr", "slice", "sorted",
+        "staticmethod", "str", "sum", "super", "tuple", "type", "vars",
+        "zip",
+    })
+
+    # ---- Topic synonyms (normalize before naming) --------------------
+    TOPIC_SYNONYMS: dict[str, str] = {
+        "ai": "AI",
+        "artificial intelligence": "AI",
+        "llm": "AI",
+        "llms": "AI",
+        "large language model": "AI",
+        "large language models": "AI",
         "ml": "Machine Learning",
+        "machine learning": "Machine Learning",
         "postgres": "PostgreSQL",
         "postgresql": "PostgreSQL",
         "dbms": "Database Systems",
-        "database": "Database Systems",
-        "databases": "Database Systems",
+        "database": "Database",
+        "databases": "Database",
         "groceries": "Shopping",
         "grocery": "Shopping",
         "shopping": "Shopping",
@@ -91,15 +195,31 @@ class IntentCategoryService:
         "electricity bill": "Bills",
         "water bill": "Bills",
         "rent": "Bills",
-        "bills": "Bills"
+        "bills": "Bills",
+        "os": "Operating Systems",
+        "operating system": "Operating Systems",
+        "operating systems": "Operating Systems",
+        "ds": "Data Structures",
+        "data structure": "Data Structures",
+        "data structures": "Data Structures",
+        "algo": "Algorithms",
+        "algorithms": "Algorithms",
+        "dsa": "Data Structures",
+        "oop": "OOP",
+        "object oriented": "OOP",
+        "object-oriented": "OOP",
     }
 
-    TODO_LABEL_KEYWORDS = (
-        ("Shopping", {"buy", "purchase", "shop", "shopping", "grocery", "groceries", "milk", "bread", "eggs"}),
-        ("Bills", {"pay", "bill", "bills", "rent", "electricity", "water", "internet", "recharge", "subscription", "invoice"}),
-        ("Appointments", {"appointment", "doctor", "dentist", "meeting", "reservation", "booking", "schedule"}),
-        ("Errands", {"pickup", "pick", "drop", "collect", "deliver", "return", "bank", "post", "courier"})
-    )
+    GENERIC_CATEGORY_WORDS = {
+        "general", "misc", "miscellaneous", "note", "notes", "task", "tasks",
+        "thing", "things", "item", "items", "stuff", "topic", "topics",
+        "work", "personal", "todo", "to-do", "reminder", "reference",
+        "question", "idea", "event", "study", "learn", "learning",
+    }
+
+    # ------------------------------------------------------------------
+    # Constructor
+    # ------------------------------------------------------------------
 
     def __init__(self, db: Session):
         self.db = db
@@ -107,82 +227,111 @@ class IntentCategoryService:
         self.intent_repo = IntentRepository(db)
         self.extractor = IntentExtractionService()
 
+    # ------------------------------------------------------------------
+    # Public API
+    # ------------------------------------------------------------------
+
     def process_note(
         self,
         note_id: int,
         user_id: int,
         title: str,
-        content: str | None
+        content: str | None,
     ) -> dict:
-        intent = self.extractor.extract(
-            title=title,
-            content=content
-        )
+        t0 = time.monotonic()
+
+        intent = self.extractor.extract(title=title, content=content)
 
         stored_intent = self.intent_repo.create_or_update_note_intent(
             note_id=note_id,
             user_id=user_id,
-            data=intent
+            data=intent,
         )
 
-        category, method = self._find_or_create_category(
+        category, method, similarity_score = self._find_or_create_category(
             user_id=user_id,
-            intent=intent
+            intent=intent,
         )
+
+        # category is None only when the per-user cap has been reached.
+        # The intent is still stored; the note is retrievable via semantic
+        # search.  Skip the assignment and embedding steps entirely so no
+        # false category membership is recorded.
+        if category is None:
+            elapsed = time.monotonic() - t0
+            logger.warning(
+                "CATEGORY SKIPPED method=cap_hit intent=%s topic=%s "
+                "note_id=%d elapsed=%.2fs",
+                intent["intent_type"],
+                intent.get("topic"),
+                note_id,
+                elapsed,
+            )
+            return {
+                "intent": stored_intent,
+                "category": None,
+                "assignment": None,
+            }
 
         assignment = self.intent_repo.create_or_update_assignment(
             note_id=note_id,
             user_id=user_id,
             intent_category_id=category.id,
             confidence=intent["confidence"],
-            assignment_method=method
+            assignment_method=method,
         )
 
-        self.category_repo.touch_after_assignment(
-            category_id=category.id
-        )
+        self.category_repo.touch_after_assignment(category_id=category.id)
 
-        self._refresh_category_embedding(
-            category=category,
-            intent=intent
+        self._refresh_category_embedding(category=category, intent=intent)
+
+        elapsed = time.monotonic() - t0
+        action_word = "REUSED" if method != "created" else "CREATED"
+        logger.info(
+            "CATEGORY %s name=%r method=%s intent=%s actor=%s topic=%s "
+            "note_id=%d elapsed=%.2fs",
+            action_word,
+            category.name,
+            method,
+            intent["intent_type"],
+            intent.get("actor"),
+            intent.get("topic"),
+            note_id,
+            elapsed,
+        )
+        logger.info(
+            "CATEGORY ASSIGNMENT: note_id=%d, matched_category_id=%d, category_name=%r, "
+            "assignment_method=%s, semantic_similarity=%.4f, reuse_confidence=%.4f",
+            note_id,
+            category.id,
+            category.name,
+            method,
+            similarity_score,
+            intent["confidence"]
         )
 
         return {
             "intent": stored_intent,
             "category": category,
-            "assignment": assignment
+            "assignment": assignment,
         }
 
-    def get_categories(
-        self,
-        user_id: int
-    ) -> list[IntentCategory]:
-        return self.category_repo.get_all(
-            user_id=user_id
-        )
+    def get_categories(self, user_id: int) -> list[IntentCategory]:
+        return self.category_repo.get_all(user_id=user_id)
 
     def get_notes_for_category(
-        self,
-        intent_category_id: int,
-        user_id: int
-    ):
+        self, intent_category_id: int, user_id: int
+    ) -> list:
         return self.intent_repo.get_notes_for_category(
             intent_category_id=intent_category_id,
-            user_id=user_id
+            user_id=user_id,
         )
 
-    def backfill_user_notes(
-        self,
-        user_id: int,
-        limit: int = 100
-    ) -> dict:
+    def backfill_user_notes(self, user_id: int, limit: int = 100) -> dict:
         notes = (
             self.db.query(Note)
             .outerjoin(NoteIntent, NoteIntent.note_id == Note.id)
-            .filter(
-                Note.user_id == user_id,
-                NoteIntent.id.is_(None)
-            )
+            .filter(Note.user_id == user_id, NoteIntent.id.is_(None))
             .order_by(Note.created_at.asc())
             .limit(limit)
             .all()
@@ -197,42 +346,38 @@ class IntentCategoryService:
                     note_id=note.id,
                     user_id=user_id,
                     title=note.title,
-                    content=note.content
+                    content=note.content,
                 )
                 processed += 1
             except Exception:
+                logger.exception(
+                    "BACKFILL FAILED note_id=%d user_id=%d", note.id, user_id
+                )
                 self.db.rollback()
                 failed += 1
 
         remaining = (
             self.db.query(Note)
             .outerjoin(NoteIntent, NoteIntent.note_id == Note.id)
-            .filter(
-                Note.user_id == user_id,
-                NoteIntent.id.is_(None)
-            )
+            .filter(Note.user_id == user_id, NoteIntent.id.is_(None))
             .count()
         )
 
-        return {
-            "processed": processed,
-            "failed": failed,
-            "remaining_hint": remaining
-        }
+        return {"processed": processed, "failed": failed, "remaining_hint": remaining}
 
     def find_categories_for_query(
         self,
         query: str,
         user_id: int,
-        limit: int = 3
+        limit: int = 3,
     ) -> list[IntentCategory]:
-        """Return ordered category objects for callers that do not need scores."""
+        """Return ordered category objects for callers that don't need scores."""
         return [
             match.category
             for match in self.find_category_matches_for_query(
                 query=query,
                 user_id=user_id,
-                limit=limit
+                limit=limit,
             )
         ]
 
@@ -240,37 +385,42 @@ class IntentCategoryService:
         self,
         query: str,
         user_id: int,
-        limit: int = 3
+        limit: int = 3,
     ) -> list[CategoryMatch]:
         """
-        Return scored category matches for a query.
-
-        Hybrid retrieval uses these scores to fuse intent and semantic
-        evidence. The public find_categories_for_query() method is preserved
-        for existing callers that only need ordered category objects.
+        Scored category matches for hybrid retrieval.
+        Uses the fast classifier (no LLM) so retrieval never blocks.
         """
         intent = self.extractor.extract_query_intent_fast(query)
 
         exact_match = self.category_repo.find_rule_match(
             user_id=user_id,
             intent_type=intent["intent_type"],
-            actor=intent["actor"]
+            actor=intent["actor"],
         )
 
+        category_name = self._generate_category_name(intent)
         canonical_match = self.category_repo.find_by_name(
             user_id=user_id,
-            name=self._generate_category_name(intent),
-            intent_type=intent["intent_type"]
+            name=category_name,
+            intent_type=intent["intent_type"] if intent["intent_type"] != "general" else None,
         )
 
         signature = self._intent_signature(intent, query=query)
         vector = embedding_model.encode(signature).tolist()
 
+        # A category's embedding may share generic words with a query from a
+        # different intent family (for example a Redis study category and a
+        # Redis question).  Such a category is not compatible evidence.  The
+        # intent type and, where present, actor are hard filters; the vector
+        # score only ranks within that compatible set.
         vector_candidates = self.category_repo.search_by_embedding_with_distance(
             user_id=user_id,
             query_vector=vector,
             limit=self.VECTOR_CANDIDATE_LIMIT,
-            max_distance=self.CATEGORY_SIMILARITY_THRESHOLD
+            max_distance=settings.CATEGORY_QUERY_THRESHOLD,
+            intent_type=intent["intent_type"] if intent["intent_type"] != "general" else None,
+            actor=intent["actor"],
         )
 
         return _score_category_matches(
@@ -278,243 +428,426 @@ class IntentCategoryService:
             canonical_match=canonical_match,
             vector_candidates=vector_candidates,
             intent=intent,
-            limit=limit
+            limit=limit,
         )
 
-    # ---------------------------------------------------------------------------
-    # Private helpers
-    # ---------------------------------------------------------------------------
-
-    # Maximum number of intent categories a single user can have.
-    # Without a cap, every unique actor/intent combination creates a
-    # new category indefinitely. At scale this produces hundreds of
-    # near-duplicate categories ("Work Tasks", "Work Items", etc.)
-    # that degrade retrieval quality and slow category search queries.
-    # When the cap is reached we fall back to the closest vector match
-    # regardless of the compatibility check, so notes still get
-    # categorized — just into the best existing bucket rather than a
-    # new one.
-    MAX_CATEGORIES_PER_USER = 50
+    # ------------------------------------------------------------------
+    # Category find-or-create
+    # ------------------------------------------------------------------
 
     def _find_or_create_category(
-        self,
-        user_id: int,
-        intent: dict
-    ) -> tuple[IntentCategory, str]:
+        self, user_id: int, intent: dict
+    ) -> tuple[IntentCategory, str, float]:
         intent = self._normalize_intent_fields(intent)
-
-        # Intent types that are expected to produce multiple topic-specific
-        # categories (one per subject, not one per intent_type) must NOT
-        # short-circuit on an existing coarse rule match.  If they did,
-        # every "study" note would land in the first broad study bucket
-        # regardless of topic, defeating the per-topic naming in
-        # _generate_category_name.
-        #
-        # Communication categories remain actor-specific and DO use the
-        # rule match so that "Things to Tell Sid" is reused correctly.
-        #
-        # todo/reminder/event only bypass the rule match when the note
-        # carries a distinct object — without one they fall into the
-        # generic bucket as before.
-        TOPIC_INTENT_TYPES = {
-            "study",
-            "reference",
-            "question",
-            "idea",
-            "todo",
-            "reminder",
-            "event"
-        }
-
         intent_type = intent["intent_type"]
         name = self._generate_category_name(intent)
         has_topic = self._has_meaningful_topic(intent)
-        skip_rule_match = intent_type in TOPIC_INTENT_TYPES and has_topic
 
+        # 1. Exact canonical name match — fastest, most precise.
         category = self.category_repo.find_by_name(
             user_id=user_id,
             name=name,
-            intent_type=intent_type
+            intent_type=intent_type,
         )
-
         if category:
-            return category, "canonical_name"
+            return category, "canonical_name", 1.0
 
-        if not skip_rule_match:
-            # Exact rule match on ingestion is correct for communication and
-            # generic (actor-less, topic-less) buckets.
+        # 2. Exact rule match — used for communication (actor-specific) and
+        #    generic (no topic) buckets.  Skip for topic-bearing intents so
+        #    "Study - PostgreSQL" is not lumped into a broad "Study" bucket.
+        skip_rule = intent_type in self.TOPIC_INTENT_TYPES and has_topic
+        if not skip_rule:
             category = self.category_repo.find_rule_match(
                 user_id=user_id,
                 intent_type=intent_type,
-                actor=intent["actor"]
+                actor=intent["actor"],
             )
-
             if category:
-                return category, "exact_rule"
+                return category, "exact_rule", 1.0
 
-        if intent["confidence"] >= 0.68:
-            vector = embedding_model.encode(
-                self._intent_signature(intent)
-            ).tolist()
+        # 3. Semantic reuse — search existing categories and reuse if the
+        #    nearest neighbour is close enough AND compatible.
+        vector = embedding_model.encode(self._intent_signature(intent)).tolist()
+        candidates = self.category_repo.search_by_embedding_with_distance(
+            user_id=user_id,
+            query_vector=vector,
+            limit=3,
+            max_distance=settings.CATEGORY_INGEST_THRESHOLD,
+        )
+        for candidate, distance in candidates:
+            if self._compatible(candidate, intent):
+                logger.info(
+                    "CATEGORY SEMANTIC REUSE name=%r distance=%.3f",
+                    candidate.name,
+                    distance,
+                )
+                return candidate, "vector", 1.0 - float(distance)
 
-            candidates = self.category_repo.search_by_embedding(
-                user_id=user_id,
-                query_vector=vector,
-                limit=1,
-                max_distance=self.CATEGORY_SIMILARITY_THRESHOLD
+        # 4. Cap guard — when per-user limit is reached, do NOT force the note
+        # into an unrelated category.  Return a sentinel (None) so the caller
+        # can skip the assignment entirely.  The note remains fully retrievable
+        # via semantic search; it simply has no category tag until the user
+        # removes old categories and the backfill re-runs.
+        if self.category_repo.count_by_user(user_id) >= self.MAX_CATEGORIES_PER_USER:
+            logger.warning(
+                "CATEGORY CAP REACHED user_id=%d intent=%s topic=%s — "
+                "note will be uncategorized rather than force-assigned",
+                user_id,
+                intent_type,
+                self._resolve_topic_label(intent),
             )
+            return None, "cap_hit", 0.0
 
-            if candidates:
-                candidate = candidates[0]
-                if self._compatible(candidate, intent):
-                    return candidate, "vector"
-
-        # Check category count before creating a new one.
-        current_count = self.category_repo.count_by_user(user_id)
-        if current_count >= self.MAX_CATEGORIES_PER_USER:
-            vector = embedding_model.encode(
-                self._intent_signature(intent)
-            ).tolist()
-
-            # Cap-fallback deliberately does NOT apply the threshold:
-            # when the cap is reached we must assign the note somewhere.
-            fallback = self.category_repo.search_by_embedding(
-                user_id=user_id,
-                query_vector=vector,
-                limit=1
-            )
-
-            if fallback:
-                return fallback[0], "cap_fallback"
-
-        description = self._generate_description(intent)
-
+        # 5. Create new category.
         category = self.category_repo.create(
             user_id=user_id,
             name=name,
-            intent_type=intent["intent_type"],
+            intent_type=intent_type,
             actor=intent["actor"],
             action=intent["action"],
             time_scope=self._time_scope(intent),
-            description=description,
-            confidence=intent["confidence"]
+            description=self._generate_description(intent),
+            confidence=intent["confidence"],
         )
+        return category, "created", 1.0
 
-        return category, "created"
+    # ------------------------------------------------------------------
+    # Deterministic category naming (Python-only, no LLM)
+    # ------------------------------------------------------------------
 
-    def _compatible(
-        self,
-        category: IntentCategory,
-        intent: dict
-    ) -> bool:
-        if category.intent_type != intent["intent_type"]:
-            return False
-
-        if category.actor and intent["actor"]:
-            return category.actor.lower() == intent["actor"].lower()
-
-        return category.actor is None and intent["actor"] is None
-
-    def _refresh_category_embedding(
-        self,
-        category: IntentCategory,
-        intent: dict
-    ) -> None:
-        text = " ".join(
-            part
-            for part in [
-                category.name,
-                category.intent_type,
-                category.actor,
-                category.action,
-                intent.get("object")
-            ]
-            if part
-        )
-
-        vector = embedding_model.encode(text).tolist()
-
-        self.category_repo.upsert_embedding(
-            intent_category_id=category.id,
-            embedding_model=self.EMBEDDING_MODEL,
-            embedding_vector=vector
-        )
-
-    def _intent_signature(
-        self,
-        intent: dict,
-        query: str | None = None
-    ) -> str:
-        normalized_label = self._derive_topic_label(intent)
-        parts = [
-            intent.get("intent_type"),
-            intent.get("action"),
-            intent.get("actor"),
-            normalized_label,
-            intent.get("object"),
-            intent.get("temporal_text"),
-        ]
-        if query:
-            parts.append(query)
-
-        return " ".join(part for part in parts if part)
-
-    def _generate_category_name(
-        self,
-        intent: dict
-    ) -> str:
+    def _generate_category_name(self, intent: dict) -> str:
         """
-        Generate a stable, human-readable category name from normalized scalar
-        fields. Structured values and generic placeholders are filtered before
-        they can become category labels.
+        Generate a stable, human-readable category name ≤ 4 words.
+        The LLM extracts topic/actor/intent_type; this method turns those
+        into the final name without any LLM involvement.
         """
-        return self._normalized_category_name(
-            intent_type=str(intent.get("intent_type") or "general"),
-            actor=self._normalize_actor(intent.get("actor")),
-            action=str(intent.get("action") or ""),
-            label=self._derive_topic_label(intent)
-        )
+        intent_type = str(intent.get("intent_type") or "general")
+        actor = self._normalize_actor(intent.get("actor"))
+        action = str(intent.get("action") or "")
 
-    def _normalized_category_name(
+        # Use LLM-extracted topic/subtopic; fall back to object if absent.
+        topic = self._resolve_topic_label(intent)
+
+        name = self._build_name(intent_type, actor, action, topic)
+        # Hard cap: maximum 4 words regardless of input.
+        name = self._cap_words(name, 4)
+        # Guard: strip trailing punctuation and reject programming tokens,
+        # Python built-ins, and other pathological single-token names.
+        return self._sanitize_category_name(name)
+
+    def _build_name(
         self,
         intent_type: str,
         actor: str | None,
-        action: str | None,
-        label: str | None
+        action: str,
+        topic: str | None,
     ) -> str:
-        if intent_type == "communication" and actor:
-            if action == "ask":
-                return f"Questions for {actor}"
-            return f"Things to Tell {actor}"
+        """
+        Central dispatch table for category names.
+        Every branch produces a name ≤ 4 words.  The _cap_words() call in
+        _generate_category_name() is a safety net for edge cases.
+        """
+        t = intent_type
 
-        if (
-            intent_type == "reminder"
-            and label
-            and label.lower() in {"medicine", "medicines", "health"}
-        ):
-            return "Health Reminders"
+        # Communication ---------------------------------------------------
+        if t == "communication":
+            if actor:
+                return f"Communication - {actor}"
+            if topic:
+                return f"Communication - {self._cap_words(topic, 2)}"
+            return "Communication"
 
-        if intent_type == "todo" and label:
-            return label[:100]
+        # Study -----------------------------------------------------------
+        if t == "study":
+            if topic:
+                return f"Study - {self._cap_words(topic, 3)}"
+            return "Study"
 
-        base_names = {
-            "todo": "Tasks",
-            "study": "Study",
-            "reminder": "Reminders",
-            "question": "Questions",
-            "idea": "Ideas",
-            "reference": "Reference",
-            "event": "Events",
-            "general": "Knowledge"
+        # Reference -------------------------------------------------------
+        if t == "reference":
+            if topic:
+                return f"Reference - {self._cap_words(topic, 3)}"
+            return "Reference"
+
+        # Idea ------------------------------------------------------------
+        if t == "idea":
+            if topic:
+                return f"Ideas - {self._cap_words(topic, 2)}"
+            return "Ideas"
+
+        # Todo ------------------------------------------------------------
+        if t == "todo":
+            if topic:
+                bucket = self._todo_bucket(topic, action)
+                if bucket:
+                    return bucket
+            return "Tasks"
+
+        # Reminder --------------------------------------------------------
+        if t == "reminder":
+            if topic:
+                lowered = topic.lower()
+                if any(w in lowered for w in
+                       ("medicine", "medication", "doctor", "health", "pill")):
+                    return "Appointments"
+            return "Reminders"
+
+        # Question --------------------------------------------------------
+        if t == "question":
+            if topic:
+                return f"Questions - {self._cap_words(topic, 2)}"
+            return "Questions"
+
+        # Event -----------------------------------------------------------
+        if t == "event":
+            if actor:
+                return f"Meetings - {actor}"
+            return "Meetings"
+
+        # General ---------------------------------------------------------
+        if topic:
+            return self._cap_words(topic, 3)
+        return "General"
+
+    def _resolve_topic_label(self, intent: dict) -> str | None:
+        """
+        Pick the best available topic label from the intent fields,
+        normalize it, and return a clean short string or None.
+
+        Priority: topic → subtopic → object → source_text fallback.
+        """
+        # Prefer explicit topic field (new schema).
+        raw = intent.get("topic") or intent.get("subtopic")
+
+        # Fall back to object if topic is absent or generic.
+        if not raw or self._is_generic_word(raw):
+            raw = intent.get("object") or intent.get("category_hint")
+
+        if not raw or self._is_generic_word(str(raw)):
+            raw = self._object_from_source_text(
+                source_text=str(intent.get("source_text") or ""),
+                intent_type=str(intent.get("intent_type") or ""),
+                action=str(intent.get("action") or ""),
+                actor=intent.get("actor"),
+            )
+
+        return self._normalize_topic(raw)
+
+    def _normalize_topic(self, value: object) -> str | None:
+        if value is None or isinstance(value, (dict, list)):
+            return None
+        cleaned = str(value).strip()
+        if not cleaned:
+            return None
+        lowered = cleaned.lower()
+        aliases = {
+            "postgres": "PostgreSQL",
+            "postgresql": "PostgreSQL",
+            "postgres database": "PostgreSQL",
+            "postgresql database": "PostgreSQL",
+            "postgresql indexing": "PostgreSQL",
+            "redis cache": "Redis",
+            "redis": "Redis",
+            "redis database": "Redis",
+            "docker compose": "Docker Compose",
+            "compose": "Docker Compose",
+            "docker-compose": "Docker Compose",
+            "jwt auth": "JWT Authentication",
+            "jwt authentication": "JWT Authentication",
+            "artificial intelligence": "AI",
+            "ai": "AI",
+            "large language model": "AI",
+            "large language models": "AI",
+            "llm": "AI",
+            "llms": "AI",
         }
-        base = base_names.get(intent_type, "Knowledge")
+        if lowered in aliases:
+            return aliases[lowered]
+        return self._normalize_label(value)
 
-        if label:
-            if label.lower() == base.lower():
-                return base
-            return f"{base} - {label}"[:100]
+    def _normalize_label(self, value: object) -> str | None:
+        """
+        Clean and normalise a raw topic/object string into a short label.
+        """
+        if value is None or isinstance(value, (dict, list)):
+            return None
 
-        return base or "General"
+        cleaned = str(value).strip()
+        if not cleaned:
+            return None
+
+        # Strip structural artefacts from LLM responses.
+        cleaned = re.sub(r"[{}\[\]\"']", " ", cleaned)
+        cleaned = re.sub(r"\b\w+\s*:", " ", cleaned)  # "key: value" → " value"
+        cleaned = re.sub(r"\s+", " ", cleaned).strip(" -_:;,.")
+
+        if not cleaned:
+            return None
+
+        lowered = cleaned.lower()
+
+        # Check synonym map before any word trimming.
+        if lowered in self.TOPIC_SYNONYMS:
+            return self.TOPIC_SYNONYMS[lowered]
+
+        # Strip articles/prepositions.
+        lowered = re.sub(
+            r"\b(the|a|an|my|our|your|to|about|for|with|on|in|of)\b",
+            " ",
+            lowered,
+        )
+        lowered = re.sub(r"\s+", " ", lowered).strip()
+
+        if not lowered or lowered in self.GENERIC_CATEGORY_WORDS:
+            return None
+
+        # Re-check synonym after article stripping.
+        if lowered in self.TOPIC_SYNONYMS:
+            return self.TOPIC_SYNONYMS[lowered]
+
+        # Remove generic words.
+        words = [w for w in lowered.split() if w not in self.GENERIC_CATEGORY_WORDS]
+        if not words:
+            return None
+
+        compact = " ".join(words[:4])
+        if compact in self.TOPIC_SYNONYMS:
+            return self.TOPIC_SYNONYMS[compact]
+
+        return self._humanize_label(compact)
+
+    def _humanize_label(self, value: str) -> str:
+        """Apply brand/acronym capitalisation to a space-separated label."""
+        result = []
+        for word in value.split():
+            lower = word.lower()
+            if lower in self._BRAND_WORDS:
+                result.append(self._BRAND_WORDS[lower])
+            elif lower in self._ACRONYM_WORDS:
+                result.append(lower.upper())
+            else:
+                result.append(lower.capitalize())
+        return " ".join(result)
+
+    @staticmethod
+    def _cap_words(text: str, n: int) -> str:
+        """Return the first n words of text, joined by spaces."""
+        return " ".join(text.split()[:n])
+
+    def _sanitize_category_name(self, name: str) -> str:
+        """
+        Strip trailing punctuation and reject pathological single-token names.
+
+        Returns the cleaned name, or "General" when the name is invalid.
+
+        Rejected patterns (all single-token):
+        - Python built-ins: "print", "reduce", "id", "map", …
+        - Python keywords: "for", "if", "class", "return", …
+        - Tokens ≤ 2 characters that are not a known acronym (e.g. "Rs", "Id")
+        - Tokens with no alphabetic characters at all
+
+        Multi-token names ("Study - PostgreSQL", "Communication - Sid") are
+        never rejected here; their components were already validated upstream
+        by _normalize_label and _normalize_actor.
+        """
+        import keyword
+
+        # Strip trailing sentence-ending punctuation that the LLM occasionally
+        # appends (e.g. "Flutter Application Performance.").
+        cleaned = name.strip().rstrip(".,;:!?\"'")
+        if not cleaned:
+            return "General"
+
+        # Single-token guard only — multi-word names are safe.
+        if " " not in cleaned and " - " not in cleaned:
+            lower = cleaned.lower()
+            if keyword.iskeyword(lower):
+                logger.warning(
+                    "CATEGORY NAME SANITIZED reason=python_keyword name=%r → General",
+                    name,
+                )
+                return "General"
+            if lower in self._PYTHON_BUILTINS:
+                logger.warning(
+                    "CATEGORY NAME SANITIZED reason=python_builtin name=%r → General",
+                    name,
+                )
+                return "General"
+            # Very short tokens that are not known good acronyms (e.g. "Rs", "Id").
+            if len(cleaned) <= 2 and lower not in self._ACRONYM_WORDS:
+                logger.warning(
+                    "CATEGORY NAME SANITIZED reason=too_short name=%r → General",
+                    name,
+                )
+                return "General"
+            # Tokens with no alphabetic characters (e.g. "42", "---").
+            if not any(c.isalpha() for c in cleaned):
+                logger.warning(
+                    "CATEGORY NAME SANITIZED reason=no_alpha name=%r → General",
+                    name,
+                )
+                return "General"
+
+        return cleaned
+
+    def _todo_bucket(self, topic: str, action: str) -> str | None:
+        """Map a todo's topic/action to a reusable bucket label."""
+        tokens = set(
+            re.findall(r"[a-z0-9]+", f"{action} {topic}".lower())
+        )
+        for label, keywords in self.TODO_LABEL_KEYWORDS:
+            if tokens & keywords:
+                return label
+        return None
+
+    def _is_generic_word(self, value: str) -> bool:
+        return (value or "").strip().lower() in self.GENERIC_CATEGORY_WORDS
+
+    # ------------------------------------------------------------------
+    # Intent compatibility + normalization helpers
+    # ------------------------------------------------------------------
+
+    def _get_topic_from_category_name(self, name: str, intent_type: str) -> str | None:
+        if not name:
+            return None
+        name_str = str(name)
+        if " - " in name_str:
+            parts = name_str.split(" - ", 1)
+            prefix = parts[0].strip().lower()
+            if prefix in {"communication", "meetings"}:
+                return None
+            return parts[1].strip()
+        else:
+            lowered = name_str.strip().lower()
+            generic_buckets = {
+                "study", "reference", "ideas", "tasks", "reminders", 
+                "questions", "meetings", "general", "communication",
+                "shopping", "bills", "appointments", "errands", "health", "finance", "travel"
+            }
+            if lowered in generic_buckets:
+                return None
+            return name_str.strip()
+
+    def _compatible(self, category: IntentCategory, intent: dict) -> bool:
+        """
+        True if `category` is semantically compatible with `intent` and
+        can safely absorb the new note.
+        """
+        if category.intent_type != intent["intent_type"]:
+            return False
+        if category.actor and intent.get("actor"):
+            if category.actor.lower() != intent["actor"].lower():
+                return False
+        elif bool(category.actor) != bool(intent.get("actor")):
+            return False
+
+        intent_topic = self._normalize_topic(self._resolve_topic_label(intent))
+        category_topic = self._normalize_topic(self._get_topic_from_category_name(category.name, category.intent_type))
+
+        intent_topic_str = (intent_topic or "").lower().strip()
+        category_topic_str = (category_topic or "").lower().strip()
+
+        return intent_topic_str == category_topic_str
 
     def _normalize_intent_fields(self, intent: dict) -> dict:
         normalized = dict(intent)
@@ -524,209 +857,137 @@ class IntentCategoryService:
     def _normalize_actor(self, value: object) -> str | None:
         if value is None or isinstance(value, (dict, list)):
             return None
-
         cleaned = re.sub(r"\s+", " ", str(value)).strip()
         if not cleaned or cleaned.lower() in {"self", "me", "myself", "none"}:
             return None
-
         if "/" in cleaned or "," in cleaned:
             return None
-
         return cleaned.title()[:120]
 
-    def _derive_topic_label(self, intent: dict) -> str | None:
-        raw = intent.get("object") or intent.get("category_hint")
-        if isinstance(raw, (dict, list)):
-            raw = None
-
-        label = self._normalize_label(str(raw or ""))
-
-        if not label:
-            label = self._normalize_label(
-                self._object_from_source_text(
-                    source_text=str(intent.get("source_text") or ""),
-                    intent_type=str(intent.get("intent_type") or ""),
-                    action=str(intent.get("action") or ""),
-                    actor=intent.get("actor")
-                )
-            )
-
-        if intent.get("intent_type") == "todo" and label:
-            label = self._todo_label(label, intent.get("action"))
-
-        if label and label.lower() == str(intent.get("intent_type") or "").lower():
-            return None
-
-        return label
-
     def _has_meaningful_topic(self, intent: dict) -> bool:
-        label = self._derive_topic_label(intent)
+        label = self._resolve_topic_label(intent)
         return bool(label and label.lower() not in self.GENERIC_CATEGORY_WORDS)
 
-    def _normalize_label(self, value: str | None) -> str | None:
-        if not value:
-            return None
-
-        cleaned = value.strip()
-        if not cleaned:
-            return None
-
-        cleaned = re.sub(r"[{}\[\]\"']", " ", cleaned)
-        cleaned = re.sub(r"\b\w+\s*:", " ", cleaned)
-        cleaned = re.sub(
-            r"\b(items?|object|category|hint|note|notes)\b",
-            " ",
-            cleaned,
-            flags=re.IGNORECASE
-        )
-        cleaned = re.sub(r"\s+", " ", cleaned).strip(" -_:;,.")
-
-        if not cleaned:
-            return None
-
-        lowered = cleaned.lower()
-        lowered = re.sub(
-            r"\b(the|a|an|my|our|your|to|about|for|with|on|in|of)\b",
-            " ",
-            lowered
-        )
-        lowered = re.sub(r"\s+", " ", lowered).strip()
-
-        if not lowered or lowered in self.GENERIC_CATEGORY_WORDS:
-            return None
-
-        if lowered in self.TOPIC_SYNONYMS:
-            return self.TOPIC_SYNONYMS[lowered]
-
-        words = [
-            word for word in lowered.split()
-            if word not in self.GENERIC_CATEGORY_WORDS
+    def _intent_signature(self, intent: dict, query: str | None = None) -> str:
+        """
+        Build a text string that captures the semantic identity of an intent.
+        This is what gets embedded to find/compare categories.
+        """
+        topic_label = self._resolve_topic_label(intent)
+        parts = [
+            intent.get("intent_type"),
+            intent.get("action"),
+            intent.get("actor"),
+            topic_label,
+            intent.get("object"),
+            intent.get("temporal_text"),
         ]
+        if query:
+            parts.append(query)
+        return " ".join(p for p in parts if p)
 
-        if not words:
-            return None
+    def _refresh_category_embedding(
+        self, category: IntentCategory, intent: dict
+    ) -> None:
+        # Embed the incoming note's semantic signature, not category metadata.
+        # Category metadata is static and would produce the same vector on every
+        # call, making the embedding useless for distinguishing categories.
+        # The intent signature captures what this specific note is about, so
+        # folding many of them into a running mean gives a centroid that reflects
+        # the full distribution of notes in the category.
+        new_vector = embedding_model.encode(
+            self._intent_signature(intent)
+        ).tolist()
 
-        compact = " ".join(words[:5])
-        if compact in self.TOPIC_SYNONYMS:
-            return self.TOPIC_SYNONYMS[compact]
+        existing = self.category_repo.get_embedding(category.id)
 
-        return self._humanize_label(compact)
-
-    def _todo_label(self, label: str, action: str | None) -> str:
-        tokens = set(
-            re.findall(
-                r"[a-z0-9]+",
-                f"{action or ''} {label}".lower()
+        if existing is None or existing.centroid_note_count == 0:
+            # First note — the embedding IS the centroid; count = 1.
+            self.category_repo.upsert_embedding(
+                intent_category_id=category.id,
+                embedding_model=self.EMBEDDING_MODEL,
+                embedding_vector=new_vector,
+                centroid_note_count=1,
             )
-        )
+        else:
+            # Incremental mean: c_new = (c_old * N + v_new) / (N + 1)
+            # This is O(dim) and adds no extra DB reads beyond the get above.
+            n = existing.centroid_note_count
+            old_vector = existing.embedding_vector
+            centroid = [
+                (old * n + new) / (n + 1)
+                for old, new in zip(old_vector, new_vector)
+            ]
+            self.category_repo.upsert_embedding(
+                intent_category_id=category.id,
+                embedding_model=self.EMBEDDING_MODEL,
+                embedding_vector=centroid,
+                centroid_note_count=n + 1,
+            )
 
-        for category, keywords in self.TODO_LABEL_KEYWORDS:
-            if tokens & keywords:
-                return category
+    def _generate_description(self, intent: dict) -> str:
+        topic = self._resolve_topic_label(intent)
+        if intent.get("actor"):
+            return (
+                f"Notes with {intent['intent_type']} intent "
+                f"involving {intent['actor']}."
+            )
+        if topic:
+            return f"Notes about {topic} ({intent['intent_type']})."
+        return f"Notes with {intent['intent_type']} intent."
 
-        return label
+    def _time_scope(self, intent: dict) -> str | None:
+        if intent.get("due_date"):
+            return "dated"
+        temporal = intent.get("temporal_text")
+        if temporal:
+            return temporal.lower().replace(" ", "_")[:50]
+        return None
 
     def _object_from_source_text(
         self,
         source_text: str,
         intent_type: str,
         action: str,
-        actor: str | None
+        actor: str | None,
     ) -> str | None:
         if not source_text:
             return None
-
         cleaned = source_text.strip()
         if action:
             cleaned = re.sub(
-                rf"^\s*{re.escape(action)}\b",
-                "",
-                cleaned,
-                flags=re.IGNORECASE
+                rf"^\s*{re.escape(action)}\b", "", cleaned, flags=re.IGNORECASE
             )
         if actor:
             cleaned = re.sub(
-                rf"\b{re.escape(actor)}\b",
-                "",
-                cleaned,
-                flags=re.IGNORECASE
+                rf"\b{re.escape(actor)}\b", "", cleaned, flags=re.IGNORECASE
             )
-
-        intent_words = {
+        intent_patterns = {
             "todo": r"\b(to\s*do|task|tasks|need to|must|should)\b",
             "study": r"\b(study|learn|revise|practice)\b",
             "reference": r"\b(reference|docs?|documentation|notes?)\b",
             "question": r"\b(what|how|why|when|where|who|which|is|are|does|do)\b",
             "idea": r"\b(idea|concept|brainstorm|build|create)\b",
             "event": r"\b(event|meeting|scheduled|schedule)\b",
-            "reminder": r"\b(remind|reminder|remember)\b"
+            "reminder": r"\b(remind|reminder|remember)\b",
         }
-        pattern = intent_words.get(intent_type)
+        pattern = intent_patterns.get(intent_type)
         if pattern:
             cleaned = re.sub(pattern, " ", cleaned, flags=re.IGNORECASE)
-
         cleaned = re.sub(r"\s+", " ", cleaned).strip(" -_:;,.")
         return cleaned[:120] or None
 
-    def _humanize_label(self, value: str) -> str:
-        acronym_words = {
-            "ai", "api", "jwt", "mcp", "dbms", "sql", "nosql", "ui", "ux"
-        }
-        brand_words = {
-            "kafka": "Kafka",
-            "docker": "Docker",
-            "redis": "Redis",
-            "postgresql": "PostgreSQL",
-            "postgres": "PostgreSQL",
-            "fastapi": "FastAPI",
-            "ollama": "Ollama"
-        }
 
-        words = []
-        for word in value.split():
-            lower = word.lower()
-            if lower in brand_words:
-                words.append(brand_words[lower])
-            elif lower in acronym_words:
-                words.append(lower.upper())
-            else:
-                words.append(lower.capitalize())
-
-        return " ".join(words)
-
-    def _generate_description(
-        self,
-        intent: dict
-    ) -> str:
-        if intent.get("actor"):
-            return (
-                f"Notes with {intent['intent_type']} intent "
-                f"involving {intent['actor']}."
-            )
-
-        return f"Notes with {intent['intent_type']} intent."
-
-    def _time_scope(
-        self,
-        intent: dict
-    ) -> str | None:
-        if intent.get("due_date"):
-            return "dated"
-
-        temporal_text = intent.get("temporal_text")
-
-        if temporal_text:
-            return temporal_text.lower().replace(" ", "_")[:50]
-
-        return None
-
+# ---------------------------------------------------------------------------
+# Query-time scoring (module-level to keep IntentCategoryService focused)
+# ---------------------------------------------------------------------------
 
 def _score_category_matches(
     exact_match: IntentCategory | None,
     canonical_match: IntentCategory | None,
     vector_candidates: list[tuple[IntentCategory, float]],
     intent: dict,
-    limit: int
+    limit: int,
 ) -> list[CategoryMatch]:
     by_id: dict[int, CategoryMatch] = {}
 
@@ -734,7 +995,7 @@ def _score_category_matches(
         category: IntentCategory,
         score: float,
         method: str,
-        distance: float | None = None
+        distance: float | None = None,
     ) -> None:
         current = by_id.get(category.id)
         if current is None or score > current.score:
@@ -742,51 +1003,46 @@ def _score_category_matches(
                 category=category,
                 score=score,
                 method=method,
-                distance=distance
+                distance=distance,
             )
 
+    # Vector candidates — base score from cosine similarity.
     for category, distance in vector_candidates:
         semantic_score = max(0.0, 1.0 - float(distance))
+        # Boost for matching intent type.
         if category.intent_type == intent["intent_type"]:
-            semantic_score += 0.08
+            semantic_score = min(1.0, semantic_score + 0.08)
+        # Boost for matching actor.
         if category.actor and intent.get("actor"):
             if category.actor.lower() == intent["actor"].lower():
-                semantic_score += 0.08
-        upsert(
-            category=category,
-            score=min(1.0, semantic_score),
-            method="vector",
-            distance=float(distance)
-        )
+                semantic_score = min(1.0, semantic_score + 0.08)
+        upsert(category, score=semantic_score, method="vector", distance=float(distance))
 
+    # Exact rule match — high but slightly lower than canonical.
     if exact_match is not None:
         exact_score = 0.92
+        # Reduce weight for broad intent types when there is specific topic
+        # evidence — prevents a generic "Study" bucket from winning over
+        # "Study - PostgreSQL" when the query is clearly topic-specific.
         if (
             exact_match.intent_type in IntentCategoryService.BROAD_EXACT_INTENTS
             and exact_match.actor is None
             and intent.get("object")
         ):
-            exact_score = 0.68
-        upsert(
-            category=exact_match,
-            score=exact_score,
-            method="exact_rule"
-        )
+            exact_score = 0.70
+        upsert(exact_match, score=exact_score, method="exact_rule")
 
+    # Canonical name match — highest confidence.
     if canonical_match is not None:
-        upsert(
-            category=canonical_match,
-            score=0.96,
-            method="canonical_name"
-        )
+        upsert(canonical_match, score=0.96, method="canonical_name")
 
     return sorted(
         by_id.values(),
-        key=lambda match: (
-            match.score,
-            match.category.note_count or 0,
-            -(match.distance or 0.0),
-            -match.category.id
+        key=lambda m: (
+            m.score,
+            m.category.note_count or 0,
+            -(m.distance or 0.0),
+            -m.category.id,
         ),
-        reverse=True
+        reverse=True,
     )[:limit]
