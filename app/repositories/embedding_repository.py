@@ -15,13 +15,23 @@ class EmbeddingRepository:
         embedding_vector: list[float]
     ) -> Embedding:
 
-        embedding = Embedding(
-            note_id=note_id,
-            embedding_model=embedding_model,
-            embedding_vector=embedding_vector
+        embedding = (
+            self.db.query(Embedding)
+            .filter(Embedding.note_id == note_id)
+            .first()
         )
 
-        self.db.add(embedding)
+        if embedding:
+            embedding.embedding_model = embedding_model
+            embedding.embedding_vector = embedding_vector
+        else:
+            embedding = Embedding(
+                note_id=note_id,
+                embedding_model=embedding_model,
+                embedding_vector=embedding_vector
+            )
+            self.db.add(embedding)
+
         self.db.commit()
         self.db.refresh(embedding)
 
@@ -43,6 +53,28 @@ class EmbeddingRepository:
                     query_vector
                 )
             )
+            .limit(limit)
+            .all()
+        )
+
+    def search_similar_notes_with_distance(
+        self,
+        query_vector: list[float],
+        user_id: int,
+        limit: int = 5,
+    ) -> list[tuple[Note, float]]:
+        """Return note-level semantic candidates together with their distance.
+
+        Hybrid retrieval must use the same semantic corpus as the semantic
+        endpoint.  Returning the distance also lets fusion add an intent
+        boost without replacing the semantic score with an unrelated scale.
+        """
+        distance_expr = Embedding.embedding_vector.cosine_distance(query_vector)
+        return (
+            self.db.query(Note, distance_expr.label("distance"))
+            .join(Embedding)
+            .filter(Note.user_id == user_id)
+            .order_by(distance_expr, Note.id)
             .limit(limit)
             .all()
         )

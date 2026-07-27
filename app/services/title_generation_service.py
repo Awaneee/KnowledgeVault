@@ -1,5 +1,6 @@
 import re
 
+from app.services.llm_service import AllProvidersExhausted
 from app.services.llm_service import LLMService
 
 

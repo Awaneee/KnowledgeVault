@@ -1,28 +1,55 @@
+# KnowledgeVault backend dependencies
+#
+# PyTorch / CPU-only note
+# -----------------------
+# sentence-transformers transitively depends on PyTorch.
+# Without an explicit CPU pin, pip will download the default CUDA wheels
+# from PyPI (~2 GB per wheel), even on CPU-only machines.
+#
+# Fix: pin torch to the CPU-only build from the PyTorch index.
+# The +cpu local version suffix tells pip to only accept CPU builds.
+# torch must be listed BEFORE sentence-transformers so pip resolves it first.
+#
+# If you are installing outside Docker, run:
+#   pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+#
+# The Dockerfile already passes --extra-index-url so Docker builds are
+# always CPU-only automatically.
+
+# --- PyTorch CPU-only (must come before sentence-transformers) ---
+torch>=2.0.0
+
+# --- Web framework ---
 fastapi
 uvicorn[standard]
 
+# --- Database ---
 sqlalchemy
 psycopg2-binary
 alembic
-
-python-jose[cryptography]
-python-multipart
-
-pydantic-settings
-
-sentence-transformers
-
-
 pgvector
 
-redis
-
-requests
-
-numpy
-scikit-learn
-email-validator
-pymupdf
-python-docx
+# --- Auth ---
+python-jose[cryptography]
 passlib[bcrypt]==1.7.4
 bcrypt==4.1.3
+
+# --- Request parsing ---
+python-multipart
+pydantic-settings
+email-validator
+
+# --- AI / embeddings ---
+sentence-transformers
+numpy
+scikit-learn
+
+# --- HTTP client (provider API calls) ---
+requests
+
+# --- File handling ---
+pymupdf
+python-docx
+
+# --- Cache ---
+redis

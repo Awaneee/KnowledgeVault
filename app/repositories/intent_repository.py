@@ -34,6 +34,8 @@ class IntentRepository:
             "intent_type",
             "action",
             "actor",
+            "topic",
+            "subtopic",
             "object",
             "due_date",
             "temporal_text",

@@ -44,6 +44,20 @@ class ChunkRepository:
             .all()
         )
 
+    def get_chunks_by_note_ids(
+        self,
+        note_ids: list[int],
+    ) -> list[DocumentChunk]:
+        """Fetch chunks for a candidate set in one query (not N+1)."""
+        if not note_ids:
+            return []
+        return (
+            self.db.query(DocumentChunk)
+            .filter(DocumentChunk.note_id.in_(note_ids))
+            .order_by(DocumentChunk.note_id, DocumentChunk.chunk_index)
+            .all()
+        )
+
     def get_chunk_by_id(
         self,
         chunk_id: int

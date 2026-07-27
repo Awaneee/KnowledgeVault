@@ -11,6 +11,8 @@ class NoteIntentResponse(BaseModel):
     intent_type: str
     action: Optional[str]
     actor: Optional[str]
+    topic: Optional[str]
+    subtopic: Optional[str]
     object: Optional[str]
     due_date: Optional[date]
     temporal_text: Optional[str]

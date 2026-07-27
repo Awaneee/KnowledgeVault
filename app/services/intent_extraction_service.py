@@ -1,6 +1,24 @@
+"""
+Intent extraction service.
+
+Responsibilities:
+  - Build the LLM prompt and call LLMService.extract_intent() (structured JSON).
+  - Validate and sanitize every LLM field before it touches any other layer.
+  - Provide a fast keyword-only fallback for query-time classification.
+  - Never make category-naming decisions — that belongs to IntentCategoryService.
+
+Validation contract
+-------------------
+No field is passed downstream unless it has been sanitised by one of the
+_clean_* helpers below.  Any value that would overflow a database column,
+contain invisible Unicode, or is a structured type (dict/list) is either
+repaired or discarded.  All repairs are logged at WARNING level.
+"""
+
 import json
 import logging
 import re
+import unicodedata
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
@@ -10,145 +28,134 @@ from app.services.llm_service import LLMService
 
 logger = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
+# Column length limits (must match SQLAlchemy models exactly)
+# ---------------------------------------------------------------------------
+_LEN_INTENT_TYPE = 50
+_LEN_ACTION = 80
+_LEN_ACTOR = 120
+_LEN_OBJECT = 255
+_LEN_TEMPORAL = 120
+_LEN_URGENCY = 30
+_LEN_TOPIC = 120
+_LEN_SUBTOPIC = 120
+
+VALID_INTENT_TYPES = {
+    "communication",
+    "todo",
+    "study",
+    "reminder",
+    "idea",
+    "reference",
+    "question",
+    "event",
+    "general",
+}
+
+# Common LLM synonyms that should map to canonical intent types.
+INTENT_TYPE_SYNONYMS: dict[str, str] = {
+    "task": "todo",
+    "tasks": "todo",
+    "action": "todo",
+    "learn": "study",
+    "learning": "study",
+    "knowledge": "reference",
+    "info": "reference",
+    "information": "reference",
+    "note": "general",
+    "notes": "general",
+    "thought": "idea",
+    "thoughts": "idea",
+    "brainstorm": "idea",
+    "meeting": "event",
+    "appointment": "reminder",
+    "message": "communication",
+    "email": "communication",
+}
+
+VALID_URGENCY = {"low", "medium", "high"}
+
 
 class IntentExtractionService:
-    PROMPT_VERSION = "intent-v1"
-    MODEL_NAME = LLMService.INTENT_MODEL
+    PROMPT_VERSION = "intent-v2"
 
-    INTENT_TYPES = {
-        "communication",
-        "todo",
-        "study",
-        "reminder",
-        "idea",
-        "reference",
-        "question",
-        "event",
-        "general"
+    TECH_MAP = {
+        "redis": "Redis",
+        "postgresql": "PostgreSQL",
+        "postgres": "PostgreSQL",
+        "docker": "Docker",
+        "kafka": "Kafka",
+        "kubernetes": "Kubernetes",
+        "k8s": "Kubernetes",
+        "mongodb": "MongoDB",
+        "sqlite": "SQLite",
+        "nginx": "Nginx",
+        "react": "React",
+        "flutter": "Flutter",
+        "django": "Django",
+        "flask": "Flask",
+        "fastapi": "FastAPI",
+        "pytorch": "PyTorch",
+        "tensorflow": "TensorFlow",
+        "langchain": "LangChain",
+        "github": "GitHub",
+        "gitlab": "GitLab",
+        "aws": "AWS",
+        "gcp": "GCP",
+        "azure": "Azure",
+        "python": "Python",
+        "javascript": "JavaScript",
+        "typescript": "TypeScript",
+        "go": "Go",
+        "rust": "Rust",
+        "java": "Java",
+        "cpp": "C++",
+        "html": "HTML",
+        "css": "CSS",
+        "sql": "SQL",
+        "nosql": "NoSQL"
     }
 
     COMMUNICATION_ACTIONS = {
-        "tell",
-        "inform",
-        "discuss",
-        "ask",
-        "message",
-        "call",
-        "email",
-        "share",
-        "meet"
+        "tell", "inform", "discuss", "ask", "message",
+        "call", "email", "share", "meet",
     }
 
     TODO_ACTIONS = {
-        "do",
-        "finish",
-        "prepare",
-        "submit",
-        "buy",
-        "eat",
-        "take",
-        "revise",
-        "complete",
-        "practice",
-        "study"
+        "do", "finish", "prepare", "submit", "buy", "eat", "take",
+        "revise", "complete", "practice", "study",
     }
 
     # --- Query-time fast classifier (no LLM) ---------------------------
-    # Used only by extract_query_intent_fast(). Keyword-anchored rather
-    # than capitalization-anchored, since chat queries are typically
-    # lowercase ("things to tell sid", "what should i tell sid").
-
     QUERY_COMMUNICATION_KEYWORDS = {
-        "tell",
-        "inform",
-        "discuss",
-        "ask",
-        "message",
-        "call",
-        "email",
-        "share",
-        "meet",
-        "talk"
+        "tell", "inform", "discuss", "ask", "message",
+        "call", "email", "share", "meet", "talk",
     }
-
     QUERY_TODO_KEYWORDS = {
-        "todo",
-        "to-do",
-        "task",
-        "tasks",
-        "pending",
-        "finish",
-        "complete",
-        "submit",
-        "buy",
-        "pay"
+        "todo", "to-do", "task", "tasks", "pending",
+        "finish", "complete", "submit", "buy", "pay",
     }
-
     QUERY_STUDY_KEYWORDS = {
-        "study",
-        "studies",
-        "learn",
-        "learning",
-        "revise",
-        "revision",
-        "practice"
+        "study", "studies", "learn", "learning",
+        "revise", "revision", "practice",
     }
-
     QUERY_IDEA_KEYWORDS = {
-        "idea",
-        "ideas",
-        "startup",
-        "concept",
-        "concepts",
-        "brainstorm"
+        "idea", "ideas", "startup", "concept", "concepts", "brainstorm",
     }
-
-    # "notes" is intentionally not a reference-intent keyword.
-    # "notes" is the generic noun for the entire app — it appears in
-    # almost every retrieval query ("show my notes", "what notes do I
-    # have") and was silently classifying them all as reference intent,
-    # routing them to reference categories regardless of what
-    # the user actually wanted.  It already lives in QUERY_STOPWORDS
-    # (where it correctly suppresses actor extraction), so removing it
-    # here has no other side-effect.  The remaining four keywords are
-    # specific enough to be genuine reference-intent signals.
     QUERY_REFERENCE_KEYWORDS = {
-        "reference",
-        "references",
-        "docs",
-        "documentation"
+        "reference", "references", "docs", "documentation",
     }
-
     QUERY_EVENT_KEYWORDS = {
-        "event",
-        "events",
-        "meeting",
-        "meetings",
-        "scheduled",
-        "schedule"
+        "event", "events", "meeting", "meetings", "scheduled", "schedule",
     }
-
     QUERY_REMINDER_KEYWORDS = {
-        "remind",
-        "reminder",
-        "reminders",
-        "appointment",
-        "appointments"
+        "remind", "reminder", "reminders", "appointment", "appointments",
     }
-
     QUERY_QUESTION_KEYWORDS = {
-        "what",
-        "how",
-        "why",
-        "when",
-        "where",
-        "who",
-        "which"
+        "what", "how", "why", "when", "where", "who", "which",
     }
 
-    # Checked in priority order: first matching group wins. Communication
-    # is checked first since "tell sid" style phrasing is the most
-    # actor-specific and most common Ask query in practice.
+    # Priority order: first match wins.
     QUERY_INTENT_KEYWORD_GROUPS = (
         ("communication", QUERY_COMMUNICATION_KEYWORDS),
         ("reminder", QUERY_REMINDER_KEYWORDS),
@@ -156,14 +163,14 @@ class IntentExtractionService:
         ("idea", QUERY_IDEA_KEYWORDS),
         ("reference", QUERY_REFERENCE_KEYWORDS),
         ("event", QUERY_EVENT_KEYWORDS),
-        ("todo", QUERY_TODO_KEYWORDS)
+        ("todo", QUERY_TODO_KEYWORDS),
     )
 
-    # Words stripped out before scanning for a leftover actor name in a
-    # query like "things to tell sid about the internship".
+    # Stopwords stripped before scanning for actor/topic tokens.
     QUERY_STOPWORDS = {
         "i", "me", "my", "what", "should", "do", "need", "to", "the",
         "a", "an", "about", "for", "with", "on", "in", "at", "is", "are", "of",
+        "and", "or", "but", "by", "from",
         "things", "thing", "tell", "inform", "discuss", "ask", "message",
         "call", "email", "share", "meet", "talk", "todo", "to-do", "task",
         "tasks", "pending", "finish", "complete", "submit", "buy", "pay",
@@ -172,14 +179,10 @@ class IntentExtractionService:
         "brainstorm", "reference", "references", "docs", "documentation",
         "notes", "note", "event", "events", "meeting", "meetings",
         "scheduled", "schedule", "remind", "reminder", "reminders",
-        "appointment", "appointments"
+        "appointment", "appointments",
     }
 
-    # Generic single-token words that are very unlikely to be
-    # person names even after stopword filtering.  Kept intentionally
-    # small — the goal is to block obvious false positives ("team",
-    # "project", "work", "all", "us", "them") without over-filtering
-    # real short names (e.g. "sid", "raj", "mom", "dad").
+    # Generic single-token words that are almost never real actor names.
     _ACTOR_GENERIC_WORDS = {
         "team", "project", "work", "group", "class", "course",
         "everyone", "all", "us", "them", "people", "person",
@@ -196,68 +199,119 @@ class IntentExtractionService:
         "important", "urgent", "asap", "later", "soon", "quick",
         "new", "old", "big", "small", "good", "bad", "best", "next",
         "first", "last", "latest", "current", "upcoming", "recent",
-        "other", "another", "same", "different", "possible", "available"
+        "other", "another", "same", "different", "possible", "available",
     }
 
     GENERIC_OBJECT_WORDS = {
         "general", "study", "todo", "to do", "task", "tasks", "note",
         "notes", "thing", "things", "item", "items", "object", "topic",
-        "work", "personal"
+        "work", "personal",
     }
 
-    def extract(
-        self,
-        title: str,
-        content: str | None
-    ) -> dict:
+    # ------------------------------------------------------------------
+    # Public API
+    # ------------------------------------------------------------------
+
+    def extract(self, title: str, content: str | None) -> dict:
+        """
+        Full intent extraction for a note being indexed.
+        Tries LLM first; falls back to rule-based classifier on any failure.
+        """
         text = self._build_text(title, content)
 
+        if not text or not text.strip():
+            logger.warning("INTENT EXTRACTION: empty text, using rule fallback")
+            return self._extract_with_rules("Untitled")
+
+        # Guard against extremely long notes overwhelming the LLM context.
+        text_for_llm = text[:4000] if len(text) > 4000 else text
+
         logger.info(
-            "\n%s\nINTENT EXTRACTION INPUT\n%s\n%s",
-            "=" * 80,
-            "=" * 80,
-            text
+            "\n%s\nINTENT EXTRACTION INPUT (%.0f chars)\n%s\n%.200s",
+            "=" * 60,
+            len(text_for_llm),
+            "=" * 60,
+            text_for_llm,
         )
 
         try:
-            llm_result = self._extract_with_llm(text)
-            return self._normalize(llm_result, text)
+            raw = self._extract_with_llm(text_for_llm)
+            result = self._normalize(raw, text_for_llm)
+            logger.info(
+                "INTENT EXTRACTED provider=%s intent=%s actor=%s topic=%s object=%s confidence=%.2f",
+                raw.get("_provider", "unknown"),
+                result["intent_type"],
+                result.get("actor"),
+                result.get("topic"),
+                result.get("object"),
+                result["confidence"],
+            )
+            return result
         except Exception as exc:
             logger.exception(
-                "INTENT EXTRACTION FAILED\nERROR: %s\n\nFALLING BACK TO RULES",
-                exc
+                "INTENT EXTRACTION LLM FAILED — falling back to rules. error=%s", exc
             )
-            return self._extract_with_rules(text)
+            rule_result = self._extract_with_rules(text_for_llm)
 
-    def extract_query_intent(
-        self,
-        query: str
-    ) -> dict:
+            from app.core.config import settings
+            if settings.OLLAMA_ENABLED:
+                try:
+                    logger.info("Ollama is enabled, attempting Ollama intent extraction fallback")
+                    from app.services.llm_providers import OllamaProvider
+                    from app.services.llm_service import _try_repair_json, is_valid_intent_json
+                    provider = OllamaProvider()
+                    prompt = self._build_prompt(text_for_llm)
+                    llm_result = provider.extract_intent(prompt)
+                    if is_valid_intent_json(llm_result.text):
+                        repaired = _try_repair_json(llm_result.text)
+                        raw_ollama = json.loads(repaired)
+                        raw_ollama["_provider"] = "ollama"
+                        ollama_result = self._normalize(raw_ollama, text_for_llm)
+                        logger.info("Ollama intent extraction succeeded")
+                        return ollama_result
+                except Exception as ollama_exc:
+                    logger.warning("Ollama intent extraction fallback failed: %s", ollama_exc)
+
+            return rule_result
+
+    def extract_query_intent(self, query: str) -> dict:
+        """Full LLM-backed intent classification for a retrieval query."""
         try:
-            llm_result = self._extract_with_llm(query, is_query=True)
-            return self._normalize(llm_result, query)
+            raw = self._extract_with_llm(query, is_query=True)
+            return self._normalize(raw, query)
         except Exception:
-            return self._extract_with_rules(query)
+            rule_result = self._extract_with_rules(query)
 
-    def extract_query_intent_fast(
-        self,
-        query: str
-    ) -> dict:
+            from app.core.config import settings
+            if settings.OLLAMA_ENABLED:
+                try:
+                    logger.info("Ollama is enabled, attempting Ollama query intent extraction fallback")
+                    from app.services.llm_providers import OllamaProvider
+                    from app.services.llm_service import _try_repair_json, is_valid_intent_json
+                    provider = OllamaProvider()
+                    prompt = self._build_prompt(query, is_query=True)
+                    llm_result = provider.extract_intent(prompt)
+                    if is_valid_intent_json(llm_result.text):
+                        repaired = _try_repair_json(llm_result.text)
+                        raw_ollama = json.loads(repaired)
+                        raw_ollama["_provider"] = "ollama"
+                        ollama_result = self._normalize(raw_ollama, query)
+                        logger.info("Ollama query intent extraction succeeded")
+                        return ollama_result
+                except Exception as ollama_exc:
+                    logger.warning("Ollama query intent extraction fallback failed: %s", ollama_exc)
+
+            return rule_result
+
+    def extract_query_intent_fast(self, query: str) -> dict:
         """
-        Lightweight, keyword-based intent classifier for Ask-time queries.
+        Lightweight keyword-based classifier for Ask-time queries.
+        No LLM — runs in microseconds.  Used by IntentCategoryService so
+        retrieval never blocks on an LLM call.
 
-        No LLM call — pure regex/keyword matching, runs in microseconds.
-        Used by IntentCategoryService.find_categories_for_query() so that
-        Ask retrieval never has to wait on Phi3. Accuracy is intentionally
-        looser than the LLM path (extract_query_intent); this only needs
-        to be good enough to route to the right category, and falls back
-        to a vector search anyway if it can't find an exact rule match.
-
-        A pseudo-object is extracted for all intent types so
-        _intent_signature() has meaningful content tokens instead of only
-        broad intent labels like "todo" or "general".
+        Extracts: intent_type, action, actor, topic (pseudo), object (pseudo).
         """
-        logger.info("FAST QUERY CLASSIFIER ACTIVATED (no LLM)")
+        logger.info("FAST CLASSIFIER activated query=%.80s", query)
 
         lowered = query.lower().strip()
         words = re.findall(r"[a-z0-9']+", lowered)
@@ -276,33 +330,25 @@ class IntentExtractionService:
             intent_type = "question"
             confidence = 0.55
 
-        # Structured actor extraction for communication queries.
+        # Actor extraction — only for communication intents.
         actor = None
         if intent_type == "communication":
             actor = self._find_query_actor(words)
             if actor:
                 confidence = 0.72
 
-        # Extract pseudo_object for all non-communication intents
-        # (and for communication intents when actor extraction leaves
-        # residual content words).
-        #
-        # Strategy: strip stopwords and the matched intent-type keyword
-        # itself, then take up to 4 of the remaining content tokens.
-        # This produces signatures like:
-        #   "todo buy groceries"      instead of "todo"
-        #   "study dynamic programming" instead of "study"
-        #   "reference docker containers" instead of "reference"
-        #   "question kafka partitions" instead of "question"
-        # All-MiniLM-L6-v2 embeds these to meaningfully different vectors,
-        # breaking the convergence to the same category.
-        pseudo_object = self._extract_pseudo_object(
+        # Topic extraction — pull meaningful content words for vector
+        # signatures, regardless of intent type.
+        topic = self._extract_pseudo_topic(
             words=words,
             intent_type=intent_type,
-            actor=actor
+            actor=actor,
         )
 
-        # action is only extracted for communication intent (unchanged).
+        # object = same as topic for backward-compat with callers that
+        # still use intent["object"] for retrieval.
+        pseudo_object = topic
+
         action = (
             next(iter(word_set & self.QUERY_COMMUNICATION_KEYWORDS), None)
             if intent_type == "communication"
@@ -313,6 +359,8 @@ class IntentExtractionService:
             "intent_type": intent_type,
             "action": action,
             "actor": actor,
+            "topic": topic,
+            "subtopic": None,
             "object": pseudo_object,
             "due_date": None,
             "temporal_text": None,
@@ -323,382 +371,427 @@ class IntentExtractionService:
             "raw_llm_json": None,
             "model_name": "heuristic-fast",
             "prompt_version": self.PROMPT_VERSION,
-            "source_text": query
+            "source_text": query,
         }
 
         logger.info(
-            "FAST QUERY RESULT: intent_type=%s actor=%s object=%s confidence=%s",
+            "FAST CLASSIFIER RESULT intent=%s actor=%s topic=%s confidence=%.2f",
             intent_type,
             actor,
-            pseudo_object,
-            confidence
+            topic,
+            confidence,
         )
 
         return result
 
-    def _extract_pseudo_object(
-        self,
-        words: list[str],
-        intent_type: str,
-        actor: str | None
-    ) -> str | None:
-        """
-        Extract meaningful content tokens from the query to use as a
-        pseudo-object when the fast classifier has no real object.
+    # ------------------------------------------------------------------
+    # LLM extraction
+    # ------------------------------------------------------------------
 
-        Filters out:
-        - QUERY_STOPWORDS (intent keywords, function words)
-        - the intent_type string itself (avoids "todo todo …")
-        - the extracted actor (already captured separately)
-        - single-character tokens (noise)
-
-        Returns up to 4 content tokens joined as a string, or None if
-        nothing meaningful survives filtering.  The 4-token cap prevents
-        very long queries from dominating the embedding space and biasing
-        cosine similarity toward shared surface tokens rather than intent.
-        """
-        exclude = self.QUERY_STOPWORDS | {intent_type}
-        if actor:
-            exclude = exclude | {actor.lower()}
-
-        content_words = [
-            w for w in words
-            if w not in exclude and len(w) > 1
-        ]
-
-        if not content_words:
-            return None
-
-        return " ".join(content_words[:4])
-
-    def _find_query_actor(
-        self,
-        words: list[str]
-    ) -> str | None:
-        """
-        Structured actor extraction for communication queries.
-
-        Previous implementation returned the first non-stopword token
-        regardless of what it was.  For queries like
-        "things to discuss in the team meeting about project delivery" this
-        produced "team" as the actor, creating spurious communication/team
-        categories and causing rule-match misses on every subsequent query.
-
-        New strategy (three-pass, no LLM):
-
-        Pass 1 — post-verb position (highest precision):
-            Scan the original (lowercased) query for a communication keyword
-            followed immediately by a short word.  "tell sid", "ask mom",
-            "message raj" — the token right after the verb is almost always
-            the actor in these short imperative patterns.
-
-        Pass 2 — post-preposition position:
-            Look for "to/with/for <word>" where <word> is not in stopwords
-            and not in the generic-word guard list.  Covers "discuss with
-            sid", "share with professor mehta".  We only accept the first
-            such match to avoid picking up trailing "about the project" noise.
-
-        If neither pass finds a plausible actor, returns None.
-        Returning None is always safer than returning a wrong actor, because
-        a wrong actor creates a spurious category that never matches again.
-        """
-        # Pass 1: token immediately after a communication keyword.
-        # Uses word-position index to stay O(n), no regex needed.
-        comm_keywords = self.QUERY_COMMUNICATION_KEYWORDS
-        for i, word in enumerate(words):
-            if word in comm_keywords and i + 1 < len(words):
-                candidate = words[i + 1]
-                if (
-                    candidate not in self.QUERY_STOPWORDS
-                    and candidate not in self._ACTOR_GENERIC_WORDS
-                    and len(candidate) > 1
-                ):
-                    logger.debug(
-                        "Actor extracted (pass 1, post-verb): %s", candidate
-                    )
-                    return self._clean_actor(candidate)
-
-        # Pass 2: word after "to/with/for" that follows a communication
-        # keyword somewhere earlier in the query.
-        prepositions = {"to", "with", "for"}
-        found_comm = any(w in comm_keywords for w in words)
-        if found_comm:
-            for i, word in enumerate(words):
-                if word in prepositions and i + 1 < len(words):
-                    candidate = words[i + 1]
-                    if (
-                        candidate not in self.QUERY_STOPWORDS
-                        and candidate not in self._ACTOR_GENERIC_WORDS
-                        and len(candidate) > 1
-                    ):
-                        logger.debug(
-                            "Actor extracted (pass 2, post-preposition): %s",
-                            candidate
-                        )
-                        return self._clean_actor(candidate)
-
-        logger.debug("Actor extraction: no plausible actor found")
-        return None
-
-    def _build_text(
-        self,
-        title: str,
-        content: str | None
-    ) -> str:
-        if content:
-            return f"{title}\n{content}"
+    def _build_text(self, title: str, content: str | None) -> str:
+        title = (title or "").strip() or "Untitled"
+        if content and content.strip():
+            return f"{title}\n{content.strip()}"
         return title
 
-    def _extract_with_llm(
-        self,
-        text: str,
-        is_query: bool = False
-    ) -> dict:
-        prompt = f"""
-You classify personal knowledge notes by intent.
+    def _extract_with_llm(self, text: str, is_query: bool = False) -> dict:
+        prompt = self._build_prompt(text, is_query=is_query)
+
+        llm_result = LLMService.extract_intent(prompt)
+
+        if llm_result.fallback_events:
+            logger.warning(
+                "INTENT LLM FALLBACK events=%s", llm_result.fallback_events
+            )
+
+        logger.debug("LLM RAW RESPONSE provider=%s text=%.500s",
+                     llm_result.provider, llm_result.text)
+
+        try:
+            parsed = json.loads(llm_result.text)
+        except json.JSONDecodeError as exc:
+            # Gemini occasionally wraps JSON in markdown fences.
+            cleaned = re.sub(r"^```(?:json)?\s*", "", llm_result.text.strip())
+            cleaned = re.sub(r"\s*```$", "", cleaned)
+            try:
+                parsed = json.loads(cleaned)
+            except json.JSONDecodeError:
+                raise ValueError(
+                    f"LLM returned non-JSON: {llm_result.text[:200]}"
+                ) from exc
+
+        if not isinstance(parsed, dict):
+            raise ValueError(f"LLM returned non-object JSON: {type(parsed)}")
+
+        # Stamp provider so normalize() can log it.
+        parsed["_provider"] = llm_result.provider
+        logger.info("INTENT PARSED provider=%s keys=%s", llm_result.provider, list(parsed.keys()))
+        return parsed
+
+    def _build_prompt(self, text: str, is_query: bool = False) -> str:
+        return f"""You classify personal knowledge notes by intent.
 
 Current date: {date.today().isoformat()}
 Input type: {"query" if is_query else "note"}
 
-Return STRICT JSON with exactly these keys:
-intent_type
-action
-actor
-object
-due_date
-temporal_text
-urgency
-category_hint
-confidence
-reasoning_summary
+Return STRICT JSON with exactly these keys and NO other text:
 
-Allowed intent types:
-communication
-todo
-study
-reminder
-idea
-reference
-question
-event
-general
-
-IMPORTANT:
-Classify based on WHY the note exists,
-not simply what topic it mentions.
-
-Examples:
-
-Communication:
-Tell Sid about internship
-→ communication
-Inform Sid about capstone
-→ communication
-Discuss project with Sid
-→ communication
-Email Google support
-→ communication
-Call professor tomorrow
-→ communication
-
-Todo:
-Pay rent
-→ todo
-Buy groceries
-→ todo
-Eat medicine tomorrow
-→ todo
-Prepare for test by July 16
-→ todo
-Complete assignment
-→ todo
-Revise OOP
-→ todo
-
-Study:
-Learn graph algorithms
-→ study
-Practice dynamic programming
-→ study
-Study operating systems
-→ study
-
-Reference:
-Docker Containers
-→ reference
-Redis Caching
-→ reference
-Machine Learning Embeddings
-→ reference
-Repository Pattern
-→ reference
-Transformer Attention Mechanism
-→ reference
-PostgreSQL Indexing
-→ reference
-
-Idea:
-Idea for interview preparation app
-→ idea
-Build AI resume reviewer
-→ idea
-Startup idea around MCP servers
-→ idea
-Design a new dress collection
-→ idea
-Painting concept for portfolio
-→ idea
-
-Question:
-How does Kafka work?
-→ question
-What is JWT?
-→ question
-
-Event:
-Team agreed to use PostgreSQL
-→ event
-Meeting with professor on Monday
-→ event
-Capstone review scheduled for July 10
-→ event
-
-Reminder:
-Call mom tomorrow
-→ reminder
-Renew driving license next week
-→ reminder
-Doctor appointment tomorrow
-→ reminder
+  intent_type   — one of: communication, todo, study, reminder, idea,
+                  reference, question, event, general
+  action        — verb describing the action, or null
+  actor         — person or organisation involved, or null
+  topic         — the main subject/domain (e.g. "PostgreSQL", "Docker",
+                  "AI", "Finance"), or null if none
+  subtopic      — a narrower aspect within the topic (e.g. "Indexing",
+                  "Containers"), or null if not applicable
+  object        — what the action is applied to, or null
+  temporal_text — time reference string (e.g. "tomorrow", "next week"), or null
+  urgency       — one of: low, medium, high
+  confidence    — float in [0.0, 1.0]
 
 Rules:
-- due_date must be ISO YYYY-MM-DD or null.
-- actor is the person or organization involved if any.
-- confidence must be between 0 and 1.
-- category_hint should be short and human friendly.
-- Return JSON only.
-- Do not invent information.
-- No markdown.
-- No explanation outside JSON.
+- intent_type must be exactly one of the listed values.
+- actor is a real person or org name, NOT a generic word like "team" or "project".
+- topic should be a SHORT noun (1-3 words max), reusable across notes.
+  BAD: "PostgreSQL Query Optimization and Indexing"
+  GOOD: "PostgreSQL"
+- subtopic is optional detail within the topic.
+  BAD: "Query Optimization" if it duplicates the topic
+  GOOD: "Indexing", "Transactions", "Replication"
+- urgency must be exactly low / medium / high.
+- confidence must be a decimal number between 0 and 1.
+- Return JSON only. No markdown. No explanation.
+
+Examples:
+  "Tell Sid about the internship"
+  → {{"intent_type":"communication","action":"tell","actor":"Sid","topic":null,"subtopic":null,"object":"internship","temporal_text":null,"urgency":"medium","confidence":0.95}}
+
+  "Study PostgreSQL indexing strategies"
+  → {{"intent_type":"study","action":"study","actor":null,"topic":"PostgreSQL","subtopic":"Indexing","object":"indexing strategies","temporal_text":null,"urgency":"medium","confidence":0.92}}
+
+  "Buy groceries tomorrow"
+  → {{"intent_type":"todo","action":"buy","actor":null,"topic":"Shopping","subtopic":null,"object":"groceries","temporal_text":"tomorrow","urgency":"high","confidence":0.97}}
+
+  "Docker container networking"
+  → {{"intent_type":"reference","action":null,"actor":null,"topic":"Docker","subtopic":"Networking","object":"container networking","temporal_text":null,"urgency":"low","confidence":0.88}}
+
+  "Idea for a startup around AI resume review"
+  → {{"intent_type":"idea","action":null,"actor":null,"topic":"AI","subtopic":"Resume","object":"startup idea","temporal_text":null,"urgency":"low","confidence":0.85}}
 
 Input:
 {text}
 """
 
-        response = LLMService.generate(
-            prompt=prompt,
-            response_format="json",
-            model=LLMService.INTENT_MODEL
+    # ------------------------------------------------------------------
+    # Validation + normalization
+    # ------------------------------------------------------------------
 
+    def _normalize(self, data: dict, text: str) -> dict:
+        """
+        Validate and sanitise every field from an LLM response.
 
+        All fixes are logged at WARNING level so issues are traceable.
+        No malformed value should propagate past this method.
+        """
+        repairs: list[str] = []
+
+        intent_type = self._validate_intent_type(
+            data.get("intent_type"), repairs
         )
-
-        logger.info("OLLAMA RAW RESPONSE:\n%s", response)
-
-        parsed = json.loads(response)
-        logger.info("PARSED INTENT JSON:\n%s", parsed)
-
-        return parsed
-
-    def _normalize(
-        self,
-        data: dict,
-        text: str
-    ) -> dict:
-        intent_type = self._clean_token(
-            data.get("intent_type")
+        action = self._clean_token(data.get("action"), _LEN_ACTION, "action", repairs)
+        actor = self._clean_actor(data.get("actor"), repairs)
+        topic = self._clean_short_text(data.get("topic"), _LEN_TOPIC, "topic", repairs)
+        subtopic = self._clean_short_text(data.get("subtopic"), _LEN_SUBTOPIC, "subtopic", repairs)
+        obj = self._clean_short_text(data.get("object"), _LEN_OBJECT, "object", repairs)
+        temporal = self._clean_short_text(
+            data.get("temporal_text"), _LEN_TEMPORAL, "temporal_text", repairs
         )
+        urgency = self._validate_urgency(data.get("urgency"), repairs)
+        confidence = self._validate_confidence(data.get("confidence"), repairs)
+        due_date = self._parse_due_date(data.get("due_date"))
 
-        if intent_type not in self.INTENT_TYPES:
-            intent_type = "general"
-
-        action = self._clean_token(
-            data.get("action")
-        )
-
-        actor = self._clean_actor(
-            data.get("actor")
-        )
-
-        due_date = self._parse_due_date(
-            data.get("due_date")
-        )
-
-        confidence = self._parse_confidence(
-            data.get("confidence")
-        )
-
-        object_text = self._clean_text(data.get("object"))
-        if self._is_weak_object(object_text, intent_type):
-            object_text = self._clean_text(
-                self._infer_object(text, action, actor)
+        # Weak-object guard: if the LLM returned a useless object, infer one.
+        if self._is_weak_object(obj, intent_type):
+            inferred = self._clean_short_text(
+                self._infer_object(text, action, actor),
+                _LEN_OBJECT, "object(inferred)", repairs
             )
-            if self._is_weak_object(object_text, intent_type):
-                object_text = None
+            if not self._is_weak_object(inferred, intent_type):
+                obj = inferred
+
+        if repairs:
+            logger.warning(
+                "INTENT VALIDATION REPAIRS note_preview=%.60s repairs=%s",
+                text,
+                repairs,
+            )
 
         return {
             "intent_type": intent_type,
             "action": action,
             "actor": actor,
-            "object": object_text,
+            "topic": topic,
+            "subtopic": subtopic,
+            "object": obj,
             "due_date": due_date,
-            "temporal_text": self._clean_text(data.get("temporal_text")),
-            "urgency": self._clean_token(data.get("urgency")) or "medium",
-            "category_hint": self._clean_text(data.get("category_hint")),
+            "temporal_text": temporal,
+            "urgency": urgency,
+            "category_hint": None,
             "confidence": confidence,
-            "reasoning_summary": self._clean_text(
-                data.get("reasoning_summary")
+            "reasoning_summary": self._clean_short_text(
+                data.get("reasoning_summary"), 500, "reasoning_summary", repairs
             ),
-            "raw_llm_json": data,
-            "model_name": self.MODEL_NAME,
+            "raw_llm_json": {
+                k: v for k, v in data.items() if k != "_provider"
+            },
+            "model_name": data.get("_provider", "unknown"),
             "prompt_version": self.PROMPT_VERSION,
-            "source_text": text
+            "source_text": text,
         }
 
-    def _extract_with_rules(
-        self,
-        text: str
-    ) -> dict:
-        logger.warning("RULE-BASED EXTRACTION ACTIVATED")
+    # --- Validators ----------------------------------------------------
+
+    def _validate_intent_type(
+        self, value: object, repairs: list[str]
+    ) -> str:
+        raw = self._strip_safe(value)
+        if raw is None:
+            repairs.append("intent_type=None → general")
+            return "general"
+        lowered = raw.lower()
+        if lowered in VALID_INTENT_TYPES:
+            return lowered
+        # Try synonym map.
+        mapped = INTENT_TYPE_SYNONYMS.get(lowered)
+        if mapped:
+            repairs.append(f"intent_type={raw!r} → {mapped} (synonym)")
+            return mapped
+        repairs.append(f"intent_type={raw!r} → general (unknown)")
+        return "general"
+
+    def _validate_urgency(self, value: object, repairs: list[str]) -> str:
+        raw = self._strip_safe(value)
+        if raw is None:
+            repairs.append("urgency=None → medium")
+            return "medium"
+        lowered = raw.lower()[:_LEN_URGENCY]
+        if lowered in VALID_URGENCY:
+            return lowered
+        # Fuzzy repair: contains the valid word anywhere.
+        for v in ("high", "low", "medium"):
+            if v in lowered:
+                repairs.append(f"urgency={raw!r} → {v} (fuzzy)")
+                return v
+        repairs.append(f"urgency={raw!r} → medium (unknown)")
+        return "medium"
+
+    def _validate_confidence(self, value: object, repairs: list[str]) -> float:
+        try:
+            f = float(value)  # type: ignore[arg-type]
+        except (TypeError, ValueError):
+            repairs.append(f"confidence={value!r} → 0.5 (unparseable)")
+            return 0.5
+        clamped = max(0.0, min(1.0, f))
+        if clamped != f:
+            repairs.append(f"confidence={f} → {clamped} (clamped)")
+        return round(clamped, 4)
+
+    def _clean_actor(self, value: object, repairs: list[str]) -> str | None:
+        text = self._strip_safe(value)
+        if text is None:
+            return None
+        if text.lower() in {"self", "me", "myself", "none", "null", "n/a", "user"}:
+            repairs.append(f"actor={text!r} → None (self-reference)")
+            return None
+        if "/" in text or "," in text:
+            repairs.append(f"actor={text!r} → None (composite)")
+            return None
+        if len(text) > _LEN_ACTOR:
+            repairs.append(f"actor truncated {len(text)} → {_LEN_ACTOR}")
+            text = text[:_LEN_ACTOR]
+        return text.title()
+
+    def _clean_token(
+        self, value: object, max_len: int, field: str, repairs: list[str]
+    ) -> str | None:
+        text = self._strip_safe(value)
+        if text is None:
+            return None
+        lowered = text.lower()
+        if len(lowered) > max_len:
+            repairs.append(f"{field} truncated {len(lowered)} → {max_len}")
+            lowered = lowered[:max_len]
+        return lowered or None
+
+    def _clean_short_text(
+        self, value: object, max_len: int, field: str, repairs: list[str]
+    ) -> str | None:
+        text = self._strip_safe(value)
+        if text is None:
+            return None
+        if len(text) > max_len:
+            repairs.append(f"{field} truncated {len(text)} → {max_len}")
+            text = text[:max_len]
+        return text or None
+
+    @staticmethod
+    def _strip_safe(value: object) -> str | None:
+        """
+        Convert to clean string or return None.
+
+        Rejects:
+        - dict/list (LLM returned structured value instead of string)
+        - empty/whitespace-only strings
+        - null synonyms
+        - strings containing only invisible Unicode (zero-width spaces etc.)
+        """
+        if value is None:
+            return None
+        if isinstance(value, (dict, list)):
+            return None
+        text = str(value).strip()
+        if not text or text.lower() in {"null", "none", "n/a", ""}:
+            return None
+        # Remove invisible Unicode control characters and zero-width spaces.
+        text = "".join(
+            ch for ch in text
+            if unicodedata.category(ch) not in ("Cf", "Cc")
+        ).strip()
+        return text or None
+
+    # --- Object inference ----------------------------------------------
+
+    def _infer_object(
+        self, text: str, action: str | None, actor: str | None
+    ) -> str | None:
+        cleaned = text
+        if action:
+            cleaned = re.sub(
+                rf"^\s*{re.escape(action)}\b", "", cleaned, flags=re.IGNORECASE
+            ).strip()
+        if actor:
+            cleaned = re.sub(
+                rf"\b(?:to|with|for)\s+{re.escape(actor)}\b",
+                "", cleaned, flags=re.IGNORECASE,
+            ).strip()
+            cleaned = re.sub(
+                rf"^\s*{re.escape(actor)}\b", "", cleaned, flags=re.IGNORECASE
+            ).strip()
+        cleaned = re.sub(r"\s+", " ", cleaned)
+        cleaned = re.sub(
+            r"^(about|regarding|for)\s+", "", cleaned, flags=re.IGNORECASE
+        )
+        return cleaned[:_LEN_OBJECT] or None
+
+    def _is_weak_object(self, value: str | None, intent_type: str | None) -> bool:
+        if not value:
+            return True
+        lowered = value.strip().lower()
+        if lowered in self.GENERIC_OBJECT_WORDS:
+            return True
+        if intent_type and lowered == intent_type:
+            return True
+        return len(lowered) < 3
+
+    # --- Date parsing --------------------------------------------------
+
+    def _parse_due_date(self, value: object) -> date | None:
+        if not value:
+            return None
+        if isinstance(value, date):
+            return value
+        try:
+            return datetime.strptime(str(value), "%Y-%m-%d").date()
+        except (ValueError, TypeError):
+            return None
+
+    # ------------------------------------------------------------------
+    # Rule-based fallback classifier
+    # ------------------------------------------------------------------
+
+    def _extract_with_rules(self, text: str) -> dict:
+        logger.warning("RULE-BASED EXTRACTION ACTIVATED text=%.80s", text)
 
         lowered = text.lower()
-        words = re.findall(r"\b[a-zA-Z]+\b", text)
-        first_word = words[0].lower() if words else ""
+        words = re.findall(r"\b[a-zA-Z0-9']+\b", lowered)
+        word_set = set(words)
 
         intent_type = "general"
-        action = first_word or None
-        actor = None
         confidence = 0.55
 
-        query_communication = self._find_communication_request(text)
+        reminder_kws = {"remind", "reminder", "reminders", "remember"}
+        event_kws = {"event", "events", "meeting", "meetings", "scheduled", "schedule"}
+        question_kws = {"what", "how", "why", "when", "where", "who", "which", "is", "are", "does", "do"}
 
-        if query_communication:
-            action, actor = query_communication
+        comm = self._find_communication_request(text)
+        actor = None
+        if comm:
+            action, actor = comm
             intent_type = "communication"
-            confidence = 0.7 if actor else 0.62
-        elif first_word in self.COMMUNICATION_ACTIONS:
+            confidence = 0.70 if actor else 0.62
+        elif any(w in self.COMMUNICATION_ACTIONS for w in words):
             intent_type = "communication"
-            actor = self._find_actor_after_preposition(text) or self._find_title_name(text)
+            actor = (
+                self._find_actor_after_preposition(text)
+                or self._find_title_name(text)
+            )
             confidence = 0.72 if actor else 0.62
-        elif first_word in self.TODO_ACTIONS or self._has_time_marker(lowered):
+        elif any(w in {"study", "learn", "practice", "revise", "learning"} for w in words):
+            intent_type = "study"
+            confidence = 0.65
+        elif word_set & reminder_kws:
+            intent_type = "reminder"
+            confidence = 0.65
+        elif word_set & event_kws:
+            intent_type = "event"
+            confidence = 0.65
+        elif any(w in self.TODO_ACTIONS for w in words) or self._has_time_marker(lowered) or any(phrase in lowered for phrase in ["need to", "have to", "should", "must", "todo", "to-do", "task", "tasks"]):
             intent_type = "todo"
             confidence = 0.65
+        elif any(w in {"idea", "ideas", "startup", "concept", "concepts", "brainstorm"} for w in words):
+            intent_type = "idea"
+            confidence = 0.60
+        elif any(w in {"reference", "references", "docs", "documentation"} for w in words):
+            intent_type = "reference"
+            confidence = 0.60
+        elif word_set & question_kws:
+            intent_type = "question"
+            confidence = 0.60
 
-            if first_word in {"study", "practice"}:
-                intent_type = "study"
+        first_word = words[0] if words else ""
+        action = first_word if first_word in (self.COMMUNICATION_ACTIONS | self.TODO_ACTIONS) else None
 
-        if "to do" in lowered or "need to do" in lowered:
-            intent_type = "todo"
-            action = "do"
-            confidence = max(confidence, 0.66)
+        if not actor:
+            inferred_actor = self._find_actor_after_preposition(text) or self._find_title_name(text)
+            if inferred_actor and inferred_actor.lower() not in self._ACTOR_GENERIC_WORDS:
+                actor = inferred_actor
 
-        actor = self._clean_actor(actor)
+        actor = self._clean_actor(actor, [])
+
+        topic = None
+        for word in words:
+            if word in self.TECH_MAP:
+                topic = self.TECH_MAP[word]
+                break
+
+        if not topic:
+            caps = re.findall(r"\b[A-Z][a-zA-Z]+\b", text)
+            first_raw = text.split()[0] if text.split() else ""
+            if caps and caps[0] == first_raw:
+                caps = caps[1:]
+            for cap in caps:
+                if cap.lower() not in self._ACTOR_GENERIC_WORDS and (not actor or cap.lower() != actor.lower()):
+                    topic = cap
+                    break
+
         due_date, temporal_text = self._infer_due_date(lowered)
 
         result = {
             "intent_type": intent_type,
             "action": action,
             "actor": actor,
+            "topic": topic,
+            "subtopic": None,
             "object": self._infer_object(text, action, actor),
             "due_date": due_date,
             "temporal_text": temporal_text,
@@ -709,122 +802,54 @@ Input:
             "raw_llm_json": None,
             "model_name": "heuristic",
             "prompt_version": self.PROMPT_VERSION,
-            "source_text": text
+            "source_text": text,
         }
 
         logger.info(
-            "Detected intent_type: %s\n"
-            "Detected action: %s\n"
-            "Detected actor: %s\n"
-            "Confidence: %s",
+            "RULE RESULT intent=%s action=%s actor=%s topic=%s confidence=%.2f",
             intent_type,
             action,
             actor,
-            confidence
+            topic,
+            confidence,
         )
-        logger.info(
-            "RULE RESULT:\n%s",
-            json.dumps(
-                {
-                    "intent_type": intent_type,
-                    "action": action,
-                    "actor": actor,
-                    "confidence": confidence
-                },
-                indent=4
-            )
-        )
-
         return result
 
-    def _find_actor_after_preposition(
-        self,
-        text: str
-    ) -> str | None:
+    # --- Rule helpers --------------------------------------------------
+
+    def _find_actor_after_preposition(self, text: str) -> str | None:
         match = re.search(
-            r"\b(?:to|about|with|for)\s+([A-Z][a-zA-Z]+)\b",
-            text
+            r"\b(?:to|about|with|for)\s+([A-Z][a-zA-Z]+)\b", text
         )
-
-        if match:
-            return match.group(1)
-
-        return None
+        return match.group(1) if match else None
 
     def _find_communication_request(
-        self,
-        text: str
+        self, text: str
     ) -> tuple[str, str | None] | None:
         action_pattern = "|".join(self.COMMUNICATION_ACTIONS)
-        match = re.search(
-            rf"\b({action_pattern})\s+([A-Z][a-zA-Z]+)\b",
-            text
-        )
-
+        match = re.search(rf"\b({action_pattern})\s+([A-Z][a-zA-Z]+)\b", text)
         if match:
             return match.group(1).lower(), match.group(2)
-
         match = re.search(
             rf"\b({action_pattern})\b.*\b(?:to|with|for)\s+([A-Z][a-zA-Z]+)\b",
-            text
+            text,
         )
-
         if match:
             return match.group(1).lower(), match.group(2)
-
         return None
 
-    def _find_title_name(
-        self,
-        text: str
-    ) -> str | None:
+    def _find_title_name(self, text: str) -> str | None:
         matches = re.findall(r"\b[A-Z][a-zA-Z]+\b", text)
-        if len(matches) >= 2:
-            return matches[1]
-        return None
+        return matches[1] if len(matches) >= 2 else None
 
-    def _infer_object(
-        self,
-        text: str,
-        action: str | None,
-        actor: str | None
-    ) -> str | None:
-        cleaned = text
-
-        if action:
-            cleaned = re.sub(
-                rf"^\s*{re.escape(action)}\b",
-                "",
-                cleaned,
-                flags=re.IGNORECASE
-            ).strip()
-
-        if actor:
-            cleaned = re.sub(
-                rf"\b(?:to|with|for)\s+{re.escape(actor)}\b",
-                "",
-                cleaned,
-                flags=re.IGNORECASE
-            ).strip()
-            cleaned = re.sub(
-                rf"^\s*{re.escape(actor)}\b",
-                "",
-                cleaned,
-                flags=re.IGNORECASE
-            ).strip()
-
-        cleaned = re.sub(r"\s+", " ", cleaned)
-        cleaned = re.sub(
-            r"^(about|regarding|for)\s+",
-            "",
-            cleaned,
-            flags=re.IGNORECASE
+    def _has_time_marker(self, lowered: str) -> bool:
+        return any(
+            marker in lowered
+            for marker in ["today", "tomorrow", "by ", "before ", "next "]
         )
-        return cleaned[:255] or None
 
     def _infer_due_date(
-        self,
-        lowered: str
+        self, lowered: str
     ) -> tuple[date | None, str | None]:
         today = date.today()
 
@@ -835,141 +860,83 @@ Input:
             r"\b(?:by|on|before)?\s*"
             r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
             r"[a-z]*\s+(\d{1,2})\b",
-            lowered
+            lowered,
         )
-
         if month_match:
-            month = [
-                "jan",
-                "feb",
-                "mar",
-                "apr",
-                "may",
-                "jun",
-                "jul",
-                "aug",
-                "sep",
-                "oct",
-                "nov",
-                "dec"
+            month_idx = [
+                "jan", "feb", "mar", "apr", "may", "jun",
+                "jul", "aug", "sep", "oct", "nov", "dec",
             ].index(month_match.group(1)) + 1
             day = int(month_match.group(2))
             year = today.year
-
             try:
-                parsed = date(year, month, day)
+                parsed = date(year, month_idx, day)
             except ValueError:
                 return None, month_match.group(0).strip()
-
             if parsed < today:
-                parsed = date(year + 1, month, day)
-
+                parsed = date(year + 1, month_idx, day)
             return parsed, month_match.group(0).strip()
 
         return None, None
 
-    def _has_time_marker(
+    # ------------------------------------------------------------------
+    # Fast classifier helpers
+    # ------------------------------------------------------------------
+
+    def _extract_pseudo_topic(
         self,
-        lowered: str
-    ) -> bool:
-        return any(
-            marker in lowered
-            for marker in ["today", "tomorrow", "by ", "before ", "next "]
-        )
-
-    def _parse_due_date(
-        self,
-        value
-    ) -> date | None:
-        if not value:
-            return None
-
-        if isinstance(value, date):
-            return value
-
-        try:
-            return datetime.strptime(str(value), "%Y-%m-%d").date()
-        except ValueError:
-            return None
-
-    def _parse_confidence(
-        self,
-        value
-    ) -> float:
-        try:
-            confidence = float(value)
-        except (TypeError, ValueError):
-            return 0.5
-
-        return min(max(confidence, 0.0), 1.0)
-
-    def _is_weak_object(
-        self,
-        value: str | None,
-        intent_type: str | None
-    ) -> bool:
-        if not value:
-            return True
-
-        lowered = value.strip().lower()
-        if lowered in self.GENERIC_OBJECT_WORDS:
-            return True
-
-        if intent_type and lowered == intent_type:
-            return True
-
-        return len(lowered) < 3
-
-    def _clean_token(
-        self,
-        value
+        words: list[str],
+        intent_type: str,
+        actor: str | None,
     ) -> str | None:
-        if not value:
-            return None
+        """
+        Extract meaningful content tokens for use as a pseudo-topic in
+        query signatures.  The same 4-word cap as the old _extract_pseudo_object.
+        """
+        exclude = self.QUERY_STOPWORDS | {intent_type}
+        if actor:
+            exclude = exclude | {actor.lower()}
 
-        cleaned = str(value).strip().lower().replace(" ", "_")
-        return cleaned[:80] or None
+        content_words = [
+            w for w in words
+            if w not in exclude and len(w) > 1
+        ]
+        return " ".join(content_words[:4]) or None
 
-    def _clean_actor(
-        self,
-        value
-    ) -> str | None:
-        cleaned = self._clean_text(value)
+    def _find_query_actor(self, words: list[str]) -> str | None:
+        """
+        Three-pass actor extraction for communication queries (no LLM).
 
-        if not cleaned or cleaned.lower() in {"self", "me", "myself", "none"}:
-            return None
+        Pass 1 — token immediately after a communication keyword.
+        Pass 2 — token after to/with/for when a comm keyword precedes it.
 
-        # Reject composite actor strings produced by confused LLM responses
-        # such as "You/Your assistant" or "Sid, Mom".  A real actor is a
-        # single name or organisation with no slash or comma separators.
-        if "/" in cleaned or "," in cleaned:
-            return None
+        Returning None is always safer than returning a wrong actor.
+        """
+        comm_kw = self.QUERY_COMMUNICATION_KEYWORDS
+        # Pass 1: post-verb position.
+        for i, word in enumerate(words):
+            if word in comm_kw and i + 1 < len(words):
+                candidate = words[i + 1]
+                if (
+                    candidate not in self.QUERY_STOPWORDS
+                    and candidate not in self._ACTOR_GENERIC_WORDS
+                    and len(candidate) > 1
+                ):
+                    logger.debug("Actor pass-1 (post-verb): %s", candidate)
+                    return self._clean_actor(candidate, [])
 
-        # Normalise to title-case so "sid" and "Sid" resolve to the same
-        # category.  This prevents duplicate actor-specific categories when
-        # the fast classifier (lowercase) and the LLM path produce different
-        # casing for the same person.
-        cleaned = cleaned.title()
+        # Pass 2: post-preposition when a comm keyword exists in query.
+        if any(w in comm_kw for w in words):
+            for i, word in enumerate(words):
+                if word in {"to", "with", "for"} and i + 1 < len(words):
+                    candidate = words[i + 1]
+                    if (
+                        candidate not in self.QUERY_STOPWORDS
+                        and candidate not in self._ACTOR_GENERIC_WORDS
+                        and len(candidate) > 1
+                    ):
+                        logger.debug("Actor pass-2 (post-prep): %s", candidate)
+                        return self._clean_actor(candidate, [])
 
-        return cleaned[:120]
-
-    def _clean_text(
-        self,
-        value
-    ) -> str | None:
-        if value is None:
-            return None
-
-        # Reject structured types that the LLM occasionally returns instead of
-        # a plain string (e.g. {"items": ["milk"]} for the `object` field).
-        # Calling str() on these produces Python repr strings like
-        # "{'items': ['milk']}" which then leak into category names.
-        if isinstance(value, (dict, list)):
-            return None
-
-        cleaned = str(value).strip()
-
-        if not cleaned or cleaned.lower() in {"null", "none", "n/a"}:
-            return None
-
-        return cleaned
+        logger.debug("Actor extraction: no plausible actor found")
+        return None

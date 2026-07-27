@@ -56,6 +56,16 @@ class NoteIntent(Base):
         index=True
     )
 
+    topic: Mapped[str | None] = mapped_column(
+        String(120),
+        nullable=True
+    )
+
+    subtopic: Mapped[str | None] = mapped_column(
+        String(120),
+        nullable=True
+    )
+
     object: Mapped[str | None] = mapped_column(
         String(255),
         nullable=True
