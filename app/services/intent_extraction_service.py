@@ -194,6 +194,12 @@ class IntentExtractionService:
     TODO_ACTIONS = {
         "do", "finish", "prepare", "submit", "buy", "eat", "take",
         "revise", "complete", "practice", "study",
+        # Newly added — action verbs unambiguous in a todo context.
+        # "build" is intentionally excluded: it appears in study notes
+        # ("build systems", "build pipeline architecture") and the rule-based
+        # fallback would misclassify those. It is in QUERY_TODO_KEYWORDS where
+        # the higher-priority study/reference groups protect against false positives.
+        "deploy", "launch", "fix", "release", "ship", "push", "merge",
     }
 
     # --- Query-time fast classifier (no LLM) ---------------------------
@@ -204,6 +210,14 @@ class IntentExtractionService:
     QUERY_TODO_KEYWORDS = {
         "todo", "to-do", "task", "tasks", "pending",
         "finish", "complete", "submit", "buy", "pay",
+        # Newly added — low-ambiguity action verbs for the fast classifier.
+        # High-priority groups (communication, study, reference) are checked
+        # before todo, so "Study Docker" and "Email about the launch" are safe.
+        "deploy", "launch", "fix", "release", "ship", "push", "merge",
+        "update",  # "Update X" is almost always a todo
+        "build",   # "Build X" is almost always a todo; study wins when study
+                   # keywords are present ("Study how to build...") because
+                   # study is checked before todo in QUERY_INTENT_KEYWORD_GROUPS
     }
     QUERY_STUDY_KEYWORDS = {
         "study", "studies", "learn", "learning",
