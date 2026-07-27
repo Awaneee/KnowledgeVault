@@ -77,7 +77,7 @@ VALID_URGENCY = {"low", "medium", "high"}
 
 
 class IntentExtractionService:
-    PROMPT_VERSION = "intent-v2"
+    PROMPT_VERSION = "intent-v3"
 
     TECH_MAP = {
         "redis": "Redis",
@@ -521,10 +521,22 @@ Return STRICT JSON with exactly these keys and NO other text:
 
 Rules:
 - intent_type must be exactly one of the listed values.
-- actor is a real person or org name, NOT a generic word like "team" or "project".
-- topic should be a SHORT noun (1-3 words max), reusable across notes.
-  BAD: "PostgreSQL Query Optimization and Indexing"
-  GOOD: "PostgreSQL"
+- actor must be a human person's given name or surname ONLY.
+  Programming languages (Python, Go), frameworks (React, Django), tools
+  (Docker, Redis) are NEVER actors — they are topics.
+  Generic words (team, project, mock, system, backend) are NEVER actors.
+  If no human name is present, set actor to null.
+- topic must be a noun or short noun phrase (1-3 words) that a human
+  would use as a folder label. It must be reusable across multiple notes.
+  NEVER return articles (The, A, An), conjunctions (But, And, Or),
+  adverbs, pronouns, adjectives, or verbs as topic.
+  BAD: "The", "But", "Also", "Used", "Important", "Common", "Added"
+  GOOD: "PostgreSQL", "Flutter", "System Design", "Machine Learning"
+- If you cannot identify a clear topic, set topic to null.
+  Returning null is always better than returning a vague or stop-word topic.
+- For code-heavy notes, topic should be the primary programming language
+  or framework only. NEVER return a function name, variable, keyword,
+  or built-in (print, reduce, map, list) as topic.
 - subtopic is optional detail within the topic.
   BAD: "Query Optimization" if it duplicates the topic
   GOOD: "Indexing", "Transactions", "Replication"
@@ -547,6 +559,18 @@ Examples:
 
   "Idea for a startup around AI resume review"
   → {{"intent_type":"idea","action":null,"actor":null,"topic":"AI","subtopic":"Resume","object":"startup idea","temporal_text":null,"urgency":"low","confidence":0.85}}
+
+  "def reduce_list(items): return [x for x in items if x > 0]"
+  → {{"intent_type":"reference","action":null,"actor":null,"topic":"Python","subtopic":null,"object":"list filtering function","temporal_text":null,"urgency":"low","confidence":0.78}}
+
+  "But this threading approach could cause race conditions under load"
+  → {{"intent_type":"general","action":null,"actor":null,"topic":null,"subtopic":null,"object":"threading race conditions","temporal_text":null,"urgency":"low","confidence":0.60}}
+
+  "Discuss the new API endpoints with the backend team"
+  → {{"intent_type":"communication","action":"discuss","actor":null,"topic":"API","subtopic":null,"object":"API endpoints","temporal_text":null,"urgency":"medium","confidence":0.80}}
+
+  "Cross-encoder reranking improves retrieval quality at inference time"
+  → {{"intent_type":"reference","action":null,"actor":null,"topic":"Cross-encoder Reranking","subtopic":null,"object":"retrieval quality improvement","temporal_text":null,"urgency":"low","confidence":0.85}}
 
 Input:
 {text}
