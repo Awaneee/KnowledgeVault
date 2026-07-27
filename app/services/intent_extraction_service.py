@@ -116,6 +116,20 @@ class IntentExtractionService:
         "nosql": "NoSQL"
     }
 
+    # Derived from TECH_MAP — add technologies to TECH_MAP only.
+    # When the LLM places a technology name in the actor field, the actor is
+    # suppressed and the technology is rescued as topic (if topic is absent).
+    _ACTOR_TECH_TERMS: frozenset = frozenset(TECH_MAP)
+
+    # Non-tech words the LLM occasionally returns as actor.
+    # These suppress the actor but do NOT rescue as topic — they have no
+    # meaningful canonical form and would produce garbage topics.
+    _ACTOR_NOISE_WORDS: frozenset = frozenset({
+        "db", "database", "mock", "show", "unprocessable", "booked",
+        "backend", "frontend", "middleware", "endpoint", "server",
+        "client", "api", "sdk",
+    })
+
     COMMUNICATION_ACTIONS = {
         "tell", "inform", "discuss", "ask", "message",
         "call", "email", "share", "meet",
@@ -501,6 +515,26 @@ Input:
         action = self._clean_token(data.get("action"), _LEN_ACTION, "action", repairs)
         actor = self._clean_actor(data.get("actor"), repairs)
         topic = self._clean_short_text(data.get("topic"), _LEN_TOPIC, "topic", repairs)
+
+        # Tech-actor rescue: if the LLM placed a technology name in the actor
+        # field and extracted no topic, move the canonical tech name to topic.
+        # Only fires for _ACTOR_TECH_TERMS members (which have TECH_MAP entries).
+        # Does NOT fire for _ACTOR_NOISE_WORDS (no canonical form to rescue).
+        # Uses _clean_short_text here; EXTR-002 upgrades this to _validate_topic().
+        raw_actor_str = self._strip_safe(data.get("actor"))
+        if (
+            actor is None
+            and topic is None
+            and raw_actor_str is not None
+            and raw_actor_str.lower() in self._ACTOR_TECH_TERMS
+        ):
+            rescued = self.TECH_MAP[raw_actor_str.lower()]
+            topic = self._clean_short_text(
+                rescued, _LEN_TOPIC, "topic(rescued_from_actor)", repairs
+            )
+            if topic:
+                repairs.append(f"topic rescued from actor: {raw_actor_str!r} → {topic!r}")
+
         subtopic = self._clean_short_text(data.get("subtopic"), _LEN_SUBTOPIC, "subtopic", repairs)
         obj = self._clean_short_text(data.get("object"), _LEN_OBJECT, "object", repairs)
         temporal = self._clean_short_text(
@@ -600,8 +634,15 @@ Input:
         text = self._strip_safe(value)
         if text is None:
             return None
-        if text.lower() in {"self", "me", "myself", "none", "null", "n/a", "user"}:
+        lowered = text.lower()
+        if lowered in {"self", "me", "myself", "none", "null", "n/a", "user"}:
             repairs.append(f"actor={text!r} → None (self-reference)")
+            return None
+        if lowered in self._ACTOR_TECH_TERMS:
+            repairs.append(f"actor={text!r} → None (technology term)")
+            return None
+        if lowered in self._ACTOR_NOISE_WORDS:
+            repairs.append(f"actor={text!r} → None (noise word)")
             return None
         if "/" in text or "," in text:
             repairs.append(f"actor={text!r} → None (composite)")
