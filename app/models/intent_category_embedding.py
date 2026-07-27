@@ -39,6 +39,16 @@ class IntentCategoryEmbedding(Base):
         nullable=False
     )
 
+    # Number of note vectors folded into the current centroid.
+    # Used by the incremental mean formula: c_new = (c_old*N + v_new)/(N+1).
+    # Rows created before this column was added start at the server_default=1,
+    # which is correct: they store a single-note encoding.
+    centroid_note_count: Mapped[int] = mapped_column(
+        Integer,
+        nullable=False,
+        default=1,
+    )
+
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         default=datetime.utcnow
