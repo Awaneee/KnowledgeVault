@@ -1,0 +1,132 @@
+{
+  "query_id": "aq_044",
+  "question": "What is BRPOPLPUSH?",
+  "category": "factual_lookup",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    246,
+    433,
+    643,
+    673,
+    684,
+    705,
+    773,
+    784,
+    805,
+    873,
+    884,
+    905,
+    973,
+    984,
+    1005,
+    1073,
+    1084,
+    1105
+  ],
+  "reference_answer": "BRPOPLPUSH atomically moves a job from the main queue to an inflight queue in a single operation. This enables reliable at-least-once delivery: if the worker crashes mid-processing, the job stays in the inflight queue and is recovered on worker restart via a startup recovery function. It prevents the silent job loss that occurs with a plain BRPOP.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker cras",
+      "Debugging a race condition: two workers picked up the same note simultaneously. Root cause: using `brpop` instead of `br"
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 64562.0,
+    "total_ms": 64687.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker cras\nRedis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker crash and restart, inflight jobs are recovered and re-queued.\n\nCategory: Semantic match\nNote: Debugging a race condition: two workers picked up the same note simultaneously. Root cause: using `brpop` instead of `br\nDebugging a race condition: two workers picked up the same note simultaneously. Root cause: using `brpop` instead of `brpoplpush`. Fix: switched to reliable queue pattern with inflight list.\n</context>\n\n<question>\nWhat is BRPOPLPUSH?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 643,
+        "note_title": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker cras",
+        "chunk_text": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker crash and restart, inflight jobs are recovered and re-queued.",
+        "chunk_index": 0,
+        "score": 0.3540594279766083,
+        "semantic_score": 0.3540594279766083,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 673,
+        "note_title": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker cras",
+        "chunk_text": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker crash and restart, inflight jobs are recovered and re-queued.",
+        "chunk_index": 0,
+        "score": 0.3540594279766083,
+        "semantic_score": 0.3540594279766083,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 773,
+        "note_title": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker cras",
+        "chunk_text": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker crash and restart, inflight jobs are recovered and re-queued.",
+        "chunk_index": 0,
+        "score": 0.3540594279766083,
+        "semantic_score": 0.3540594279766083,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 873,
+        "note_title": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker cras",
+        "chunk_text": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker crash and restart, inflight jobs are recovered and re-queued.",
+        "chunk_index": 0,
+        "score": 0.3540594279766083,
+        "semantic_score": 0.3540594279766083,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 973,
+        "note_title": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker cras",
+        "chunk_text": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker crash and restart, inflight jobs are recovered and re-queued.",
+        "chunk_index": 0,
+        "score": 0.3540594279766083,
+        "semantic_score": 0.3540594279766083,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1073,
+        "note_title": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker cras",
+        "chunk_text": "Redis queue implementation uses brpoplpush for reliable delivery: moves job to inflight queue atomically. On worker crash and restart, inflight jobs are recovered and re-queued.",
+        "chunk_index": 0,
+        "score": 0.3540594279766083,
+        "semantic_score": 0.3540594279766083,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 246,
+        "note_title": "Debugging a race condition: two workers picked up the same note simultaneously. Root cause: using `brpop` instead of `br",
+        "chunk_text": "Debugging a race condition: two workers picked up the same note simultaneously. Root cause: using `brpop` instead of `brpoplpush`. Fix: switched to reliable queue pattern with inflight list.",
+        "chunk_index": 0,
+        "score": 0.2923513738021666,
+        "semantic_score": 0.2923513738021666,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 684,
+        "note_title": "Debugging a race condition: two workers picked up the same note simultaneously. Root cause: using `brpop` instead of `br",
+        "chunk_text": "Debugging a race condition: two workers picked up the same note simultaneously. Root cause: using `brpop` instead of `brpoplpush`. Fix: switched to reliable queue pattern with inflight list.",
+        "chunk_index": 0,
+        "score": 0.2923513738021666,
+        "semantic_score": 0.2923513738021666,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

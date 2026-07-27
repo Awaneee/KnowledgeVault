@@ -1,0 +1,121 @@
+{
+  "query_id": "fq_08",
+  "question": "What are graph algorithms used for?",
+  "category": "factual_lookup",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    60
+  ],
+  "reference_answer": "Graph algorithms solve problems involving relationships between entities. Common uses include shortest path finding (Dijkstra, BFS), network flow, minimum spanning trees, topological sorting, and detecting cycles or connected components.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Practice graph algorithms including Dijkstra and Bellman-Ford.",
+      "Study vector databases and pgvector indexing.",
+      "Study PostgreSQL indexing and query optimization.",
+      "What is the difference between PostgreSQL indexes and hash indexes?",
+      "Meeting notes from backend architecture discussion.",
+      "Understand event-driven architecture patterns.",
+      "Revise operating systems process scheduling algorithms.",
+      "Reference PostgreSQL VACUUM and ANALYZE documentation."
+    ],
+    "retrieval_ms": 141.0,
+    "llm_ms": 64937.0,
+    "total_ms": 65078.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Practice graph algorithms including Dijkstra and Bellman-Ford.\nPractice graph algorithms including Dijkstra and Bellman-Ford.\n\nCategory: Semantic match\nNote: Study vector databases and pgvector indexing.\nStudy vector databases and pgvector indexing.\n\nCategory: Semantic match\nNote: Study PostgreSQL indexing and query optimization.\nStudy PostgreSQL indexing and query optimization.\n\nCategory: Semantic match\nNote: What is the difference between PostgreSQL indexes and hash indexes?\nWhat is the difference between PostgreSQL indexes and hash indexes?\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Understand event-driven architecture patterns.\nUnderstand event-driven architecture patterns.\n\nCategory: Semantic match\nNote: Revise operating systems process scheduling algorithms.\nRevise operating systems process scheduling algorithms.\n\nCategory: Semantic match\nNote: Reference PostgreSQL VACUUM and ANALYZE documentation.\nReference PostgreSQL VACUUM and ANALYZE documentation.\n</context>\n\n<question>\nWhat are graph algorithms used for?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 60,
+        "note_title": "Practice graph algorithms including Dijkstra and Bellman-Ford.",
+        "chunk_text": "Practice graph algorithms including Dijkstra and Bellman-Ford.",
+        "chunk_index": 0,
+        "score": 0.6297970855477991,
+        "semantic_score": 0.6297970855477991,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 66,
+        "note_title": "Study vector databases and pgvector indexing.",
+        "chunk_text": "Study vector databases and pgvector indexing.",
+        "chunk_index": 0,
+        "score": 0.3174722601489871,
+        "semantic_score": 0.3174722601489871,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 58,
+        "note_title": "Study PostgreSQL indexing and query optimization.",
+        "chunk_text": "Study PostgreSQL indexing and query optimization.",
+        "chunk_index": 0,
+        "score": 0.292032390832901,
+        "semantic_score": 0.292032390832901,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 104,
+        "note_title": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_text": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_index": 0,
+        "score": 0.22698193788528442,
+        "semantic_score": 0.22698193788528442,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.22379733465894114,
+        "semantic_score": 0.22379733465894114,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 102,
+        "note_title": "Understand event-driven architecture patterns.",
+        "chunk_text": "Understand event-driven architecture patterns.",
+        "chunk_index": 0,
+        "score": 0.2175998370408918,
+        "semantic_score": 0.2175998370408918,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 59,
+        "note_title": "Revise operating systems process scheduling algorithms.",
+        "chunk_text": "Revise operating systems process scheduling algorithms.",
+        "chunk_index": 0,
+        "score": 0.21758316650490994,
+        "semantic_score": 0.21758316650490994,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 74,
+        "note_title": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_text": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_index": 0,
+        "score": 0.20549315214157104,
+        "semantic_score": 0.20549315214157104,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

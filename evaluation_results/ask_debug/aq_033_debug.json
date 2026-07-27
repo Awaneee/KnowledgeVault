@@ -1,0 +1,126 @@
+{
+  "query_id": "aq_033",
+  "question": "What programming languages and technologies have I been studying?",
+  "category": "synthesis",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    59,
+    60,
+    108,
+    113,
+    114,
+    138,
+    152,
+    162,
+    174,
+    177
+  ],
+  "reference_answer": "Technologies studied: Python (most extensive — async, dataclasses, decorators, generators, typing), JavaScript/TypeScript (Promises, event loop, discriminated unions), Go (goroutines, interfaces, defer, error handling), Rust (ownership, borrowing, Result type), SQL (window functions, CTEs, indexes). Also: FastAPI, PostgreSQL, Redis, Docker, Kubernetes, Terraform.",
+  "eval_notes": "Accept any answer covering multiple languages with key concepts.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "WebAssembly (WASM): runs near-native code in the browser. Rust, C, C++ can compile to WASM. Use cases: games, video edit",
+      "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better ",
+      "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it ",
+      "Random thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build"
+    ],
+    "retrieval_ms": 937.0,
+    "llm_ms": 64079.0,
+    "total_ms": 65016.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: WebAssembly (WASM): runs near-native code in the browser. Rust, C, C++ can compile to WASM. Use cases: games, video edit\nWebAssembly (WASM): runs near-native code in the browser. Rust, C, C++ can compile to WASM. Use cases: games, video editing, compute-intensive tasks. Python now runs in browser via Pyodide.\n\nCategory: Semantic match\nNote: Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better \nCompleted 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better for APIs but Django Admin is genuinely impressive.\n\nCategory: Semantic match\nNote: Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it \nRandom thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it again. Tutorials only get you so far.\n\nCategory: Semantic match\nNote: Random thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build\nRandom thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build and why, not how to write a for loop.\n</context>\n\n<question>\nWhat programming languages and technologies have I been studying?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 563,
+        "note_title": "WebAssembly (WASM): runs near-native code in the browser. Rust, C, C++ can compile to WASM. Use cases: games, video edit",
+        "chunk_text": "WebAssembly (WASM): runs near-native code in the browser. Rust, C, C++ can compile to WASM. Use cases: games, video editing, compute-intensive tasks. Python now runs in browser via Pyodide.",
+        "chunk_index": 0,
+        "score": 0.40094320771267555,
+        "semantic_score": 0.40094320771267555,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 266,
+        "note_title": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better ",
+        "chunk_text": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better for APIs but Django Admin is genuinely impressive.",
+        "chunk_index": 0,
+        "score": 0.38795555794106606,
+        "semantic_score": 0.38795555794106606,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 751,
+        "note_title": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better ",
+        "chunk_text": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better for APIs but Django Admin is genuinely impressive.",
+        "chunk_index": 0,
+        "score": 0.38795555794106606,
+        "semantic_score": 0.38795555794106606,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 851,
+        "note_title": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better ",
+        "chunk_text": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better for APIs but Django Admin is genuinely impressive.",
+        "chunk_index": 0,
+        "score": 0.38795555794106606,
+        "semantic_score": 0.38795555794106606,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 951,
+        "note_title": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better ",
+        "chunk_text": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better for APIs but Django Admin is genuinely impressive.",
+        "chunk_index": 0,
+        "score": 0.38795555794106606,
+        "semantic_score": 0.38795555794106606,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1051,
+        "note_title": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better ",
+        "chunk_text": "Completed 'CS50 Web Programming' by Harvard. Django section was useful for understanding MTV pattern. FastAPI is better for APIs but Django Admin is genuinely impressive.",
+        "chunk_index": 0,
+        "score": 0.38795555794106606,
+        "semantic_score": 0.38795555794106606,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 357,
+        "note_title": "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it ",
+        "chunk_text": "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it again. Tutorials only get you so far.",
+        "chunk_index": 0,
+        "score": 0.38199318593720166,
+        "semantic_score": 0.38199318593720166,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 416,
+        "note_title": "Random thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build",
+        "chunk_text": "Random thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build and why, not how to write a for loop.",
+        "chunk_index": 0,
+        "score": 0.37891385366742514,
+        "semantic_score": 0.37891385366742514,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

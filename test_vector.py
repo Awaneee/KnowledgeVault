@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import text
 
 engine = create_engine(
-    "postgresql://postgres:postgres@localhost:5432/knowledgevault"
+    "postgresql://postgres:postgres@127.0.0.1:5433/knowledgevault"
 )
 
 with engine.begin() as conn:

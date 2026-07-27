@@ -1,0 +1,139 @@
+{
+  "query_id": "aq_010",
+  "question": "What is token bucket rate limiting?",
+  "category": "factual_lookup",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    136,
+    150,
+    165,
+    189,
+    244,
+    251,
+    279,
+    346,
+    373,
+    697,
+    703,
+    725,
+    797,
+    803,
+    825,
+    897,
+    903,
+    925,
+    997,
+    1003,
+    1025,
+    1097,
+    1103
+  ],
+  "reference_answer": "Token bucket is a rate limiting algorithm where each user has a bucket that holds up to a maximum number of tokens, replenished at a fixed rate. Each request consumes one token. If the bucket is empty, the request is rejected. It allows controlled bursting (up to max tokens) while enforcing an average rate limit.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Rate limiting algorithms: fixed window is simplest (count per time bucket), token bucket is smooth (tokens replenish con",
+      "System design: rate limiter. Token bucket algorithm: each user gets a bucket with max tokens. Tokens replenish at a fixe",
+      "Nginx rate limiting: `limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;` then `limit_req zone=api burst=20 nod",
+      "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, "
+    ],
+    "retrieval_ms": 109.0,
+    "llm_ms": 64594.0,
+    "total_ms": 64703.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Rate limiting algorithms: fixed window is simplest (count per time bucket), token bucket is smooth (tokens replenish con\nRate limiting algorithms: fixed window is simplest (count per time bucket), token bucket is smooth (tokens replenish continuously), leaky bucket is strict (constant drain rate).\n\nCategory: Semantic match\nNote: System design: rate limiter. Token bucket algorithm: each user gets a bucket with max tokens. Tokens replenish at a fixe\nSystem design: rate limiter. Token bucket algorithm: each user gets a bucket with max tokens. Tokens replenish at a fixed rate. Request consumes one token. Redis INCR + TTL for distributed.\n\nCategory: Semantic match\nNote: Nginx rate limiting: `limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;` then `limit_req zone=api burst=20 nod\nNginx rate limiting: `limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;` then `limit_req zone=api burst=20 nodelay;` in location block. Returns 429 when exceeded.\n\nCategory: Semantic match\nNote: Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, \nGemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, need 16s between queries not 8s. Evaluation was failing silently.\n</context>\n\n<question>\nWhat is token bucket rate limiting?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 244,
+        "note_title": "Rate limiting algorithms: fixed window is simplest (count per time bucket), token bucket is smooth (tokens replenish con",
+        "chunk_text": "Rate limiting algorithms: fixed window is simplest (count per time bucket), token bucket is smooth (tokens replenish continuously), leaky bucket is strict (constant drain rate).",
+        "chunk_index": 0,
+        "score": 0.6940889772229789,
+        "semantic_score": 0.6940889772229789,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 346,
+        "note_title": "System design: rate limiter. Token bucket algorithm: each user gets a bucket with max tokens. Tokens replenish at a fixe",
+        "chunk_text": "System design: rate limiter. Token bucket algorithm: each user gets a bucket with max tokens. Tokens replenish at a fixed rate. Request consumes one token. Redis INCR + TTL for distributed.",
+        "chunk_index": 0,
+        "score": 0.6784242987632751,
+        "semantic_score": 0.6784242987632751,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 150,
+        "note_title": "Nginx rate limiting: `limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;` then `limit_req zone=api burst=20 nod",
+        "chunk_text": "Nginx rate limiting: `limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;` then `limit_req zone=api burst=20 nodelay;` in location block. Returns 429 when exceeded.",
+        "chunk_index": 0,
+        "score": 0.4910261929035187,
+        "semantic_score": 0.4910261929035187,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 373,
+        "note_title": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, ",
+        "chunk_text": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, need 16s between queries not 8s. Evaluation was failing silently.",
+        "chunk_index": 0,
+        "score": 0.43074899911880493,
+        "semantic_score": 0.43074899911880493,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 703,
+        "note_title": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, ",
+        "chunk_text": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, need 16s between queries not 8s. Evaluation was failing silently.",
+        "chunk_index": 0,
+        "score": 0.43074899911880493,
+        "semantic_score": 0.43074899911880493,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 803,
+        "note_title": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, ",
+        "chunk_text": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, need 16s between queries not 8s. Evaluation was failing silently.",
+        "chunk_index": 0,
+        "score": 0.43074899911880493,
+        "semantic_score": 0.43074899911880493,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 903,
+        "note_title": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, ",
+        "chunk_text": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, need 16s between queries not 8s. Evaluation was failing silently.",
+        "chunk_index": 0,
+        "score": 0.43074899911880493,
+        "semantic_score": 0.43074899911880493,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1003,
+        "note_title": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, ",
+        "chunk_text": "Gemini API rate limiting: free tier is 15 RPM. For evaluation with 54 queries, each needing pipeline + judge = 2 calls, need 16s between queries not 8s. Evaluation was failing silently.",
+        "chunk_index": 0,
+        "score": 0.43074899911880493,
+        "semantic_score": 0.43074899911880493,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

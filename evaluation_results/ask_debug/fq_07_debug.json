@@ -1,0 +1,122 @@
+{
+  "query_id": "fq_07",
+  "question": "What is system design and what topics does it cover?",
+  "category": "factual_lookup",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    70,
+    99
+  ],
+  "reference_answer": "System design involves architecting scalable, reliable, and maintainable software systems. Key topics include load balancing, database sharding, caching strategies, microservices, API design, message queues, and distributed consensus.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Practice system design interview questions.",
+      "Understand event-driven architecture patterns.",
+      "Research distributed systems interview questions.",
+      "Meeting notes from backend architecture discussion.",
+      "Revise operating systems process scheduling algorithms.",
+      "Create architecture diagrams for KnowledgeVault.",
+      "Design KnowledgeVault retrieval improvements.",
+      "Read about Retrieval-Augmented Generation architectures."
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 64875.0,
+    "total_ms": 65000.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Practice system design interview questions.\nPractice system design interview questions.\n\nCategory: Semantic match\nNote: Understand event-driven architecture patterns.\nUnderstand event-driven architecture patterns.\n\nCategory: Semantic match\nNote: Research distributed systems interview questions.\nResearch distributed systems interview questions.\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Revise operating systems process scheduling algorithms.\nRevise operating systems process scheduling algorithms.\n\nCategory: Semantic match\nNote: Create architecture diagrams for KnowledgeVault.\nCreate architecture diagrams for KnowledgeVault.\n\nCategory: Semantic match\nNote: Design KnowledgeVault retrieval improvements.\nDesign KnowledgeVault retrieval improvements.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n</context>\n\n<question>\nWhat is system design and what topics does it cover?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 70,
+        "note_title": "Practice system design interview questions.",
+        "chunk_text": "Practice system design interview questions.",
+        "chunk_index": 0,
+        "score": 0.48525637388229714,
+        "semantic_score": 0.48525637388229714,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 102,
+        "note_title": "Understand event-driven architecture patterns.",
+        "chunk_text": "Understand event-driven architecture patterns.",
+        "chunk_index": 0,
+        "score": 0.48009049655085767,
+        "semantic_score": 0.48009049655085767,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 99,
+        "note_title": "Research distributed systems interview questions.",
+        "chunk_text": "Research distributed systems interview questions.",
+        "chunk_index": 0,
+        "score": 0.43849703669548346,
+        "semantic_score": 0.43849703669548346,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.42803486323772233,
+        "semantic_score": 0.42803486323772233,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 59,
+        "note_title": "Revise operating systems process scheduling algorithms.",
+        "chunk_text": "Revise operating systems process scheduling algorithms.",
+        "chunk_index": 0,
+        "score": 0.36835128068924217,
+        "semantic_score": 0.36835128068924217,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 95,
+        "note_title": "Create architecture diagrams for KnowledgeVault.",
+        "chunk_text": "Create architecture diagrams for KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.3595887553201622,
+        "semantic_score": 0.3595887553201622,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 88,
+        "note_title": "Design KnowledgeVault retrieval improvements.",
+        "chunk_text": "Design KnowledgeVault retrieval improvements.",
+        "chunk_index": 0,
+        "score": 0.3371685147285486,
+        "semantic_score": 0.3371685147285486,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.33365830779075867,
+        "semantic_score": 0.33365830779075867,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

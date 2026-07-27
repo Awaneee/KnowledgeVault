@@ -1,0 +1,150 @@
+{
+  "query_id": "aq_023",
+  "question": "What appointments and scheduled events do I have coming up?",
+  "category": "temporal",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    78,
+    79,
+    109,
+    128,
+    179,
+    201,
+    224,
+    226,
+    231,
+    240,
+    348,
+    434,
+    438,
+    448,
+    559,
+    575,
+    601,
+    612,
+    617,
+    634,
+    664,
+    698,
+    764,
+    798,
+    864,
+    898,
+    964,
+    998,
+    1064,
+    1098
+  ],
+  "reference_answer": "Upcoming appointments from notes: dentist appointment March 15 at 10 AM at Fortis Dental Clinic (bring insurance card), health checkup before semester end, vehicle insurance renewal deadline April 10.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Dentist appointment booked for March 15th at 10 AM at Fortis Dental Clinic. Bring insurance card and ID.",
+      "Schedule a health checkup before August.",
+      "Weekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority co",
+      "Schedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.",
+      "Placement mock interview practice group: 4 people, rotate interviewer role. 2 hours every Saturday morning. Starting nex",
+      "Understand event-driven architecture patterns.",
+      "Capstone project: Building a Timetable Management System for Thapar. Using React frontend, Node.js backend, PostgreSQL. ",
+      "Preparing a list of questions to ask interviewers: What does the onboarding process look like? How do teams handle techn"
+    ],
+    "retrieval_ms": 109.0,
+    "llm_ms": 65031.0,
+    "total_ms": 65140.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Dentist appointment booked for March 15th at 10 AM at Fortis Dental Clinic. Bring insurance card and ID.\nDentist appointment booked for March 15th at 10 AM at Fortis Dental Clinic. Bring insurance card and ID.\n\nCategory: Appointments\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Weekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority co\nWeekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority companies: Microsoft, Adobe, Intuit, Atlassian, Flipkart.\n\nCategory: Semantic match\nNote: Schedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.\nSchedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.\n\nCategory: Semantic match\nNote: Placement mock interview practice group: 4 people, rotate interviewer role. 2 hours every Saturday morning. Starting nex\nPlacement mock interview practice group: 4 people, rotate interviewer role. 2 hours every Saturday morning. Starting next week at the library.\n\nCategory: Semantic match\nNote: Understand event-driven architecture patterns.\nUnderstand event-driven architecture patterns.\n\nCategory: Semantic match\nNote: Capstone project: Building a Timetable Management System for Thapar. Using React frontend, Node.js backend, PostgreSQL. \nCapstone project: Building a Timetable Management System for Thapar. Using React frontend, Node.js backend, PostgreSQL. Auto-assigns rooms and professors based on constraints.\n\nCategory: Semantic match\nNote: Preparing a list of questions to ask interviewers: What does the onboarding process look like? How do teams handle techn\nPreparing a list of questions to ask interviewers: What does the onboarding process look like? How do teams handle technical debt? What does a successful first 90 days look like?\n</context>\n\n<question>\nWhat appointments and scheduled events do I have coming up?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 559,
+        "note_title": "Dentist appointment booked for March 15th at 10 AM at Fortis Dental Clinic. Bring insurance card and ID.",
+        "chunk_text": "Dentist appointment booked for March 15th at 10 AM at Fortis Dental Clinic. Bring insurance card and ID.",
+        "chunk_index": 0,
+        "score": 0.45522338685710584,
+        "semantic_score": 0.45522338685710584,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.4327267150445758,
+        "semantic_score": 0.4327267150445758,
+        "intent_score": 0.20444444444444443,
+        "intent_category": "Appointments"
+      },
+      {
+        "note_id": 620,
+        "note_title": "Weekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority co",
+        "chunk_text": "Weekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority companies: Microsoft, Adobe, Intuit, Atlassian, Flipkart.",
+        "chunk_index": 0,
+        "score": 0.41807916272159074,
+        "semantic_score": 0.41807916272159074,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 601,
+        "note_title": "Schedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.",
+        "chunk_text": "Schedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.",
+        "chunk_index": 0,
+        "score": 0.3979068219037941,
+        "semantic_score": 0.3979068219037941,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 609,
+        "note_title": "Placement mock interview practice group: 4 people, rotate interviewer role. 2 hours every Saturday morning. Starting nex",
+        "chunk_text": "Placement mock interview practice group: 4 people, rotate interviewer role. 2 hours every Saturday morning. Starting next week at the library.",
+        "chunk_index": 0,
+        "score": 0.3645701408386257,
+        "semantic_score": 0.3645701408386257,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 102,
+        "note_title": "Understand event-driven architecture patterns.",
+        "chunk_text": "Understand event-driven architecture patterns.",
+        "chunk_index": 0,
+        "score": 0.35443836450577026,
+        "semantic_score": 0.35443836450577026,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 175,
+        "note_title": "Capstone project: Building a Timetable Management System for Thapar. Using React frontend, Node.js backend, PostgreSQL. ",
+        "chunk_text": "Capstone project: Building a Timetable Management System for Thapar. Using React frontend, Node.js backend, PostgreSQL. Auto-assigns rooms and professors based on constraints.",
+        "chunk_index": 0,
+        "score": 0.3411868607290476,
+        "semantic_score": 0.3411868607290476,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 352,
+        "note_title": "Preparing a list of questions to ask interviewers: What does the onboarding process look like? How do teams handle techn",
+        "chunk_text": "Preparing a list of questions to ask interviewers: What does the onboarding process look like? How do teams handle technical debt? What does a successful first 90 days look like?",
+        "chunk_index": 0,
+        "score": 0.333694795745922,
+        "semantic_score": 0.333694795745922,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

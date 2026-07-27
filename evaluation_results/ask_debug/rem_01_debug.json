@@ -1,0 +1,121 @@
+{
+  "query_id": "rem_01",
+  "question": "What do I need to buy at the grocery store?",
+  "category": "reminders",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    76
+  ],
+  "reference_answer": "Based on your notes, you need to buy items on your grocery list.",
+  "eval_notes": "Accept any answer that references grocery or shopping list content from notes. Do not penalise if the exact list items differ — the model can only report what is in the retrieved notes.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Buy groceries including milk, eggs, bread and fruits.",
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Drink at least three liters of water every day.",
+      "Schedule a health checkup before August.",
+      "Watch a tutorial on Kafka producers and consumers.",
+      "Book a dentist appointment for next month.",
+      "Pay electricity and internet bills this weekend.",
+      "Plan a trip to Manali with friends."
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 594.0,
+    "total_ms": 719.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Shopping\nNote: Buy groceries including milk, eggs, bread and fruits.\nBuy groceries including milk, eggs, bread and fruits.\n\nCategory: Tasks\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Drink at least three liters of water every day.\nDrink at least three liters of water every day.\n\nCategory: Semantic match\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Watch a tutorial on Kafka producers and consumers.\nWatch a tutorial on Kafka producers and consumers.\n\nCategory: Semantic match\nNote: Book a dentist appointment for next month.\nBook a dentist appointment for next month.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Semantic match\nNote: Plan a trip to Manali with friends.\nPlan a trip to Manali with friends.\n</context>\n\n<question>\nWhat do I need to buy at the grocery store?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 76,
+        "note_title": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_text": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_index": 0,
+        "score": 0.6037324082056408,
+        "semantic_score": 0.5781324082056408,
+        "intent_score": 0.2133333333333333,
+        "intent_category": "Shopping"
+      },
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.14333420356119886,
+        "semantic_score": 0.14333420356119886,
+        "intent_score": 0.15555555555555553,
+        "intent_category": "Tasks"
+      },
+      {
+        "note_id": 84,
+        "note_title": "Drink at least three liters of water every day.",
+        "chunk_text": "Drink at least three liters of water every day.",
+        "chunk_index": 0,
+        "score": 0.1419592010391002,
+        "semantic_score": 0.1419592010391002,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.13991533636794506,
+        "semantic_score": 0.13991533636794506,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 71,
+        "note_title": "Watch a tutorial on Kafka producers and consumers.",
+        "chunk_text": "Watch a tutorial on Kafka producers and consumers.",
+        "chunk_index": 0,
+        "score": 0.1313001928895885,
+        "semantic_score": 0.1313001928895885,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 78,
+        "note_title": "Book a dentist appointment for next month.",
+        "chunk_text": "Book a dentist appointment for next month.",
+        "chunk_index": 0,
+        "score": 0.12172509710342272,
+        "semantic_score": 0.12172509710342272,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.12008264273651381,
+        "semantic_score": 0.12008264273651381,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 81,
+        "note_title": "Plan a trip to Manali with friends.",
+        "chunk_text": "Plan a trip to Manali with friends.",
+        "chunk_index": 0,
+        "score": 0.10773587445043398,
+        "semantic_score": 0.10773587445043398,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

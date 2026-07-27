@@ -1,0 +1,129 @@
+{
+  "query_id": "aq_025",
+  "question": "What trips am I planning in the near future?",
+  "category": "temporal",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    81,
+    128,
+    324,
+    407,
+    463,
+    535,
+    538,
+    596,
+    627
+  ],
+  "reference_answer": "Upcoming travel: Delhi trip for hackathon (train from Chandigarh at 7:10 AM Shatabdi, hackathon at IIT Delhi), home visit for Holi (leave Friday, return Monday), possible Mcleodganj solo trip after exams. Also planning Goa post-placements with friends (budget Rs 8,000 per person).",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "International travel dream: want to visit Singapore and Japan before 30. Start saving. Singapore needs strong finances, ",
+      "Plan a trip to Manali with friends.",
+      "Start studying for GATE 2025 if I don't get a placement offer by May. Computer Science syllabus is vast — start with DS&",
+      "Goa trip post-placements plan: 5 people, budget Rs 8,000 per person. Book early on MakeMyTrip — January is off-season, c",
+      "Pay electricity and internet bills this weekend.",
+      "Planning a solo trip to Mcleodganj after exams. Budget: Rs 3,000 for 3 days. Famous for monasteries, Dharamshala cricket",
+      "Monthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, ",
+      "Career advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/Fast"
+    ],
+    "retrieval_ms": 94.0,
+    "llm_ms": 64734.0,
+    "total_ms": 64828.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: International travel dream: want to visit Singapore and Japan before 30. Start saving. Singapore needs strong finances, \nInternational travel dream: want to visit Singapore and Japan before 30. Start saving. Singapore needs strong finances, Japan needs planning for sakura season (March-April).\n\nCategory: Semantic match\nNote: Plan a trip to Manali with friends.\nPlan a trip to Manali with friends.\n\nCategory: Semantic match\nNote: Start studying for GATE 2025 if I don't get a placement offer by May. Computer Science syllabus is vast — start with DS&\nStart studying for GATE 2025 if I don't get a placement offer by May. Computer Science syllabus is vast — start with DS&A and OS.\n\nCategory: Semantic match\nNote: Goa trip post-placements plan: 5 people, budget Rs 8,000 per person. Book early on MakeMyTrip — January is off-season, c\nGoa trip post-placements plan: 5 people, budget Rs 8,000 per person. Book early on MakeMyTrip — January is off-season, cheaper flights. Flight vs sleeper bus decision pending.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Semantic match\nNote: Planning a solo trip to Mcleodganj after exams. Budget: Rs 3,000 for 3 days. Famous for monasteries, Dharamshala cricket\nPlanning a solo trip to Mcleodganj after exams. Budget: Rs 3,000 for 3 days. Famous for monasteries, Dharamshala cricket ground nearby. May attempt the Triund trek solo.\n\nCategory: Semantic match\nNote: Monthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, \nMonthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, Misc: 500. Total: 6900. Need to reduce misc spending.\n\nCategory: Semantic match\nNote: Career advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/Fast\nCareer advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/FastAPI with a branch toward AI/ML engineering.\n</context>\n\n<question>\nWhat trips am I planning in the near future?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 627,
+        "note_title": "International travel dream: want to visit Singapore and Japan before 30. Start saving. Singapore needs strong finances, ",
+        "chunk_text": "International travel dream: want to visit Singapore and Japan before 30. Start saving. Singapore needs strong finances, Japan needs planning for sakura season (March-April).",
+        "chunk_index": 0,
+        "score": 0.40872098233464327,
+        "semantic_score": 0.40872098233464327,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 81,
+        "note_title": "Plan a trip to Manali with friends.",
+        "chunk_text": "Plan a trip to Manali with friends.",
+        "chunk_index": 0,
+        "score": 0.35667637199250224,
+        "semantic_score": 0.35667637199250224,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 343,
+        "note_title": "Start studying for GATE 2025 if I don't get a placement offer by May. Computer Science syllabus is vast — start with DS&",
+        "chunk_text": "Start studying for GATE 2025 if I don't get a placement offer by May. Computer Science syllabus is vast — start with DS&A and OS.",
+        "chunk_index": 0,
+        "score": 0.3448385884012093,
+        "semantic_score": 0.3448385884012093,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 538,
+        "note_title": "Goa trip post-placements plan: 5 people, budget Rs 8,000 per person. Book early on MakeMyTrip — January is off-season, c",
+        "chunk_text": "Goa trip post-placements plan: 5 people, budget Rs 8,000 per person. Book early on MakeMyTrip — January is off-season, cheaper flights. Flight vs sleeper bus decision pending.",
+        "chunk_index": 0,
+        "score": 0.31428061979172894,
+        "semantic_score": 0.31428061979172894,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.3113840911204844,
+        "semantic_score": 0.3113840911204844,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 407,
+        "note_title": "Planning a solo trip to Mcleodganj after exams. Budget: Rs 3,000 for 3 days. Famous for monasteries, Dharamshala cricket",
+        "chunk_text": "Planning a solo trip to Mcleodganj after exams. Budget: Rs 3,000 for 3 days. Famous for monasteries, Dharamshala cricket ground nearby. May attempt the Triund trek solo.",
+        "chunk_index": 0,
+        "score": 0.3026698619922956,
+        "semantic_score": 0.3026698619922956,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 216,
+        "note_title": "Monthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, ",
+        "chunk_text": "Monthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, Misc: 500. Total: 6900. Need to reduce misc spending.",
+        "chunk_index": 0,
+        "score": 0.29056637613277625,
+        "semantic_score": 0.29056637613277625,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 272,
+        "note_title": "Career advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/Fast",
+        "chunk_text": "Career advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/FastAPI with a branch toward AI/ML engineering.",
+        "chunk_index": 0,
+        "score": 0.27487852646814537,
+        "semantic_score": 0.27487852646814537,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

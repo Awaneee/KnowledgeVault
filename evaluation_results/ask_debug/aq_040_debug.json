@@ -1,0 +1,128 @@
+{
+  "query_id": "aq_040",
+  "question": "Show all my communication and meeting notes.",
+  "category": "category",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    54,
+    55,
+    56,
+    57,
+    106,
+    107,
+    117,
+    141
+  ],
+  "reference_answer": "Communication notes include messages to Siddhant/Sid about backend meeting, internship opportunity, hackathon registration form, and KnowledgeVault architecture discussions. Meeting notes cover capstone progress meetings with Professor Sharma, team syncs, mentor sessions with Arjun, and hackathon team planning.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no",
+      "Meeting with design team: finalizing UI for the capstone project. Agreed on dark mode by default, card layout for notes,",
+      "Random observation: meetings that could have been emails, emails that could have been messages, messages that could have",
+      "Message Siddhant about tomorrow's backend meeting.",
+      "Call mom on Sunday evening. Send her the capstone project screenshots. She keeps asking about what I'm building.",
+      "Finished 'Show Your Work' by Austin Kleon. Key message: share your process publicly. Build in public. People connect wit",
+      "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these ",
+      "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com"
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 63641.0,
+    "total_ms": 63766.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Meetings\nNote: Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no\nMeeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for note indexing. No microservices for now.\n\nCategory: Meetings\nNote: Meeting with design team: finalizing UI for the capstone project. Agreed on dark mode by default, card layout for notes,\nMeeting with design team: finalizing UI for the capstone project. Agreed on dark mode by default, card layout for notes, sidebar navigation. Color palette: midnight blue and mint green.\n\nCategory: Meetings\nNote: Random observation: meetings that could have been emails, emails that could have been messages, messages that could have\nRandom observation: meetings that could have been emails, emails that could have been messages, messages that could have been a comment in the code. Communication debt is real.\n\nCategory: Semantic match\nNote: Message Siddhant about tomorrow's backend meeting.\nMessage Siddhant about tomorrow's backend meeting.\n\nCategory: Semantic match\nNote: Call mom on Sunday evening. Send her the capstone project screenshots. She keeps asking about what I'm building.\nCall mom on Sunday evening. Send her the capstone project screenshots. She keeps asking about what I'm building.\n\nCategory: Semantic match\nNote: Finished 'Show Your Work' by Austin Kleon. Key message: share your process publicly. Build in public. People connect wit\nFinished 'Show Your Work' by Austin Kleon. Key message: share your process publicly. Build in public. People connect with the process, not just the polished final result.\n\nCategory: Semantic match\nNote: Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these \nHad a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these and see how I was thinking. Write clearly.\n\nCategory: Semantic match\nNote: Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com\nStarting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.\n</context>\n\n<question>\nShow all my communication and meeting notes.\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 372,
+        "note_title": "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no",
+        "chunk_text": "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for note indexing. No microservices for now.",
+        "chunk_index": 0,
+        "score": 0.5256,
+        "semantic_score": 0.5,
+        "intent_score": 0.2133333333333333,
+        "intent_category": "Meetings"
+      },
+      {
+        "note_id": 568,
+        "note_title": "Meeting with design team: finalizing UI for the capstone project. Agreed on dark mode by default, card layout for notes,",
+        "chunk_text": "Meeting with design team: finalizing UI for the capstone project. Agreed on dark mode by default, card layout for notes, sidebar navigation. Color palette: midnight blue and mint green.",
+        "chunk_index": 0,
+        "score": 0.5256,
+        "semantic_score": 0.5,
+        "intent_score": 0.2133333333333333,
+        "intent_category": "Meetings"
+      },
+      {
+        "note_id": 371,
+        "note_title": "Random observation: meetings that could have been emails, emails that could have been messages, messages that could have",
+        "chunk_text": "Random observation: meetings that could have been emails, emails that could have been messages, messages that could have been a comment in the code. Communication debt is real.",
+        "chunk_index": 0,
+        "score": 0.4180718499183655,
+        "semantic_score": 0.3924718499183655,
+        "intent_score": 0.2133333333333333,
+        "intent_category": "Meetings"
+      },
+      {
+        "note_id": 56,
+        "note_title": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_text": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_index": 0,
+        "score": 0.3984741927102696,
+        "semantic_score": 0.3984741927102696,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 382,
+        "note_title": "Call mom on Sunday evening. Send her the capstone project screenshots. She keeps asking about what I'm building.",
+        "chunk_text": "Call mom on Sunday evening. Send her the capstone project screenshots. She keeps asking about what I'm building.",
+        "chunk_index": 0,
+        "score": 0.37343720356004284,
+        "semantic_score": 0.37343720356004284,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 141,
+        "note_title": "Finished 'Show Your Work' by Austin Kleon. Key message: share your process publicly. Build in public. People connect wit",
+        "chunk_text": "Finished 'Show Your Work' by Austin Kleon. Key message: share your process publicly. Build in public. People connect with the process, not just the polished final result.",
+        "chunk_index": 0,
+        "score": 0.3690292537212372,
+        "semantic_score": 0.3690292537212372,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 290,
+        "note_title": "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these ",
+        "chunk_text": "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these and see how I was thinking. Write clearly.",
+        "chunk_index": 0,
+        "score": 0.3556853234767914,
+        "semantic_score": 0.3556853234767914,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 583,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.3496783971786499,
+        "semantic_score": 0.3496783971786499,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

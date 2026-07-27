@@ -1,0 +1,121 @@
+{
+  "query_id": "aq_046",
+  "question": "What is the walrus operator in Python?",
+  "category": "factual_lookup",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    336
+  ],
+  "reference_answer": "The walrus operator (:=) is Python's assignment expression, introduced in Python 3.8. It assigns a value to a variable as part of an expression. Example: `if (n := len(a)) > 10: print(n)` — this calls len() once and uses the result in both the condition and the body. Useful for avoiding repeated function calls in while loops and comprehensions.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Python walrus operator (:=) assigns inside an expression. `if (n := len(a)) > 10: print(n)` avoids calling len() twice.",
+      "Python generator expressions save memory: `(x**2 for x in range(1000000))` doesn't build the list. Chain with `sum()`, `",
+      "Mutable default arguments in Python are a classic trap: `def f(x=[])` — the list is shared across all calls. Use `None` ",
+      "Python `enumerate(iterable, start=0)` adds an index. Better than `for i in range(len(lst))`. `for i, val in enumerate(ls",
+      "Heap push O(log n), pop O(log n), heapify from array O(n) (not O(n log n)). Python's heapq is a min-heap. For max-heap n",
+      "Python `property` decorator creates managed attributes. Getter, setter, and deleter. Useful for validation or computed v",
+      "Difference between `==` and `is` in Python: `==` checks value equality, `is` checks object identity. `None` checks shoul",
+      "HashMap collision handling: open addressing (linear probing, quadratic probing, double hashing) vs chaining (linked list"
+    ],
+    "retrieval_ms": 109.0,
+    "llm_ms": 64313.0,
+    "total_ms": 64422.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Python walrus operator (:=) assigns inside an expression. `if (n := len(a)) > 10: print(n)` avoids calling len() twice.\nPython walrus operator (:=) assigns inside an expression. `if (n := len(a)) > 10: print(n)` avoids calling len() twice.\n\nCategory: Semantic match\nNote: Python generator expressions save memory: `(x**2 for x in range(1000000))` doesn't build the list. Chain with `sum()`, `\nPython generator expressions save memory: `(x**2 for x in range(1000000))` doesn't build the list. Chain with `sum()`, `max()`, etc. for lazy evaluation.\n\nCategory: Semantic match\nNote: Mutable default arguments in Python are a classic trap: `def f(x=[])` — the list is shared across all calls. Use `None` \nMutable default arguments in Python are a classic trap: `def f(x=[])` — the list is shared across all calls. Use `None` and create inside the function.\n\nCategory: Semantic match\nNote: Python `enumerate(iterable, start=0)` adds an index. Better than `for i in range(len(lst))`. `for i, val in enumerate(ls\nPython `enumerate(iterable, start=0)` adds an index. Better than `for i in range(len(lst))`. `for i, val in enumerate(lst): ...`.\n\nCategory: Semantic match\nNote: Heap push O(log n), pop O(log n), heapify from array O(n) (not O(n log n)). Python's heapq is a min-heap. For max-heap n\nHeap push O(log n), pop O(log n), heapify from array O(n) (not O(n log n)). Python's heapq is a min-heap. For max-heap negate values.\n\nCategory: Semantic match\nNote: Python `property` decorator creates managed attributes. Getter, setter, and deleter. Useful for validation or computed v\nPython `property` decorator creates managed attributes. Getter, setter, and deleter. Useful for validation or computed values without changing the public API.\n\nCategory: Semantic match\nNote: Difference between `==` and `is` in Python: `==` checks value equality, `is` checks object identity. `None` checks shoul\nDifference between `==` and `is` in Python: `==` checks value equality, `is` checks object identity. `None` checks should always use `is`.\n\nCategory: Semantic match\nNote: HashMap collision handling: open addressing (linear probing, quadratic probing, double hashing) vs chaining (linked list\nHashMap collision handling: open addressing (linear probing, quadratic probing, double hashing) vs chaining (linked list at each bucket). Python uses open addressing with a mix.\n</context>\n\n<question>\nWhat is the walrus operator in Python?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 336,
+        "note_title": "Python walrus operator (:=) assigns inside an expression. `if (n := len(a)) > 10: print(n)` avoids calling len() twice.",
+        "chunk_text": "Python walrus operator (:=) assigns inside an expression. `if (n := len(a)) > 10: print(n)` avoids calling len() twice.",
+        "chunk_index": 0,
+        "score": 0.6805381977718534,
+        "semantic_score": 0.6805381977718534,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 588,
+        "note_title": "Python generator expressions save memory: `(x**2 for x in range(1000000))` doesn't build the list. Chain with `sum()`, `",
+        "chunk_text": "Python generator expressions save memory: `(x**2 for x in range(1000000))` doesn't build the list. Chain with `sum()`, `max()`, etc. for lazy evaluation.",
+        "chunk_index": 0,
+        "score": 0.3766363859176636,
+        "semantic_score": 0.3766363859176636,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 388,
+        "note_title": "Mutable default arguments in Python are a classic trap: `def f(x=[])` — the list is shared across all calls. Use `None` ",
+        "chunk_text": "Mutable default arguments in Python are a classic trap: `def f(x=[])` — the list is shared across all calls. Use `None` and create inside the function.",
+        "chunk_index": 0,
+        "score": 0.35720213396562006,
+        "semantic_score": 0.35720213396562006,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 396,
+        "note_title": "Python `enumerate(iterable, start=0)` adds an index. Better than `for i in range(len(lst))`. `for i, val in enumerate(ls",
+        "chunk_text": "Python `enumerate(iterable, start=0)` adds an index. Better than `for i in range(len(lst))`. `for i, val in enumerate(lst): ...`.",
+        "chunk_index": 0,
+        "score": 0.35529589653015137,
+        "semantic_score": 0.35529589653015137,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 232,
+        "note_title": "Heap push O(log n), pop O(log n), heapify from array O(n) (not O(n log n)). Python's heapq is a min-heap. For max-heap n",
+        "chunk_text": "Heap push O(log n), pop O(log n), heapify from array O(n) (not O(n log n)). Python's heapq is a min-heap. For max-heap negate values.",
+        "chunk_index": 0,
+        "score": 0.3437630236148834,
+        "semantic_score": 0.3437630236148834,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 610,
+        "note_title": "Python `property` decorator creates managed attributes. Getter, setter, and deleter. Useful for validation or computed v",
+        "chunk_text": "Python `property` decorator creates managed attributes. Getter, setter, and deleter. Useful for validation or computed values without changing the public API.",
+        "chunk_index": 0,
+        "score": 0.33072608709335327,
+        "semantic_score": 0.33072608709335327,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 640,
+        "note_title": "Difference between `==` and `is` in Python: `==` checks value equality, `is` checks object identity. `None` checks shoul",
+        "chunk_text": "Difference between `==` and `is` in Python: `==` checks value equality, `is` checks object identity. `None` checks should always use `is`.",
+        "chunk_index": 0,
+        "score": 0.32433122396469116,
+        "semantic_score": 0.32433122396469116,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 587,
+        "note_title": "HashMap collision handling: open addressing (linear probing, quadratic probing, double hashing) vs chaining (linked list",
+        "chunk_text": "HashMap collision handling: open addressing (linear probing, quadratic probing, double hashing) vs chaining (linked list at each bucket). Python uses open addressing with a mix.",
+        "chunk_index": 0,
+        "score": 0.3033189539097514,
+        "semantic_score": 0.3033189539097514,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

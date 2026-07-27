@@ -1,0 +1,125 @@
+{
+  "query_id": "aq_039",
+  "question": "Notes related to my project",
+  "category": "ambiguous",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    62,
+    89,
+    91,
+    92,
+    97,
+    117,
+    118,
+    134
+  ],
+  "reference_answer": "Project notes span KnowledgeVault (RAG backend, hybrid retrieval, evaluation framework), capstone project (Timetable Management System for Thapar), hackathon project (AI study planner), and various side project ideas (code review assistant, Indian government data API). KnowledgeVault is the most developed, with the evaluation framework and hybrid retrieval analysis being notable contributions.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Design a new AI-powered note summarization workflow.",
+      "Meeting notes from backend architecture discussion.",
+      "Thinking about digital minimalism: I have 7 different note-taking apps and still can't find my notes. KnowledgeVault is ",
+      "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these ",
+      "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com"
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 64031.0,
+    "total_ms": 64156.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Thinking about digital minimalism: I have 7 different note-taking apps and still can't find my notes. KnowledgeVault is \nThinking about digital minimalism: I have 7 different note-taking apps and still can't find my notes. KnowledgeVault is meant to solve this. 'Eating your own dog food' is real.\n\nCategory: Semantic match\nNote: Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these \nHad a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these and see how I was thinking. Write clearly.\n\nCategory: Semantic match\nNote: Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com\nStarting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.\n</context>\n\n<question>\nNotes related to my project\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.45193751013092753,
+        "semantic_score": 0.45193751013092753,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.44275412941761005,
+        "semantic_score": 0.44275412941761005,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 444,
+        "note_title": "Thinking about digital minimalism: I have 7 different note-taking apps and still can't find my notes. KnowledgeVault is ",
+        "chunk_text": "Thinking about digital minimalism: I have 7 different note-taking apps and still can't find my notes. KnowledgeVault is meant to solve this. 'Eating your own dog food' is real.",
+        "chunk_index": 0,
+        "score": 0.42896620294149557,
+        "semantic_score": 0.42896620294149557,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 290,
+        "note_title": "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these ",
+        "chunk_text": "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these and see how I was thinking. Write clearly.",
+        "chunk_index": 0,
+        "score": 0.3766925149170315,
+        "semantic_score": 0.3766925149170315,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 583,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.37484733387372904,
+        "semantic_score": 0.37484733387372904,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 699,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.37484733387372904,
+        "semantic_score": 0.37484733387372904,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 799,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.37484733387372904,
+        "semantic_score": 0.37484733387372904,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 899,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.37484733387372904,
+        "semantic_score": 0.37484733387372904,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

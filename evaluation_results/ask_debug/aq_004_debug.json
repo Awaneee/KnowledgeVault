@@ -1,0 +1,138 @@
+{
+  "query_id": "aq_004",
+  "question": "What is the CAP theorem?",
+  "category": "factual_lookup",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    229,
+    259,
+    292,
+    417,
+    580,
+    608,
+    621,
+    631,
+    690,
+    695,
+    731,
+    790,
+    795,
+    831,
+    890,
+    895,
+    931,
+    990,
+    995,
+    1031,
+    1090,
+    1095
+  ],
+  "reference_answer": "CAP theorem states that a distributed database can only guarantee two of three properties simultaneously: Consistency (all nodes see the same data), Availability (every request gets a response), and Partition Tolerance (system works despite network splits). In practice, partition tolerance is mandatory in distributed systems, so you choose between consistency (CP) and availability (AP).",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "CAP theorem in system design: for a distributed database — if partition happens, choose consistency (reject writes) or a",
+      "Distributed systems: CAP theorem — Consistency, Availability, Partition tolerance. Can only guarantee two. CockroachDB a",
+      "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the caps",
+      "Meeting with Professor Sharma: capstone submission deadline is April 15th. Need to submit a 30-page report plus working "
+    ],
+    "retrieval_ms": 141.0,
+    "llm_ms": 63656.0,
+    "total_ms": 63797.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: CAP theorem in system design: for a distributed database — if partition happens, choose consistency (reject writes) or a\nCAP theorem in system design: for a distributed database — if partition happens, choose consistency (reject writes) or availability (accept possibly stale reads). Can't have both.\n\nCategory: Semantic match\nNote: Distributed systems: CAP theorem — Consistency, Availability, Partition tolerance. Can only guarantee two. CockroachDB a\nDistributed systems: CAP theorem — Consistency, Availability, Partition tolerance. Can only guarantee two. CockroachDB and Spanner try to be CP but with high availability.\n\nCategory: Semantic match\nNote: Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the caps\nGoal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the capstone submitted. All three are achievable.\n\nCategory: Semantic match\nNote: Meeting with Professor Sharma: capstone submission deadline is April 15th. Need to submit a 30-page report plus working \nMeeting with Professor Sharma: capstone submission deadline is April 15th. Need to submit a 30-page report plus working demo. Team split: I take backend, Raunak takes frontend, Ayush takes report.\n</context>\n\n<question>\nWhat is the CAP theorem?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 580,
+        "note_title": "CAP theorem in system design: for a distributed database — if partition happens, choose consistency (reject writes) or a",
+        "chunk_text": "CAP theorem in system design: for a distributed database — if partition happens, choose consistency (reject writes) or availability (accept possibly stale reads). Can't have both.",
+        "chunk_index": 0,
+        "score": 0.5948818084527151,
+        "semantic_score": 0.5948818084527151,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 608,
+        "note_title": "Distributed systems: CAP theorem — Consistency, Availability, Partition tolerance. Can only guarantee two. CockroachDB a",
+        "chunk_text": "Distributed systems: CAP theorem — Consistency, Availability, Partition tolerance. Can only guarantee two. CockroachDB and Spanner try to be CP but with high availability.",
+        "chunk_index": 0,
+        "score": 0.5152982473373413,
+        "semantic_score": 0.5152982473373413,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 607,
+        "note_title": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the caps",
+        "chunk_text": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the capstone submitted. All three are achievable.",
+        "chunk_index": 0,
+        "score": 0.29332308729428624,
+        "semantic_score": 0.29332308729428624,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 753,
+        "note_title": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the caps",
+        "chunk_text": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the capstone submitted. All three are achievable.",
+        "chunk_index": 0,
+        "score": 0.29332308729428624,
+        "semantic_score": 0.29332308729428624,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 853,
+        "note_title": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the caps",
+        "chunk_text": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the capstone submitted. All three are achievable.",
+        "chunk_index": 0,
+        "score": 0.29332308729428624,
+        "semantic_score": 0.29332308729428624,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 953,
+        "note_title": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the caps",
+        "chunk_text": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the capstone submitted. All three are achievable.",
+        "chunk_index": 0,
+        "score": 0.29332308729428624,
+        "semantic_score": 0.29332308729428624,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1053,
+        "note_title": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the caps",
+        "chunk_text": "Goal: by May 1st, I want to have a full-time offer in hand, KnowledgeVault deployed and publicly shareable, and the capstone submitted. All three are achievable.",
+        "chunk_index": 0,
+        "score": 0.29332308729428624,
+        "semantic_score": 0.29332308729428624,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 233,
+        "note_title": "Meeting with Professor Sharma: capstone submission deadline is April 15th. Need to submit a 30-page report plus working ",
+        "chunk_text": "Meeting with Professor Sharma: capstone submission deadline is April 15th. Need to submit a 30-page report plus working demo. Team split: I take backend, Raunak takes frontend, Ayush takes report.",
+        "chunk_index": 0,
+        "score": 0.2925311028957367,
+        "semantic_score": 0.2925311028957367,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

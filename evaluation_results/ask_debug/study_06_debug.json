@@ -1,0 +1,121 @@
+{
+  "query_id": "study_06",
+  "question": "What is API performance optimisation?",
+  "category": "study",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    93
+  ],
+  "reference_answer": "Your API performance notes cover strategies for improving API response time including caching, connection pooling, query optimisation, and load balancing.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Improve API response latency using caching.",
+      "Improve Flutter application performance.",
+      "Study PostgreSQL indexing and query optimization.",
+      "Meeting notes from backend architecture discussion.",
+      "Review FastAPI dependency injection.",
+      "Learn Redis caching strategies for backend systems.",
+      "What are the advantages of Docker Compose?",
+      "Read about Retrieval-Augmented Generation architectures."
+    ],
+    "retrieval_ms": 157.0,
+    "llm_ms": 546.0,
+    "total_ms": 703.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Improve API response latency using caching.\nImprove API response latency using caching.\n\nCategory: Semantic match\nNote: Improve Flutter application performance.\nImprove Flutter application performance.\n\nCategory: Semantic match\nNote: Study PostgreSQL indexing and query optimization.\nStudy PostgreSQL indexing and query optimization.\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Review FastAPI dependency injection.\nReview FastAPI dependency injection.\n\nCategory: Semantic match\nNote: Learn Redis caching strategies for backend systems.\nLearn Redis caching strategies for backend systems.\n\nCategory: Semantic match\nNote: What are the advantages of Docker Compose?\nWhat are the advantages of Docker Compose?\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n</context>\n\n<question>\nWhat is API performance optimisation?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 93,
+        "note_title": "Improve API response latency using caching.",
+        "chunk_text": "Improve API response latency using caching.",
+        "chunk_index": 0,
+        "score": 0.6116875823829323,
+        "semantic_score": 0.6116875823829323,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 98,
+        "note_title": "Improve Flutter application performance.",
+        "chunk_text": "Improve Flutter application performance.",
+        "chunk_index": 0,
+        "score": 0.450456483675733,
+        "semantic_score": 0.450456483675733,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 58,
+        "note_title": "Study PostgreSQL indexing and query optimization.",
+        "chunk_text": "Study PostgreSQL indexing and query optimization.",
+        "chunk_index": 0,
+        "score": 0.3335629801023896,
+        "semantic_score": 0.3335629801023896,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.3034118685196522,
+        "semantic_score": 0.3034118685196522,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 68,
+        "note_title": "Review FastAPI dependency injection.",
+        "chunk_text": "Review FastAPI dependency injection.",
+        "chunk_index": 0,
+        "score": 0.3004068821789887,
+        "semantic_score": 0.3004068821789887,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 61,
+        "note_title": "Learn Redis caching strategies for backend systems.",
+        "chunk_text": "Learn Redis caching strategies for backend systems.",
+        "chunk_index": 0,
+        "score": 0.2961017963946937,
+        "semantic_score": 0.2961017963946937,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 105,
+        "note_title": "What are the advantages of Docker Compose?",
+        "chunk_text": "What are the advantages of Docker Compose?",
+        "chunk_index": 0,
+        "score": 0.2603232938147574,
+        "semantic_score": 0.2603232938147574,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.24093394753533848,
+        "semantic_score": 0.24093394753533848,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "query_id": "idea_05",
+  "question": "What ideas do I have for blog post topics?",
+  "category": "ideas",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    85,
+    86,
+    87
+  ],
+  "reference_answer": "Your idea notes contain topics that could serve as blog post material, including thoughts on AI tools, productivity systems, and technology.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Brainstorm startup ideas around AI productivity tools.",
+      "Ideas for improving semantic retrieval quality.",
+      "Meeting notes from backend architecture discussion.",
+      "Discuss KnowledgeVault architecture with Sid next week.",
+      "Read about Retrieval-Augmented Generation architectures.",
+      "Research distributed systems interview questions.",
+      "Watch a tutorial on Kafka producers and consumers.",
+      "Design a new AI-powered note summarization workflow."
+    ],
+    "retrieval_ms": 110.0,
+    "llm_ms": 594.0,
+    "total_ms": 704.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Brainstorm startup ideas around AI productivity tools.\nBrainstorm startup ideas around AI productivity tools.\n\nCategory: Semantic match\nNote: Ideas for improving semantic retrieval quality.\nIdeas for improving semantic retrieval quality.\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Discuss KnowledgeVault architecture with Sid next week.\nDiscuss KnowledgeVault architecture with Sid next week.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n\nCategory: Semantic match\nNote: Research distributed systems interview questions.\nResearch distributed systems interview questions.\n\nCategory: Semantic match\nNote: Watch a tutorial on Kafka producers and consumers.\nWatch a tutorial on Kafka producers and consumers.\n\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n</context>\n\n<question>\nWhat ideas do I have for blog post topics?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 85,
+        "note_title": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_text": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_index": 0,
+        "score": 0.33262185259927257,
+        "semantic_score": 0.33262185259927257,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 86,
+        "note_title": "Ideas for improving semantic retrieval quality.",
+        "chunk_text": "Ideas for improving semantic retrieval quality.",
+        "chunk_index": 0,
+        "score": 0.3113203459191122,
+        "semantic_score": 0.3113203459191122,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.26393091678619574,
+        "semantic_score": 0.26393091678619574,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 57,
+        "note_title": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_text": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_index": 0,
+        "score": 0.23994327306578644,
+        "semantic_score": 0.23994327306578644,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.21157032709475432,
+        "semantic_score": 0.21157032709475432,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 99,
+        "note_title": "Research distributed systems interview questions.",
+        "chunk_text": "Research distributed systems interview questions.",
+        "chunk_index": 0,
+        "score": 0.20579974880221497,
+        "semantic_score": 0.20579974880221497,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 71,
+        "note_title": "Watch a tutorial on Kafka producers and consumers.",
+        "chunk_text": "Watch a tutorial on Kafka producers and consumers.",
+        "chunk_index": 0,
+        "score": 0.2025130540132537,
+        "semantic_score": 0.2025130540132537,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.1988392502761338,
+        "semantic_score": 0.1988392502761338,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

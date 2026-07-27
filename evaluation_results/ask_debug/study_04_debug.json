@@ -1,0 +1,122 @@
+{
+  "query_id": "study_04",
+  "question": "What have I learned about system design?",
+  "category": "study",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    70,
+    99
+  ],
+  "reference_answer": "Your system design notes cover scalability principles, distributed systems, database design patterns, and architecture concepts for technical interviews.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Practice system design interview questions.",
+      "Design KnowledgeVault retrieval improvements.",
+      "Understand event-driven architecture patterns.",
+      "Research distributed systems interview questions.",
+      "Meeting notes from backend architecture discussion.",
+      "Create architecture diagrams for KnowledgeVault.",
+      "Learn Redis caching strategies for backend systems.",
+      "Read about Retrieval-Augmented Generation architectures."
+    ],
+    "retrieval_ms": 140.0,
+    "llm_ms": 547.0,
+    "total_ms": 687.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Practice system design interview questions.\nPractice system design interview questions.\n\nCategory: Semantic match\nNote: Design KnowledgeVault retrieval improvements.\nDesign KnowledgeVault retrieval improvements.\n\nCategory: Semantic match\nNote: Understand event-driven architecture patterns.\nUnderstand event-driven architecture patterns.\n\nCategory: Semantic match\nNote: Research distributed systems interview questions.\nResearch distributed systems interview questions.\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Create architecture diagrams for KnowledgeVault.\nCreate architecture diagrams for KnowledgeVault.\n\nCategory: Semantic match\nNote: Learn Redis caching strategies for backend systems.\nLearn Redis caching strategies for backend systems.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n</context>\n\n<question>\nWhat have I learned about system design?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 70,
+        "note_title": "Practice system design interview questions.",
+        "chunk_text": "Practice system design interview questions.",
+        "chunk_index": 0,
+        "score": 0.46949823291605197,
+        "semantic_score": 0.46949823291605197,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 88,
+        "note_title": "Design KnowledgeVault retrieval improvements.",
+        "chunk_text": "Design KnowledgeVault retrieval improvements.",
+        "chunk_index": 0,
+        "score": 0.4040819882130047,
+        "semantic_score": 0.4040819882130047,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 102,
+        "note_title": "Understand event-driven architecture patterns.",
+        "chunk_text": "Understand event-driven architecture patterns.",
+        "chunk_index": 0,
+        "score": 0.3859166549965731,
+        "semantic_score": 0.3859166549965731,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 99,
+        "note_title": "Research distributed systems interview questions.",
+        "chunk_text": "Research distributed systems interview questions.",
+        "chunk_index": 0,
+        "score": 0.37662960956604596,
+        "semantic_score": 0.37662960956604596,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.3711522553401223,
+        "semantic_score": 0.3711522553401223,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 95,
+        "note_title": "Create architecture diagrams for KnowledgeVault.",
+        "chunk_text": "Create architecture diagrams for KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.35932335489899137,
+        "semantic_score": 0.35932335489899137,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 61,
+        "note_title": "Learn Redis caching strategies for backend systems.",
+        "chunk_text": "Learn Redis caching strategies for backend systems.",
+        "chunk_index": 0,
+        "score": 0.319140989729225,
+        "semantic_score": 0.319140989729225,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.29010947674186716,
+        "semantic_score": 0.29010947674186716,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

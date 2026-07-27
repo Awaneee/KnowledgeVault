@@ -1,0 +1,118 @@
+{
+  "query_id": "aq_012",
+  "question": "What is the two-phase commit protocol?",
+  "category": "factual_lookup",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    308,
+    479
+  ],
+  "reference_answer": "Two-phase commit (2PC) is a distributed transaction protocol. Phase 1 (Prepare): the coordinator asks all participants to lock resources and vote ready or abort. Phase 2 (Commit): if all voted ready, coordinator sends commit; if any voted abort, coordinator sends rollback. The weakness is that if the coordinator crashes after prepare, participants are blocked waiting.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Two-phase commit (2PC): coordinator asks all participants to prepare (lock resources), then commit. Blocking protocol — ",
+      "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any on",
+      "Learned: `git bisect` binary-searches commit history to find which commit introduced a bug. Set good/bad commits, then i",
+      "Internship interview debrief: two-stage process. First round was a coding round (2 DSA problems, 45 min). Second round i"
+    ],
+    "retrieval_ms": 63.0,
+    "llm_ms": 64156.0,
+    "total_ms": 64219.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Two-phase commit (2PC): coordinator asks all participants to prepare (lock resources), then commit. Blocking protocol — \nTwo-phase commit (2PC): coordinator asks all participants to prepare (lock resources), then commit. Blocking protocol — if coordinator fails after prepare, participants are stuck. Three-phase commit adds a pre-commit phase.\n\nCategory: Semantic match\nNote: Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any on\nDeadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any one prevents deadlock.\n\nCategory: Semantic match\nNote: Learned: `git bisect` binary-searches commit history to find which commit introduced a bug. Set good/bad commits, then i\nLearned: `git bisect` binary-searches commit history to find which commit introduced a bug. Set good/bad commits, then it auto-checks out midpoints.\n\nCategory: Semantic match\nNote: Internship interview debrief: two-stage process. First round was a coding round (2 DSA problems, 45 min). Second round i\nInternship interview debrief: two-stage process. First round was a coding round (2 DSA problems, 45 min). Second round is system design + behavioral. Prep accordingly.\n</context>\n\n<question>\nWhat is the two-phase commit protocol?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 479,
+        "note_title": "Two-phase commit (2PC): coordinator asks all participants to prepare (lock resources), then commit. Blocking protocol — ",
+        "chunk_text": "Two-phase commit (2PC): coordinator asks all participants to prepare (lock resources), then commit. Blocking protocol — if coordinator fails after prepare, participants are stuck. Three-phase commit adds a pre-commit phase.",
+        "chunk_index": 0,
+        "score": 0.787221623228693,
+        "semantic_score": 0.787221623228693,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 384,
+        "note_title": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any on",
+        "chunk_text": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any one prevents deadlock.",
+        "chunk_index": 0,
+        "score": 0.3917040591416331,
+        "semantic_score": 0.3917040591416331,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 727,
+        "note_title": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any on",
+        "chunk_text": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any one prevents deadlock.",
+        "chunk_index": 0,
+        "score": 0.3917040591416331,
+        "semantic_score": 0.3917040591416331,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 827,
+        "note_title": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any on",
+        "chunk_text": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any one prevents deadlock.",
+        "chunk_index": 0,
+        "score": 0.3917040591416331,
+        "semantic_score": 0.3917040591416331,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 927,
+        "note_title": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any on",
+        "chunk_text": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any one prevents deadlock.",
+        "chunk_index": 0,
+        "score": 0.3917040591416331,
+        "semantic_score": 0.3917040591416331,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1027,
+        "note_title": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any on",
+        "chunk_text": "Deadlock conditions (all four must hold): Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Breaking any one prevents deadlock.",
+        "chunk_index": 0,
+        "score": 0.3917040591416331,
+        "semantic_score": 0.3917040591416331,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 328,
+        "note_title": "Learned: `git bisect` binary-searches commit history to find which commit introduced a bug. Set good/bad commits, then i",
+        "chunk_text": "Learned: `git bisect` binary-searches commit history to find which commit introduced a bug. Set good/bad commits, then it auto-checks out midpoints.",
+        "chunk_index": 0,
+        "score": 0.38874903321266174,
+        "semantic_score": 0.38874903321266174,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 344,
+        "note_title": "Internship interview debrief: two-stage process. First round was a coding round (2 DSA problems, 45 min). Second round i",
+        "chunk_text": "Internship interview debrief: two-stage process. First round was a coding round (2 DSA problems, 45 min). Second round is system design + behavioral. Prep accordingly.",
+        "chunk_index": 0,
+        "score": 0.37314337491989136,
+        "semantic_score": 0.37314337491989136,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

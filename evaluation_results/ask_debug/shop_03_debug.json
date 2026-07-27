@@ -1,0 +1,99 @@
+{
+  "query_id": "shop_03",
+  "question": "Do I have any grocery shopping to do?",
+  "category": "shopping",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    76
+  ],
+  "reference_answer": "Yes, you have a shopping note with grocery items that need to be purchased.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Buy groceries including milk, eggs, bread and fruits.",
+      "Pay electricity and internet bills this weekend.",
+      "Plan a trip to Manali with friends.",
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Schedule a health checkup before August.",
+      "Book a dentist appointment for next month."
+    ],
+    "retrieval_ms": 110.0,
+    "llm_ms": 343.0,
+    "total_ms": 453.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Shopping\nNote: Buy groceries including milk, eggs, bread and fruits.\nBuy groceries including milk, eggs, bread and fruits.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Semantic match\nNote: Plan a trip to Manali with friends.\nPlan a trip to Manali with friends.\n\nCategory: Semantic match\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Book a dentist appointment for next month.\nBook a dentist appointment for next month.\n</context>\n\n<question>\nDo I have any grocery shopping to do?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 76,
+        "note_title": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_text": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_index": 0,
+        "score": 0.5992499351054402,
+        "semantic_score": 0.5992499351054402,
+        "intent_score": 0.0,
+        "intent_category": "Shopping"
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.2667017141998841,
+        "semantic_score": 0.2667017141998841,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 81,
+        "note_title": "Plan a trip to Manali with friends.",
+        "chunk_text": "Plan a trip to Manali with friends.",
+        "chunk_index": 0,
+        "score": 0.1685440443210655,
+        "semantic_score": 0.1685440443210655,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.16275504196480295,
+        "semantic_score": 0.16275504196480295,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.15691340904911844,
+        "semantic_score": 0.15691340904911844,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 78,
+        "note_title": "Book a dentist appointment for next month.",
+        "chunk_text": "Book a dentist appointment for next month.",
+        "chunk_index": 0,
+        "score": 0.13275819713695625,
+        "semantic_score": 0.13275819713695625,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 6
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

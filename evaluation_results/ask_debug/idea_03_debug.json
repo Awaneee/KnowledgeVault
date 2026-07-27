@@ -1,0 +1,123 @@
+{
+  "query_id": "idea_03",
+  "question": "What new app ideas have I been brainstorming?",
+  "category": "ideas",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    85,
+    86,
+    87
+  ],
+  "reference_answer": "Your brainstorming notes contain ideas for new applications including AI-powered productivity tools.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Brainstorm startup ideas around AI productivity tools.",
+      "Build a Flutter UI for KnowledgeVault.",
+      "Design a new AI-powered note summarization workflow.",
+      "Meeting notes from backend architecture discussion.",
+      "Improve Flutter application performance.",
+      "Ideas for improving semantic retrieval quality.",
+      "Read about Retrieval-Augmented Generation architectures.",
+      "Discuss KnowledgeVault architecture with Sid next week."
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 563.0,
+    "total_ms": 688.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Ideas - AI\nNote: Brainstorm startup ideas around AI productivity tools.\nBrainstorm startup ideas around AI productivity tools.\n\nCategory: Semantic match\nNote: Build a Flutter UI for KnowledgeVault.\nBuild a Flutter UI for KnowledgeVault.\n\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Improve Flutter application performance.\nImprove Flutter application performance.\n\nCategory: Semantic match\nNote: Ideas for improving semantic retrieval quality.\nIdeas for improving semantic retrieval quality.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n\nCategory: Semantic match\nNote: Discuss KnowledgeVault architecture with Sid next week.\nDiscuss KnowledgeVault architecture with Sid next week.\n</context>\n\n<question>\nWhat new app ideas have I been brainstorming?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 85,
+        "note_title": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_text": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_index": 0,
+        "score": 0.5159952640533447,
+        "semantic_score": 0.5159952640533447,
+        "intent_score": 0.13458667603651756,
+        "intent_category": "Ideas - AI"
+      },
+      {
+        "note_id": 97,
+        "note_title": "Build a Flutter UI for KnowledgeVault.",
+        "chunk_text": "Build a Flutter UI for KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.31801559436414273,
+        "semantic_score": 0.31801559436414273,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.2875596582889557,
+        "semantic_score": 0.2875596582889557,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.2747568651888891,
+        "semantic_score": 0.2747568651888891,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 98,
+        "note_title": "Improve Flutter application performance.",
+        "chunk_text": "Improve Flutter application performance.",
+        "chunk_index": 0,
+        "score": 0.2632061541080475,
+        "semantic_score": 0.2632061541080475,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 86,
+        "note_title": "Ideas for improving semantic retrieval quality.",
+        "chunk_text": "Ideas for improving semantic retrieval quality.",
+        "chunk_index": 0,
+        "score": 0.25850963592529297,
+        "semantic_score": 0.25850963592529297,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.20707322912971837,
+        "semantic_score": 0.20707322912971837,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 57,
+        "note_title": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_text": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_index": 0,
+        "score": 0.18475961846944333,
+        "semantic_score": 0.18475961846944333,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "query_id": "aq_031",
+  "question": "Summarize all my AI and machine learning study notes.",
+  "category": "synthesis",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    60,
+    64,
+    72,
+    85,
+    87,
+    101,
+    110,
+    112,
+    114,
+    117
+  ],
+  "reference_answer": "AI/ML notes cover: RAG architecture (retrieval → context injection → generation), embedding models (all-MiniLM-L6-v2, FAISS, pgvector), LLM evaluation (MRR, Recall, faithfulness, hallucination), prompting techniques (chain-of-thought, few-shot, temperature), fine-tuning methods (LoRA, DPO, instruction tuning), and retrieval strategies (hybrid, reranking, HyDE, query expansion).",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Design a new AI-powered note summarization workflow.",
+      "Competitor analysis for AI note-taking: Notion AI (expensive, not personal knowledge focused), Obsidian (local-first, no",
+      "Brainstorm startup ideas around AI productivity tools.",
+      "Podcast: Lex Fridman interview with Andrej Karpathy. Mind-blowing discussion on AI scaling, AGI timelines, and autonomou",
+      "Startup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. C",
+      "Random thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build",
+      "Reading 'Grokking Algorithms' by Aditya Bhargava. Great visual explanations of sorting, graph algorithms, dynamic progra",
+      "Startup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weigh"
+    ],
+    "retrieval_ms": 79.0,
+    "llm_ms": 64359.0,
+    "total_ms": 64438.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n\nCategory: Semantic match\nNote: Competitor analysis for AI note-taking: Notion AI (expensive, not personal knowledge focused), Obsidian (local-first, no\nCompetitor analysis for AI note-taking: Notion AI (expensive, not personal knowledge focused), Obsidian (local-first, no AI), Roam Research (expensive, steep learning curve). Gap: simple + AI-native.\n\nCategory: Semantic match\nNote: Brainstorm startup ideas around AI productivity tools.\nBrainstorm startup ideas around AI productivity tools.\n\nCategory: Semantic match\nNote: Podcast: Lex Fridman interview with Andrej Karpathy. Mind-blowing discussion on AI scaling, AGI timelines, and autonomou\nPodcast: Lex Fridman interview with Andrej Karpathy. Mind-blowing discussion on AI scaling, AGI timelines, and autonomous vehicles. Karpathy's clarity of thought is exceptional.\n\nCategory: Semantic match\nNote: Startup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. C\nStartup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. Charges Rs 99 per review. High volume, low margin.\n\nCategory: Semantic match\nNote: Random thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build\nRandom thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build and why, not how to write a for loop.\n\nCategory: Semantic match\nNote: Reading 'Grokking Algorithms' by Aditya Bhargava. Great visual explanations of sorting, graph algorithms, dynamic progra\nReading 'Grokking Algorithms' by Aditya Bhargava. Great visual explanations of sorting, graph algorithms, dynamic programming. Good refresher before interviews.\n\nCategory: Semantic match\nNote: Startup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weigh\nStartup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weights, and optimizes a personalized study plan. Monetize via premium plan.\n</context>\n\n<question>\nSummarize all my AI and machine learning study notes.\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.6013625026561332,
+        "semantic_score": 0.6013625026561332,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 529,
+        "note_title": "Competitor analysis for AI note-taking: Notion AI (expensive, not personal knowledge focused), Obsidian (local-first, no",
+        "chunk_text": "Competitor analysis for AI note-taking: Notion AI (expensive, not personal knowledge focused), Obsidian (local-first, no AI), Roam Research (expensive, steep learning curve). Gap: simple + AI-native.",
+        "chunk_index": 0,
+        "score": 0.5014749466493837,
+        "semantic_score": 0.5014749466493837,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 85,
+        "note_title": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_text": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_index": 0,
+        "score": 0.4607979035853098,
+        "semantic_score": 0.4607979035853098,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 230,
+        "note_title": "Podcast: Lex Fridman interview with Andrej Karpathy. Mind-blowing discussion on AI scaling, AGI timelines, and autonomou",
+        "chunk_text": "Podcast: Lex Fridman interview with Andrej Karpathy. Mind-blowing discussion on AI scaling, AGI timelines, and autonomous vehicles. Karpathy's clarity of thought is exceptional.",
+        "chunk_index": 0,
+        "score": 0.4510556430253778,
+        "semantic_score": 0.4510556430253778,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 525,
+        "note_title": "Startup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. C",
+        "chunk_text": "Startup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. Charges Rs 99 per review. High volume, low margin.",
+        "chunk_index": 0,
+        "score": 0.4256170049677501,
+        "semantic_score": 0.4256170049677501,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 416,
+        "note_title": "Random thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build",
+        "chunk_text": "Random thought: 10 years from now, AI will write most boilerplate code. The valuable skill will be knowing what to build and why, not how to write a for loop.",
+        "chunk_index": 0,
+        "score": 0.4225083497176587,
+        "semantic_score": 0.4225083497176587,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 619,
+        "note_title": "Reading 'Grokking Algorithms' by Aditya Bhargava. Great visual explanations of sorting, graph algorithms, dynamic progra",
+        "chunk_text": "Reading 'Grokking Algorithms' by Aditya Bhargava. Great visual explanations of sorting, graph algorithms, dynamic programming. Good refresher before interviews.",
+        "chunk_index": 0,
+        "score": 0.41511406988585486,
+        "semantic_score": 0.41511406988585486,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 617,
+        "note_title": "Startup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weigh",
+        "chunk_text": "Startup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weights, and optimizes a personalized study plan. Monetize via premium plan.",
+        "chunk_index": 0,
+        "score": 0.402775293836769,
+        "semantic_score": 0.402775293836769,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

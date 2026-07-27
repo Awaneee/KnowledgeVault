@@ -1,0 +1,555 @@
+{
+  "total_notes": 1055,
+  "organized": 1055,
+  "failed": 0,
+  "total_categories": 50,
+  "singleton_categories": 0,
+  "empty_categories": 0,
+  "avg_notes_per_category": 21.1,
+  "max_notes_in_category": 242,
+  "min_notes_in_category": 2,
+  "fragmentation_rate": 0.0,
+  "category_cap_used": true,
+  "category_reuse_rate": 1.0,
+  "duplicates": {
+    "postgresql": [
+      "Reference - PostgreSQL",
+      "Study - PostgreSQL"
+    ],
+    "kubernetes": [
+      "Study - Kubernetes",
+      "Kubernetes"
+    ],
+    "ai": [
+      "Study - AI",
+      "AI"
+    ],
+    "redis": [
+      "Study - Redis",
+      "Reference - Redis"
+    ]
+  },
+  "suspicious_categories": [
+    "Tasks"
+  ],
+  "intent_distribution": {
+    "communication": [
+      "Communication - Sid",
+      "Communication - Siddhant"
+    ],
+    "event": [
+      "Meetings",
+      "Meetings - Knowledgevault Team"
+    ],
+    "general": [
+      "Reduce",
+      "Print",
+      "Flutter Application Performance.",
+      "AI",
+      "Kubernetes",
+      "Id",
+      "Rs"
+    ],
+    "idea": [
+      "Ideas - AI",
+      "Ideas - Semantic Retrieval",
+      "Ideas - AI Summarization",
+      "Ideas - Leetcode"
+    ],
+    "question": [
+      "Questions - Python",
+      "Questions - PostgreSQL",
+      "Questions - Factory",
+      "Questions - Ego",
+      "Questions - Philosophy"
+    ],
+    "reference": [
+      "Reference - PostgreSQL",
+      "Reference - Docker",
+      "Reference - Redis",
+      "Reference - Knowledgevault Backend"
+    ],
+    "reminder": [
+      "Reminders",
+      "Appointments"
+    ],
+    "study": [
+      "Study - NLP Models",
+      "Study - Graph Algorithms",
+      "Study - Knowledge Vault",
+      "Study - Operating Systems",
+      "Study - Kubernetes",
+      "Study - Vector Databases",
+      "Study - Cross-encoder Reranking",
+      "Study - Event-driven Architecture",
+      "Study - System Design",
+      "Study - JWT Authentication",
+      "Study - Flutter",
+      "Study - Kafka",
+      "Study - Knowledgeretrievalsystems",
+      "Study - FastAPI",
+      "Study - AI",
+      "Study - Redis",
+      "Study - API Performance",
+      "Study - Semantic Search",
+      "Study - PostgreSQL",
+      "Study - Sqlalchemy"
+    ],
+    "todo": [
+      "Bills",
+      "Shopping",
+      "Tasks",
+      "Travel"
+    ]
+  },
+  "method_distribution": {
+    "created": 45,
+    "canonical_name": 313,
+    "exact_rule": 29,
+    "cap_fallback": 668
+  },
+  "top_categories": [
+    {
+      "id": 90,
+      "name": "Tasks",
+      "intent_type": "todo",
+      "notes": 242
+    },
+    {
+      "id": 105,
+      "name": "Questions - Python",
+      "intent_type": "question",
+      "notes": 40
+    },
+    {
+      "id": 104,
+      "name": "Flutter Application Performance.",
+      "intent_type": "general",
+      "notes": 39
+    },
+    {
+      "id": 80,
+      "name": "Study - Sqlalchemy",
+      "intent_type": "study",
+      "notes": 38
+    },
+    {
+      "id": 84,
+      "name": "Reference - Redis",
+      "intent_type": "reference",
+      "notes": 37
+    },
+    {
+      "id": 101,
+      "name": "Questions - PostgreSQL",
+      "intent_type": "question",
+      "notes": 30
+    },
+    {
+      "id": 97,
+      "name": "Study - API Performance",
+      "intent_type": "study",
+      "notes": 28
+    },
+    {
+      "id": 78,
+      "name": "Study - Cross-encoder Reranking",
+      "intent_type": "study",
+      "notes": 27
+    },
+    {
+      "id": 99,
+      "name": "Study - Flutter",
+      "intent_type": "study",
+      "notes": 27
+    },
+    {
+      "id": 75,
+      "name": "Study - NLP Models",
+      "intent_type": "study",
+      "notes": 25
+    },
+    {
+      "id": 81,
+      "name": "Study - System Design",
+      "intent_type": "study",
+      "notes": 25
+    },
+    {
+      "id": 100,
+      "name": "Study - Event-driven Architecture",
+      "intent_type": "study",
+      "notes": 23
+    },
+    {
+      "id": 98,
+      "name": "Reference - Knowledgevault Backend",
+      "intent_type": "reference",
+      "notes": 23
+    },
+    {
+      "id": 71,
+      "name": "Study - Graph Algorithms",
+      "intent_type": "study",
+      "notes": 22
+    },
+    {
+      "id": 79,
+      "name": "Study - FastAPI",
+      "intent_type": "study",
+      "notes": 22
+    }
+  ],
+  "all_categories": [
+    {
+      "id": 114,
+      "name": "AI",
+      "intent_type": "general",
+      "notes": 18,
+      "actor": "Reranking"
+    },
+    {
+      "id": 88,
+      "name": "Appointments",
+      "intent_type": "reminder",
+      "notes": 4,
+      "actor": null
+    },
+    {
+      "id": 87,
+      "name": "Bills",
+      "intent_type": "todo",
+      "notes": 20,
+      "actor": null
+    },
+    {
+      "id": 66,
+      "name": "Communication - Sid",
+      "intent_type": "communication",
+      "notes": 17,
+      "actor": "Sid"
+    },
+    {
+      "id": 68,
+      "name": "Communication - Siddhant",
+      "intent_type": "communication",
+      "notes": 6,
+      "actor": "Siddhant"
+    },
+    {
+      "id": 104,
+      "name": "Flutter Application Performance.",
+      "intent_type": "general",
+      "notes": 39,
+      "actor": null
+    },
+    {
+      "id": 110,
+      "name": "Id",
+      "intent_type": "general",
+      "notes": 10,
+      "actor": "Delhi"
+    },
+    {
+      "id": 91,
+      "name": "Ideas - AI",
+      "intent_type": "idea",
+      "notes": 11,
+      "actor": null
+    },
+    {
+      "id": 93,
+      "name": "Ideas - AI Summarization",
+      "intent_type": "idea",
+      "notes": 13,
+      "actor": null
+    },
+    {
+      "id": 112,
+      "name": "Ideas - Leetcode",
+      "intent_type": "idea",
+      "notes": 10,
+      "actor": "Takes"
+    },
+    {
+      "id": 92,
+      "name": "Ideas - Semantic Retrieval",
+      "intent_type": "idea",
+      "notes": 20,
+      "actor": null
+    },
+    {
+      "id": 113,
+      "name": "Kubernetes",
+      "intent_type": "general",
+      "notes": 22,
+      "actor": "Pods"
+    },
+    {
+      "id": 102,
+      "name": "Meetings",
+      "intent_type": "event",
+      "notes": 13,
+      "actor": null
+    },
+    {
+      "id": 103,
+      "name": "Meetings - Knowledgevault Team",
+      "intent_type": "event",
+      "notes": 18,
+      "actor": "Knowledgevault Team"
+    },
+    {
+      "id": 107,
+      "name": "Print",
+      "intent_type": "general",
+      "notes": 7,
+      "actor": "Id"
+    },
+    {
+      "id": 109,
+      "name": "Questions - Ego",
+      "intent_type": "question",
+      "notes": 3,
+      "actor": null
+    },
+    {
+      "id": 115,
+      "name": "Questions - Factory",
+      "intent_type": "question",
+      "notes": 17,
+      "actor": "Useful"
+    },
+    {
+      "id": 111,
+      "name": "Questions - Philosophy",
+      "intent_type": "question",
+      "notes": 9,
+      "actor": "Star"
+    },
+    {
+      "id": 101,
+      "name": "Questions - PostgreSQL",
+      "intent_type": "question",
+      "notes": 30,
+      "actor": null
+    },
+    {
+      "id": 105,
+      "name": "Questions - Python",
+      "intent_type": "question",
+      "notes": 40,
+      "actor": "Python"
+    },
+    {
+      "id": 106,
+      "name": "Reduce",
+      "intent_type": "general",
+      "notes": 6,
+      "actor": "Doctor"
+    },
+    {
+      "id": 83,
+      "name": "Reference - Docker",
+      "intent_type": "reference",
+      "notes": 15,
+      "actor": null
+    },
+    {
+      "id": 98,
+      "name": "Reference - Knowledgevault Backend",
+      "intent_type": "reference",
+      "notes": 23,
+      "actor": null
+    },
+    {
+      "id": 85,
+      "name": "Reference - PostgreSQL",
+      "intent_type": "reference",
+      "notes": 16,
+      "actor": null
+    },
+    {
+      "id": 84,
+      "name": "Reference - Redis",
+      "intent_type": "reference",
+      "notes": 37,
+      "actor": null
+    },
+    {
+      "id": 67,
+      "name": "Reminders",
+      "intent_type": "reminder",
+      "notes": 17,
+      "actor": "Sid"
+    },
+    {
+      "id": 108,
+      "name": "Rs",
+      "intent_type": "general",
+      "notes": 12,
+      "actor": "Sip"
+    },
+    {
+      "id": 86,
+      "name": "Shopping",
+      "intent_type": "todo",
+      "notes": 2,
+      "actor": null
+    },
+    {
+      "id": 76,
+      "name": "Study - AI",
+      "intent_type": "study",
+      "notes": 7,
+      "actor": null
+    },
+    {
+      "id": 97,
+      "name": "Study - API Performance",
+      "intent_type": "study",
+      "notes": 28,
+      "actor": null
+    },
+    {
+      "id": 78,
+      "name": "Study - Cross-encoder Reranking",
+      "intent_type": "study",
+      "notes": 27,
+      "actor": null
+    },
+    {
+      "id": 100,
+      "name": "Study - Event-driven Architecture",
+      "intent_type": "study",
+      "notes": 23,
+      "actor": null
+    },
+    {
+      "id": 79,
+      "name": "Study - FastAPI",
+      "intent_type": "study",
+      "notes": 22,
+      "actor": null
+    },
+    {
+      "id": 99,
+      "name": "Study - Flutter",
+      "intent_type": "study",
+      "notes": 27,
+      "actor": null
+    },
+    {
+      "id": 71,
+      "name": "Study - Graph Algorithms",
+      "intent_type": "study",
+      "notes": 22,
+      "actor": null
+    },
+    {
+      "id": 74,
+      "name": "Study - JWT Authentication",
+      "intent_type": "study",
+      "notes": 16,
+      "actor": null
+    },
+    {
+      "id": 82,
+      "name": "Study - Kafka",
+      "intent_type": "study",
+      "notes": 8,
+      "actor": null
+    },
+    {
+      "id": 96,
+      "name": "Study - Knowledge Vault",
+      "intent_type": "study",
+      "notes": 13,
+      "actor": null
+    },
+    {
+      "id": 94,
+      "name": "Study - Knowledgeretrievalsystems",
+      "intent_type": "study",
+      "notes": 19,
+      "actor": null
+    },
+    {
+      "id": 73,
+      "name": "Study - Kubernetes",
+      "intent_type": "study",
+      "notes": 19,
+      "actor": null
+    },
+    {
+      "id": 75,
+      "name": "Study - NLP Models",
+      "intent_type": "study",
+      "notes": 25,
+      "actor": null
+    },
+    {
+      "id": 70,
+      "name": "Study - Operating Systems",
+      "intent_type": "study",
+      "notes": 10,
+      "actor": null
+    },
+    {
+      "id": 69,
+      "name": "Study - PostgreSQL",
+      "intent_type": "study",
+      "notes": 9,
+      "actor": null
+    },
+    {
+      "id": 72,
+      "name": "Study - Redis",
+      "intent_type": "study",
+      "notes": 2,
+      "actor": null
+    },
+    {
+      "id": 95,
+      "name": "Study - Semantic Search",
+      "intent_type": "study",
+      "notes": 9,
+      "actor": null
+    },
+    {
+      "id": 80,
+      "name": "Study - Sqlalchemy",
+      "intent_type": "study",
+      "notes": 38,
+      "actor": null
+    },
+    {
+      "id": 81,
+      "name": "Study - System Design",
+      "intent_type": "study",
+      "notes": 25,
+      "actor": null
+    },
+    {
+      "id": 77,
+      "name": "Study - Vector Databases",
+      "intent_type": "study",
+      "notes": 5,
+      "actor": null
+    },
+    {
+      "id": 90,
+      "name": "Tasks",
+      "intent_type": "todo",
+      "notes": 242,
+      "actor": null
+    },
+    {
+      "id": 89,
+      "name": "Travel",
+      "intent_type": "todo",
+      "notes": 4,
+      "actor": null
+    }
+  ]
+}

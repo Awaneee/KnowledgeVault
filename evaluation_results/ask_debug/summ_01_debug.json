@@ -1,0 +1,129 @@
+{
+  "query_id": "summ_01",
+  "question": "Summarise my study notes.",
+  "category": "summarization",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    58,
+    59,
+    60,
+    61,
+    64,
+    65,
+    66,
+    67,
+    70
+  ],
+  "reference_answer": "Your study notes cover a wide range of computer science topics including databases (PostgreSQL, Redis), algorithms (graph algorithms), operating systems, NLP and machine learning, cross-encoder reranking, and system design for technical interviews.",
+  "eval_notes": "Award full credit if the summary covers at least four distinct study topics.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Design a new AI-powered note summarization workflow.",
+      "Meeting summary for weekly KnowledgeVault sprint planning.",
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Meeting notes from backend architecture discussion.",
+      "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+      "Learn SQLAlchemy relationship loading strategies.",
+      "Prepare resume before placement season.",
+      "Plan a trip to Manali with friends."
+    ],
+    "retrieval_ms": 93.0,
+    "llm_ms": 688.0,
+    "total_ms": 781.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n\nCategory: Semantic match\nNote: Meeting summary for weekly KnowledgeVault sprint planning.\nMeeting summary for weekly KnowledgeVault sprint planning.\n\nCategory: Semantic match\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Reference PostgreSQL VACUUM and ANALYZE documentation.\nReference PostgreSQL VACUUM and ANALYZE documentation.\n\nCategory: Semantic match\nNote: Learn SQLAlchemy relationship loading strategies.\nLearn SQLAlchemy relationship loading strategies.\n\nCategory: Semantic match\nNote: Prepare resume before placement season.\nPrepare resume before placement season.\n\nCategory: Semantic match\nNote: Plan a trip to Manali with friends.\nPlan a trip to Manali with friends.\n</context>\n\n<question>\nSummarise my study notes.\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.46455816818947127,
+        "semantic_score": 0.46455816818947127,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 107,
+        "note_title": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_text": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_index": 0,
+        "score": 0.2910091069641445,
+        "semantic_score": 0.2910091069641445,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.2727519138307519,
+        "semantic_score": 0.2727519138307519,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.26297342148185576,
+        "semantic_score": 0.26297342148185576,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 74,
+        "note_title": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_text": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_index": 0,
+        "score": 0.24817802751594875,
+        "semantic_score": 0.24817802751594875,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 69,
+        "note_title": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_text": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_index": 0,
+        "score": 0.23658462653802048,
+        "semantic_score": 0.23658462653802048,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 100,
+        "note_title": "Prepare resume before placement season.",
+        "chunk_text": "Prepare resume before placement season.",
+        "chunk_index": 0,
+        "score": 0.21380958598284683,
+        "semantic_score": 0.21380958598284683,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 81,
+        "note_title": "Plan a trip to Manali with friends.",
+        "chunk_text": "Plan a trip to Manali with friends.",
+        "chunk_index": 0,
+        "score": 0.21199746835209154,
+        "semantic_score": 0.21199746835209154,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

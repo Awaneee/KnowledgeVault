@@ -1,0 +1,128 @@
+{
+  "query_id": "aq_037",
+  "question": "What technical problems have I been solving?",
+  "category": "ambiguous",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    94,
+    136,
+    163,
+    246,
+    270,
+    335,
+    340,
+    357
+  ],
+  "reference_answer": "Recent technical problems: N+1 SQLAlchemy queries (fixed with joinedload), Redis pool exhaustion under load (increased pool size), race condition in note worker (fixed with brpoplpush reliable queue), Gemini API 429 rate limits during evaluation, memory leak from per-request model loading, category embedding drift causing misclassification.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Realized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with t",
+      "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it ",
+      "Call with college senior who's at Microsoft: advice — focus on problem-solving clarity, not just getting the right answe",
+      "Backup all code to GitHub. Have local commits that aren't pushed. Do this today before laptop issues cause problems.",
+      "Today I fixed a bug that had been annoying me for 3 days. The fix was 2 lines. The investigation was the whole work. Tha",
+      "Good debugging session: rubber duck debugging actually works. Explaining the problem out loud to an inanimate object for",
+      "February productivity summary: 18 LeetCode problems solved, 3 blog posts drafted, capstone at 70% completion, KnowledgeV",
+      "Research distributed systems interview questions."
+    ],
+    "retrieval_ms": 109.0,
+    "llm_ms": 64188.0,
+    "total_ms": 64297.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Realized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with t\nRealized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with the most important and hardest thing every day.\n\nCategory: Semantic match\nNote: Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it \nRandom thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it again. Tutorials only get you so far.\n\nCategory: Semantic match\nNote: Call with college senior who's at Microsoft: advice — focus on problem-solving clarity, not just getting the right answe\nCall with college senior who's at Microsoft: advice — focus on problem-solving clarity, not just getting the right answer. Interviewers evaluate how you think more than just the code.\n\nCategory: Semantic match\nNote: Backup all code to GitHub. Have local commits that aren't pushed. Do this today before laptop issues cause problems.\nBackup all code to GitHub. Have local commits that aren't pushed. Do this today before laptop issues cause problems.\n\nCategory: Semantic match\nNote: Today I fixed a bug that had been annoying me for 3 days. The fix was 2 lines. The investigation was the whole work. Tha\nToday I fixed a bug that had been annoying me for 3 days. The fix was 2 lines. The investigation was the whole work. That's debugging.\n\nCategory: Semantic match\nNote: Good debugging session: rubber duck debugging actually works. Explaining the problem out loud to an inanimate object for\nGood debugging session: rubber duck debugging actually works. Explaining the problem out loud to an inanimate object forces you to articulate assumptions and often reveals the bug.\n\nCategory: Semantic match\nNote: February productivity summary: 18 LeetCode problems solved, 3 blog posts drafted, capstone at 70% completion, KnowledgeV\nFebruary productivity summary: 18 LeetCode problems solved, 3 blog posts drafted, capstone at 70% completion, KnowledgeVault evaluation framework built. Decent month.\n\nCategory: Semantic match\nNote: Research distributed systems interview questions.\nResearch distributed systems interview questions.\n</context>\n\n<question>\nWhat technical problems have I been solving?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 647,
+        "note_title": "Realized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with t",
+        "chunk_text": "Realized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with the most important and hardest thing every day.",
+        "chunk_index": 0,
+        "score": 0.4357677361826747,
+        "semantic_score": 0.4357677361826747,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 357,
+        "note_title": "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it ",
+        "chunk_text": "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it again. Tutorials only get you so far.",
+        "chunk_index": 0,
+        "score": 0.37618988014399357,
+        "semantic_score": 0.37618988014399357,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 199,
+        "note_title": "Call with college senior who's at Microsoft: advice — focus on problem-solving clarity, not just getting the right answe",
+        "chunk_text": "Call with college senior who's at Microsoft: advice — focus on problem-solving clarity, not just getting the right answer. Interviewers evaluate how you think more than just the code.",
+        "chunk_index": 0,
+        "score": 0.3666114807128933,
+        "semantic_score": 0.3666114807128933,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 522,
+        "note_title": "Backup all code to GitHub. Have local commits that aren't pushed. Do this today before laptop issues cause problems.",
+        "chunk_text": "Backup all code to GitHub. Have local commits that aren't pushed. Do this today before laptop issues cause problems.",
+        "chunk_index": 0,
+        "score": 0.3527340976754425,
+        "semantic_score": 0.3527340976754425,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 591,
+        "note_title": "Today I fixed a bug that had been annoying me for 3 days. The fix was 2 lines. The investigation was the whole work. Tha",
+        "chunk_text": "Today I fixed a bug that had been annoying me for 3 days. The fix was 2 lines. The investigation was the whole work. That's debugging.",
+        "chunk_index": 0,
+        "score": 0.35052957239923377,
+        "semantic_score": 0.35052957239923377,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 632,
+        "note_title": "Good debugging session: rubber duck debugging actually works. Explaining the problem out loud to an inanimate object for",
+        "chunk_text": "Good debugging session: rubber duck debugging actually works. Explaining the problem out loud to an inanimate object forces you to articulate assumptions and often reveals the bug.",
+        "chunk_index": 0,
+        "score": 0.34569347015262886,
+        "semantic_score": 0.34569347015262886,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 453,
+        "note_title": "February productivity summary: 18 LeetCode problems solved, 3 blog posts drafted, capstone at 70% completion, KnowledgeV",
+        "chunk_text": "February productivity summary: 18 LeetCode problems solved, 3 blog posts drafted, capstone at 70% completion, KnowledgeVault evaluation framework built. Decent month.",
+        "chunk_index": 0,
+        "score": 0.33469349145889526,
+        "semantic_score": 0.33469349145889526,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 99,
+        "note_title": "Research distributed systems interview questions.",
+        "chunk_text": "Research distributed systems interview questions.",
+        "chunk_index": 0,
+        "score": 0.30644047260284646,
+        "semantic_score": 0.30644047260284646,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

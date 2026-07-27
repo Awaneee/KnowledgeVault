@@ -1,0 +1,128 @@
+{
+  "query_id": "aq_022",
+  "question": "What tasks and reminders do I have pending?",
+  "category": "temporal",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    55,
+    233,
+    368,
+    498,
+    506,
+    542,
+    607,
+    753
+  ],
+  "reference_answer": "Based on notes: pay hostel fees before March 31, dentist appointment March 15, capstone progress report due March 25, vehicle insurance renewal before April 10, renew GitHub Student Pack, submit IEEE paper review comments, and check scholarship credit. Multiple bill payments are also pending.",
+  "eval_notes": "Accept any answer listing pending tasks from the notes. Exact list may vary.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "System design: design a notification service. Components: API to create notifications, priority queue (SQS/Kafka), worke",
+      "The gap between what I know I should do and what I actually do is frustrating. I know I should exercise daily, sleep 8 h",
+      "Schedule a health checkup before August.",
+      "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no",
+      "Weekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority co",
+      "Submit capstone progress report by March 25th. 10 pages minimum. Include architecture diagram and progress against miles",
+      "GitHub Actions: workflows defined in `.github/workflows/*.yml`. Triggers: push, pull_request, schedule. Jobs run in para",
+      "Set up 2FA on my Google account. Keep getting prompts but keep dismissing. Do it today."
+    ],
+    "retrieval_ms": 78.0,
+    "llm_ms": 64688.0,
+    "total_ms": 64766.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: System design: design a notification service. Components: API to create notifications, priority queue (SQS/Kafka), worke\nSystem design: design a notification service. Components: API to create notifications, priority queue (SQS/Kafka), worker pool, delivery adapters (email/SMS/push), retry logic, dead letter queue.\n\nCategory: Reminders\nNote: The gap between what I know I should do and what I actually do is frustrating. I know I should exercise daily, sleep 8 h\nThe gap between what I know I should do and what I actually do is frustrating. I know I should exercise daily, sleep 8 hours, study consistently. But doing it is another thing.\n\nCategory: Appointments\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no\nMeeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for note indexing. No microservices for now.\n\nCategory: Semantic match\nNote: Weekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority co\nWeekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority companies: Microsoft, Adobe, Intuit, Atlassian, Flipkart.\n\nCategory: Semantic match\nNote: Submit capstone progress report by March 25th. 10 pages minimum. Include architecture diagram and progress against miles\nSubmit capstone progress report by March 25th. 10 pages minimum. Include architecture diagram and progress against milestones.\n\nCategory: Semantic match\nNote: GitHub Actions: workflows defined in `.github/workflows/*.yml`. Triggers: push, pull_request, schedule. Jobs run in para\nGitHub Actions: workflows defined in `.github/workflows/*.yml`. Triggers: push, pull_request, schedule. Jobs run in parallel by default. Steps run sequentially within a job.\n\nCategory: Semantic match\nNote: Set up 2FA on my Google account. Keep getting prompts but keep dismissing. Do it today.\nSet up 2FA on my Google account. Keep getting prompts but keep dismissing. Do it today.\n</context>\n\n<question>\nWhat tasks and reminders do I have pending?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 392,
+        "note_title": "System design: design a notification service. Components: API to create notifications, priority queue (SQS/Kafka), worke",
+        "chunk_text": "System design: design a notification service. Components: API to create notifications, priority queue (SQS/Kafka), worker pool, delivery adapters (email/SMS/push), retry logic, dead letter queue.",
+        "chunk_index": 0,
+        "score": 0.36445488717883223,
+        "semantic_score": 0.36445488717883223,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 680,
+        "note_title": "The gap between what I know I should do and what I actually do is frustrating. I know I should exercise daily, sleep 8 h",
+        "chunk_text": "The gap between what I know I should do and what I actually do is frustrating. I know I should exercise daily, sleep 8 hours, study consistently. But doing it is another thing.",
+        "chunk_index": 0,
+        "score": 0.3589333333333333,
+        "semantic_score": 0.3333333333333333,
+        "intent_score": 0.2133333333333333,
+        "intent_category": "Reminders"
+      },
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.3436742629810734,
+        "semantic_score": 0.3436742629810734,
+        "intent_score": 0.20444444444444443,
+        "intent_category": "Appointments"
+      },
+      {
+        "note_id": 372,
+        "note_title": "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no",
+        "chunk_text": "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for note indexing. No microservices for now.",
+        "chunk_index": 0,
+        "score": 0.3350739082738112,
+        "semantic_score": 0.3350739082738112,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 620,
+        "note_title": "Weekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority co",
+        "chunk_text": "Weekly sync with placement cell: 47 companies confirmed for campus placements. Registration opens March 1st. Priority companies: Microsoft, Adobe, Intuit, Atlassian, Flipkart.",
+        "chunk_index": 0,
+        "score": 0.33315914866193874,
+        "semantic_score": 0.33315914866193874,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 498,
+        "note_title": "Submit capstone progress report by March 25th. 10 pages minimum. Include architecture diagram and progress against miles",
+        "chunk_text": "Submit capstone progress report by March 25th. 10 pages minimum. Include architecture diagram and progress against milestones.",
+        "chunk_index": 0,
+        "score": 0.33275770144210526,
+        "semantic_score": 0.33275770144210526,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 612,
+        "note_title": "GitHub Actions: workflows defined in `.github/workflows/*.yml`. Triggers: push, pull_request, schedule. Jobs run in para",
+        "chunk_text": "GitHub Actions: workflows defined in `.github/workflows/*.yml`. Triggers: push, pull_request, schedule. Jobs run in parallel by default. Steps run sequentially within a job.",
+        "chunk_index": 0,
+        "score": 0.32680422009267407,
+        "semantic_score": 0.32680422009267407,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 191,
+        "note_title": "Set up 2FA on my Google account. Keep getting prompts but keep dismissing. Do it today.",
+        "chunk_text": "Set up 2FA on my Google account. Keep getting prompts but keep dismissing. Do it today.",
+        "chunk_index": 0,
+        "score": 0.3157939785411923,
+        "semantic_score": 0.3157939785411923,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "query_id": "aq_011",
+  "question": "What is the difference between FIFO, LRU, and Optimal page replacement?",
+  "category": "factual_lookup",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    117,
+    265,
+    318,
+    336,
+    520,
+    530,
+    562,
+    566,
+    579,
+    710,
+    736,
+    738,
+    810,
+    836,
+    838,
+    910,
+    936,
+    938,
+    1010,
+    1036,
+    1038
+  ],
+  "reference_answer": "FIFO replaces the oldest page — simple but can suffer from Belady's anomaly. LRU replaces the least recently used page — good real-world performance but requires hardware support to track access order. Optimal replaces the page not used for the longest future time — theoretically best but requires future knowledge, so only used as a benchmark.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (the",
+      "Reading about cache replacement policies: LRU evicts least recently used, LFU evicts least frequently used, ARC adapts b",
+      "Lecture notes — Memory Management: static allocation (compile-time), stack allocation (automatic, LIFO), heap allocation",
+      "Virtual memory: program addresses are virtual, mapped to physical via page table. TLB caches recent translations. Page f"
+    ],
+    "retrieval_ms": 94.0,
+    "llm_ms": 64921.0,
+    "total_ms": 65015.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (the\nPage replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (theoretical best, requires future knowledge).\n\nCategory: Semantic match\nNote: Reading about cache replacement policies: LRU evicts least recently used, LFU evicts least frequently used, ARC adapts b\nReading about cache replacement policies: LRU evicts least recently used, LFU evicts least frequently used, ARC adapts between LRU and LFU based on hit rates.\n\nCategory: Semantic match\nNote: Lecture notes — Memory Management: static allocation (compile-time), stack allocation (automatic, LIFO), heap allocation\nLecture notes — Memory Management: static allocation (compile-time), stack allocation (automatic, LIFO), heap allocation (manual or GC). Stack is faster but limited in size.\n\nCategory: Semantic match\nNote: Virtual memory: program addresses are virtual, mapped to physical via page table. TLB caches recent translations. Page f\nVirtual memory: program addresses are virtual, mapped to physical via page table. TLB caches recent translations. Page fault triggers OS to load page from disk.\n</context>\n\n<question>\nWhat is the difference between FIFO, LRU, and Optimal page replacement?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 530,
+        "note_title": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (the",
+        "chunk_text": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (theoretical best, requires future knowledge).",
+        "chunk_index": 0,
+        "score": 0.7895463234456599,
+        "semantic_score": 0.7895463234456599,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 738,
+        "note_title": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (the",
+        "chunk_text": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (theoretical best, requires future knowledge).",
+        "chunk_index": 0,
+        "score": 0.7895463234456599,
+        "semantic_score": 0.7895463234456599,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 838,
+        "note_title": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (the",
+        "chunk_text": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (theoretical best, requires future knowledge).",
+        "chunk_index": 0,
+        "score": 0.7895463234456599,
+        "semantic_score": 0.7895463234456599,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 938,
+        "note_title": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (the",
+        "chunk_text": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (theoretical best, requires future knowledge).",
+        "chunk_index": 0,
+        "score": 0.7895463234456599,
+        "semantic_score": 0.7895463234456599,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1038,
+        "note_title": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (the",
+        "chunk_text": "Page replacement algorithms: FIFO (easy, Belady's anomaly), LRU (good performance, needs hardware support), Optimal (theoretical best, requires future knowledge).",
+        "chunk_index": 0,
+        "score": 0.7895463234456599,
+        "semantic_score": 0.7895463234456599,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 520,
+        "note_title": "Reading about cache replacement policies: LRU evicts least recently used, LFU evicts least frequently used, ARC adapts b",
+        "chunk_text": "Reading about cache replacement policies: LRU evicts least recently used, LFU evicts least frequently used, ARC adapts between LRU and LFU based on hit rates.",
+        "chunk_index": 0,
+        "score": 0.4435648653766602,
+        "semantic_score": 0.4435648653766602,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 547,
+        "note_title": "Lecture notes — Memory Management: static allocation (compile-time), stack allocation (automatic, LIFO), heap allocation",
+        "chunk_text": "Lecture notes — Memory Management: static allocation (compile-time), stack allocation (automatic, LIFO), heap allocation (manual or GC). Stack is faster but limited in size.",
+        "chunk_index": 0,
+        "score": 0.41889406217407443,
+        "semantic_score": 0.41889406217407443,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 275,
+        "note_title": "Virtual memory: program addresses are virtual, mapped to physical via page table. TLB caches recent translations. Page f",
+        "chunk_text": "Virtual memory: program addresses are virtual, mapped to physical via page table. TLB caches recent translations. Page fault triggers OS to load page from disk.",
+        "chunk_index": 0,
+        "score": 0.3418040071842672,
+        "semantic_score": 0.3418040071842672,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

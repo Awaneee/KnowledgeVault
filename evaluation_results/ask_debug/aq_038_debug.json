@@ -1,0 +1,122 @@
+{
+  "query_id": "aq_038",
+  "question": "What are the most important things I've realized this month?",
+  "category": "ambiguous",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    63,
+    102,
+    140,
+    154,
+    163,
+    170
+  ],
+  "reference_answer": "Key realizations: the hybrid retrieval benchmark showed zero improvement over semantic despite the architectural complexity — a lesson in measuring before assuming. Engineering requires honesty about what works. The best engineers are persistent, not necessarily the smartest. Documentation is written for the next reader, not the author.",
+  "eval_notes": "Accept any synthesis of journal and learning reflections.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Realized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with t",
+      "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the archi",
+      "Pay electricity and internet bills this weekend.",
+      "Writing this note because I need to remember: it's okay to not have everything figured out at 21. Keep building, keep le"
+    ],
+    "retrieval_ms": 484.0,
+    "llm_ms": 64360.0,
+    "total_ms": 64844.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Realized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with t\nRealized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with the most important and hardest thing every day.\n\nCategory: Semantic match\nNote: Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the archi\nThree things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the architecture, (3) the capstone presentation went well.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Semantic match\nNote: Writing this note because I need to remember: it's okay to not have everything figured out at 21. Keep building, keep le\nWriting this note because I need to remember: it's okay to not have everything figured out at 21. Keep building, keep learning, take care of your health. The rest will follow.\n</context>\n\n<question>\nWhat are the most important things I've realized this month?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 647,
+        "note_title": "Realized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with t",
+        "chunk_text": "Realized I've been avoiding the hardest problems by working on easier ones. Classic prioritization failure. Start with the most important and hardest thing every day.",
+        "chunk_index": 0,
+        "score": 0.3782459610177864,
+        "semantic_score": 0.3782459610177864,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 442,
+        "note_title": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the archi",
+        "chunk_text": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the architecture, (3) the capstone presentation went well.",
+        "chunk_index": 0,
+        "score": 0.3661369194429196,
+        "semantic_score": 0.3661369194429196,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 755,
+        "note_title": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the archi",
+        "chunk_text": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the architecture, (3) the capstone presentation went well.",
+        "chunk_index": 0,
+        "score": 0.3661369194429196,
+        "semantic_score": 0.3661369194429196,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 855,
+        "note_title": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the archi",
+        "chunk_text": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the architecture, (3) the capstone presentation went well.",
+        "chunk_index": 0,
+        "score": 0.3661369194429196,
+        "semantic_score": 0.3661369194429196,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 955,
+        "note_title": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the archi",
+        "chunk_text": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the architecture, (3) the capstone presentation went well.",
+        "chunk_index": 0,
+        "score": 0.3661369194429196,
+        "semantic_score": 0.3661369194429196,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1055,
+        "note_title": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the archi",
+        "chunk_text": "Three things I'm grateful for today: (1) my laptop didn't crash during the demo, (2) Sid gave good feedback on the architecture, (3) the capstone presentation went well.",
+        "chunk_index": 0,
+        "score": 0.3661369194429196,
+        "semantic_score": 0.3661369194429196,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.3175764178507454,
+        "semantic_score": 0.3175764178507454,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 212,
+        "note_title": "Writing this note because I need to remember: it's okay to not have everything figured out at 21. Keep building, keep le",
+        "chunk_text": "Writing this note because I need to remember: it's okay to not have everything figured out at 21. Keep building, keep learning, take care of your health. The rest will follow.",
+        "chunk_index": 0,
+        "score": 0.2727093344368936,
+        "semantic_score": 0.2727093344368936,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

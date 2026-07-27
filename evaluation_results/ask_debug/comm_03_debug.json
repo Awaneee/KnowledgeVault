@@ -1,0 +1,122 @@
+{
+  "query_id": "comm_03",
+  "question": "Who do I need to contact about the backend project?",
+  "category": "communication",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    56,
+    57
+  ],
+  "reference_answer": "You need to contact Siddhant about the backend meeting and discuss the KnowledgeVault backend architecture.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Meeting notes from backend architecture discussion.",
+      "Research distributed systems interview questions.",
+      "Refactor backend service layer for maintainability.",
+      "Document KnowledgeVault backend APIs.",
+      "Implement Redis-backed background workers.",
+      "Learn Redis caching strategies for backend systems.",
+      "Message Siddhant about tomorrow's backend meeting.",
+      "Discuss KnowledgeVault architecture with Sid next week."
+    ],
+    "retrieval_ms": 172.0,
+    "llm_ms": 625.0,
+    "total_ms": 797.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Research distributed systems interview questions.\nResearch distributed systems interview questions.\n\nCategory: Semantic match\nNote: Refactor backend service layer for maintainability.\nRefactor backend service layer for maintainability.\n\nCategory: Semantic match\nNote: Document KnowledgeVault backend APIs.\nDocument KnowledgeVault backend APIs.\n\nCategory: Semantic match\nNote: Implement Redis-backed background workers.\nImplement Redis-backed background workers.\n\nCategory: Semantic match\nNote: Learn Redis caching strategies for backend systems.\nLearn Redis caching strategies for backend systems.\n\nCategory: Semantic match\nNote: Message Siddhant about tomorrow's backend meeting.\nMessage Siddhant about tomorrow's backend meeting.\n\nCategory: Semantic match\nNote: Discuss KnowledgeVault architecture with Sid next week.\nDiscuss KnowledgeVault architecture with Sid next week.\n</context>\n\n<question>\nWho do I need to contact about the backend project?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.49259756439306446,
+        "semantic_score": 0.49259756439306446,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 99,
+        "note_title": "Research distributed systems interview questions.",
+        "chunk_text": "Research distributed systems interview questions.",
+        "chunk_index": 0,
+        "score": 0.3639578710807019,
+        "semantic_score": 0.3639578710807019,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 101,
+        "note_title": "Refactor backend service layer for maintainability.",
+        "chunk_text": "Refactor backend service layer for maintainability.",
+        "chunk_index": 0,
+        "score": 0.34144068781854786,
+        "semantic_score": 0.34144068781854786,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 96,
+        "note_title": "Document KnowledgeVault backend APIs.",
+        "chunk_text": "Document KnowledgeVault backend APIs.",
+        "chunk_index": 0,
+        "score": 0.34133742276839696,
+        "semantic_score": 0.34133742276839696,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 92,
+        "note_title": "Implement Redis-backed background workers.",
+        "chunk_text": "Implement Redis-backed background workers.",
+        "chunk_index": 0,
+        "score": 0.31119562122808775,
+        "semantic_score": 0.31119562122808775,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 61,
+        "note_title": "Learn Redis caching strategies for backend systems.",
+        "chunk_text": "Learn Redis caching strategies for backend systems.",
+        "chunk_index": 0,
+        "score": 0.30972771702574,
+        "semantic_score": 0.30972771702574,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 56,
+        "note_title": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_text": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_index": 0,
+        "score": 0.3011195569896842,
+        "semantic_score": 0.3011195569896842,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 57,
+        "note_title": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_text": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_index": 0,
+        "score": 0.2982243058948887,
+        "semantic_score": 0.2982243058948887,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

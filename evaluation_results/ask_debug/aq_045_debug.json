@@ -1,0 +1,117 @@
+{
+  "query_id": "aq_045",
+  "question": "What is Atomic Habits about?",
+  "category": "factual_lookup",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    482,
+    557
+  ],
+  "reference_answer": "Atomic Habits by James Clear covers habit formation through cue-routine-reward loops. The key insight is that environment design is more powerful than willpower — make good habits obvious, attractive, easy, and satisfying; make bad habits invisible, unattractive, difficult, and unsatisfying. Small 1% improvements compound to remarkable results over time.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Book note — Atomic Habits (James Clear): habits are built on cue-routine-reward loops. Environment design is more powerf",
+      "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transaction",
+      "Reference Redis persistence mechanisms."
+    ],
+    "retrieval_ms": 141.0,
+    "llm_ms": 63859.0,
+    "total_ms": 64000.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Book note — Atomic Habits (James Clear): habits are built on cue-routine-reward loops. Environment design is more powerf\nBook note — Atomic Habits (James Clear): habits are built on cue-routine-reward loops. Environment design is more powerful than willpower. Make good habits obvious and easy.\n\nCategory: Semantic match\nNote: ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transaction\nACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transactions don't see each other's partial results), Durability (committed data survives crashes).\n\nCategory: Semantic match\nNote: Reference Redis persistence mechanisms.\nReference Redis persistence mechanisms.\n</context>\n\n<question>\nWhat is Atomic Habits about?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 482,
+        "note_title": "Book note — Atomic Habits (James Clear): habits are built on cue-routine-reward loops. Environment design is more powerf",
+        "chunk_text": "Book note — Atomic Habits (James Clear): habits are built on cue-routine-reward loops. Environment design is more powerful than willpower. Make good habits obvious and easy.",
+        "chunk_index": 0,
+        "score": 0.6399537706347579,
+        "semantic_score": 0.6399537706347579,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 229,
+        "note_title": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transaction",
+        "chunk_text": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transactions don't see each other's partial results), Durability (committed data survives crashes).",
+        "chunk_index": 0,
+        "score": 0.38154270538942314,
+        "semantic_score": 0.38154270538942314,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 690,
+        "note_title": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transaction",
+        "chunk_text": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transactions don't see each other's partial results), Durability (committed data survives crashes).",
+        "chunk_index": 0,
+        "score": 0.38154270538942314,
+        "semantic_score": 0.38154270538942314,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 790,
+        "note_title": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transaction",
+        "chunk_text": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transactions don't see each other's partial results), Durability (committed data survives crashes).",
+        "chunk_index": 0,
+        "score": 0.38154270538942314,
+        "semantic_score": 0.38154270538942314,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 890,
+        "note_title": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transaction",
+        "chunk_text": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transactions don't see each other's partial results), Durability (committed data survives crashes).",
+        "chunk_index": 0,
+        "score": 0.38154270538942314,
+        "semantic_score": 0.38154270538942314,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 990,
+        "note_title": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transaction",
+        "chunk_text": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transactions don't see each other's partial results), Durability (committed data survives crashes).",
+        "chunk_index": 0,
+        "score": 0.38154270538942314,
+        "semantic_score": 0.38154270538942314,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1090,
+        "note_title": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transaction",
+        "chunk_text": "ACID properties: Atomicity (all or nothing), Consistency (valid state to valid state), Isolation (concurrent transactions don't see each other's partial results), Durability (committed data survives crashes).",
+        "chunk_index": 0,
+        "score": 0.38154270538942314,
+        "semantic_score": 0.38154270538942314,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 73,
+        "note_title": "Reference Redis persistence mechanisms.",
+        "chunk_text": "Reference Redis persistence mechanisms.",
+        "chunk_index": 0,
+        "score": 0.31010350377292983,
+        "semantic_score": 0.31010350377292983,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "query_id": "appt_01",
+  "question": "When is my dentist appointment?",
+  "category": "appointments",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    78
+  ],
+  "reference_answer": "According to your notes, you have a reminder to book a dentist appointment for next month.",
+  "eval_notes": "Accept answers mentioning dentist appointment or dental health.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Book a dentist appointment for next month.",
+      "Schedule a health checkup before August.",
+      "Message Siddhant about tomorrow's backend meeting.",
+      "Tell Sid about the internship opportunity.",
+      "Discuss KnowledgeVault architecture with Sid next week.",
+      "Pay electricity and internet bills this weekend.",
+      "Remind Sid to submit the hackathon registration form.",
+      "Practice system design interview questions."
+    ],
+    "retrieval_ms": 141.0,
+    "llm_ms": 562.0,
+    "total_ms": 703.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Reminders\nNote: Book a dentist appointment for next month.\nBook a dentist appointment for next month.\n\nCategory: Appointments\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Message Siddhant about tomorrow's backend meeting.\nMessage Siddhant about tomorrow's backend meeting.\n\nCategory: Semantic match\nNote: Tell Sid about the internship opportunity.\nTell Sid about the internship opportunity.\n\nCategory: Semantic match\nNote: Discuss KnowledgeVault architecture with Sid next week.\nDiscuss KnowledgeVault architecture with Sid next week.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Reminders\nNote: Remind Sid to submit the hackathon registration form.\nRemind Sid to submit the hackathon registration form.\n\nCategory: Semantic match\nNote: Practice system design interview questions.\nPractice system design interview questions.\n</context>\n\n<question>\nWhen is my dentist appointment?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 78,
+        "note_title": "Book a dentist appointment for next month.",
+        "chunk_text": "Book a dentist appointment for next month.",
+        "chunk_index": 0,
+        "score": 0.6242048161567695,
+        "semantic_score": 0.5986048161567695,
+        "intent_score": 0.2133333333333333,
+        "intent_category": "Reminders"
+      },
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.382874071598053,
+        "semantic_score": 0.382874071598053,
+        "intent_score": 0.20444444444444443,
+        "intent_category": "Appointments"
+      },
+      {
+        "note_id": 56,
+        "note_title": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_text": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_index": 0,
+        "score": 0.2513122408799986,
+        "semantic_score": 0.2513122408799986,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 54,
+        "note_title": "Tell Sid about the internship opportunity.",
+        "chunk_text": "Tell Sid about the internship opportunity.",
+        "chunk_index": 0,
+        "score": 0.21112765140102252,
+        "semantic_score": 0.21112765140102252,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 57,
+        "note_title": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_text": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_index": 0,
+        "score": 0.1979089407243385,
+        "semantic_score": 0.1979089407243385,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.18824465572834015,
+        "semantic_score": 0.18824465572834015,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 55,
+        "note_title": "Remind Sid to submit the hackathon registration form.",
+        "chunk_text": "Remind Sid to submit the hackathon registration form.",
+        "chunk_index": 0,
+        "score": 0.16907376784525943,
+        "semantic_score": 0.14347376784525945,
+        "intent_score": 0.2133333333333333,
+        "intent_category": "Reminders"
+      },
+      {
+        "note_id": 70,
+        "note_title": "Practice system design interview questions.",
+        "chunk_text": "Practice system design interview questions.",
+        "chunk_index": 0,
+        "score": 0.16558881607122355,
+        "semantic_score": 0.16558881607122355,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

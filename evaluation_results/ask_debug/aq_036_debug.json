@@ -1,0 +1,128 @@
+{
+  "query_id": "aq_036",
+  "question": "What have I been learning lately?",
+  "category": "ambiguous",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    140,
+    144,
+    145,
+    149,
+    152,
+    163,
+    170,
+    171
+  ],
+  "reference_answer": "Recent learning covers a wide range: Python advanced patterns (descriptors, generators, async), AI/ML techniques (RAG, reranking, fine-tuning, evaluation metrics), system design (consistent hashing, saga pattern, observability), university subjects (OS scheduling, DBMS normalization, networking), and personal skills (ergonomics, sleep science, productivity techniques).",
+  "eval_notes": "Accept any reasonable synthesis of recent study topics.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it ",
+      "Interesting problem: the more you know, the more you realize how much you don't know. Early in CS, I thought I was almos",
+      "Reranking pipeline: (1) recall — fast approximate retrieval (top-100), (2) precision — cross-encoder reranker (top-10), ",
+      "Reading: 'Attention Is All You Need' (Vaswani et al. 2017). Self-attention mechanism replaced recurrence. Positional enc",
+      "Learn SQLAlchemy relationship loading strategies.",
+      "Career advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/Fast",
+      "Feeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights ",
+      "Thinking about what 'good engineering' means. Not just working code, but code that others can read, maintain, and extend"
+    ],
+    "retrieval_ms": 437.0,
+    "llm_ms": 64344.0,
+    "total_ms": 64781.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it \nRandom thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it again. Tutorials only get you so far.\n\nCategory: Semantic match\nNote: Interesting problem: the more you know, the more you realize how much you don't know. Early in CS, I thought I was almos\nInteresting problem: the more you know, the more you realize how much you don't know. Early in CS, I thought I was almost done learning. Now the map of unknown territory keeps expanding.\n\nCategory: Semantic match\nNote: Reranking pipeline: (1) recall — fast approximate retrieval (top-100), (2) precision — cross-encoder reranker (top-10), \nReranking pipeline: (1) recall — fast approximate retrieval (top-100), (2) precision — cross-encoder reranker (top-10), (3) generate — LLM with top-5 context.\n\nCategory: Semantic match\nNote: Reading: 'Attention Is All You Need' (Vaswani et al. 2017). Self-attention mechanism replaced recurrence. Positional enc\nReading: 'Attention Is All You Need' (Vaswani et al. 2017). Self-attention mechanism replaced recurrence. Positional encoding preserves sequence order. Still the foundational paper for LLMs.\n\nCategory: Semantic match\nNote: Learn SQLAlchemy relationship loading strategies.\nLearn SQLAlchemy relationship loading strategies.\n\nCategory: Semantic match\nNote: Career advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/Fast\nCareer advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/FastAPI with a branch toward AI/ML engineering.\n\nCategory: Semantic match\nNote: Feeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights \nFeeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights studying the system design were worth it.\n\nCategory: Semantic match\nNote: Thinking about what 'good engineering' means. Not just working code, but code that others can read, maintain, and extend\nThinking about what 'good engineering' means. Not just working code, but code that others can read, maintain, and extend. KnowledgeVault is teaching me to care about that.\n</context>\n\n<question>\nWhat have I been learning lately?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 357,
+        "note_title": "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it ",
+        "chunk_text": "Random thought: the best way to learn a technology is to build something real with it, break it, debug it, and build it again. Tutorials only get you so far.",
+        "chunk_index": 0,
+        "score": 0.44970226287841797,
+        "semantic_score": 0.44970226287841797,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 505,
+        "note_title": "Interesting problem: the more you know, the more you realize how much you don't know. Early in CS, I thought I was almos",
+        "chunk_text": "Interesting problem: the more you know, the more you realize how much you don't know. Early in CS, I thought I was almost done learning. Now the map of unknown territory keeps expanding.",
+        "chunk_index": 0,
+        "score": 0.3924384351038007,
+        "semantic_score": 0.3924384351038007,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 119,
+        "note_title": "Reranking pipeline: (1) recall — fast approximate retrieval (top-100), (2) precision — cross-encoder reranker (top-10), ",
+        "chunk_text": "Reranking pipeline: (1) recall — fast approximate retrieval (top-100), (2) precision — cross-encoder reranker (top-10), (3) generate — LLM with top-5 context.",
+        "chunk_index": 0,
+        "score": 0.3264846400311381,
+        "semantic_score": 0.3264846400311381,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 613,
+        "note_title": "Reading: 'Attention Is All You Need' (Vaswani et al. 2017). Self-attention mechanism replaced recurrence. Positional enc",
+        "chunk_text": "Reading: 'Attention Is All You Need' (Vaswani et al. 2017). Self-attention mechanism replaced recurrence. Positional encoding preserves sequence order. Still the foundational paper for LLMs.",
+        "chunk_index": 0,
+        "score": 0.32317853937085106,
+        "semantic_score": 0.32317853937085106,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 69,
+        "note_title": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_text": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_index": 0,
+        "score": 0.32058547016468886,
+        "semantic_score": 0.32058547016468886,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 272,
+        "note_title": "Career advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/Fast",
+        "chunk_text": "Career advice I keep getting: specialize deeply in one area, then branch out. T-shaped skills. My T: backend Python/FastAPI with a branch toward AI/ML engineering.",
+        "chunk_index": 0,
+        "score": 0.3173659036973663,
+        "semantic_score": 0.3173659036973663,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 540,
+        "note_title": "Feeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights ",
+        "chunk_text": "Feeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights studying the system design were worth it.",
+        "chunk_index": 0,
+        "score": 0.3114030957221985,
+        "semantic_score": 0.3114030957221985,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 603,
+        "note_title": "Thinking about what 'good engineering' means. Not just working code, but code that others can read, maintain, and extend",
+        "chunk_text": "Thinking about what 'good engineering' means. Not just working code, but code that others can read, maintain, and extend. KnowledgeVault is teaching me to care about that.",
+        "chunk_index": 0,
+        "score": 0.31031692028045654,
+        "semantic_score": 0.31031692028045654,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

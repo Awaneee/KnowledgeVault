@@ -1,0 +1,3197 @@
+[
+  {
+    "id": "1",
+    "query": "What are useful Python tips and tricks I've learned?",
+    "expected_intent": "study",
+    "expected_category": "Study - Python",
+    "relevant_note_ids": [
+      108,
+      174,
+      177,
+      206,
+      232,
+      239,
+      272,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "python"
+    ]
+  },
+  {
+    "id": "2",
+    "query": "Show my Python programming notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Python",
+    "relevant_note_ids": [
+      108,
+      174,
+      177,
+      206,
+      232,
+      239,
+      272,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "python"
+    ]
+  },
+  {
+    "id": "3",
+    "query": "Notes about Python dictionaries and hash maps",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Python",
+    "relevant_note_ids": [
+      108,
+      271,
+      278,
+      284,
+      397,
+      464,
+      483,
+      560,
+      579,
+      587
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "python",
+      "data_structures"
+    ]
+  },
+  {
+    "id": "4",
+    "query": "How does Python async programming work?",
+    "expected_intent": "study",
+    "expected_category": "Study - Python",
+    "relevant_note_ids": [
+      170,
+      283,
+      304,
+      359,
+      364,
+      372,
+      471,
+      661,
+      662,
+      663
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "python",
+      "async"
+    ]
+  },
+  {
+    "id": "5",
+    "query": "Concurrency and asynchronous patterns in Python",
+    "expected_intent": "study",
+    "expected_category": "Study - Python",
+    "relevant_note_ids": [
+      170,
+      283,
+      304,
+      359,
+      364,
+      372,
+      471,
+      661,
+      662,
+      663
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "async"
+    ]
+  },
+  {
+    "id": "6",
+    "query": "Python decorator notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Python",
+    "relevant_note_ids": [
+      174,
+      414,
+      435,
+      455,
+      549,
+      610,
+      614
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "python",
+      "decorators"
+    ]
+  },
+  {
+    "id": "7",
+    "query": "What git commands and workflows have I noted?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Git",
+    "relevant_note_ids": [
+      130,
+      135,
+      144,
+      169,
+      229,
+      272,
+      317,
+      328,
+      366,
+      395
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "git"
+    ]
+  },
+  {
+    "id": "8",
+    "query": "Git tips and tricks",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Git",
+    "relevant_note_ids": [
+      130,
+      135,
+      144,
+      169,
+      229,
+      272,
+      317,
+      328,
+      366,
+      395
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "git"
+    ]
+  },
+  {
+    "id": "9",
+    "query": "JavaScript and TypeScript notes",
+    "expected_intent": "study",
+    "expected_category": "Study - JavaScript",
+    "relevant_note_ids": [
+      218,
+      220,
+      250,
+      297,
+      418,
+      713,
+      720,
+      813,
+      820,
+      913
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "javascript"
+    ]
+  },
+  {
+    "id": "10",
+    "query": "What have I learned about Go programming?",
+    "expected_intent": "study",
+    "expected_category": "Study - Go",
+    "relevant_note_ids": [
+      114,
+      138,
+      206,
+      208,
+      266,
+      297,
+      320,
+      339,
+      488,
+      512
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "golang"
+    ]
+  },
+  {
+    "id": "11",
+    "query": "Rust ownership and borrowing notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Rust",
+    "relevant_note_ids": [
+      151,
+      182,
+      210,
+      351,
+      370,
+      380,
+      459,
+      494,
+      539,
+      563
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "rust"
+    ]
+  },
+  {
+    "id": "12",
+    "query": "What design patterns have I documented?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Design Patterns",
+    "relevant_note_ids": [
+      102,
+      121,
+      189,
+      203,
+      224,
+      238,
+      246,
+      254,
+      266,
+      269
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "design_patterns"
+    ]
+  },
+  {
+    "id": "13",
+    "query": "Software design patterns notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Design Patterns",
+    "relevant_note_ids": [
+      102,
+      121,
+      189,
+      203,
+      224,
+      238,
+      246,
+      254,
+      266,
+      269
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "patterns"
+    ]
+  },
+  {
+    "id": "14",
+    "query": "Performance optimization notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Performance",
+    "relevant_note_ids": [
+      93,
+      98,
+      108,
+      142,
+      159,
+      160,
+      183,
+      195,
+      196,
+      213
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "performance"
+    ]
+  },
+  {
+    "id": "15",
+    "query": "SQL tips and advanced query techniques",
+    "expected_intent": "study",
+    "expected_category": "Study - SQL",
+    "relevant_note_ids": [
+      58,
+      69,
+      74,
+      104,
+      123,
+      136,
+      139,
+      144,
+      175,
+      176
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sql",
+      "database"
+    ]
+  },
+  {
+    "id": "16",
+    "query": "Regular expression notes and examples",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Regex",
+    "relevant_note_ids": [
+      102,
+      121,
+      135,
+      148,
+      189,
+      224,
+      238,
+      246,
+      254,
+      266
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "regex"
+    ]
+  },
+  {
+    "id": "17",
+    "query": "Shell and command line tips I've collected",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Shell",
+    "relevant_note_ids": [
+      147,
+      153,
+      243,
+      314,
+      355,
+      374,
+      379,
+      455,
+      597,
+      688
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "shell",
+      "cli"
+    ]
+  },
+  {
+    "id": "18",
+    "query": "What do I know about RAG systems?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      65,
+      114,
+      186,
+      197,
+      219,
+      222,
+      267,
+      296,
+      310,
+      376
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "rag",
+      "ai"
+    ]
+  },
+  {
+    "id": "19",
+    "query": "Retrieval augmented generation notes",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      65,
+      114,
+      186,
+      197,
+      219,
+      222,
+      267,
+      296,
+      310,
+      376
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "rag"
+    ]
+  },
+  {
+    "id": "20",
+    "query": "Notes about embeddings and vector search",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      168,
+      183,
+      228,
+      289,
+      298,
+      323,
+      376,
+      486,
+      487,
+      523
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "embeddings",
+      "vectors"
+    ]
+  },
+  {
+    "id": "21",
+    "query": "How do text embeddings work?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      168,
+      183,
+      228,
+      289,
+      298,
+      323,
+      376,
+      486,
+      487,
+      523
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "embeddings"
+    ]
+  },
+  {
+    "id": "22",
+    "query": "Large language model notes and findings",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      60,
+      119,
+      122,
+      136,
+      143,
+      186,
+      251,
+      268,
+      313,
+      329
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "llm",
+      "ai"
+    ]
+  },
+  {
+    "id": "23",
+    "query": "What LLMs have I worked with?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      60,
+      119,
+      122,
+      136,
+      143,
+      186,
+      251,
+      268,
+      313,
+      329
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "24",
+    "query": "Document chunking strategy notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - AI",
+    "relevant_note_ids": [
+      197,
+      214,
+      257,
+      268,
+      289,
+      432,
+      446,
+      478,
+      487,
+      510
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "chunking",
+      "rag"
+    ]
+  },
+  {
+    "id": "25",
+    "query": "Notes about reranking in search systems",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      67,
+      119,
+      123,
+      176,
+      386,
+      648,
+      676,
+      776,
+      876,
+      976
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "reranking",
+      "search"
+    ]
+  },
+  {
+    "id": "26",
+    "query": "RAG and retrieval evaluation metrics",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      90,
+      119,
+      210,
+      310,
+      402,
+      485,
+      487,
+      595
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "evaluation",
+      "metrics"
+    ]
+  },
+  {
+    "id": "27",
+    "query": "How do I measure retrieval quality?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      90,
+      119,
+      210,
+      310,
+      402,
+      485,
+      487,
+      595
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "id": "28",
+    "query": "LLM fine-tuning and alignment notes",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      118,
+      129,
+      137,
+      143,
+      157,
+      171,
+      178,
+      196,
+      264,
+      328
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "finetuning",
+      "llm"
+    ]
+  },
+  {
+    "id": "29",
+    "query": "Prompting techniques and tips",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      130,
+      191,
+      264,
+      268,
+      406,
+      436,
+      446,
+      456,
+      467,
+      493
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "prompting"
+    ]
+  },
+  {
+    "id": "30",
+    "query": "What have I learned about LLM prompting?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      130,
+      191,
+      264,
+      268,
+      406,
+      436,
+      446,
+      456,
+      467,
+      493
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "prompting"
+    ]
+  },
+  {
+    "id": "31",
+    "query": "Notes about LLM hallucination and grounding",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      197,
+      222,
+      446,
+      470,
+      485,
+      600,
+      730,
+      830,
+      930,
+      1030
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "hallucination",
+      "rag"
+    ]
+  },
+  {
+    "id": "32",
+    "query": "HyDE and query expansion techniques",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      531,
+      683,
+      783,
+      883,
+      983,
+      1083
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "query_expansion"
+    ]
+  },
+  {
+    "id": "33",
+    "query": "Operating systems study notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Operating Systems",
+    "relevant_note_ids": [
+      59,
+      132,
+      141,
+      146,
+      174,
+      179,
+      203,
+      205,
+      233,
+      255
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "os",
+      "university"
+    ]
+  },
+  {
+    "id": "34",
+    "query": "OS concepts I need to review for exams",
+    "expected_intent": "study",
+    "expected_category": "Study - Operating Systems",
+    "relevant_note_ids": [
+      59,
+      132,
+      141,
+      146,
+      174,
+      179,
+      203,
+      205,
+      233,
+      255
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "os"
+    ]
+  },
+  {
+    "id": "35",
+    "query": "Database management systems notes",
+    "expected_intent": "study",
+    "expected_category": "Study - DBMS",
+    "relevant_note_ids": [
+      139,
+      144,
+      198,
+      229,
+      252,
+      308,
+      321,
+      417,
+      425,
+      593
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "dbms",
+      "university"
+    ]
+  },
+  {
+    "id": "36",
+    "query": "Computer networks study notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Computer Networks",
+    "relevant_note_ids": [
+      75,
+      118,
+      159,
+      162,
+      168,
+      180,
+      237,
+      276,
+      280,
+      298
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "networking",
+      "university"
+    ]
+  },
+  {
+    "id": "37",
+    "query": "Algorithm and data structures notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Algorithms",
+    "relevant_note_ids": [
+      59,
+      60,
+      116,
+      156,
+      182,
+      204,
+      215,
+      244,
+      247,
+      261
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "algorithms",
+      "dsa"
+    ]
+  },
+  {
+    "id": "38",
+    "query": "What algorithms have I studied?",
+    "expected_intent": "study",
+    "expected_category": "Study - Algorithms",
+    "relevant_note_ids": [
+      59,
+      60,
+      116,
+      156,
+      182,
+      204,
+      215,
+      244,
+      247,
+      261
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "algorithms"
+    ]
+  },
+  {
+    "id": "39",
+    "query": "Compiler design and theory of computation notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Compiler Design",
+    "relevant_note_ids": [
+      148,
+      227,
+      228,
+      241,
+      311,
+      578,
+      633
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "compiler",
+      "toc"
+    ]
+  },
+  {
+    "id": "40",
+    "query": "Capstone project notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Capstone",
+    "relevant_note_ids": [
+      175,
+      190,
+      199,
+      225,
+      233,
+      236,
+      263,
+      277,
+      285,
+      382
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "capstone",
+      "university"
+    ]
+  },
+  {
+    "id": "41",
+    "query": "Parallel programming and concurrency notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Operating Systems",
+    "relevant_note_ids": [
+      151,
+      229,
+      283,
+      287,
+      296,
+      304,
+      421,
+      462,
+      474,
+      504
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "parallel",
+      "concurrency"
+    ]
+  },
+  {
+    "id": "42",
+    "query": "LeetCode problem patterns and solutions",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      117,
+      127,
+      187,
+      224,
+      271,
+      279,
+      282,
+      316,
+      327,
+      387
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "leetcode",
+      "interview"
+    ]
+  },
+  {
+    "id": "43",
+    "query": "Dynamic programming notes and patterns",
+    "expected_intent": "study",
+    "expected_category": "Study - Algorithms",
+    "relevant_note_ids": [
+      118,
+      129,
+      152,
+      157,
+      178,
+      224,
+      271,
+      328,
+      349,
+      399
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "dp",
+      "algorithms"
+    ]
+  },
+  {
+    "id": "44",
+    "query": "System design interview prep notes",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      70,
+      145,
+      255,
+      267,
+      305,
+      309,
+      334,
+      344,
+      346,
+      360
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "system_design",
+      "interview"
+    ]
+  },
+  {
+    "id": "45",
+    "query": "What system design topics have I covered?",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      70,
+      145,
+      255,
+      267,
+      305,
+      309,
+      334,
+      344,
+      346,
+      360
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "system_design"
+    ]
+  },
+  {
+    "id": "46",
+    "query": "Behavioral interview preparation notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      169,
+      197,
+      263,
+      294,
+      309,
+      344,
+      468,
+      478,
+      504,
+      605
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "behavioral",
+      "interview"
+    ]
+  },
+  {
+    "id": "47",
+    "query": "Mock interview notes and feedback",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      126,
+      152,
+      154,
+      199,
+      280,
+      352,
+      507,
+      521,
+      609,
+      611
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "mock_interview"
+    ]
+  },
+  {
+    "id": "48",
+    "query": "Resume writing and improvement tips",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Career",
+    "relevant_note_ids": [
+      100,
+      142,
+      185,
+      270,
+      523,
+      525
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "resume",
+      "career"
+    ]
+  },
+  {
+    "id": "49",
+    "query": "Campus placement preparation notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      54,
+      77,
+      100,
+      111,
+      176,
+      225,
+      236,
+      318,
+      343,
+      344
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "placement"
+    ]
+  },
+  {
+    "id": "50",
+    "query": "Database sharding and partitioning notes",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      259,
+      292,
+      417,
+      580,
+      608,
+      695,
+      731,
+      795,
+      831,
+      895
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "sharding",
+      "database"
+    ]
+  },
+  {
+    "id": "51",
+    "query": "Caching strategies and implementations",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      103,
+      124,
+      146,
+      237,
+      269,
+      275,
+      284,
+      295,
+      318,
+      336
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "caching"
+    ]
+  },
+  {
+    "id": "52",
+    "query": "Message queue and event streaming notes",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      71,
+      102,
+      144,
+      174,
+      200,
+      218,
+      238,
+      269,
+      297,
+      304
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "kafka",
+      "queues"
+    ]
+  },
+  {
+    "id": "53",
+    "query": "Microservices architecture notes",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      189,
+      263,
+      299,
+      372,
+      410,
+      652,
+      665,
+      697,
+      752,
+      765
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "microservices"
+    ]
+  },
+  {
+    "id": "54",
+    "query": "Distributed systems consensus notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Distributed Systems",
+    "relevant_note_ids": [
+      99,
+      140,
+      264,
+      299,
+      308,
+      346,
+      354,
+      390,
+      439,
+      450
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "distributed",
+      "consensus"
+    ]
+  },
+  {
+    "id": "55",
+    "query": "Observability and monitoring notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - DevOps",
+    "relevant_note_ids": [
+      299,
+      477,
+      570,
+      665,
+      765,
+      865,
+      965,
+      1065
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "observability"
+    ]
+  },
+  {
+    "id": "56",
+    "query": "Idempotency and distributed system reliability notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - System Design",
+    "relevant_note_ids": [
+      140,
+      299,
+      392,
+      431,
+      665,
+      765,
+      865,
+      965,
+      1065
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "idempotency"
+    ]
+  },
+  {
+    "id": "57",
+    "query": "KnowledgeVault project notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96,
+      97,
+      107
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "project"
+    ]
+  },
+  {
+    "id": "58",
+    "query": "What decisions have I made for the KnowledgeVault project?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96,
+      97,
+      107
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project",
+      "architecture"
+    ]
+  },
+  {
+    "id": "59",
+    "query": "Notes about hybrid retrieval implementation",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      183,
+      213,
+      252,
+      375,
+      381,
+      486,
+      518,
+      555,
+      696,
+      702
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "hybrid_retrieval",
+      "rag"
+    ]
+  },
+  {
+    "id": "60",
+    "query": "Docker and containerization notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Docker",
+    "relevant_note_ids": [
+      72,
+      75,
+      91,
+      105,
+      118,
+      138,
+      188,
+      192,
+      242,
+      295
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "docker"
+    ]
+  },
+  {
+    "id": "61",
+    "query": "What Docker tips have I collected?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Docker",
+    "relevant_note_ids": [
+      72,
+      75,
+      91,
+      105,
+      118,
+      138,
+      188,
+      192,
+      242,
+      295
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "docker"
+    ]
+  },
+  {
+    "id": "62",
+    "query": "FastAPI development notes",
+    "expected_intent": "study",
+    "expected_category": "Study - FastAPI",
+    "relevant_note_ids": [
+      68,
+      132,
+      145,
+      165,
+      167,
+      266,
+      272,
+      313,
+      350,
+      365
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "fastapi"
+    ]
+  },
+  {
+    "id": "63",
+    "query": "PostgreSQL database notes",
+    "expected_intent": "study",
+    "expected_category": "Study - PostgreSQL",
+    "relevant_note_ids": [
+      58,
+      66,
+      74,
+      104,
+      139,
+      144,
+      168,
+      175,
+      215,
+      267
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "postgresql"
+    ]
+  },
+  {
+    "id": "64",
+    "query": "What PostgreSQL features and tips do I have?",
+    "expected_intent": "study",
+    "expected_category": "Study - PostgreSQL",
+    "relevant_note_ids": [
+      58,
+      66,
+      74,
+      104,
+      139,
+      144,
+      168,
+      175,
+      215,
+      267
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "postgresql"
+    ]
+  },
+  {
+    "id": "65",
+    "query": "Redis usage and patterns",
+    "expected_intent": "study",
+    "expected_category": "Study - Redis",
+    "relevant_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      124,
+      146,
+      157,
+      174,
+      237,
+      246
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "redis"
+    ]
+  },
+  {
+    "id": "66",
+    "query": "pgvector and vector search notes",
+    "expected_intent": "study",
+    "expected_category": "Study - PostgreSQL",
+    "relevant_note_ids": [
+      66,
+      168,
+      183,
+      215,
+      217,
+      228,
+      252,
+      298,
+      323,
+      333
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "pgvector",
+      "vectors"
+    ]
+  },
+  {
+    "id": "67",
+    "query": "What meetings have I had?",
+    "expected_intent": "event",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283,
+      304,
+      359
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meetings"
+    ]
+  },
+  {
+    "id": "68",
+    "query": "Team meeting notes",
+    "expected_intent": "event",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283,
+      304,
+      359
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meetings"
+    ]
+  },
+  {
+    "id": "69",
+    "query": "Mentor and senior advice I've received",
+    "expected_intent": "communication",
+    "expected_category": "Communication",
+    "relevant_note_ids": [
+      68,
+      126,
+      185,
+      199,
+      236,
+      260,
+      272,
+      274,
+      330,
+      372
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "mentorship"
+    ]
+  },
+  {
+    "id": "70",
+    "query": "Hackathon planning notes",
+    "expected_intent": "event",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      55,
+      324,
+      448,
+      463,
+      535,
+      542
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "hackathon"
+    ]
+  },
+  {
+    "id": "71",
+    "query": "What are my pending tasks and deadlines?",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      155,
+      179,
+      184,
+      207,
+      233,
+      266
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "todo",
+      "deadlines"
+    ]
+  },
+  {
+    "id": "72",
+    "query": "What health appointments do I have?",
+    "expected_intent": "reminder",
+    "expected_category": "Appointments",
+    "relevant_note_ids": [
+      78,
+      79,
+      109,
+      157,
+      179,
+      201,
+      210,
+      212,
+      224,
+      226
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "appointments",
+      "health"
+    ]
+  },
+  {
+    "id": "73",
+    "query": "What payments and bills do I need to make?",
+    "expected_intent": "todo",
+    "expected_category": "Bills",
+    "relevant_note_ids": [
+      77,
+      120,
+      126,
+      128,
+      131,
+      137,
+      140,
+      144,
+      160,
+      162
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "bills",
+      "finance"
+    ]
+  },
+  {
+    "id": "74",
+    "query": "What is on my shopping list?",
+    "expected_intent": "todo",
+    "expected_category": "Shopping",
+    "relevant_note_ids": [
+      76,
+      322
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "shopping",
+      "grocery"
+    ]
+  },
+  {
+    "id": "75",
+    "query": "Show all my reminders",
+    "expected_intent": "reminder",
+    "expected_category": "Reminders",
+    "relevant_note_ids": [
+      55,
+      152,
+      212,
+      312,
+      542,
+      557
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminders"
+    ]
+  },
+  {
+    "id": "76",
+    "query": "What do I need to remember this week?",
+    "expected_intent": "reminder",
+    "expected_category": "Reminders",
+    "relevant_note_ids": [
+      55,
+      152,
+      212,
+      312,
+      542,
+      557
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "reminders"
+    ]
+  },
+  {
+    "id": "77",
+    "query": "My budget and expense tracking notes",
+    "expected_intent": "todo",
+    "expected_category": "Finance",
+    "relevant_note_ids": [
+      82,
+      153,
+      202,
+      210,
+      216,
+      254,
+      281,
+      291,
+      331,
+      345
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "budget",
+      "finance"
+    ]
+  },
+  {
+    "id": "78",
+    "query": "Monthly expense breakdown",
+    "expected_intent": "reference",
+    "expected_category": "Finance",
+    "relevant_note_ids": [
+      82,
+      153,
+      202,
+      210,
+      216,
+      254,
+      281,
+      291,
+      331,
+      345
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "finance"
+    ]
+  },
+  {
+    "id": "79",
+    "query": "Investment and savings notes",
+    "expected_intent": "reference",
+    "expected_category": "Finance",
+    "relevant_note_ids": [
+      113,
+      273,
+      496,
+      561,
+      591,
+      594,
+      750,
+      850,
+      950,
+      1050
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "investing"
+    ]
+  },
+  {
+    "id": "80",
+    "query": "Tech purchase notes and wishlists",
+    "expected_intent": "todo",
+    "expected_category": "Shopping",
+    "relevant_note_ids": [
+      115,
+      124,
+      174,
+      200,
+      211,
+      307,
+      420,
+      434,
+      442,
+      445
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "tech",
+      "shopping"
+    ]
+  },
+  {
+    "id": "81",
+    "query": "My travel plans and notes",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      78,
+      81,
+      115,
+      126,
+      128,
+      130,
+      160,
+      171,
+      175,
+      176
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "travel"
+    ]
+  },
+  {
+    "id": "82",
+    "query": "Upcoming trips and travel bookings",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      78,
+      81,
+      115,
+      126,
+      128,
+      130,
+      160,
+      171,
+      175,
+      176
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "travel"
+    ]
+  },
+  {
+    "id": "83",
+    "query": "Delhi trip plans",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      55,
+      115,
+      256,
+      324,
+      448,
+      463,
+      524,
+      535,
+      542,
+      577
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "travel",
+      "delhi"
+    ]
+  },
+  {
+    "id": "84",
+    "query": "Hill station and trekking plans",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      81,
+      128,
+      351,
+      407
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "travel",
+      "trek"
+    ]
+  },
+  {
+    "id": "85",
+    "query": "Train booking tips and notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Travel",
+    "relevant_note_ids": [
+      160,
+      463,
+      596
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "train",
+      "irctc"
+    ]
+  },
+  {
+    "id": "86",
+    "query": "Fitness and workout notes",
+    "expected_intent": "todo",
+    "expected_category": "Health",
+    "relevant_note_ids": [
+      173,
+      185,
+      202,
+      232,
+      246,
+      291,
+      317,
+      380,
+      392,
+      427
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "fitness",
+      "workout"
+    ]
+  },
+  {
+    "id": "87",
+    "query": "My exercise routine notes",
+    "expected_intent": "todo",
+    "expected_category": "Health",
+    "relevant_note_ids": [
+      173,
+      185,
+      202,
+      232,
+      246,
+      291,
+      317,
+      380,
+      392,
+      427
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "fitness"
+    ]
+  },
+  {
+    "id": "88",
+    "query": "Sleep improvement notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      133,
+      136,
+      202,
+      288,
+      348,
+      380,
+      434,
+      538,
+      548,
+      574
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sleep",
+      "health"
+    ]
+  },
+  {
+    "id": "89",
+    "query": "Nutrition and supplement notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      109,
+      133,
+      226,
+      286
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "nutrition"
+    ]
+  },
+  {
+    "id": "90",
+    "query": "Mental health and wellbeing notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      152,
+      288,
+      291,
+      317,
+      472,
+      575
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "mental_health"
+    ]
+  },
+  {
+    "id": "91",
+    "query": "My startup ideas and business notes",
+    "expected_intent": "idea",
+    "expected_category": "Ideas - Startups",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      120,
+      125,
+      128,
+      131,
+      134,
+      143,
+      157
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "startup"
+    ]
+  },
+  {
+    "id": "92",
+    "query": "What business ideas have I documented?",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      120,
+      125,
+      128,
+      131,
+      134,
+      143,
+      157
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "startup",
+      "ideas"
+    ]
+  },
+  {
+    "id": "93",
+    "query": "Y Combinator and startup ecosystem notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Startups",
+    "relevant_note_ids": [
+      72,
+      133,
+      137,
+      205,
+      248,
+      307,
+      342,
+      347,
+      438,
+      536
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "yc",
+      "startup"
+    ]
+  },
+  {
+    "id": "94",
+    "query": "Business model and monetization notes",
+    "expected_intent": "reference",
+    "expected_category": "Ideas - Startups",
+    "relevant_note_ids": [
+      210,
+      216,
+      330,
+      331,
+      514,
+      594,
+      617,
+      624,
+      649
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "business_model"
+    ]
+  },
+  {
+    "id": "95",
+    "query": "Startup idea validation notes",
+    "expected_intent": "reference",
+    "expected_category": "Ideas - Startups",
+    "relevant_note_ids": [
+      108,
+      117,
+      126,
+      132,
+      134,
+      146,
+      173,
+      199,
+      204,
+      210
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "validation",
+      "startup"
+    ]
+  },
+  {
+    "id": "96",
+    "query": "What books have I taken notes on?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Books",
+    "relevant_note_ids": [
+      78,
+      128,
+      141,
+      155,
+      160,
+      172,
+      182,
+      194,
+      208,
+      234
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "books"
+    ]
+  },
+  {
+    "id": "97",
+    "query": "My book notes and summaries",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Books",
+    "relevant_note_ids": [
+      78,
+      128,
+      141,
+      155,
+      160,
+      172,
+      182,
+      194,
+      208,
+      234
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "books"
+    ]
+  },
+  {
+    "id": "98",
+    "query": "Notes from Designing Data-Intensive Applications",
+    "expected_intent": "study",
+    "expected_category": "Study - Books",
+    "relevant_note_ids": [
+      439,
+      528
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "ddia",
+      "books"
+    ]
+  },
+  {
+    "id": "99",
+    "query": "Atomic Habits notes and takeaways",
+    "expected_intent": "study",
+    "expected_category": "Study - Books",
+    "relevant_note_ids": [
+      164,
+      304,
+      317,
+      349,
+      482,
+      557,
+      631,
+      634,
+      698,
+      734
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "habits",
+      "books"
+    ]
+  },
+  {
+    "id": "100",
+    "query": "Podcast notes and key insights",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Learning",
+    "relevant_note_ids": [
+      230,
+      419,
+      548
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "podcasts"
+    ]
+  },
+  {
+    "id": "101",
+    "query": "Online courses I'm taking or completed",
+    "expected_intent": "study",
+    "expected_category": "Study - Learning",
+    "relevant_note_ids": [
+      71,
+      145,
+      231,
+      266,
+      357,
+      394,
+      417,
+      471,
+      519,
+      611
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "courses"
+    ]
+  },
+  {
+    "id": "102",
+    "query": "Kubernetes learning notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Kubernetes",
+    "relevant_note_ids": [
+      62,
+      101,
+      118,
+      180,
+      181,
+      225,
+      230,
+      263,
+      299,
+      355
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "kubernetes"
+    ]
+  },
+  {
+    "id": "103",
+    "query": "Terraform and infrastructure as code notes",
+    "expected_intent": "study",
+    "expected_category": "Study - DevOps",
+    "relevant_note_ids": [
+      274
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "terraform",
+      "iac"
+    ]
+  },
+  {
+    "id": "104",
+    "query": "Authentication and authorization notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Security",
+    "relevant_note_ids": [
+      63,
+      129,
+      165,
+      189,
+      227,
+      244,
+      276,
+      287,
+      338,
+      346
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "auth",
+      "security"
+    ]
+  },
+  {
+    "id": "105",
+    "query": "Testing and pytest notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Testing",
+    "relevant_note_ids": [
+      108,
+      124,
+      126,
+      152,
+      153,
+      163,
+      165,
+      172,
+      245,
+      277
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "testing",
+      "pytest"
+    ]
+  },
+  {
+    "id": "106",
+    "query": "Debugging sessions and fixes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Debugging",
+    "relevant_note_ids": [
+      94,
+      136,
+      161,
+      246,
+      258,
+      335,
+      340,
+      362,
+      421,
+      461
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "debugging"
+    ]
+  },
+  {
+    "id": "107",
+    "query": "What bugs have I debugged recently?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Debugging",
+    "relevant_note_ids": [
+      94,
+      136,
+      161,
+      246,
+      258,
+      335
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "debugging"
+    ]
+  },
+  {
+    "id": "108",
+    "query": "SQLAlchemy N+1 query problem notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Database",
+    "relevant_note_ids": [
+      363,
+      588,
+      589,
+      659,
+      759,
+      859,
+      959,
+      1059
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "sqlalchemy"
+    ]
+  },
+  {
+    "id": "109",
+    "query": "Race condition and concurrency bug notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Debugging",
+    "relevant_note_ids": [
+      229,
+      246,
+      296,
+      321,
+      384,
+      421,
+      462,
+      474,
+      482,
+      499
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "race_condition",
+      "concurrency"
+    ]
+  },
+  {
+    "id": "110",
+    "query": "Memory management and leak debugging notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Debugging",
+    "relevant_note_ids": [
+      124,
+      146,
+      169,
+      175,
+      182,
+      219,
+      248,
+      273,
+      275,
+      279
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "memory",
+      "debugging"
+    ]
+  },
+  {
+    "id": "111",
+    "query": "My journal entries and personal reflections",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      113,
+      149,
+      152,
+      162,
+      166,
+      191,
+      251,
+      255
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "journal"
+    ]
+  },
+  {
+    "id": "112",
+    "query": "Productivity tips and personal notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Productivity",
+    "relevant_note_ids": [
+      85,
+      199,
+      224,
+      240,
+      248,
+      286,
+      429,
+      453,
+      529,
+      550
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "productivity"
+    ]
+  },
+  {
+    "id": "113",
+    "query": "Career direction and goal notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      56,
+      61,
+      91,
+      96,
+      101,
+      106,
+      166,
+      175,
+      177,
+      180
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "career"
+    ]
+  },
+  {
+    "id": "114",
+    "query": "Open source and building in public notes",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      117,
+      141,
+      255,
+      395,
+      400,
+      440,
+      453,
+      522,
+      554,
+      555
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "open_source"
+    ]
+  },
+  {
+    "id": "115",
+    "query": "KnowledgeVault RAG pipeline decisions and findings",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      1028,
+      262,
+      1030,
+      1032,
+      523,
+      267,
+      533,
+      1053
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "rag",
+      "project"
+    ]
+  },
+  {
+    "id": "116",
+    "query": "All my interview preparation notes \u2014 coding and system design",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      769,
+      129,
+      387,
+      642,
+      516,
+      255,
+      392,
+      267,
+      271,
+      399
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "interview",
+      "comprehensive"
+    ]
+  },
+  {
+    "id": "117",
+    "query": "AI system infrastructure notes: vector DB, cache, and retrieval",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      1024,
+      1030,
+      1031,
+      1032,
+      520,
+      523,
+      1036,
+      1042
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "ai",
+      "infrastructure"
+    ]
+  },
+  {
+    "id": "118",
+    "query": "All my health and wellness notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      643,
+      764,
+      773,
+      646,
+      133,
+      392,
+      905,
+      522
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "health",
+      "wellness"
+    ]
+  },
+  {
+    "id": "119",
+    "query": "Financial tasks and expense notes",
+    "expected_intent": "todo",
+    "expected_category": "Finance",
+    "relevant_note_ids": [
+      1028,
+      1035,
+      1043,
+      1044,
+      1046,
+      535,
+      538,
+      540
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "finance",
+      "tasks"
+    ]
+  },
+  {
+    "id": "120",
+    "query": "My university computer science notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Computer Science",
+    "relevant_note_ids": [
+      513,
+      1026,
+      1027,
+      515,
+      516,
+      510,
+      1031,
+      1034,
+      1038,
+      526
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "university",
+      "cs"
+    ]
+  },
+  {
+    "id": "121",
+    "query": "Things I need to do this week",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      155,
+      179,
+      184,
+      207,
+      233,
+      266
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "todo"
+    ]
+  },
+  {
+    "id": "122",
+    "query": "What tasks are pending for me?",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      155,
+      179,
+      184,
+      207,
+      233,
+      266
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "todo"
+    ]
+  },
+  {
+    "id": "123",
+    "query": "Resources for learning backend development",
+    "expected_intent": "study",
+    "expected_category": "Study - Backend",
+    "relevant_note_ids": [
+      1025,
+      772,
+      775,
+      1031,
+      1032,
+      266,
+      523,
+      267
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "backend",
+      "learning"
+    ]
+  },
+  {
+    "id": "124",
+    "query": "How do I get better at backend engineering?",
+    "expected_intent": "study",
+    "expected_category": "Study - Backend",
+    "relevant_note_ids": [
+      1025,
+      772,
+      775,
+      1031,
+      1032,
+      266
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "backend"
+    ]
+  },
+  {
+    "id": "125",
+    "query": "What are distributed systems trade-offs?",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      897,
+      771,
+      259,
+      390,
+      1031,
+      264
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "distributed"
+    ]
+  },
+  {
+    "id": "126",
+    "query": "Notes on scalability and reliability",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      1024,
+      259,
+      644,
+      1031,
+      520,
+      906
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "scalability"
+    ]
+  },
+  {
+    "id": "127",
+    "query": "What are my creative ideas?",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      120,
+      125,
+      128
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "ideas"
+    ]
+  },
+  {
+    "id": "128",
+    "query": "Show my brainstorming notes",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      128,
+      514,
+      131,
+      260,
+      134,
+      262,
+      1035,
+      525
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "brainstorm"
+    ]
+  },
+  {
+    "id": "129",
+    "query": "Advice and wisdom I've collected",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      260,
+      1028,
+      522,
+      1035,
+      525,
+      272
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "advice"
+    ]
+  },
+  {
+    "id": "130",
+    "query": "BM25",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      228,
+      252,
+      696,
+      796,
+      896,
+      996,
+      1096
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "bm25",
+      "exact"
+    ]
+  },
+  {
+    "id": "131",
+    "query": "HNSW index",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      215,
+      430,
+      681,
+      781,
+      881,
+      981,
+      1081
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "hnsw",
+      "exact"
+    ]
+  },
+  {
+    "id": "132",
+    "query": "HNSW vector index configuration",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      215,
+      430,
+      681,
+      781,
+      881,
+      981,
+      1081
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "hnsw"
+    ]
+  },
+  {
+    "id": "133",
+    "query": "Reciprocal Rank Fusion",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      518,
+      718,
+      818,
+      918,
+      1018
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "rrf",
+      "exact"
+    ]
+  },
+  {
+    "id": "134",
+    "query": "two sum problem",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      278,
+      677,
+      777,
+      877,
+      977,
+      1077
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "two_sum",
+      "exact"
+    ]
+  },
+  {
+    "id": "135",
+    "query": "LRU cache implementation",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      318,
+      336,
+      520,
+      530,
+      579,
+      736,
+      738,
+      836,
+      838,
+      936
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "lru",
+      "cache"
+    ]
+  },
+  {
+    "id": "136",
+    "query": "CAP theorem",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      580,
+      608
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "cap",
+      "exact"
+    ]
+  },
+  {
+    "id": "137",
+    "query": "PageRank or graph algorithms notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Algorithms",
+    "relevant_note_ids": [
+      60,
+      158,
+      224,
+      316,
+      342,
+      347,
+      545,
+      546,
+      619,
+      667
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "graph"
+    ]
+  },
+  {
+    "id": "138",
+    "query": "What have I been working on this month?",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      77,
+      149,
+      164,
+      182,
+      216,
+      286
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "temporal"
+    ]
+  },
+  {
+    "id": "139",
+    "query": "Recent notes and activities",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      77,
+      149,
+      164,
+      182,
+      216,
+      286
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "temporal"
+    ]
+  },
+  {
+    "id": "140",
+    "query": "Redis vs Kafka \u2014 when to use each",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      1024,
+      771,
+      1027,
+      773,
+      520,
+      1034
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "redis",
+      "kafka"
+    ]
+  },
+  {
+    "id": "141",
+    "query": "Python vs Go programming notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Programming",
+    "relevant_note_ids": [
+      512,
+      320,
+      898,
+      266,
+      138,
+      586
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "python",
+      "go"
+    ]
+  },
+  {
+    "id": "142",
+    "query": "SQL vs NoSQL database comparison",
+    "expected_intent": "study",
+    "expected_category": "Study - Database",
+    "relevant_note_ids": [
+      772,
+      775,
+      904,
+      1031,
+      1032,
+      139
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "database"
+    ]
+  },
+  {
+    "id": "143",
+    "query": "Comparing RAG retrieval strategies: dense, sparse, and reranking",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      386,
+      1030,
+      648,
+      649,
+      776,
+      267
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "rag"
+    ]
+  },
+  {
+    "id": "144",
+    "query": "REST vs GraphQL API design trade-offs",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      68,
+      93,
+      96,
+      132,
+      136,
+      142
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "api"
+    ]
+  },
+  {
+    "id": "145",
+    "query": "Show all my communication notes",
+    "expected_intent": "communication",
+    "expected_category": "Communication",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      106,
+      117
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "146",
+    "query": "All my reminder notes",
+    "expected_intent": "reminder",
+    "expected_category": "Reminders",
+    "relevant_note_ids": [
+      55,
+      152,
+      212,
+      312,
+      542,
+      557
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminders",
+      "category"
+    ]
+  },
+  {
+    "id": "147",
+    "query": "My study notes on AI and machine learning",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      1026,
+      774,
+      1030,
+      510,
+      523,
+      268,
+      267,
+      782
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "study",
+      "ai"
+    ]
+  },
+  {
+    "id": "148",
+    "query": "Notes categorized under system design",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      70,
+      145,
+      255,
+      267,
+      305,
+      309
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "category",
+      "system_design"
+    ]
+  },
+  {
+    "id": "149",
+    "query": "Programming notes I've taken recently",
+    "expected_intent": "study",
+    "expected_category": "Study - Programming",
+    "relevant_note_ids": [
+      512,
+      1025,
+      898,
+      132,
+      266,
+      523
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "ambiguous",
+      "programming"
+    ]
+  },
+  {
+    "id": "150",
+    "query": "My financial notes",
+    "expected_intent": "todo",
+    "expected_category": "Finance",
+    "relevant_note_ids": [
+      646,
+      202,
+      331,
+      591,
+      273,
+      82
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "ambiguous",
+      "finance"
+    ]
+  },
+  {
+    "id": "151",
+    "query": "Projects and ideas I'm excited about",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      514,
+      260,
+      1028,
+      262,
+      1032,
+      522
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "ambiguous",
+      "projects"
+    ]
+  },
+  {
+    "id": "152",
+    "query": "Personal notes and self-improvement",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      522,
+      1035,
+      785,
+      529,
+      277,
+      283
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "ambiguous",
+      "personal"
+    ]
+  }
+]

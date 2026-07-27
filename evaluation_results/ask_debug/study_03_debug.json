@@ -1,0 +1,121 @@
+{
+  "query_id": "study_03",
+  "question": "What operating systems concepts do my notes cover?",
+  "category": "study",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    59
+  ],
+  "reference_answer": "Your study notes on operating systems cover topics related to OS concepts and internals.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Meeting notes from backend architecture discussion.",
+      "Revise operating systems process scheduling algorithms.",
+      "Design a new AI-powered note summarization workflow.",
+      "Understand event-driven architecture patterns.",
+      "Read about Retrieval-Augmented Generation architectures.",
+      "Research distributed systems interview questions.",
+      "Practice system design interview questions.",
+      "Reference PostgreSQL VACUUM and ANALYZE documentation."
+    ],
+    "retrieval_ms": 156.0,
+    "llm_ms": 203.0,
+    "total_ms": 359.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Revise operating systems process scheduling algorithms.\nRevise operating systems process scheduling algorithms.\n\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n\nCategory: Semantic match\nNote: Understand event-driven architecture patterns.\nUnderstand event-driven architecture patterns.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n\nCategory: Semantic match\nNote: Research distributed systems interview questions.\nResearch distributed systems interview questions.\n\nCategory: Semantic match\nNote: Practice system design interview questions.\nPractice system design interview questions.\n\nCategory: Semantic match\nNote: Reference PostgreSQL VACUUM and ANALYZE documentation.\nReference PostgreSQL VACUUM and ANALYZE documentation.\n</context>\n\n<question>\nWhat operating systems concepts do my notes cover?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.421554799172569,
+        "semantic_score": 0.421554799172569,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 59,
+        "note_title": "Revise operating systems process scheduling algorithms.",
+        "chunk_text": "Revise operating systems process scheduling algorithms.",
+        "chunk_index": 0,
+        "score": 0.4063774999155112,
+        "semantic_score": 0.4063774999155112,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.3693358898162842,
+        "semantic_score": 0.3693358898162842,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 102,
+        "note_title": "Understand event-driven architecture patterns.",
+        "chunk_text": "Understand event-driven architecture patterns.",
+        "chunk_index": 0,
+        "score": 0.33296581107174283,
+        "semantic_score": 0.33296581107174283,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.2946569743956944,
+        "semantic_score": 0.2946569743956944,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 99,
+        "note_title": "Research distributed systems interview questions.",
+        "chunk_text": "Research distributed systems interview questions.",
+        "chunk_index": 0,
+        "score": 0.29374219216452935,
+        "semantic_score": 0.29374219216452935,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 70,
+        "note_title": "Practice system design interview questions.",
+        "chunk_text": "Practice system design interview questions.",
+        "chunk_index": 0,
+        "score": 0.2850853630849508,
+        "semantic_score": 0.2850853630849508,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 74,
+        "note_title": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_text": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_index": 0,
+        "score": 0.2791494131088257,
+        "semantic_score": 0.2791494131088257,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

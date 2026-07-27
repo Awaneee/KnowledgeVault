@@ -1,0 +1,121 @@
+{
+  "query_id": "fq_03",
+  "question": "What is PostgreSQL and how does it differ from other databases?",
+  "category": "factual_lookup",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    74
+  ],
+  "reference_answer": "PostgreSQL is an advanced open-source relational database management system supporting SQL and JSON. Unlike other databases, it supports advanced features like full-text search, JSONB storage, custom extensions, and strong ACID compliance.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Study PostgreSQL indexing and query optimization.",
+      "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+      "What is the difference between PostgreSQL indexes and hash indexes?",
+      "Study vector databases and pgvector indexing.",
+      "Learn SQLAlchemy relationship loading strategies.",
+      "What are the advantages of Docker Compose?",
+      "Meeting notes from backend architecture discussion.",
+      "Refactor backend service layer for maintainability."
+    ],
+    "retrieval_ms": 110.0,
+    "llm_ms": 64984.0,
+    "total_ms": 65094.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Study PostgreSQL indexing and query optimization.\nStudy PostgreSQL indexing and query optimization.\n\nCategory: Semantic match\nNote: Reference PostgreSQL VACUUM and ANALYZE documentation.\nReference PostgreSQL VACUUM and ANALYZE documentation.\n\nCategory: Semantic match\nNote: What is the difference between PostgreSQL indexes and hash indexes?\nWhat is the difference between PostgreSQL indexes and hash indexes?\n\nCategory: Semantic match\nNote: Study vector databases and pgvector indexing.\nStudy vector databases and pgvector indexing.\n\nCategory: Semantic match\nNote: Learn SQLAlchemy relationship loading strategies.\nLearn SQLAlchemy relationship loading strategies.\n\nCategory: Semantic match\nNote: What are the advantages of Docker Compose?\nWhat are the advantages of Docker Compose?\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Refactor backend service layer for maintainability.\nRefactor backend service layer for maintainability.\n</context>\n\n<question>\nWhat is PostgreSQL and how does it differ from other databases?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 58,
+        "note_title": "Study PostgreSQL indexing and query optimization.",
+        "chunk_text": "Study PostgreSQL indexing and query optimization.",
+        "chunk_index": 0,
+        "score": 0.5761749320082349,
+        "semantic_score": 0.5761749320082349,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 74,
+        "note_title": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_text": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_index": 0,
+        "score": 0.5716931990293624,
+        "semantic_score": 0.5716931990293624,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 104,
+        "note_title": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_text": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_index": 0,
+        "score": 0.5584309267530124,
+        "semantic_score": 0.5584309267530124,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 66,
+        "note_title": "Study vector databases and pgvector indexing.",
+        "chunk_text": "Study vector databases and pgvector indexing.",
+        "chunk_index": 0,
+        "score": 0.3710998782187751,
+        "semantic_score": 0.3710998782187751,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 69,
+        "note_title": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_text": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_index": 0,
+        "score": 0.23987881124380883,
+        "semantic_score": 0.23987881124380883,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 105,
+        "note_title": "What are the advantages of Docker Compose?",
+        "chunk_text": "What are the advantages of Docker Compose?",
+        "chunk_index": 0,
+        "score": 0.2366607855755326,
+        "semantic_score": 0.2366607855755326,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.21645413784272716,
+        "semantic_score": 0.21645413784272716,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 101,
+        "note_title": "Refactor backend service layer for maintainability.",
+        "chunk_text": "Refactor backend service layer for maintainability.",
+        "chunk_index": 0,
+        "score": 0.20030379892300965,
+        "semantic_score": 0.20030379892300965,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

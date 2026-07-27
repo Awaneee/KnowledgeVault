@@ -1,0 +1,124 @@
+{
+  "query_id": "summ_02",
+  "question": "Give me an overview of my communication notes.",
+  "category": "summarization",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    54,
+    55,
+    56,
+    57
+  ],
+  "reference_answer": "Your communication notes include messages and follow-ups with Sid and Siddhant, covering discussions about the KnowledgeVault backend project and meeting coordination.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Meeting notes from backend architecture discussion.",
+      "Design a new AI-powered note summarization workflow.",
+      "Message Siddhant about tomorrow's backend meeting.",
+      "What are the advantages of Docker Compose?",
+      "Watch a tutorial on Kafka producers and consumers.",
+      "Meeting summary for weekly KnowledgeVault sprint planning.",
+      "Research distributed systems interview questions.",
+      "Read about Retrieval-Augmented Generation architectures."
+    ],
+    "retrieval_ms": 93.0,
+    "llm_ms": 641.0,
+    "total_ms": 734.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n\nCategory: Semantic match\nNote: Message Siddhant about tomorrow's backend meeting.\nMessage Siddhant about tomorrow's backend meeting.\n\nCategory: Semantic match\nNote: What are the advantages of Docker Compose?\nWhat are the advantages of Docker Compose?\n\nCategory: Semantic match\nNote: Watch a tutorial on Kafka producers and consumers.\nWatch a tutorial on Kafka producers and consumers.\n\nCategory: Semantic match\nNote: Meeting summary for weekly KnowledgeVault sprint planning.\nMeeting summary for weekly KnowledgeVault sprint planning.\n\nCategory: Semantic match\nNote: Research distributed systems interview questions.\nResearch distributed systems interview questions.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n</context>\n\n<question>\nGive me an overview of my communication notes.\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.3807485997676876,
+        "semantic_score": 0.3807485997676876,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.31791577828432516,
+        "semantic_score": 0.31791577828432516,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 56,
+        "note_title": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_text": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_index": 0,
+        "score": 0.29652037662024777,
+        "semantic_score": 0.29652037662024777,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 105,
+        "note_title": "What are the advantages of Docker Compose?",
+        "chunk_text": "What are the advantages of Docker Compose?",
+        "chunk_index": 0,
+        "score": 0.2649242720053038,
+        "semantic_score": 0.2649242720053038,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 71,
+        "note_title": "Watch a tutorial on Kafka producers and consumers.",
+        "chunk_text": "Watch a tutorial on Kafka producers and consumers.",
+        "chunk_index": 0,
+        "score": 0.25493079423904597,
+        "semantic_score": 0.25493079423904597,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 107,
+        "note_title": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_text": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_index": 0,
+        "score": 0.24312962632598767,
+        "semantic_score": 0.24312962632598767,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 99,
+        "note_title": "Research distributed systems interview questions.",
+        "chunk_text": "Research distributed systems interview questions.",
+        "chunk_index": 0,
+        "score": 0.23874156311254935,
+        "semantic_score": 0.23874156311254935,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.22576442649788542,
+        "semantic_score": 0.22576442649788542,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

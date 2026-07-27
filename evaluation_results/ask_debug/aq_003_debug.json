@@ -1,0 +1,150 @@
+{
+  "query_id": "aq_003",
+  "question": "What is Reciprocal Rank Fusion and how is it used in hybrid search?",
+  "category": "factual_lookup",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    183,
+    213,
+    228,
+    252,
+    375,
+    381,
+    486,
+    518,
+    523,
+    555,
+    696,
+    702,
+    717,
+    718,
+    729,
+    735,
+    796,
+    802,
+    817,
+    818,
+    829,
+    835,
+    896,
+    902,
+    917,
+    918,
+    929,
+    935,
+    996,
+    1002,
+    1017,
+    1018,
+    1029,
+    1035,
+    1096,
+    1102
+  ],
+  "reference_answer": "Reciprocal Rank Fusion (RRF) combines ranked results from multiple retrieval systems using the formula: score = Σ 1/(k + rank_i) across all systems, where k=60 is the standard default. It does not require calibrated scores from each system, making it ideal for combining dense vector search with BM25 keyword search.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. ",
+      "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. "
+    ],
+    "retrieval_ms": 62.0,
+    "llm_ms": 64594.0,
+    "total_ms": 64656.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. \nReciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. Doesn't need calibrated scores.\n\nCategory: Semantic match\nNote: BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. \nBM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.\n</context>\n\n<question>\nWhat is Reciprocal Rank Fusion and how is it used in hybrid search?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 518,
+        "note_title": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. ",
+        "chunk_text": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. Doesn't need calibrated scores.",
+        "chunk_index": 0,
+        "score": 0.614592992389621,
+        "semantic_score": 0.614592992389621,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 718,
+        "note_title": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. ",
+        "chunk_text": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. Doesn't need calibrated scores.",
+        "chunk_index": 0,
+        "score": 0.614592992389621,
+        "semantic_score": 0.614592992389621,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 818,
+        "note_title": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. ",
+        "chunk_text": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. Doesn't need calibrated scores.",
+        "chunk_index": 0,
+        "score": 0.614592992389621,
+        "semantic_score": 0.614592992389621,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 918,
+        "note_title": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. ",
+        "chunk_text": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. Doesn't need calibrated scores.",
+        "chunk_index": 0,
+        "score": 0.614592992389621,
+        "semantic_score": 0.614592992389621,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1018,
+        "note_title": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. ",
+        "chunk_text": "Reciprocal Rank Fusion (RRF): score = Σ 1/(k + rank_i) across multiple retrieval systems. k=60 is the standard default. Doesn't need calibrated scores.",
+        "chunk_index": 0,
+        "score": 0.614592992389621,
+        "semantic_score": 0.614592992389621,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 252,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.5528161690478378,
+        "semantic_score": 0.5528161690478378,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 696,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.5528161690478378,
+        "semantic_score": 0.5528161690478378,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 796,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.5528161690478378,
+        "semantic_score": 0.5528161690478378,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

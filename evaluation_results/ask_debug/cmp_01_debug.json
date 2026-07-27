@@ -1,0 +1,122 @@
+{
+  "query_id": "cmp_01",
+  "question": "What is the difference between Docker and Docker Compose?",
+  "category": "comparison",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    72,
+    75
+  ],
+  "reference_answer": "Docker is a container runtime that packages applications and their dependencies into portable containers. Docker Compose is a tool built on top of Docker that allows you to define and run multi-container applications using a YAML file, simplifying orchestration of multiple services.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "What are the advantages of Docker Compose?",
+      "Reference Docker Compose networking documentation.",
+      "Reference Docker container lifecycle commands.",
+      "Deploy KnowledgeVault backend using Docker Compose.",
+      "Study Kubernetes deployment architecture.",
+      "What is the difference between PostgreSQL indexes and hash indexes?",
+      "Refactor backend service layer for maintainability.",
+      "Compare MiniLM and BGE embedding models."
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 578.0,
+    "total_ms": 703.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: What are the advantages of Docker Compose?\nWhat are the advantages of Docker Compose?\n\nCategory: Semantic match\nNote: Reference Docker Compose networking documentation.\nReference Docker Compose networking documentation.\n\nCategory: Semantic match\nNote: Reference Docker container lifecycle commands.\nReference Docker container lifecycle commands.\n\nCategory: Semantic match\nNote: Deploy KnowledgeVault backend using Docker Compose.\nDeploy KnowledgeVault backend using Docker Compose.\n\nCategory: Semantic match\nNote: Study Kubernetes deployment architecture.\nStudy Kubernetes deployment architecture.\n\nCategory: Semantic match\nNote: What is the difference between PostgreSQL indexes and hash indexes?\nWhat is the difference between PostgreSQL indexes and hash indexes?\n\nCategory: Semantic match\nNote: Refactor backend service layer for maintainability.\nRefactor backend service layer for maintainability.\n\nCategory: Semantic match\nNote: Compare MiniLM and BGE embedding models.\nCompare MiniLM and BGE embedding models.\n</context>\n\n<question>\nWhat is the difference between Docker and Docker Compose?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 105,
+        "note_title": "What are the advantages of Docker Compose?",
+        "chunk_text": "What are the advantages of Docker Compose?",
+        "chunk_index": 0,
+        "score": 0.8486388921737671,
+        "semantic_score": 0.8486388921737671,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 75,
+        "note_title": "Reference Docker Compose networking documentation.",
+        "chunk_text": "Reference Docker Compose networking documentation.",
+        "chunk_index": 0,
+        "score": 0.6468249944940218,
+        "semantic_score": 0.6468249944940218,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 72,
+        "note_title": "Reference Docker container lifecycle commands.",
+        "chunk_text": "Reference Docker container lifecycle commands.",
+        "chunk_index": 0,
+        "score": 0.4838314046759259,
+        "semantic_score": 0.4838314046759259,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 91,
+        "note_title": "Deploy KnowledgeVault backend using Docker Compose.",
+        "chunk_text": "Deploy KnowledgeVault backend using Docker Compose.",
+        "chunk_index": 0,
+        "score": 0.40295774945490825,
+        "semantic_score": 0.40295774945490825,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 62,
+        "note_title": "Study Kubernetes deployment architecture.",
+        "chunk_text": "Study Kubernetes deployment architecture.",
+        "chunk_index": 0,
+        "score": 0.2276507318019867,
+        "semantic_score": 0.2276507318019867,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 104,
+        "note_title": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_text": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_index": 0,
+        "score": 0.21948280930519104,
+        "semantic_score": 0.21948280930519104,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 101,
+        "note_title": "Refactor backend service layer for maintainability.",
+        "chunk_text": "Refactor backend service layer for maintainability.",
+        "chunk_index": 0,
+        "score": 0.16825349628925323,
+        "semantic_score": 0.16825349628925323,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 64,
+        "note_title": "Compare MiniLM and BGE embedding models.",
+        "chunk_text": "Compare MiniLM and BGE embedding models.",
+        "chunk_index": 0,
+        "score": 0.15613023006139848,
+        "semantic_score": 0.15613023006139848,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

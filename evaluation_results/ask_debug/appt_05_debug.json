@@ -1,0 +1,124 @@
+{
+  "query_id": "appt_05",
+  "question": "What should I schedule for next month?",
+  "category": "appointments",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    78,
+    79,
+    80,
+    82
+  ],
+  "reference_answer": "Based on your notes, you should schedule a dentist appointment, look into health checkups, and take care of vehicle insurance renewal next month.",
+  "eval_notes": "Partial credit if any two of the three expected items are mentioned.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Schedule a health checkup before August.",
+      "Book a dentist appointment for next month.",
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Pay electricity and internet bills this weekend.",
+      "Prepare resume before placement season.",
+      "Start exercising four times every week.",
+      "Buy groceries including milk, eggs, bread and fruits.",
+      "Meeting summary for weekly KnowledgeVault sprint planning."
+    ],
+    "retrieval_ms": 156.0,
+    "llm_ms": 562.0,
+    "total_ms": 718.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Book a dentist appointment for next month.\nBook a dentist appointment for next month.\n\nCategory: Semantic match\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Semantic match\nNote: Prepare resume before placement season.\nPrepare resume before placement season.\n\nCategory: Semantic match\nNote: Start exercising four times every week.\nStart exercising four times every week.\n\nCategory: Semantic match\nNote: Buy groceries including milk, eggs, bread and fruits.\nBuy groceries including milk, eggs, bread and fruits.\n\nCategory: Semantic match\nNote: Meeting summary for weekly KnowledgeVault sprint planning.\nMeeting summary for weekly KnowledgeVault sprint planning.\n</context>\n\n<question>\nWhat should I schedule for next month?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.5341295599937439,
+        "semantic_score": 0.5341295599937439,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 78,
+        "note_title": "Book a dentist appointment for next month.",
+        "chunk_text": "Book a dentist appointment for next month.",
+        "chunk_index": 0,
+        "score": 0.40825159574304826,
+        "semantic_score": 0.40825159574304826,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.38690139016215186,
+        "semantic_score": 0.38690139016215186,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.3738102912902832,
+        "semantic_score": 0.3738102912902832,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 100,
+        "note_title": "Prepare resume before placement season.",
+        "chunk_text": "Prepare resume before placement season.",
+        "chunk_index": 0,
+        "score": 0.34711283445358276,
+        "semantic_score": 0.34711283445358276,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 83,
+        "note_title": "Start exercising four times every week.",
+        "chunk_text": "Start exercising four times every week.",
+        "chunk_index": 0,
+        "score": 0.3314597208177883,
+        "semantic_score": 0.3314597208177883,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 76,
+        "note_title": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_text": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_index": 0,
+        "score": 0.31577128171920776,
+        "semantic_score": 0.31577128171920776,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 107,
+        "note_title": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_text": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_index": 0,
+        "score": 0.3143528699874878,
+        "semantic_score": 0.3143528699874878,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

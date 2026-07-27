@@ -1,0 +1,162 @@
+{
+  "query_id": "aq_030",
+  "question": "What are the trade-offs between monolith and microservices architectures?",
+  "category": "comparison",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    62,
+    101,
+    118,
+    180,
+    181,
+    225,
+    263,
+    299,
+    355,
+    372,
+    383,
+    392,
+    408,
+    410,
+    519,
+    534,
+    628,
+    652,
+    665,
+    688,
+    712,
+    732,
+    739,
+    752,
+    765,
+    788,
+    812,
+    832,
+    839,
+    852,
+    865,
+    888,
+    912,
+    932,
+    939,
+    952,
+    965,
+    988,
+    1012,
+    1032,
+    1039,
+    1052,
+    1065,
+    1088
+  ],
+  "reference_answer": "Monoliths are simpler to develop, test, and deploy initially — no network latency between components, easier debugging. Microservices enable independent scaling and deployment but add operational complexity (service discovery, distributed tracing, network failures). The pragmatic approach: start with a modular monolith, extract services only when a specific component has materially different scaling requirements.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "What are the advantages of Docker Compose?",
+      "Behavioral prep: 'Tell me about a time you disagreed with your team.' Story: disagreed on using microservices for capsto",
+      "Multi-tenant architecture: shared database (simple, tenant data mixed), database per tenant (isolated, expensive), schem",
+      "Idea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization",
+      "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no",
+      "API gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load bal"
+    ],
+    "retrieval_ms": 110.0,
+    "llm_ms": 64609.0,
+    "total_ms": 64719.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: What are the advantages of Docker Compose?\nWhat are the advantages of Docker Compose?\n\nCategory: Semantic match\nNote: Behavioral prep: 'Tell me about a time you disagreed with your team.' Story: disagreed on using microservices for capsto\nBehavioral prep: 'Tell me about a time you disagreed with your team.' Story: disagreed on using microservices for capstone — advocated for monolith first. Team agreed after discussion.\n\nCategory: Semantic match\nNote: Multi-tenant architecture: shared database (simple, tenant data mixed), database per tenant (isolated, expensive), schem\nMulti-tenant architecture: shared database (simple, tenant data mixed), database per tenant (isolated, expensive), schema per tenant (balance). Isolation vs operational complexity trade-off.\n\nCategory: Semantic match\nNote: Idea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization\nIdea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization. Stripe integration for payments.\n\nCategory: Semantic match\nNote: Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no\nMeeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for note indexing. No microservices for now.\n\nCategory: Semantic match\nNote: API gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load bal\nAPI gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load balancing. Kong, NGINX, AWS API Gateway are common choices.\n</context>\n\n<question>\nWhat are the trade-offs between monolith and microservices architectures?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 105,
+        "note_title": "What are the advantages of Docker Compose?",
+        "chunk_text": "What are the advantages of Docker Compose?",
+        "chunk_index": 0,
+        "score": 0.4665888547897339,
+        "semantic_score": 0.4665888547897339,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 263,
+        "note_title": "Behavioral prep: 'Tell me about a time you disagreed with your team.' Story: disagreed on using microservices for capsto",
+        "chunk_text": "Behavioral prep: 'Tell me about a time you disagreed with your team.' Story: disagreed on using microservices for capstone — advocated for monolith first. Team agreed after discussion.",
+        "chunk_index": 0,
+        "score": 0.4179178774356842,
+        "semantic_score": 0.4179178774356842,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 156,
+        "note_title": "Multi-tenant architecture: shared database (simple, tenant data mixed), database per tenant (isolated, expensive), schem",
+        "chunk_text": "Multi-tenant architecture: shared database (simple, tenant data mixed), database per tenant (isolated, expensive), schema per tenant (balance). Isolation vs operational complexity trade-off.",
+        "chunk_index": 0,
+        "score": 0.3924165601978643,
+        "semantic_score": 0.3924165601978643,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 178,
+        "note_title": "Idea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization",
+        "chunk_text": "Idea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization. Stripe integration for payments.",
+        "chunk_index": 0,
+        "score": 0.36804795265197754,
+        "semantic_score": 0.36804795265197754,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 372,
+        "note_title": "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for no",
+        "chunk_text": "Meeting notes — backend architecture review: agreed to keep synchronous API calls and async background processing for note indexing. No microservices for now.",
+        "chunk_index": 0,
+        "score": 0.36167144775390625,
+        "semantic_score": 0.36167144775390625,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 189,
+        "note_title": "API gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load bal",
+        "chunk_text": "API gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load balancing. Kong, NGINX, AWS API Gateway are common choices.",
+        "chunk_index": 0,
+        "score": 0.33926647901535034,
+        "semantic_score": 0.33926647901535034,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 697,
+        "note_title": "API gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load bal",
+        "chunk_text": "API gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load balancing. Kong, NGINX, AWS API Gateway are common choices.",
+        "chunk_index": 0,
+        "score": 0.33926647901535034,
+        "semantic_score": 0.33926647901535034,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 797,
+        "note_title": "API gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load bal",
+        "chunk_text": "API gateway pattern: single entry point for all clients. Handles auth, rate limiting, routing, SSL termination, load balancing. Kong, NGINX, AWS API Gateway are common choices.",
+        "chunk_index": 0,
+        "score": 0.33926647901535034,
+        "semantic_score": 0.33926647901535034,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

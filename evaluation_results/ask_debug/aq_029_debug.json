@@ -1,0 +1,162 @@
+{
+  "query_id": "aq_029",
+  "question": "Reranking vs hybrid fusion: which approach is better for RAG?",
+  "category": "comparison",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    67,
+    119,
+    123,
+    176,
+    183,
+    213,
+    228,
+    252,
+    375,
+    381,
+    386,
+    486,
+    518,
+    523,
+    555,
+    648,
+    676,
+    696,
+    702,
+    717,
+    718,
+    729,
+    735,
+    776,
+    796,
+    802,
+    817,
+    818,
+    829,
+    835,
+    876,
+    896,
+    902,
+    917,
+    918,
+    929,
+    935,
+    976,
+    996,
+    1002,
+    1017,
+    1018,
+    1029,
+    1035,
+    1076,
+    1096,
+    1102
+  ],
+  "reference_answer": "Hybrid fusion (BM25 + dense vectors, combined with RRF or score normalization) improves first-stage recall without extra inference cost. Cross-encoder reranking adds a second precision stage on top of the recall set — higher quality but O(n) per query. The optimal pipeline uses hybrid retrieval for the top-50 candidates followed by cross-encoder reranking to the top-5. RRF is the preferred fusion method as it requires no score calibration.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Survey on RAG architectures: Naive RAG, Advanced RAG, Modular RAG. Advanced RAG adds pre-retrieval (query expansion, rou",
+      "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+      "Benchmark datasets for RAG evaluation: HotpotQA (multi-hop), TriviaQA (factual), Natural Questions (Google search querie"
+    ],
+    "retrieval_ms": 579.0,
+    "llm_ms": 64671.0,
+    "total_ms": 65250.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Survey on RAG architectures: Naive RAG, Advanced RAG, Modular RAG. Advanced RAG adds pre-retrieval (query expansion, rou\nSurvey on RAG architectures: Naive RAG, Advanced RAG, Modular RAG. Advanced RAG adds pre-retrieval (query expansion, routing) and post-retrieval (reranking, context compression).\n\nCategory: Semantic match\nNote: BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. \nBM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.\n\nCategory: Semantic match\nNote: Benchmark datasets for RAG evaluation: HotpotQA (multi-hop), TriviaQA (factual), Natural Questions (Google search querie\nBenchmark datasets for RAG evaluation: HotpotQA (multi-hop), TriviaQA (factual), Natural Questions (Google search queries), MS MARCO (passage ranking).\n</context>\n\n<question>\nReranking vs hybrid fusion: which approach is better for RAG?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 386,
+        "note_title": "Survey on RAG architectures: Naive RAG, Advanced RAG, Modular RAG. Advanced RAG adds pre-retrieval (query expansion, rou",
+        "chunk_text": "Survey on RAG architectures: Naive RAG, Advanced RAG, Modular RAG. Advanced RAG adds pre-retrieval (query expansion, routing) and post-retrieval (reranking, context compression).",
+        "chunk_index": 0,
+        "score": 0.44222474098205566,
+        "semantic_score": 0.44222474098205566,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 252,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.4296010860681859,
+        "semantic_score": 0.4296010860681859,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 696,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.4296010860681859,
+        "semantic_score": 0.4296010860681859,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 796,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.4296010860681859,
+        "semantic_score": 0.4296010860681859,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 896,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.4296010860681859,
+        "semantic_score": 0.4296010860681859,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 996,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.4296010860681859,
+        "semantic_score": 0.4296010860681859,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1096,
+        "note_title": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. ",
+        "chunk_text": "BM25 is still competitive for exact keyword matching. Hybrid retrieval (BM25 + dense vectors) often beats either alone. The key is score normalization before fusion.",
+        "chunk_index": 0,
+        "score": 0.4296010860681859,
+        "semantic_score": 0.4296010860681859,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 595,
+        "note_title": "Benchmark datasets for RAG evaluation: HotpotQA (multi-hop), TriviaQA (factual), Natural Questions (Google search querie",
+        "chunk_text": "Benchmark datasets for RAG evaluation: HotpotQA (multi-hop), TriviaQA (factual), Natural Questions (Google search queries), MS MARCO (passage ranking).",
+        "chunk_index": 0,
+        "score": 0.4119976758956909,
+        "semantic_score": 0.4119976758956909,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

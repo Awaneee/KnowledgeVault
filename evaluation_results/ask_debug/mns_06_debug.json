@@ -1,0 +1,125 @@
+{
+  "query_id": "mns_06",
+  "question": "What is my overall plan for the KnowledgeVault evaluation and what remains to be done?",
+  "category": "multi_note_synthesis",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    89,
+    90,
+    92,
+    95,
+    96
+  ],
+  "reference_answer": "The KnowledgeVault evaluation plan includes a retrieval benchmark for semantic and hybrid strategies and a new end-to-end RAG evaluation for answer quality. Outstanding work includes building the ask endpoint evaluation framework and completing the engineering review.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Improve KnowledgeVault evaluation metrics.",
+      "Implement semantic search optimization in KnowledgeVault.",
+      "Discuss KnowledgeVault architecture with Sid next week.",
+      "Design KnowledgeVault retrieval improvements.",
+      "Create architecture diagrams for KnowledgeVault.",
+      "Meeting summary for weekly KnowledgeVault sprint planning.",
+      "Document KnowledgeVault backend APIs.",
+      "Build a Flutter UI for KnowledgeVault."
+    ],
+    "retrieval_ms": 109.0,
+    "llm_ms": 563.0,
+    "total_ms": 672.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Improve KnowledgeVault evaluation metrics.\nImprove KnowledgeVault evaluation metrics.\n\nCategory: Semantic match\nNote: Implement semantic search optimization in KnowledgeVault.\nImplement semantic search optimization in KnowledgeVault.\n\nCategory: Semantic match\nNote: Discuss KnowledgeVault architecture with Sid next week.\nDiscuss KnowledgeVault architecture with Sid next week.\n\nCategory: Semantic match\nNote: Design KnowledgeVault retrieval improvements.\nDesign KnowledgeVault retrieval improvements.\n\nCategory: Semantic match\nNote: Create architecture diagrams for KnowledgeVault.\nCreate architecture diagrams for KnowledgeVault.\n\nCategory: Semantic match\nNote: Meeting summary for weekly KnowledgeVault sprint planning.\nMeeting summary for weekly KnowledgeVault sprint planning.\n\nCategory: Semantic match\nNote: Document KnowledgeVault backend APIs.\nDocument KnowledgeVault backend APIs.\n\nCategory: Semantic match\nNote: Build a Flutter UI for KnowledgeVault.\nBuild a Flutter UI for KnowledgeVault.\n</context>\n\n<question>\nWhat is my overall plan for the KnowledgeVault evaluation and what remains to be done?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 90,
+        "note_title": "Improve KnowledgeVault evaluation metrics.",
+        "chunk_text": "Improve KnowledgeVault evaluation metrics.",
+        "chunk_index": 0,
+        "score": 0.7869697086196978,
+        "semantic_score": 0.7869697086196978,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 89,
+        "note_title": "Implement semantic search optimization in KnowledgeVault.",
+        "chunk_text": "Implement semantic search optimization in KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.5952294227617646,
+        "semantic_score": 0.5952294227617646,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 57,
+        "note_title": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_text": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_index": 0,
+        "score": 0.5802961510684649,
+        "semantic_score": 0.5802961510684649,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 88,
+        "note_title": "Design KnowledgeVault retrieval improvements.",
+        "chunk_text": "Design KnowledgeVault retrieval improvements.",
+        "chunk_index": 0,
+        "score": 0.5400341427305861,
+        "semantic_score": 0.5400341427305861,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 95,
+        "note_title": "Create architecture diagrams for KnowledgeVault.",
+        "chunk_text": "Create architecture diagrams for KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.5367417655433286,
+        "semantic_score": 0.5367417655433286,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 107,
+        "note_title": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_text": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_index": 0,
+        "score": 0.5310890078544617,
+        "semantic_score": 0.5310890078544617,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 96,
+        "note_title": "Document KnowledgeVault backend APIs.",
+        "chunk_text": "Document KnowledgeVault backend APIs.",
+        "chunk_index": 0,
+        "score": 0.5141010284423828,
+        "semantic_score": 0.5141010284423828,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 97,
+        "note_title": "Build a Flutter UI for KnowledgeVault.",
+        "chunk_text": "Build a Flutter UI for KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.5052614513195435,
+        "semantic_score": 0.5052614513195435,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

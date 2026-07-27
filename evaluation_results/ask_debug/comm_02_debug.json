@@ -1,0 +1,124 @@
+{
+  "query_id": "comm_02",
+  "question": "What are my pending messages and communications?",
+  "category": "communication",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    54,
+    55,
+    56,
+    57
+  ],
+  "reference_answer": "Your communication notes include messages and follow-ups to send, including discussions with team members about backend projects.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Message Siddhant about tomorrow's backend meeting.",
+      "Improve Flutter application performance.",
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Meeting notes from backend architecture discussion.",
+      "Revise operating systems process scheduling algorithms.",
+      "Discuss KnowledgeVault architecture with Sid next week.",
+      "Meeting summary for weekly KnowledgeVault sprint planning.",
+      "Pay electricity and internet bills this weekend."
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 250.0,
+    "total_ms": 375.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Message Siddhant about tomorrow's backend meeting.\nMessage Siddhant about tomorrow's backend meeting.\n\nCategory: Semantic match\nNote: Improve Flutter application performance.\nImprove Flutter application performance.\n\nCategory: Tasks\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Meeting notes from backend architecture discussion.\nMeeting notes from backend architecture discussion.\n\nCategory: Semantic match\nNote: Revise operating systems process scheduling algorithms.\nRevise operating systems process scheduling algorithms.\n\nCategory: Semantic match\nNote: Discuss KnowledgeVault architecture with Sid next week.\nDiscuss KnowledgeVault architecture with Sid next week.\n\nCategory: Semantic match\nNote: Meeting summary for weekly KnowledgeVault sprint planning.\nMeeting summary for weekly KnowledgeVault sprint planning.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n</context>\n\n<question>\nWhat are my pending messages and communications?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 56,
+        "note_title": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_text": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_index": 0,
+        "score": 0.4010149358493167,
+        "semantic_score": 0.4010149358493167,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 98,
+        "note_title": "Improve Flutter application performance.",
+        "chunk_text": "Improve Flutter application performance.",
+        "chunk_index": 0,
+        "score": 0.1930218074904798,
+        "semantic_score": 0.1930218074904798,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.19226666666666664,
+        "semantic_score": 0.16666666666666666,
+        "intent_score": 0.2133333333333333,
+        "intent_category": "Tasks"
+      },
+      {
+        "note_id": 106,
+        "note_title": "Meeting notes from backend architecture discussion.",
+        "chunk_text": "Meeting notes from backend architecture discussion.",
+        "chunk_index": 0,
+        "score": 0.18857485055923595,
+        "semantic_score": 0.18857485055923595,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 59,
+        "note_title": "Revise operating systems process scheduling algorithms.",
+        "chunk_text": "Revise operating systems process scheduling algorithms.",
+        "chunk_index": 0,
+        "score": 0.18742106110798584,
+        "semantic_score": 0.18742106110798584,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 57,
+        "note_title": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_text": "Discuss KnowledgeVault architecture with Sid next week.",
+        "chunk_index": 0,
+        "score": 0.17839539582715813,
+        "semantic_score": 0.17839539582715813,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 107,
+        "note_title": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_text": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_index": 0,
+        "score": 0.1762196316588147,
+        "semantic_score": 0.1762196316588147,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.17572577740396422,
+        "semantic_score": 0.17572577740396422,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

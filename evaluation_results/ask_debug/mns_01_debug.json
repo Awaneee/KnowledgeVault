@@ -1,0 +1,124 @@
+{
+  "query_id": "mns_01",
+  "question": "Compare Redis caching with PostgreSQL query optimisation for improving application performance.",
+  "category": "multi_note_synthesis",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    61,
+    73,
+    74,
+    93
+  ],
+  "reference_answer": "Redis is an in-memory cache that provides sub-millisecond read speeds for frequently accessed data. PostgreSQL query optimisation focuses on improving query plans, indexing, and connection pooling. For high-traffic applications, using Redis as a caching layer in front of PostgreSQL offers the best of both approaches.",
+  "eval_notes": "Full credit requires mentioning both Redis caching and PostgreSQL optimisation with a synthesis statement.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Learn Redis caching strategies for backend systems.",
+      "Study PostgreSQL indexing and query optimization.",
+      "Improve API response latency using caching.",
+      "Reference Redis persistence mechanisms.",
+      "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+      "Implement Redis-backed background workers.",
+      "What is the difference between PostgreSQL indexes and hash indexes?",
+      "Improve Flutter application performance."
+    ],
+    "retrieval_ms": 140.0,
+    "llm_ms": 656.0,
+    "total_ms": 796.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Learn Redis caching strategies for backend systems.\nLearn Redis caching strategies for backend systems.\n\nCategory: Study - PostgreSQL\nNote: Study PostgreSQL indexing and query optimization.\nStudy PostgreSQL indexing and query optimization.\n\nCategory: Study - API Performance\nNote: Improve API response latency using caching.\nImprove API response latency using caching.\n\nCategory: Semantic match\nNote: Reference Redis persistence mechanisms.\nReference Redis persistence mechanisms.\n\nCategory: Semantic match\nNote: Reference PostgreSQL VACUUM and ANALYZE documentation.\nReference PostgreSQL VACUUM and ANALYZE documentation.\n\nCategory: Semantic match\nNote: Implement Redis-backed background workers.\nImplement Redis-backed background workers.\n\nCategory: Semantic match\nNote: What is the difference between PostgreSQL indexes and hash indexes?\nWhat is the difference between PostgreSQL indexes and hash indexes?\n\nCategory: Semantic match\nNote: Improve Flutter application performance.\nImprove Flutter application performance.\n</context>\n\n<question>\nCompare Redis caching with PostgreSQL query optimisation for improving application performance.\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 61,
+        "note_title": "Learn Redis caching strategies for backend systems.",
+        "chunk_text": "Learn Redis caching strategies for backend systems.",
+        "chunk_index": 0,
+        "score": 0.6744055948974372,
+        "semantic_score": 0.6744055948974372,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 58,
+        "note_title": "Study PostgreSQL indexing and query optimization.",
+        "chunk_text": "Study PostgreSQL indexing and query optimization.",
+        "chunk_index": 0,
+        "score": 0.5639135241508484,
+        "semantic_score": 0.5639135241508484,
+        "intent_score": 0.0,
+        "intent_category": "Study - PostgreSQL"
+      },
+      {
+        "note_id": 93,
+        "note_title": "Improve API response latency using caching.",
+        "chunk_text": "Improve API response latency using caching.",
+        "chunk_index": 0,
+        "score": 0.5377720869915443,
+        "semantic_score": 0.5377720869915443,
+        "intent_score": 0.0,
+        "intent_category": "Study - API Performance"
+      },
+      {
+        "note_id": 73,
+        "note_title": "Reference Redis persistence mechanisms.",
+        "chunk_text": "Reference Redis persistence mechanisms.",
+        "chunk_index": 0,
+        "score": 0.4686345895717918,
+        "semantic_score": 0.4686345895717918,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 74,
+        "note_title": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_text": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_index": 0,
+        "score": 0.4144638478755951,
+        "semantic_score": 0.4144638478755951,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 92,
+        "note_title": "Implement Redis-backed background workers.",
+        "chunk_text": "Implement Redis-backed background workers.",
+        "chunk_index": 0,
+        "score": 0.38822799921035767,
+        "semantic_score": 0.38822799921035767,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 104,
+        "note_title": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_text": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_index": 0,
+        "score": 0.3489922285079956,
+        "semantic_score": 0.3489922285079956,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 98,
+        "note_title": "Improve Flutter application performance.",
+        "chunk_text": "Improve Flutter application performance.",
+        "chunk_index": 0,
+        "score": 0.31756722927093506,
+        "semantic_score": 0.31756722927093506,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

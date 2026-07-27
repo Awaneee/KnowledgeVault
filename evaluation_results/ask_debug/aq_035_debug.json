@@ -1,0 +1,128 @@
+{
+  "query_id": "aq_035",
+  "question": "What are all my startup ideas and business notes?",
+  "category": "synthesis",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    85,
+    86,
+    117,
+    120,
+    125,
+    128,
+    131,
+    134
+  ],
+  "reference_answer": "Startup ideas documented: AI-powered study planner for college schedules, hyperlocal campus food delivery, KnowledgeVault as team knowledge management, developer tools SaaS (codebase-trained code reviewer), AI writing assistant for Indian legal documents, AI resume reviewer (Rs 99/review), Indian government data API subscription service. Key frameworks: 1000 true fans, validate with 10 customer conversations before coding.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Brainstorm startup ideas around AI productivity tools.",
+      "Startup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. C",
+      "Idea validation framework: talk to 10 potential customers before writing code. Ask: what's your current solution? How mu",
+      "Startup lesson: don't build features, solve problems. Every new feature should be justified by customer pain. The MVP sh",
+      "Startup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weigh",
+      "Startup legal checklist: incorporate (LLP or Pvt Ltd), file for GST, open a current account, register on DPIIT startup I",
+      "Idea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization",
+      "Design a new AI-powered note summarization workflow."
+    ],
+    "retrieval_ms": 3531.0,
+    "llm_ms": 64156.0,
+    "total_ms": 67687.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Brainstorm startup ideas around AI productivity tools.\nBrainstorm startup ideas around AI productivity tools.\n\nCategory: Semantic match\nNote: Startup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. C\nStartup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. Charges Rs 99 per review. High volume, low margin.\n\nCategory: Semantic match\nNote: Idea validation framework: talk to 10 potential customers before writing code. Ask: what's your current solution? How mu\nIdea validation framework: talk to 10 potential customers before writing code. Ask: what's your current solution? How much do you pay? What frustrates you most about it?\n\nCategory: Semantic match\nNote: Startup lesson: don't build features, solve problems. Every new feature should be justified by customer pain. The MVP sh\nStartup lesson: don't build features, solve problems. Every new feature should be justified by customer pain. The MVP should solve one problem extremely well.\n\nCategory: Semantic match\nNote: Startup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weigh\nStartup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weights, and optimizes a personalized study plan. Monetize via premium plan.\n\nCategory: Semantic match\nNote: Startup legal checklist: incorporate (LLP or Pvt Ltd), file for GST, open a current account, register on DPIIT startup I\nStartup legal checklist: incorporate (LLP or Pvt Ltd), file for GST, open a current account, register on DPIIT startup India for tax exemptions.\n\nCategory: Semantic match\nNote: Idea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization\nIdea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization. Stripe integration for payments.\n\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n</context>\n\n<question>\nWhat are all my startup ideas and business notes?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 85,
+        "note_title": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_text": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_index": 0,
+        "score": 0.5172539949417114,
+        "semantic_score": 0.5172539949417114,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 525,
+        "note_title": "Startup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. C",
+        "chunk_text": "Startup idea: AI-powered resume reviewer. Takes your resume + job description, highlights gaps, suggests improvements. Charges Rs 99 per review. High volume, low margin.",
+        "chunk_index": 0,
+        "score": 0.4700774550437927,
+        "semantic_score": 0.4700774550437927,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 459,
+        "note_title": "Idea validation framework: talk to 10 potential customers before writing code. Ask: what's your current solution? How mu",
+        "chunk_text": "Idea validation framework: talk to 10 potential customers before writing code. Ask: what's your current solution? How much do you pay? What frustrates you most about it?",
+        "chunk_index": 0,
+        "score": 0.4461804362427937,
+        "semantic_score": 0.4461804362427937,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 134,
+        "note_title": "Startup lesson: don't build features, solve problems. Every new feature should be justified by customer pain. The MVP sh",
+        "chunk_text": "Startup lesson: don't build features, solve problems. Every new feature should be justified by customer pain. The MVP should solve one problem extremely well.",
+        "chunk_index": 0,
+        "score": 0.43490421772003174,
+        "semantic_score": 0.43490421772003174,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 617,
+        "note_title": "Startup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weigh",
+        "chunk_text": "Startup idea: AI-powered study planner that integrates with college exam schedules. Detects exam dates, difficulty weights, and optimizes a personalized study plan. Monetize via premium plan.",
+        "chunk_index": 0,
+        "score": 0.4204476601018806,
+        "semantic_score": 0.4204476601018806,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 441,
+        "note_title": "Startup legal checklist: incorporate (LLP or Pvt Ltd), file for GST, open a current account, register on DPIIT startup I",
+        "chunk_text": "Startup legal checklist: incorporate (LLP or Pvt Ltd), file for GST, open a current account, register on DPIIT startup India for tax exemptions.",
+        "chunk_index": 0,
+        "score": 0.4006854295730591,
+        "semantic_score": 0.4006854295730591,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 178,
+        "note_title": "Idea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization",
+        "chunk_text": "Idea: API monetization platform for students. Host your ML models, get an API endpoint, track usage, enable monetization. Stripe integration for payments.",
+        "chunk_index": 0,
+        "score": 0.36684083938598633,
+        "semantic_score": 0.36684083938598633,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.3636890649795532,
+        "semantic_score": 0.3636890649795532,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

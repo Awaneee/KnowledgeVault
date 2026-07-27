@@ -1,0 +1,122 @@
+{
+  "query_id": "fq_06",
+  "question": "How does NLP model training work?",
+  "category": "factual_lookup",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    64,
+    65
+  ],
+  "reference_answer": "NLP model training involves preprocessing text data, tokenising it, feeding it to a neural network architecture, and optimising model parameters using a loss function via backpropagation. Modern NLP uses pre-trained transformer models that are then fine-tuned on task-specific datasets.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Document KnowledgeVault backend APIs.",
+      "Compare MiniLM and BGE embedding models.",
+      "Ideas for improving semantic retrieval quality.",
+      "Learn SQLAlchemy relationship loading strategies.",
+      "Implement semantic search optimization in KnowledgeVault.",
+      "Prepare resume before placement season.",
+      "Read about Retrieval-Augmented Generation architectures.",
+      "Design a new AI-powered note summarization workflow."
+    ],
+    "retrieval_ms": 140.0,
+    "llm_ms": 64610.0,
+    "total_ms": 64750.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Document KnowledgeVault backend APIs.\nDocument KnowledgeVault backend APIs.\n\nCategory: Semantic match\nNote: Compare MiniLM and BGE embedding models.\nCompare MiniLM and BGE embedding models.\n\nCategory: Semantic match\nNote: Ideas for improving semantic retrieval quality.\nIdeas for improving semantic retrieval quality.\n\nCategory: Semantic match\nNote: Learn SQLAlchemy relationship loading strategies.\nLearn SQLAlchemy relationship loading strategies.\n\nCategory: Semantic match\nNote: Implement semantic search optimization in KnowledgeVault.\nImplement semantic search optimization in KnowledgeVault.\n\nCategory: Semantic match\nNote: Prepare resume before placement season.\nPrepare resume before placement season.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n\nCategory: Semantic match\nNote: Design a new AI-powered note summarization workflow.\nDesign a new AI-powered note summarization workflow.\n</context>\n\n<question>\nHow does NLP model training work?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 96,
+        "note_title": "Document KnowledgeVault backend APIs.",
+        "chunk_text": "Document KnowledgeVault backend APIs.",
+        "chunk_index": 0,
+        "score": 0.29778213196343595,
+        "semantic_score": 0.29778213196343595,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 64,
+        "note_title": "Compare MiniLM and BGE embedding models.",
+        "chunk_text": "Compare MiniLM and BGE embedding models.",
+        "chunk_index": 0,
+        "score": 0.2904697570064748,
+        "semantic_score": 0.2904697570064748,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 86,
+        "note_title": "Ideas for improving semantic retrieval quality.",
+        "chunk_text": "Ideas for improving semantic retrieval quality.",
+        "chunk_index": 0,
+        "score": 0.2825440848631886,
+        "semantic_score": 0.2825440848631886,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 69,
+        "note_title": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_text": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_index": 0,
+        "score": 0.28008558511479054,
+        "semantic_score": 0.28008558511479054,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 89,
+        "note_title": "Implement semantic search optimization in KnowledgeVault.",
+        "chunk_text": "Implement semantic search optimization in KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.26169904426029733,
+        "semantic_score": 0.26169904426029733,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 100,
+        "note_title": "Prepare resume before placement season.",
+        "chunk_text": "Prepare resume before placement season.",
+        "chunk_index": 0,
+        "score": 0.24611733097187682,
+        "semantic_score": 0.24611733097187682,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.24272342792977708,
+        "semantic_score": 0.24272342792977708,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 87,
+        "note_title": "Design a new AI-powered note summarization workflow.",
+        "chunk_text": "Design a new AI-powered note summarization workflow.",
+        "chunk_index": 0,
+        "score": 0.23201110160383898,
+        "semantic_score": 0.23201110160383898,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

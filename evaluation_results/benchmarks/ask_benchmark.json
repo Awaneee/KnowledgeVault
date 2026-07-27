@@ -1,0 +1,821 @@
+[
+  {
+    "id": "aq_001",
+    "question": "What is the difference between BFS and DFS and when do you use each?",
+    "expected_note_ids": [
+      158,
+      224,
+      316,
+      332,
+      342,
+      347,
+      545,
+      546
+    ],
+    "reference_answer": "BFS uses a queue and explores level by level \u2014 it guarantees shortest path in unweighted graphs. DFS uses a stack or recursion and explores as far as possible before backtracking. Use BFS for shortest path problems, use DFS for topological sort, cycle detection, or when you need to explore all paths.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_002",
+    "question": "How does the HNSW index work in pgvector?",
+    "expected_note_ids": [
+      58,
+      66,
+      104,
+      113,
+      139,
+      168,
+      183,
+      187
+    ],
+    "reference_answer": "HNSW (Hierarchical Navigable Small World) is an approximate nearest neighbor graph structure that provides O(log n) search. In pgvector, you create it with: CREATE INDEX ON table USING hnsw (embedding vector_cosine_ops) WITH (m=16, ef_construction=64). It significantly outperforms sequential KNN scans for large datasets.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": "Accept any answer explaining the graph-based ANN structure and pgvector syntax."
+  },
+  {
+    "id": "aq_003",
+    "question": "What is Reciprocal Rank Fusion and how is it used in hybrid search?",
+    "expected_note_ids": [
+      183,
+      213,
+      228,
+      252,
+      375,
+      381,
+      486,
+      518
+    ],
+    "reference_answer": "Reciprocal Rank Fusion (RRF) combines ranked results from multiple retrieval systems using the formula: score = \u03a3 1/(k + rank_i) across all systems, where k=60 is the standard default. It does not require calibrated scores from each system, making it ideal for combining dense vector search with BM25 keyword search.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_004",
+    "question": "What is the CAP theorem?",
+    "expected_note_ids": [
+      229,
+      259,
+      292,
+      417,
+      580,
+      608,
+      621,
+      631
+    ],
+    "reference_answer": "CAP theorem states that a distributed database can only guarantee two of three properties simultaneously: Consistency (all nodes see the same data), Availability (every request gets a response), and Partition Tolerance (system works despite network splits). In practice, partition tolerance is mandatory in distributed systems, so you choose between consistency (CP) and availability (AP).",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_005",
+    "question": "What is HyDE in the context of RAG systems?",
+    "expected_note_ids": [
+      531,
+      683,
+      783,
+      883,
+      983,
+      1083
+    ],
+    "reference_answer": "HyDE (Hypothetical Document Embeddings) is a RAG technique where you first generate a hypothetical answer to the query using an LLM, then embed that answer and use it for retrieval. Because the hypothetical answer shares vocabulary and style with real documents, it often retrieves more relevant chunks than embedding the raw query.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_006",
+    "question": "What are the ACID properties in databases?",
+    "expected_note_ids": [
+      144,
+      156,
+      229,
+      580,
+      608,
+      621,
+      631,
+      690
+    ],
+    "reference_answer": "ACID stands for: Atomicity (a transaction is all-or-nothing), Consistency (database moves from one valid state to another), Isolation (concurrent transactions don't see each other's partial state), and Durability (committed data survives crashes). PostgreSQL is fully ACID compliant.",
+    "category": "factual_lookup",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_007",
+    "question": "What is the difference between a cross-encoder and a bi-encoder?",
+    "expected_note_ids": [
+      67,
+      119,
+      123,
+      176,
+      386,
+      648,
+      676,
+      776
+    ],
+    "reference_answer": "A bi-encoder encodes query and document independently into vectors, enabling fast O(1) lookup after indexing. A cross-encoder reads the query and document together, producing higher-quality relevance scores but requiring O(n) computation per query. In RAG, bi-encoders handle first-stage recall and cross-encoders rerank the top-K candidates.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_008",
+    "question": "How does consistent hashing work?",
+    "expected_note_ids": [
+      104,
+      114,
+      135,
+      136,
+      145,
+      148,
+      152,
+      155
+    ],
+    "reference_answer": "Consistent hashing maps both servers and data to positions on a ring. A key is stored on the first server clockwise from its position on the ring. When a server is added or removed, only the keys near that server need to be remapped \u2014 typically 1/n of keys rather than remapping everything.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_009",
+    "question": "What is the difference between RAG retrieval failure modes?",
+    "expected_note_ids": [
+      119,
+      148,
+      197,
+      222,
+      239,
+      268,
+      365,
+      369
+    ],
+    "reference_answer": "RAG failure modes include: (1) retrieval miss \u2014 relevant document not in top-K candidates, (2) context window issues \u2014 too much context confuses the model, (3) hallucination \u2014 model ignores context and invents facts, (4) insufficient context \u2014 relevant document retrieved but lacks the specific detail needed.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_010",
+    "question": "What is token bucket rate limiting?",
+    "expected_note_ids": [
+      136,
+      150,
+      165,
+      189,
+      244,
+      251,
+      279,
+      346
+    ],
+    "reference_answer": "Token bucket is a rate limiting algorithm where each user has a bucket that holds up to a maximum number of tokens, replenished at a fixed rate. Each request consumes one token. If the bucket is empty, the request is rejected. It allows controlled bursting (up to max tokens) while enforcing an average rate limit.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_011",
+    "question": "What is the difference between FIFO, LRU, and Optimal page replacement?",
+    "expected_note_ids": [
+      117,
+      265,
+      318,
+      336,
+      520,
+      530,
+      562,
+      566
+    ],
+    "reference_answer": "FIFO replaces the oldest page \u2014 simple but can suffer from Belady's anomaly. LRU replaces the least recently used page \u2014 good real-world performance but requires hardware support to track access order. Optimal replaces the page not used for the longest future time \u2014 theoretically best but requires future knowledge, so only used as a benchmark.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_012",
+    "question": "What is the two-phase commit protocol?",
+    "expected_note_ids": [
+      308,
+      479
+    ],
+    "reference_answer": "Two-phase commit (2PC) is a distributed transaction protocol. Phase 1 (Prepare): the coordinator asks all participants to lock resources and vote ready or abort. Phase 2 (Commit): if all voted ready, coordinator sends commit; if any voted abort, coordinator sends rollback. The weakness is that if the coordinator crashes after prepare, participants are blocked waiting.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_013",
+    "question": "How can I make Python code run faster?",
+    "expected_note_ids": [
+      98,
+      108,
+      142,
+      159,
+      160,
+      174,
+      177,
+      183
+    ],
+    "reference_answer": "Key Python performance techniques: use list comprehensions over for-loops (2-3x faster for simple transforms), use __slots__ in classes with many instances (reduces memory and lookup time), use functools.cache for memoization, profile with cProfile before optimizing, and for CPU-bound work use multiprocessing not threading.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": "Accept any answer covering profiling, comprehensions, or appropriate data structures."
+  },
+  {
+    "id": "aq_014",
+    "question": "When should I use Redis over a traditional database?",
+    "expected_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      124,
+      146,
+      157,
+      174
+    ],
+    "reference_answer": "Redis excels at: caching (sub-millisecond reads, reducing DB load), message queuing (reliable job queues with BLMOVE/BRPOPLPUSH), session storage, and real-time leaderboards (Sorted Sets). Use a traditional database for durable relational data requiring complex queries. Redis data is in-memory by default \u2014 persistence is optional.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_015",
+    "question": "What are good strategies for preparing for technical interviews?",
+    "expected_note_ids": [
+      60,
+      70,
+      99,
+      117,
+      126,
+      145,
+      152,
+      154
+    ],
+    "reference_answer": "Effective interview prep: (1) master patterns not just problems \u2014 sliding window, two pointers, binary search, DFS/BFS, DP; (2) practice mock interviews with time pressure; (3) prepare STAR-format behavioral stories; (4) study 2-3 system design problems deeply; (5) ask clarifying questions before coding; (6) always discuss edge cases.",
+    "category": "factual_lookup",
+    "difficulty": "easy",
+    "eval_notes": "Accept any answer covering coding patterns, system design, and behavioral prep."
+  },
+  {
+    "id": "aq_016",
+    "question": "What makes a good software engineer?",
+    "expected_note_ids": [
+      73,
+      114,
+      155,
+      166,
+      199,
+      213,
+      236,
+      272
+    ],
+    "reference_answer": "Based on my notes and mentor feedback: the best engineers combine technical depth with intellectual humility \u2014 they're confident but quick to say 'I don't know.' They persist through hard problems, communicate clearly about trade-offs, write code for the next reader, and prioritize solving the right problem over using impressive technology.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": "Accept any answer synthesizing notes about engineering qualities and career advice."
+  },
+  {
+    "id": "aq_017",
+    "question": "What have I decided about KnowledgeVault's retrieval system and why?",
+    "expected_note_ids": [
+      57,
+      65,
+      86,
+      88,
+      89,
+      90,
+      91,
+      94
+    ],
+    "reference_answer": "KnowledgeVault uses hybrid retrieval combining semantic vector search (note-level embeddings) with an intent-based category arm. However, benchmark analysis showed the hybrid arm provides zero measurable improvement over pure semantic at K=5 across 50 queries \u2014 identical metrics. Root causes: fast classifier has only 34% accuracy, confidence_factor is zero for 50% of queries, and max boost magnitude (0.027) is too small to cross rank boundaries.",
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "eval_notes": "Accept any answer covering the hybrid architecture AND the benchmark findings."
+  },
+  {
+    "id": "aq_018",
+    "question": "How does the evaluation framework work in KnowledgeVault?",
+    "expected_note_ids": [
+      90,
+      119,
+      136,
+      143,
+      183,
+      184,
+      210,
+      213
+    ],
+    "reference_answer": "KnowledgeVault has two evaluation pipelines: (1) retrieval evaluation using 50 benchmark queries with metrics Precision@K, Recall@K, MRR, nDCG, and hit rate across semantic, intent, and hybrid strategies; (2) end-to-end RAG evaluation using an LLM-as-judge (Gemini) that scores answers on correctness, groundedness, faithfulness, hallucination, and completeness with root cause analysis.",
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_019",
+    "question": "What are the known bugs and issues I've encountered building KnowledgeVault?",
+    "expected_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96
+    ],
+    "reference_answer": "Key KnowledgeVault bugs encountered: N+1 queries fixed with joinedload, race condition in worker fixed by switching to brpoplpush reliable queue, IDOR vulnerability in get_related_notes fixed by adding ownership check, Gemini API rate limit causing evaluation failures (8s sleep too short \u2014 need 16s), context budget hardcoded at 3000 chars (too small for document uploads), and CacheService missing error handling for Redis failures.",
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_020",
+    "question": "What is the relationship between embedding quality and RAG answer quality?",
+    "expected_note_ids": [
+      64,
+      65,
+      86,
+      88,
+      112,
+      119,
+      148,
+      158
+    ],
+    "reference_answer": "Embedding quality determines retrieval quality, which is the bottleneck for RAG. If the retriever cannot find the relevant document (recall miss), no amount of prompt engineering improves the answer. Notes document that retrieval accuracy gates answer quality \u2014 the survey finding confirms this. Higher-quality embeddings enable better semantic similarity matching, and retrieval metrics (Recall@K, MRR) directly predict answer quality.",
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_021",
+    "question": "How do I balance study, projects, and personal life as a student?",
+    "expected_note_ids": [
+      58,
+      62,
+      66,
+      79,
+      85,
+      109,
+      156,
+      157
+    ],
+    "reference_answer": "From personal notes: schedule one complete rest day per week (workaholic burnout is real), protect morning hours for deep work (maker schedule), exercise consistently for mood and energy, use Pomodoro for focus, set a phone cutoff time for better sleep, and remember that the project teaches more than any single course. Consistency beats intensity.",
+    "category": "multi_hop",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_022",
+    "question": "What tasks and reminders do I have pending?",
+    "expected_note_ids": [
+      55,
+      233,
+      368,
+      498,
+      506,
+      542,
+      607,
+      753
+    ],
+    "reference_answer": "Based on notes: pay hostel fees before March 31, dentist appointment March 15, capstone progress report due March 25, vehicle insurance renewal before April 10, renew GitHub Student Pack, submit IEEE paper review comments, and check scholarship credit. Multiple bill payments are also pending.",
+    "category": "temporal",
+    "difficulty": "medium",
+    "eval_notes": "Accept any answer listing pending tasks from the notes. Exact list may vary."
+  },
+  {
+    "id": "aq_023",
+    "question": "What appointments and scheduled events do I have coming up?",
+    "expected_note_ids": [
+      78,
+      79,
+      109,
+      128,
+      179,
+      201,
+      224,
+      226
+    ],
+    "reference_answer": "Upcoming appointments from notes: dentist appointment March 15 at 10 AM at Fortis Dental Clinic (bring insurance card), health checkup before semester end, vehicle insurance renewal deadline April 10.",
+    "category": "temporal",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_024",
+    "question": "What are my financial obligations this month?",
+    "expected_note_ids": [
+      77,
+      140,
+      160,
+      164,
+      178,
+      312,
+      341,
+      368
+    ],
+    "reference_answer": "Monthly financial obligations from notes: hostel fees due March 31, electricity bill Rs 1,240 due March 5, internet and water bill payments, Jio recharge needed, mess bill split with roommates. Monthly subscriptions (Netflix, Spotify, ChatGPT Plus) total ~Rs 1,945.",
+    "category": "temporal",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_025",
+    "question": "What trips am I planning in the near future?",
+    "expected_note_ids": [
+      81,
+      128,
+      324,
+      407,
+      463,
+      535,
+      538,
+      596
+    ],
+    "reference_answer": "Upcoming travel: Delhi trip for hackathon (train from Chandigarh at 7:10 AM Shatabdi, hackathon at IIT Delhi), home visit for Holi (leave Friday, return Monday), possible Mcleodganj solo trip after exams. Also planning Goa post-placements with friends (budget Rs 8,000 per person).",
+    "category": "temporal",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_026",
+    "question": "How does Kafka compare to Redis for building a job queue?",
+    "expected_note_ids": [
+      56,
+      61,
+      71,
+      73,
+      92,
+      103,
+      141,
+      157
+    ],
+    "reference_answer": "Redis is simpler for basic job queues: BRPOPLPUSH provides reliable delivery with an inflight queue, fast setup, already present in most backends. Kafka suits high-throughput event streaming with replay and consumer groups for complex routing. For a personal note processing queue, Redis is the right choice. Kafka adds operational overhead not justified until millions of messages per day.",
+    "category": "comparison",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_027",
+    "question": "What are the trade-offs between Python and Go for backend development?",
+    "expected_note_ids": [
+      59,
+      60,
+      108,
+      113,
+      114,
+      138,
+      152,
+      162
+    ],
+    "reference_answer": "Python: expressive, huge ecosystem, asyncio for I/O concurrency, GIL limits CPU parallelism \u2014 use multiprocessing. Go: goroutines are extremely lightweight (can spawn millions), no GIL, compiled to binary, excellent for CPU-bound and high-concurrency workloads. Python wins for rapid development and ML integration. Go wins for performance-critical services.",
+    "category": "comparison",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_028",
+    "question": "Compare LRU and LFU cache eviction policies.",
+    "expected_note_ids": [
+      57,
+      62,
+      65,
+      67,
+      89,
+      95,
+      99,
+      102
+    ],
+    "reference_answer": "LRU (Least Recently Used) evicts the item not accessed for the longest time \u2014 good for recency-based access patterns. LFU (Least Frequently Used) evicts the item accessed least often \u2014 better for stable hot-set workloads. ARC adapts between LRU and LFU based on hit rates, offering the best of both. Python's OrderedDict implements LRU natively.",
+    "category": "comparison",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_029",
+    "question": "Reranking vs hybrid fusion: which approach is better for RAG?",
+    "expected_note_ids": [
+      67,
+      119,
+      123,
+      176,
+      183,
+      213,
+      228,
+      252
+    ],
+    "reference_answer": "Hybrid fusion (BM25 + dense vectors, combined with RRF or score normalization) improves first-stage recall without extra inference cost. Cross-encoder reranking adds a second precision stage on top of the recall set \u2014 higher quality but O(n) per query. The optimal pipeline uses hybrid retrieval for the top-50 candidates followed by cross-encoder reranking to the top-5. RRF is the preferred fusion method as it requires no score calibration.",
+    "category": "comparison",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_030",
+    "question": "What are the trade-offs between monolith and microservices architectures?",
+    "expected_note_ids": [
+      62,
+      101,
+      118,
+      180,
+      181,
+      225,
+      263,
+      299
+    ],
+    "reference_answer": "Monoliths are simpler to develop, test, and deploy initially \u2014 no network latency between components, easier debugging. Microservices enable independent scaling and deployment but add operational complexity (service discovery, distributed tracing, network failures). The pragmatic approach: start with a modular monolith, extract services only when a specific component has materially different scaling requirements.",
+    "category": "comparison",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_031",
+    "question": "Summarize all my AI and machine learning study notes.",
+    "expected_note_ids": [
+      60,
+      64,
+      72,
+      85,
+      87,
+      101,
+      110,
+      112
+    ],
+    "reference_answer": "AI/ML notes cover: RAG architecture (retrieval \u2192 context injection \u2192 generation), embedding models (all-MiniLM-L6-v2, FAISS, pgvector), LLM evaluation (MRR, Recall, faithfulness, hallucination), prompting techniques (chain-of-thought, few-shot, temperature), fine-tuning methods (LoRA, DPO, instruction tuning), and retrieval strategies (hybrid, reranking, HyDE, query expansion).",
+    "category": "synthesis",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_032",
+    "question": "What are all the KnowledgeVault architectural decisions I've documented?",
+    "expected_note_ids": [
+      57,
+      62,
+      65,
+      70,
+      87,
+      88,
+      89,
+      90
+    ],
+    "reference_answer": "KnowledgeVault architecture decisions: PostgreSQL + pgvector over dedicated vector DB (simplicity), Redis reliable queue (brpoplpush) over plain task queue, deterministic Python category naming (no LLM for naming), hybrid retrieval (semantic + intent), graceful degradation (never returns 500 on LLM failure), Gemini + Groq fallback chain, background worker for async indexing, SHA-256 cache keys with provider signature.",
+    "category": "synthesis",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_033",
+    "question": "What programming languages and technologies have I been studying?",
+    "expected_note_ids": [
+      59,
+      60,
+      108,
+      113,
+      114,
+      138,
+      152,
+      162
+    ],
+    "reference_answer": "Technologies studied: Python (most extensive \u2014 async, dataclasses, decorators, generators, typing), JavaScript/TypeScript (Promises, event loop, discriminated unions), Go (goroutines, interfaces, defer, error handling), Rust (ownership, borrowing, Result type), SQL (window functions, CTEs, indexes). Also: FastAPI, PostgreSQL, Redis, Docker, Kubernetes, Terraform.",
+    "category": "synthesis",
+    "difficulty": "medium",
+    "eval_notes": "Accept any answer covering multiple languages with key concepts."
+  },
+  {
+    "id": "aq_034",
+    "question": "Summarize my health and wellness notes.",
+    "expected_note_ids": [
+      79,
+      109,
+      133,
+      136,
+      157,
+      201,
+      202,
+      210
+    ],
+    "reference_answer": "Health notes cover: workout routine (push-pull-legs 3x/week), sleep optimization (20-20-20 rule, 10:30 PM cutoff, 90-minute cycles), nutrition (100g protein/day, Vitamin D deficiency supplement), supplements (D3, Magnesium Glycinate, Omega-3, Zinc), mental health (4-7-8 breathing, morning meditation, journaling), and ergonomics (standing breaks, wrist posture, monitor height).",
+    "category": "synthesis",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_035",
+    "question": "What are all my startup ideas and business notes?",
+    "expected_note_ids": [
+      85,
+      86,
+      117,
+      120,
+      125,
+      128,
+      131,
+      134
+    ],
+    "reference_answer": "Startup ideas documented: AI-powered study planner for college schedules, hyperlocal campus food delivery, KnowledgeVault as team knowledge management, developer tools SaaS (codebase-trained code reviewer), AI writing assistant for Indian legal documents, AI resume reviewer (Rs 99/review), Indian government data API subscription service. Key frameworks: 1000 true fans, validate with 10 customer conversations before coding.",
+    "category": "synthesis",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_036",
+    "question": "What have I been learning lately?",
+    "expected_note_ids": [
+      140,
+      144,
+      145,
+      149,
+      152,
+      163,
+      170,
+      171
+    ],
+    "reference_answer": "Recent learning covers a wide range: Python advanced patterns (descriptors, generators, async), AI/ML techniques (RAG, reranking, fine-tuning, evaluation metrics), system design (consistent hashing, saga pattern, observability), university subjects (OS scheduling, DBMS normalization, networking), and personal skills (ergonomics, sleep science, productivity techniques).",
+    "category": "ambiguous",
+    "difficulty": "medium",
+    "eval_notes": "Accept any reasonable synthesis of recent study topics."
+  },
+  {
+    "id": "aq_037",
+    "question": "What technical problems have I been solving?",
+    "expected_note_ids": [
+      94,
+      136,
+      163,
+      246,
+      270,
+      335,
+      340,
+      357
+    ],
+    "reference_answer": "Recent technical problems: N+1 SQLAlchemy queries (fixed with joinedload), Redis pool exhaustion under load (increased pool size), race condition in note worker (fixed with brpoplpush reliable queue), Gemini API 429 rate limits during evaluation, memory leak from per-request model loading, category embedding drift causing misclassification.",
+    "category": "ambiguous",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_038",
+    "question": "What are the most important things I've realized this month?",
+    "expected_note_ids": [
+      63,
+      102,
+      140,
+      154,
+      163,
+      170
+    ],
+    "reference_answer": "Key realizations: the hybrid retrieval benchmark showed zero improvement over semantic despite the architectural complexity \u2014 a lesson in measuring before assuming. Engineering requires honesty about what works. The best engineers are persistent, not necessarily the smartest. Documentation is written for the next reader, not the author.",
+    "category": "ambiguous",
+    "difficulty": "hard",
+    "eval_notes": "Accept any synthesis of journal and learning reflections."
+  },
+  {
+    "id": "aq_039",
+    "question": "Notes related to my project",
+    "expected_note_ids": [
+      62,
+      89,
+      91,
+      92,
+      97,
+      117,
+      118,
+      134
+    ],
+    "reference_answer": "Project notes span KnowledgeVault (RAG backend, hybrid retrieval, evaluation framework), capstone project (Timetable Management System for Thapar), hackathon project (AI study planner), and various side project ideas (code review assistant, Indian government data API). KnowledgeVault is the most developed, with the evaluation framework and hybrid retrieval analysis being notable contributions.",
+    "category": "ambiguous",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_040",
+    "question": "Show all my communication and meeting notes.",
+    "expected_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      106,
+      107,
+      117,
+      141
+    ],
+    "reference_answer": "Communication notes include messages to Siddhant/Sid about backend meeting, internship opportunity, hackathon registration form, and KnowledgeVault architecture discussions. Meeting notes cover capstone progress meetings with Professor Sharma, team syncs, mentor sessions with Arjun, and hackathon team planning.",
+    "category": "category",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_041",
+    "question": "What reminders and shopping lists do I have?",
+    "expected_note_ids": [
+      76,
+      115,
+      122,
+      139,
+      164,
+      168
+    ],
+    "reference_answer": "Shopping list includes: milk, bread, eggs, bananas, oats, curd, green tea, maggi, notebook, and pens. Other reminders: return library book by March 20, pay hostel fees before March 31, recharge Jio plan, dentist appointment March 15, renew vehicle insurance before April 10.",
+    "category": "category",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_042",
+    "question": "What ideas am I excited about?",
+    "expected_note_ids": [
+      85,
+      86,
+      95,
+      97,
+      117,
+      121
+    ],
+    "reference_answer": "Exciting ideas include: KnowledgeVault as a team knowledge management product (competing with Confluence but AI-native), AI-powered study planner for college students, developer tools SaaS with codebase-trained code review, Indian government data API subscription service, and open-sourcing KnowledgeVault with a blog post about the hybrid retrieval findings.",
+    "category": "category",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_043",
+    "question": "Show all my university study notes.",
+    "expected_note_ids": [
+      138,
+      175,
+      198,
+      227,
+      231,
+      233,
+      236,
+      270
+    ],
+    "reference_answer": "University study notes cover: OS (scheduling algorithms, page replacement, deadlock conditions, virtual memory), DBMS (normalization, ACID, B+ trees, ER diagrams), Computer Networks (TCP, OSI model, subnetting), Algorithms (dynamic programming, graph algorithms, greedy), and Compiler Design (lexer implementation, DFA, CFG). Capstone project is building a Timetable Management System.",
+    "category": "category",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_044",
+    "question": "What is BRPOPLPUSH?",
+    "expected_note_ids": [
+      246,
+      433,
+      643,
+      673,
+      684,
+      705,
+      773,
+      784
+    ],
+    "reference_answer": "BRPOPLPUSH atomically moves a job from the main queue to an inflight queue in a single operation. This enables reliable at-least-once delivery: if the worker crashes mid-processing, the job stays in the inflight queue and is recovered on worker restart via a startup recovery function. It prevents the silent job loss that occurs with a plain BRPOP.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_045",
+    "question": "What is Atomic Habits about?",
+    "expected_note_ids": [
+      482,
+      557
+    ],
+    "reference_answer": "Atomic Habits by James Clear covers habit formation through cue-routine-reward loops. The key insight is that environment design is more powerful than willpower \u2014 make good habits obvious, attractive, easy, and satisfying; make bad habits invisible, unattractive, difficult, and unsatisfying. Small 1% improvements compound to remarkable results over time.",
+    "category": "factual_lookup",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_046",
+    "question": "What is the walrus operator in Python?",
+    "expected_note_ids": [
+      336
+    ],
+    "reference_answer": "The walrus operator (:=) is Python's assignment expression, introduced in Python 3.8. It assigns a value to a variable as part of an expression. Example: `if (n := len(a)) > 10: print(n)` \u2014 this calls len() once and uses the result in both the condition and the body. Useful for avoiding repeated function calls in while loops and comprehensions.",
+    "category": "factual_lookup",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "aq_047",
+    "question": "What is CQRS?",
+    "expected_note_ids": [
+      238,
+      253,
+      656,
+      744,
+      756,
+      844,
+      856,
+      944
+    ],
+    "reference_answer": "CQRS (Command Query Responsibility Segregation) separates the write model (which accepts commands that change state) from the read model (optimized for querying). This allows each model to be optimized independently and even stored in different databases. It pairs naturally with Event Sourcing, where state changes are stored as events.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  }
+]

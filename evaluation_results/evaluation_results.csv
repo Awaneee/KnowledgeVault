@@ -1,155 +1,457 @@
 benchmark_id,strategy,query,difficulty,precision_at_k,recall_at_k,hit,reciprocal_rank,latency_ms,predicted_intent,expected_intent,intent_correct,predicted_category,expected_category,category_correct,relevant_note_ids,retrieved_note_ids,error
-1,semantic,What startup ideas do I have?,easy,0.0,0.0,False,0.0,2724.19,,idea,,,Ideas,,52,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-2,semantic,Show my AI research reading goals,easy,0.0,0.0,False,0.0,2709.56,,study,,,Study Tasks,,51,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-3,semantic,How can I improve my health?,medium,0.0,0.0,False,0.0,2687.47,,todo,,,To Do,,"49,50",,Error 11001 connecting to redis:6379. getaddrinfo failed.
-4,semantic,Show my finance reminders,easy,0.0,0.0,False,0.0,2688.55,,todo,,,To Do,,48,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-5,semantic,Evaluation report work,medium,0.0,0.0,False,0.0,2714.2,,reference,,,Reference Notes,,47,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-6,semantic,Markdown support,easy,0.0,0.0,False,0.0,2701.71,,reference,,,Reference Notes,,46,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-7,semantic,Improve search latency,easy,0.0,0.0,False,0.0,2728.68,,reference,,,Reference Notes,,45,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-8,semantic,Attachment upload feature,easy,0.0,0.0,False,0.0,2690.03,,reference,,,Reference Notes,,44,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-9,semantic,Flutter improvements,easy,0.0,0.0,False,0.0,2696.03,,reference,,,Reference Notes,,43,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-10,semantic,Networking concepts,easy,0.0,0.0,False,0.0,2679.99,,study,,,Study Tasks,,41,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-11,semantic,Object oriented programming revision,easy,0.0,0.0,False,0.0,2708.75,,study,,,Study Tasks,,40,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-12,semantic,Interview preparation,medium,0.0,0.0,False,0.0,2718.67,,study,,,Study Tasks,,"38,39",,Error 11001 connecting to redis:6379. getaddrinfo failed.
-13,semantic,Portfolio website,easy,0.0,0.0,False,0.0,2695.4,,todo,,,To Do,,37,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-14,semantic,Documentation tasks,easy,0.0,0.0,False,0.0,2696.77,,todo,,,To Do,,36,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-15,semantic,Deploy KnowledgeVault,easy,0.0,0.0,False,0.0,2688.83,,todo,,,To Do,,35,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-16,semantic,Update GitHub README,easy,0.0,0.0,False,0.0,2705.0,,todo,,,To Do,,34,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-17,semantic,Resume preparation,easy,0.0,0.0,False,0.0,2705.73,,todo,,,To Do,,33,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-18,semantic,Weekend trip,easy,0.0,0.0,False,0.0,2720.48,,todo,,,To Do,,32,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-19,semantic,Bills to pay,medium,0.0,0.0,False,0.0,2701.08,,todo,,,To Do,,"29,31",,Error 11001 connecting to redis:6379. getaddrinfo failed.
-20,semantic,Doctor appointment,easy,0.0,0.0,False,0.0,2701.57,,todo,,,To Do,,30,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-21,semantic,Shopping list,medium,0.0,0.0,False,0.0,2712.72,,todo,,,To Do,,"27,28",,Error 11001 connecting to redis:6379. getaddrinfo failed.
-22,semantic,Things I need to tell Sid,easy,0.0,0.0,False,0.0,2683.99,,communication,,,Things to Tell Sid,,26,,Error 11001 connecting to redis:6379. getaddrinfo failed.
-1,intent,What startup ideas do I have?,easy,0.0,0.0,False,0.0,228.74,,idea,,,Ideas,,52,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-2,intent,Show my AI research reading goals,easy,0.0,0.0,False,0.0,50.78,,study,,,Study Tasks,,51,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-3,intent,How can I improve my health?,medium,0.0,0.0,False,0.0,151.83,,todo,,,To Do,,"49,50",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-4,intent,Show my finance reminders,easy,0.0,0.0,False,0.0,157.16,,todo,,,To Do,,48,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-5,intent,Evaluation report work,medium,0.0,0.0,False,0.0,45.14,,reference,,,Reference Notes,,47,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-6,intent,Markdown support,easy,0.0,0.0,False,0.0,52.99,,reference,,,Reference Notes,,46,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-7,intent,Improve search latency,easy,0.0,0.0,False,0.0,42.28,,reference,,,Reference Notes,,45,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-8,intent,Attachment upload feature,easy,0.0,0.0,False,0.0,46.17,,reference,,,Reference Notes,,44,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-9,intent,Flutter improvements,easy,0.0,0.0,False,0.0,42.46,,reference,,,Reference Notes,,43,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-10,intent,Networking concepts,easy,0.0,0.0,False,0.0,158.09,,study,,,Study Tasks,,41,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-11,intent,Object oriented programming revision,easy,0.0,0.0,False,0.0,42.47,,study,,,Study Tasks,,40,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-12,intent,Interview preparation,medium,0.0,0.0,False,0.0,42.38,,study,,,Study Tasks,,"38,39",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-13,intent,Portfolio website,easy,0.0,0.0,False,0.0,42.93,,todo,,,To Do,,37,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-14,intent,Documentation tasks,easy,0.0,0.0,False,0.0,45.72,,todo,,,To Do,,36,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-15,intent,Deploy KnowledgeVault,easy,0.0,0.0,False,0.0,51.8,,todo,,,To Do,,35,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-16,intent,Update GitHub README,easy,0.0,0.0,False,0.0,46.91,,todo,,,To Do,,34,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-17,intent,Resume preparation,easy,0.0,0.0,False,0.0,43.43,,todo,,,To Do,,33,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-18,intent,Weekend trip,easy,0.0,0.0,False,0.0,41.82,,todo,,,To Do,,32,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-19,intent,Bills to pay,medium,0.0,0.0,False,0.0,47.1,,todo,,,To Do,,"29,31",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-20,intent,Doctor appointment,easy,0.0,0.0,False,0.0,41.33,,todo,,,To Do,,30,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-21,intent,Shopping list,medium,0.0,0.0,False,0.0,42.0,,todo,,,To Do,,"27,28",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-22,intent,Things I need to tell Sid,easy,0.0,0.0,False,0.0,45.59,,communication,,,Things to Tell Sid,,26,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-1,hybrid,What startup ideas do I have?,easy,0.0,0.0,False,0.0,44.38,,idea,,,Ideas,,52,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-2,hybrid,Show my AI research reading goals,easy,0.0,0.0,False,0.0,158.16,,study,,,Study Tasks,,51,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-3,hybrid,How can I improve my health?,medium,0.0,0.0,False,0.0,46.0,,todo,,,To Do,,"49,50",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-4,hybrid,Show my finance reminders,easy,0.0,0.0,False,0.0,45.9,,todo,,,To Do,,48,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-5,hybrid,Evaluation report work,medium,0.0,0.0,False,0.0,156.86,,reference,,,Reference Notes,,47,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-6,hybrid,Markdown support,easy,0.0,0.0,False,0.0,59.11,,reference,,,Reference Notes,,46,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-7,hybrid,Improve search latency,easy,0.0,0.0,False,0.0,43.62,,reference,,,Reference Notes,,45,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-8,hybrid,Attachment upload feature,easy,0.0,0.0,False,0.0,41.82,,reference,,,Reference Notes,,44,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-9,hybrid,Flutter improvements,easy,0.0,0.0,False,0.0,42.72,,reference,,,Reference Notes,,43,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-10,hybrid,Networking concepts,easy,0.0,0.0,False,0.0,41.27,,study,,,Study Tasks,,41,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-11,hybrid,Object oriented programming revision,easy,0.0,0.0,False,0.0,43.0,,study,,,Study Tasks,,40,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-12,hybrid,Interview preparation,medium,0.0,0.0,False,0.0,41.32,,study,,,Study Tasks,,"38,39",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-13,hybrid,Portfolio website,easy,0.0,0.0,False,0.0,41.41,,todo,,,To Do,,37,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-14,hybrid,Documentation tasks,easy,0.0,0.0,False,0.0,44.75,,todo,,,To Do,,36,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-15,hybrid,Deploy KnowledgeVault,easy,0.0,0.0,False,0.0,43.36,,todo,,,To Do,,35,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-16,hybrid,Update GitHub README,easy,0.0,0.0,False,0.0,43.24,,todo,,,To Do,,34,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-17,hybrid,Resume preparation,easy,0.0,0.0,False,0.0,49.07,,todo,,,To Do,,33,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-18,hybrid,Weekend trip,easy,0.0,0.0,False,0.0,166.31,,todo,,,To Do,,32,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-19,hybrid,Bills to pay,medium,0.0,0.0,False,0.0,44.78,,todo,,,To Do,,"29,31",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-20,hybrid,Doctor appointment,easy,0.0,0.0,False,0.0,42.36,,todo,,,To Do,,30,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-21,hybrid,Shopping list,medium,0.0,0.0,False,0.0,41.62,,todo,,,To Do,,"27,28",,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
-22,hybrid,Things I need to tell Sid,easy,0.0,0.0,False,0.0,41.97,,communication,,,Things to Tell Sid,,26,,"(psycopg2.OperationalError) connection to server at ""localhost"" (::1), port 5432 failed: FATAL:  password authentication failed for user ""postgres""
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+1,semantic,What are useful Python tips and tricks I've learned?,easy,0.2,0.125,True,0.5,21.9,,study,,,Study - Python,,"108,174,177,206,232,239,272,283","318,206,633,357,464",
+2,semantic,Show my Python programming notes,easy,0.0,0.0,False,0.0,3.1,,study,,,Study - Python,,"108,174,177,206,232,239,272,283","87,799,583,699,899",
+3,semantic,Notes about Python dictionaries and hash maps,easy,0.8,0.4,True,1.0,1.14,,reference,,,Reference - Python,,"108,271,278,284,397,464,483,560,579,587","284,587,397,464,745",
+4,semantic,How does Python async programming work?,medium,0.2,0.1,True,0.5,1.25,,study,,,Study - Python,,"170,283,304,359,364,372,471,661,662,663","934,304,734,834,1034",
+5,semantic,Concurrency and asynchronous patterns in Python,medium,0.2,0.1,True,0.3333,0.8,,study,,,Study - Python,,"170,283,304,359,364,372,471,661,662,663","834,934,304,734,1034",
+6,semantic,Python decorator notes,easy,0.6,0.4286,True,1.0,0.85,,reference,,,Reference - Python,,"174,414,435,455,549,610,614","610,549,177,318,414",
+7,semantic,What git commands and workflows have I noted?,easy,0.2,0.1,True,0.5,1.98,,reference,,,Reference - Git,,"130,135,144,169,229,272,317,328,366,395","612,328,501,614,522",
+8,semantic,Git tips and tricks,easy,0.0,0.0,False,0.0,4.54,,reference,,,Reference - Git,,"130,135,144,169,229,272,317,328,366,395","646,719,819,497,919",
+9,semantic,JavaScript and TypeScript notes,easy,0.8,0.4,True,1.0,3.19,,study,,,Study - JavaScript,,"218,220,250,297,418,713,720,813,820,913","913,813,218,713,1013",
+10,semantic,What have I learned about Go programming?,medium,0.0,0.0,False,0.0,2.1,,study,,,Study - Go,,"114,138,206,208,266,297,320,339,488,512","572,798,634,698,898",
+11,semantic,Rust ownership and borrowing notes,medium,0.2,0.1,True,0.25,1.46,,study,,,Study - Rust,,"151,182,210,351,370,380,459,494,539,563","789,889,689,370,989",
+12,semantic,What design patterns have I documented?,medium,0.4,0.2,True,1.0,1.24,,reference,,,Reference - Design Patterns,,"102,121,189,203,224,238,246,254,266,269","102,121,787,687,887",
+13,semantic,Software design patterns notes,easy,0.4,0.2,True,1.0,1.76,,reference,,,Reference - Design Patterns,,"102,121,189,203,224,238,246,254,266,269","102,106,309,121,687",
+14,semantic,Performance optimization notes,medium,0.2,0.1,True,1.0,1.9,,reference,,,Reference - Performance,,"93,98,108,142,159,160,183,195,196,213","195,547,58,530,738",
+15,semantic,SQL tips and advanced query techniques,medium,0.2,0.1,True,0.2,0.97,,study,,,Study - SQL,,"58,69,74,104,123,136,139,144,175,176","398,184,385,402,58",
+16,semantic,Regular expression notes and examples,easy,0.4,0.2,True,1.0,0.92,,reference,,,Reference - Regex,,"102,121,135,148,189,224,238,246,254,266","135,148,515,489,227",
+17,semantic,Shell and command line tips I've collected,easy,0.2,0.1,True,1.0,2.1,,reference,,,Reference - Shell,,"147,153,243,314,355,374,379,455,597,688","597,268,682,782,882",
+18,semantic,What do I know about RAG systems?,medium,0.2,0.1,True,0.2,1.14,,study,,,Study - AI,,"65,114,186,197,219,222,267,296,310,376","386,436,470,565,197",
+19,semantic,Retrieval augmented generation notes,easy,0.4,0.2,True,1.0,1.71,,study,,,Study - AI,,"65,114,186,197,219,222,267,296,310,376","65,186,398,184,289",
+20,semantic,Notes about embeddings and vector search,medium,0.2,0.1,True,0.25,1.44,,study,,,Study - AI,,"168,183,228,289,298,323,376,486,487,523","196,333,726,298,826",
+21,semantic,How do text embeddings work?,medium,0.2,0.1,True,0.3333,2.14,,study,,,Study - AI,,"168,183,228,289,298,323,376,486,487,523","826,926,298,726,1026",
+22,semantic,Large language model notes and findings,medium,0.2,0.1,True,1.0,1.28,,study,,,Study - AI,,"60,119,122,136,143,186,251,268,313,329","186,404,808,708,908",
+23,semantic,What LLMs have I worked with?,easy,0.4,0.2,True,1.0,1.68,,study,,,Study - AI,,"60,119,122,136,143,186,251,268,313,329","143,543,427,509,268",
+24,semantic,Document chunking strategy notes,medium,0.0,0.0,False,0.0,1.14,,reference,,,Reference - AI,,"197,214,257,268,289,432,446,478,487,510","558,821,533,721,921",
+25,semantic,Notes about reranking in search systems,hard,0.6,0.3,True,1.0,0.84,,study,,,Study - AI,,"67,119,123,176,386,648,676,776,876,976","67,176,119,305,58",
+26,semantic,RAG and retrieval evaluation metrics,hard,0.6,0.375,True,0.5,0.82,,study,,,Study - AI,,"90,119,210,310,402,485,487,595","386,485,310,595,186",
+27,semantic,How do I measure retrieval quality?,hard,0.6,0.375,True,1.0,1.11,,study,,,Study - AI,,"90,119,210,310,402,485,487,595","310,86,485,402,213",
+28,semantic,LLM fine-tuning and alignment notes,hard,0.2,0.1,True,0.5,1.01,,study,,,Study - AI,,"118,129,137,143,157,171,178,196,264,328","592,143,613,268,682",
+29,semantic,Prompting techniques and tips,medium,0.4,0.2,True,1.0,1.13,,study,,,Study - AI,,"130,191,264,268,406,436,446,456,467,493","406,264,507,459,199",
+30,semantic,What have I learned about LLM prompting?,easy,0.2,0.1,True,0.5,0.79,,study,,,Study - AI,,"130,191,264,268,406,436,446,456,467,493","882,268,682,782,982",
+31,semantic,Notes about LLM hallucination and grounding,medium,0.4,0.2,True,1.0,1.4,,study,,,Study - AI,,"197,222,446,470,485,600,730,830,930,1030","197,478,600,651,716",
+32,semantic,HyDE and query expansion techniques,hard,0.8,0.6667,True,0.5,0.91,,study,,,Study - AI,,"531,683,783,883,983,1083","184,531,783,683,883",
+33,semantic,Operating systems study notes,medium,0.2,0.1,True,1.0,0.85,,study,,,Study - Operating Systems,,"59,132,141,146,174,179,203,205,233,255","59,527,106,547,465",
+34,semantic,OS concepts I need to review for exams,easy,0.2,0.1,True,0.5,0.81,,study,,,Study - Operating Systems,,"59,132,141,146,174,179,203,205,233,255","360,59,309,169,527",
+35,semantic,Database management systems notes,medium,0.4,0.2,True,1.0,0.81,,study,,,Study - DBMS,,"139,144,198,229,252,308,321,417,425,593","425,231,439,608,144",
+36,semantic,Computer networks study notes,medium,0.0,0.0,False,0.0,1.11,,study,,,Study - Computer Networks,,"75,118,159,162,168,180,237,276,280,298","327,532,106,99,439",
+37,semantic,Algorithm and data structures notes,medium,0.0,0.0,False,0.0,0.85,,study,,,Study - Algorithms,,"59,60,116,156,182,204,215,244,247,261","838,938,738,530,1038",
+38,semantic,What algorithms have I studied?,easy,0.2,0.1,True,0.5,1.53,,study,,,Study - Algorithms,,"59,60,116,156,182,204,215,244,247,261","619,60,333,66,536",
+39,semantic,Compiler design and theory of computation notes,hard,0.4,0.2857,True,1.0,1.22,,study,,,Study - Compiler Design,,"148,227,228,241,311,578,633","227,547,465,311,530",
+40,semantic,Capstone project notes,medium,0.6,0.3,True,0.5,1.08,,study,,,Study - Capstone,,"175,190,199,225,233,236,263,277,285,382","568,233,498,382,175",
+41,semantic,Parallel programming and concurrency notes,hard,0.4,0.2,True,1.0,0.78,,study,,,Study - Operating Systems,,"151,229,283,287,296,304,421,462,474,504","296,283,762,662,862",
+42,semantic,LeetCode problem patterns and solutions,medium,0.4,0.2,True,1.0,0.85,,study,,,Study - Interview Prep,,"117,127,187,224,271,279,282,316,327,387","224,611,316,399,546",
+43,semantic,Dynamic programming notes and patterns,hard,0.0,0.0,False,0.0,0.81,,study,,,Study - Algorithms,,"118,129,152,157,178,224,271,328,349,399","562,227,701,460,801",
+44,semantic,System design interview prep notes,medium,0.6,0.3,True,1.0,0.98,,study,,,Study - System Design,,"70,145,255,267,305,309,334,344,346,360","360,70,106,309,99",
+45,semantic,What system design topics have I covered?,easy,0.6,0.3,True,1.0,0.86,,study,,,Study - System Design,,"70,145,255,267,305,309,334,344,346,360","360,392,309,70,99",
+46,semantic,Behavioral interview preparation notes,medium,0.4,0.2,True,1.0,1.37,,study,,,Study - Interview Prep,,"169,197,263,294,309,344,468,478,504,605","294,468,360,288,352",
+47,semantic,Mock interview notes and feedback,medium,0.6,0.3,True,1.0,0.78,,study,,,Study - Interview Prep,,"126,152,154,199,280,352,507,521,609,611","126,360,540,352,507",
+48,semantic,Resume writing and improvement tips,easy,0.8,0.6667,True,1.0,0.72,,reference,,,Reference - Career,,"100,142,185,270,523,525","100,142,185,525,472",
+49,semantic,Campus placement preparation notes,easy,0.6,0.3,True,0.3333,0.69,,study,,,Study - Interview Prep,,"54,77,100,111,176,225,236,318,343,344","415,620,100,236,343",
+50,semantic,Database sharding and partitioning notes,hard,0.8,0.4,True,1.0,0.75,,study,,,Study - System Design,,"259,292,417,580,608,695,731,795,831,895","895,292,795,695,995",
+51,semantic,Caching strategies and implementations,medium,0.0,0.0,False,0.0,1.07,,study,,,Study - System Design,,"103,124,146,237,269,275,284,295,318,336","61,93,644,602,467",
+52,semantic,Message queue and event streaming notes,medium,0.0,0.0,False,0.0,0.97,,study,,,Study - System Design,,"71,102,144,174,200,218,238,269,297,304","871,671,771,450,971",
+53,semantic,Microservices architecture notes,hard,0.4,0.2,True,1.0,1.87,,study,,,Study - System Design,,"189,263,299,372,410,652,665,697,752,765","372,392,106,102,410",
+54,semantic,Distributed systems consensus notes,hard,0.6,0.3,True,1.0,0.93,,study,,,Study - Distributed Systems,,"99,140,264,299,308,346,354,390,439,450","354,608,99,580,439",
+55,semantic,Observability and monitoring notes,medium,0.2,0.125,True,1.0,0.93,,reference,,,Reference - DevOps,,"299,477,570,665,765,865,965,1065","477,410,424,140,372",
+56,semantic,Idempotency and distributed system reliability notes,hard,0.4,0.2222,True,1.0,1.33,,reference,,,Reference - System Design,,"140,299,392,431,665,765,865,965,1065","140,431,608,99,580",
+57,semantic,KnowledgeVault project notes,easy,0.8,0.4,True,0.5,0.9,,reference,,,Reference - KnowledgeVault,,"57,88,89,90,91,94,95,96,97,107","125,95,96,89,90",
+58,semantic,What decisions have I made for the KnowledgeVault project?,medium,0.2,0.1,True,0.5,0.86,,reference,,,Reference - KnowledgeVault,,"57,88,89,90,91,94,95,96,97,107","638,90,728,428,828",
+59,semantic,Notes about hybrid retrieval implementation,hard,0.4,0.2,True,0.3333,0.84,,reference,,,Reference - KnowledgeVault,,"183,213,252,375,381,486,518,555,696,702","902,802,486,702,1002",
+60,semantic,Docker and containerization notes,easy,0.8,0.4,True,1.0,0.91,,study,,,Study - Docker,,"72,75,91,105,118,138,188,192,242,295","72,105,192,75,491",
+61,semantic,What Docker tips have I collected?,easy,1.0,0.5,True,1.0,0.94,,reference,,,Reference - Docker,,"72,75,91,105,118,138,188,192,242,295","72,192,295,105,75",
+62,semantic,FastAPI development notes,medium,0.4,0.2,True,1.0,0.97,,study,,,Study - FastAPI,,"68,132,145,165,167,266,272,313,350,365","68,825,165,725,925",
+63,semantic,PostgreSQL database notes,medium,0.4,0.2,True,1.0,0.84,,study,,,Study - PostgreSQL,,"58,66,74,104,139,144,168,175,215,267","74,144,731,417,831",
+64,semantic,What PostgreSQL features and tips do I have?,easy,0.6,0.3,True,1.0,0.76,,study,,,Study - PostgreSQL,,"58,66,74,104,139,144,168,175,215,267","58,74,144,367,628",
+65,semantic,Redis usage and patterns,easy,0.4,0.2,True,1.0,0.74,,study,,,Study - Redis,,"61,73,92,103,124,146,157,174,237,246","73,92,724,269,824",
+66,semantic,pgvector and vector search notes,hard,0.4,0.2,True,1.0,0.75,,study,,,Study - PostgreSQL,,"66,168,183,215,217,228,252,298,323,333","66,842,742,323,942",
+67,semantic,What meetings have I had?,easy,0.2,0.1,True,0.5,0.71,,event,,,Meetings,,"56,106,107,149,170,233,251,283,304,359","371,107,263,559,442",
+68,semantic,Team meeting notes,easy,0.4,0.2,True,0.3333,0.77,,event,,,Meetings,,"56,106,107,149,170,233,251,283,304,359","203,87,107,125,106",
+69,semantic,Mentor and senior advice I've received,easy,0.4,0.2,True,1.0,0.71,,communication,,,Communication,,"68,126,185,199,236,260,272,274,330,372","199,185,428,728,828",
+70,semantic,Hackathon planning notes,easy,1.0,0.8333,True,1.0,0.98,,event,,,Meetings,,"55,324,448,463,535,542","448,324,463,55,542",
+71,semantic,What are my pending tasks and deadlines?,easy,0.2,0.1667,True,0.3333,1.01,,todo,,,Tasks,,"155,179,184,207,233,266","498,453,233,647,59",
+72,semantic,What health appointments do I have?,easy,0.2,0.1,True,1.0,0.8,,reminder,,,Appointments,,"78,79,109,157,179,201,210,212,224,226","79,601,559,575,198",
+73,semantic,What payments and bills do I need to make?,easy,0.2,0.1,True,0.5,0.92,,todo,,,Bills,,"77,120,126,128,131,137,140,144,160,162","341,77,82,635,368",
+74,semantic,What is on my shopping list?,easy,0.4,1.0,True,0.5,0.72,,todo,,,Shopping,,"76,322","393,322,606,115,76",
+75,semantic,Show all my reminders,easy,0.2,0.1667,True,0.3333,0.72,,reminder,,,Reminders,,"55,152,212,312,542,557","382,56,312,290,442",
+76,semantic,What do I need to remember this week?,medium,0.2,0.1667,True,0.5,0.66,,reminder,,,Reminders,,"55,152,212,312,542,557","77,212,475,442,755",
+77,semantic,My budget and expense tracking notes,easy,0.4,0.2,True,1.0,0.63,,todo,,,Finance,,"82,153,202,210,216,254,281,291,331,345","82,216,606,393,285",
+78,semantic,Monthly expense breakdown,medium,0.4,0.2,True,1.0,0.93,,reference,,,Finance,,"82,153,202,210,216,254,281,291,331,345","82,216,490,606,341",
+79,semantic,Investment and savings notes,medium,0.4,0.2,True,0.3333,1.37,,reference,,,Finance,,"113,273,496,561,591,594,750,850,950,1050","162,285,113,594,539",
+80,semantic,Tech purchase notes and wishlists,easy,0.0,0.0,False,0.0,1.0,,todo,,,Shopping,,"115,124,174,200,211,307,420,434,442,445","444,605,87,262,285",
+81,semantic,My travel plans and notes,easy,0.2,0.1,True,0.5,0.71,,todo,,,Travel,,"78,81,115,126,128,130,160,171,175,176","290,81,212,393,444",
+82,semantic,Upcoming trips and travel bookings,easy,0.4,0.2,True,0.3333,0.8,,todo,,,Travel,,"78,81,115,126,128,130,160,171,175,176","538,627,81,128,190",
+83,semantic,Delhi trip plans,easy,0.8,0.4,True,1.0,1.06,,todo,,,Travel,,"55,115,256,324,448,463,524,535,542,577","115,324,535,407,463",
+84,semantic,Hill station and trekking plans,medium,0.2,0.25,True,1.0,0.91,,todo,,,Travel,,"81,128,351,407","351,137,60,498,324",
+85,semantic,Train booking tips and notes,easy,0.4,0.6667,True,1.0,1.64,,reference,,,Reference - Travel,,"160,463,596","596,160,393,203,290",
+86,semantic,Fitness and workout notes,easy,0.0,0.0,False,0.0,1.59,,todo,,,Health,,"173,185,202,232,246,291,317,380,392,427","631,481,87,482,83",
+87,semantic,My exercise routine notes,easy,0.2,0.1,True,0.25,1.0,,todo,,,Health,,"173,185,202,232,246,291,317,380,392,427","631,83,87,380,680",
+88,semantic,Sleep improvement notes,medium,0.8,0.4,True,1.0,0.8,,reference,,,Reference - Health,,"133,136,202,288,348,380,434,538,548,574","548,622,434,574,348",
+89,semantic,Nutrition and supplement notes,medium,0.4,0.5,True,1.0,1.65,,reference,,,Reference - Health,,"109,133,226,286","286,133,322,87,285",
+90,semantic,Mental health and wellbeing notes,medium,0.6,0.5,True,1.0,0.87,,reference,,,Reference - Health,,"152,288,291,317,472,575","575,201,291,212,472",
+91,semantic,My startup ideas and business notes,easy,0.2,0.1,True,1.0,0.9,,idea,,,Ideas - Startups,,"85,86,117,120,125,128,131,134,143,157","85,525,459,617,441",
+92,semantic,What business ideas have I documented?,easy,0.2,0.1,True,0.3333,0.7,,idea,,,Ideas,,"85,86,117,120,125,128,131,134,143,157","225,178,85,441,459",
+93,semantic,Y Combinator and startup ecosystem notes,medium,0.0,0.0,False,0.0,0.87,,reference,,,Reference - Startups,,"72,133,137,205,248,307,342,347,438,536","462,267,85,482,118",
+94,semantic,Business model and monetization notes,medium,0.0,0.0,False,0.0,0.76,,reference,,,Ideas - Startups,,"210,216,330,331,514,594,617,624,649","178,262,285,308,393",
+95,semantic,Startup idea validation notes,medium,0.2,0.1,True,0.3333,0.7,,reference,,,Ideas - Startups,,"108,117,126,132,134,146,173,199,204,210","459,525,134,617,441",
+96,semantic,What books have I taken notes on?,easy,0.0,0.0,False,0.0,1.0,,reference,,,Reference - Books,,"78,128,141,155,160,172,182,194,208,234","309,290,240,444,87",
+97,semantic,My book notes and summaries,easy,0.0,0.0,False,0.0,0.81,,reference,,,Reference - Books,,"78,128,141,155,160,172,182,194,208,234","87,699,583,799,899",
+98,semantic,Notes from Designing Data-Intensive Applications,hard,0.4,1.0,True,1.0,1.21,,study,,,Study - Books,,"439,528","528,439,267,106,402",
+99,semantic,Atomic Habits notes and takeaways,easy,0.2,0.1,True,1.0,0.99,,study,,,Study - Books,,"164,304,317,349,482,557,631,634,698,734","482,229,690,790,890",
+100,semantic,Podcast notes and key insights,easy,0.4,0.6667,True,1.0,0.66,,reference,,,Reference - Learning,,"230,419,548","230,87,419,442,755",
+101,semantic,Online courses I'm taking or completed,easy,0.4,0.2,True,0.5,1.5,,study,,,Study - Learning,,"71,145,231,266,357,394,417,471,519,611","343,145,663,471,763",
+102,semantic,Kubernetes learning notes,medium,0.4,0.2,True,1.0,0.98,,study,,,Study - Kubernetes,,"62,101,118,180,181,225,230,263,299,355","62,118,812,712,912",
+103,semantic,Terraform and infrastructure as code notes,medium,0.2,1.0,True,1.0,0.81,,study,,,Study - DevOps,,274,"274,62,181,106,316",
+104,semantic,Authentication and authorization notes,medium,0.2,0.1,True,0.5,0.92,,study,,,Study - Security,,"63,129,165,189,227,244,276,287,338,346","408,63,733,637,833",
+105,semantic,Testing and pytest notes,medium,0.2,0.1,True,0.5,0.98,,reference,,,Reference - Testing,,"108,124,126,152,153,163,165,172,245,277","435,245,313,177,258",
+106,semantic,Debugging sessions and fixes,medium,0.2,0.1,True,0.2,0.74,,reference,,,Reference - Debugging,,"94,136,161,246,258,335,340,362,421,461","632,591,163,522,246",
+107,semantic,What bugs have I debugged recently?,easy,0.2,0.1667,True,0.25,0.9,,reference,,,Reference - Debugging,,"94,136,161,246,258,335","591,632,522,246,684",
+108,semantic,SQLAlchemy N+1 query problem notes,hard,1.0,0.625,True,1.0,0.79,,reference,,,Reference - Database,,"363,588,589,659,759,859,959,1059","759,859,589,659,959",
+109,semantic,Race condition and concurrency bug notes,hard,0.4,0.2,True,1.0,0.79,,reference,,,Reference - Debugging,,"229,246,296,321,384,421,462,474,482,499","462,827,727,384,927",
+110,semantic,Memory management and leak debugging notes,hard,0.4,0.2,True,0.25,0.73,,reference,,,Reference - Debugging,,"124,146,169,175,182,219,248,273,275,279","547,591,318,169,275",
+111,semantic,My journal entries and personal reflections,easy,0.0,0.0,False,0.0,1.12,,general,,,General,,"113,149,152,162,166,191,251,255","472,290,550,700,800",
+112,semantic,Productivity tips and personal notes,easy,0.0,0.0,False,0.0,1.16,,reference,,,Reference - Productivity,,"85,199,224,240,248,286,429,453,529,550","87,699,799,583,899",
+113,semantic,Career direction and goal notes,medium,0.2,0.1,True,0.3333,0.77,,general,,,General,,"56,61,91,96,101,106,166,175,177,180","885,785,166,685,985",
+114,semantic,Open source and building in public notes,medium,0.4,0.2,True,1.0,1.07,,idea,,,Ideas,,"117,141,255,395,400,440,453,522,554,555","255,285,106,87,141",
+115,semantic,KnowledgeVault RAG pipeline decisions and findings,hard,0.0,0.0,False,0.0,0.82,,reference,,,Reference - KnowledgeVault,,"1028,262,1030,1032,523,267,533,1053","310,90,446,730,830",
+116,semantic,All my interview preparation notes — coding and system design,hard,0.0,0.0,False,0.0,1.21,,study,,,Study - Interview Prep,,"769,129,387,642,516,255,392,267,271,399","360,70,309,99,126",
+117,semantic,"AI system infrastructure notes: vector DB, cache, and retrieval",hard,0.2,0.125,True,0.2,1.39,,study,,,Study - AI,,"1024,1030,1031,1032,520,523,1036,1042","333,66,61,644,523",
+118,semantic,All my health and wellness notes,medium,0.0,0.0,False,0.0,1.64,,reference,,,Reference - Health,,"643,764,773,646,133,392,905,522","212,322,79,444,442",
+119,semantic,Financial tasks and expense notes,medium,0.0,0.0,False,0.0,1.61,,todo,,,Finance,,"1028,1035,1043,1044,1046,535,538,540","82,87,393,216,285",
+120,semantic,My university computer science notes,hard,0.0,0.0,False,0.0,1.89,,study,,,Study - Computer Science,,"513,1026,1027,515,516,510,1031,1034,1038,526","87,106,583,699,799",
+121,semantic,Things I need to do this week,medium,0.0,0.0,False,0.0,1.43,,todo,,,Tasks,,"155,179,184,207,233,266","77,81,76,322,79",
+122,semantic,What tasks are pending for me?,medium,0.0,0.0,False,0.0,1.02,,todo,,,Tasks,,"155,179,184,207,233,266","453,647,77,498,174",
+123,semantic,Resources for learning backend development,medium,0.0,0.0,False,0.0,0.89,,study,,,Study - Backend,,"1025,772,775,1031,1032,266,523,267","106,61,330,96,101",
+124,semantic,How do I get better at backend engineering?,medium,0.0,0.0,False,0.0,0.83,,study,,,Study - Backend,,"1025,772,775,1031,1032,266","272,106,166,685,785",
+125,semantic,What are distributed systems trade-offs?,hard,0.0,0.0,False,0.0,1.01,,study,,,Study - System Design,,"897,771,259,390,1031,264","308,99,608,516,711",
+126,semantic,Notes on scalability and reliability,hard,0.0,0.0,False,0.0,1.05,,study,,,Study - System Design,,"1024,259,644,1031,520,906","608,354,439,530,738",
+127,semantic,What are my creative ideas?,easy,0.2,0.1667,True,0.5,0.92,,idea,,,Ideas,,"85,86,117,120,125,128","382,85,416,240,496",
+128,semantic,Show my brainstorming notes,easy,0.0,0.0,False,0.0,0.75,,idea,,,Ideas,,"128,514,131,260,134,262,1035,525","87,85,290,416,583",
+129,semantic,Advice and wisdom I've collected,medium,0.2,0.1667,True,0.2,0.81,,general,,,General,,"260,1028,522,1035,525,272","928,828,428,728,1028",
+130,semantic,BM25,easy,1.0,0.7143,True,1.0,1.31,,study,,,Study - AI,,"228,252,696,796,896,996,1096","796,896,696,252,996",
+131,semantic,HNSW index,easy,1.0,0.7143,True,1.0,1.31,,study,,,Study - AI,,"215,430,681,781,881,981,1081","430,781,215,681,881",
+132,semantic,HNSW vector index configuration,medium,0.2,0.1429,True,1.0,0.82,,study,,,Study - AI,,"215,430,681,781,881,981,1081","430,66,323,742,842",
+133,semantic,Reciprocal Rank Fusion,medium,1.0,1.0,True,1.0,0.88,,study,,,Study - AI,,"518,718,818,918,1018","918,518,818,718,1018",
+134,semantic,two sum problem,easy,1.0,0.8333,True,1.0,1.29,,study,,,Study - Interview Prep,,"278,677,777,877,977,1077","777,877,677,278,977",
+135,semantic,LRU cache implementation,medium,1.0,0.5,True,1.0,2.32,,study,,,Study - Interview Prep,,"318,336,520,530,579,736,738,836,838,936","520,318,579,736,836",
+136,semantic,CAP theorem,easy,0.4,1.0,True,1.0,1.26,,study,,,Study - System Design,,"580,608","580,608,233,607,753",
+137,semantic,PageRank or graph algorithms notes,medium,0.4,0.2,True,1.0,1.12,,study,,,Study - Algorithms,,"60,158,224,316,342,347,545,546,619,667","619,333,60,215,681",
+138,semantic,What have I been working on this month?,hard,0.2,0.1667,True,0.5,0.79,,general,,,General,,"77,149,164,182,216,286","453,77,82,647,375",
+139,semantic,Recent notes and activities,hard,0.0,0.0,False,0.0,0.96,,general,,,General,,"77,149,164,182,216,286","87,444,565,290,203",
+140,semantic,Redis vs Kafka — when to use each,hard,0.2,0.1667,True,0.25,1.25,,study,,,Study - System Design,,"1024,771,1027,773,520,1034","873,673,643,773,973",
+141,semantic,Python vs Go programming notes,hard,0.0,0.0,False,0.0,1.38,,study,,,Study - Programming,,"512,320,898,266,138,586","572,327,662,283,762",
+142,semantic,SQL vs NoSQL database comparison,hard,0.0,0.0,False,0.0,1.13,,study,,,Study - Database,,"772,775,904,1031,1032,139","954,854,300,754,1054",
+143,semantic,"Comparing RAG retrieval strategies: dense, sparse, and reranking",hard,0.2,0.1667,True,1.0,1.25,,study,,,Study - AI,,"386,1030,648,649,776,267","386,310,595,492,186",
+144,semantic,REST vs GraphQL API design trade-offs,hard,0.2,0.1667,True,0.3333,1.15,,study,,,Study - System Design,,"68,93,96,132,136,142","484,644,93,450,671",
+145,semantic,Show all my communication notes,easy,0.0,0.0,False,0.0,1.26,,communication,,,Communication,,"54,55,56,57,106,117","141,699,799,583,899",
+146,semantic,All my reminder notes,easy,0.0,0.0,False,0.0,1.59,,reminder,,,Reminders,,"55,152,212,312,542,557","290,799,583,699,899",
+147,semantic,My study notes on AI and machine learning,easy,0.0,0.0,False,0.0,2.57,,study,,,Study - AI,,"1026,774,1030,510,523,268,267,782","529,230,87,619,85",
+148,semantic,Notes categorized under system design,easy,0.2,0.1667,True,0.2,2.45,,study,,,Study - System Design,,"70,145,255,267,305,309","106,392,87,602,309",
+149,semantic,Programming notes I've taken recently,medium,0.0,0.0,False,0.0,3.86,,study,,,Study - Programming,,"512,1025,898,132,266,523","87,799,699,583,899",
+150,semantic,My financial notes,medium,0.0,0.0,False,0.0,2.56,,todo,,,Finance,,"646,202,331,591,273,82","290,87,637,733,833",
+151,semantic,Projects and ideas I'm excited about,hard,0.0,0.0,False,0.0,1.09,,idea,,,Ideas,,"514,260,1028,262,1032,522","85,528,442,755,855",
+152,semantic,Personal notes and self-improvement,hard,0.0,0.0,False,0.0,0.98,,general,,,General,,"522,1035,785,529,277,283","444,290,212,87,583",
+1,intent,What are useful Python tips and tricks I've learned?,easy,0.0,0.0,False,0.0,151.67,question,study,False,,Study - Python,,"108,174,177,206,232,239,272,283",,
+2,intent,Show my Python programming notes,easy,0.0,0.0,False,0.0,29.69,general,study,False,,Study - Python,,"108,174,177,206,232,239,272,283",,
+3,intent,Notes about Python dictionaries and hash maps,easy,0.0,0.0,False,0.0,28.52,general,reference,False,,Reference - Python,,"108,271,278,284,397,464,483,560,579,587",,
+4,intent,How does Python async programming work?,medium,0.0,0.0,False,0.0,26.72,question,study,False,,Study - Python,,"170,283,304,359,364,372,471,661,662,663",,
+5,intent,Concurrency and asynchronous patterns in Python,medium,0.0,0.0,False,0.0,28.54,general,study,False,,Study - Python,,"170,283,304,359,364,372,471,661,662,663",,
+6,intent,Python decorator notes,easy,0.0,0.0,False,0.0,26.55,general,reference,False,,Reference - Python,,"174,414,435,455,549,610,614",,
+7,intent,What git commands and workflows have I noted?,easy,0.0,0.0,False,0.0,24.64,question,reference,False,,Reference - Git,,"130,135,144,169,229,272,317,328,366,395",,
+8,intent,Git tips and tricks,easy,0.0,0.0,False,0.0,35.73,general,reference,False,Ideas - Semantic Retrieval,Reference - Git,False,"130,135,144,169,229,272,317,328,366,395","646,614,582,558,533",
+9,intent,JavaScript and TypeScript notes,easy,0.0,0.0,False,0.0,24.46,general,study,False,,Study - JavaScript,,"218,220,250,297,418,713,720,813,820,913",,
+10,intent,What have I learned about Go programming?,medium,0.0,0.0,False,0.0,24.82,question,study,False,,Study - Go,,"114,138,206,208,266,297,320,339,488,512",,
+11,intent,Rust ownership and borrowing notes,medium,0.0,0.0,False,0.0,25.75,general,study,False,Study - System Design,Study - Rust,True,"151,182,210,351,370,380,459,494,539,563","1089,1069,989,969,889",
+12,intent,What design patterns have I documented?,medium,0.0,0.0,False,0.0,25.37,question,reference,False,,Reference - Design Patterns,,"102,121,189,203,224,238,246,254,266,269",,
+13,intent,Software design patterns notes,easy,0.0,0.0,False,0.0,25.35,general,reference,False,,Reference - Design Patterns,,"102,121,189,203,224,238,246,254,266,269",,
+14,intent,Performance optimization notes,medium,0.0,0.0,False,0.0,26.5,general,reference,False,,Reference - Performance,,"93,98,108,142,159,160,183,195,196,213",,
+15,intent,SQL tips and advanced query techniques,medium,0.0,0.0,False,0.0,24.77,general,study,False,,Study - SQL,,"58,69,74,104,123,136,139,144,175,176",,
+16,intent,Regular expression notes and examples,easy,0.0,0.0,False,0.0,24.03,general,reference,False,,Reference - Regex,,"102,121,135,148,189,224,238,246,254,266",,
+17,intent,Shell and command line tips I've collected,easy,0.0,0.0,False,0.0,25.23,general,reference,False,,Reference - Shell,,"147,153,243,314,355,374,379,455,597,688",,
+18,intent,What do I know about RAG systems?,medium,0.0,0.0,False,0.0,24.35,question,study,False,,Study - AI,,"65,114,186,197,219,222,267,296,310,376",,
+19,intent,Retrieval augmented generation notes,easy,0.0,0.0,False,0.0,22.93,general,study,False,,Study - AI,,"65,114,186,197,219,222,267,296,310,376",,
+20,intent,Notes about embeddings and vector search,medium,0.0,0.0,False,0.0,31.67,general,study,False,Study - Cross-encoder Reranking,Study - AI,True,"168,183,228,289,298,323,376,486,487,523","1083,1076,1050,1049,1042",
+21,intent,How do text embeddings work?,medium,0.0,0.0,False,0.0,26.77,question,study,False,,Study - AI,,"168,183,228,289,298,323,376,486,487,523",,
+22,intent,Large language model notes and findings,medium,0.0,0.0,False,0.0,34.71,general,study,False,Tasks,Study - AI,False,"60,119,122,136,143,186,251,268,313,329","1108,1102,1098,1096,1092",
+23,intent,What LLMs have I worked with?,easy,0.0,0.0,False,0.0,29.13,question,study,False,,Study - AI,,"60,119,122,136,143,186,251,268,313,329",,
+24,intent,Document chunking strategy notes,medium,0.0,0.0,False,0.0,25.7,general,reference,False,,Reference - AI,,"197,214,257,268,289,432,446,478,487,510",,
+25,intent,Notes about reranking in search systems,hard,0.0,0.0,False,0.0,27.11,general,study,False,,Study - AI,,"67,119,123,176,386,648,676,776,876,976",,
+26,intent,RAG and retrieval evaluation metrics,hard,0.0,0.0,False,0.0,27.33,general,study,False,,Study - AI,,"90,119,210,310,402,485,487,595",,
+27,intent,How do I measure retrieval quality?,hard,0.0,0.0,False,0.0,29.96,question,study,False,,Study - AI,,"90,119,210,310,402,485,487,595",,
+28,intent,LLM fine-tuning and alignment notes,hard,0.0,0.0,False,0.0,29.07,general,study,False,,Study - AI,,"118,129,137,143,157,171,178,196,264,328",,
+29,intent,Prompting techniques and tips,medium,0.0,0.0,False,0.0,23.66,general,study,False,,Study - AI,,"130,191,264,268,406,436,446,456,467,493",,
+30,intent,What have I learned about LLM prompting?,easy,0.0,0.0,False,0.0,23.24,question,study,False,,Study - AI,,"130,191,264,268,406,436,446,456,467,493",,
+31,intent,Notes about LLM hallucination and grounding,medium,0.0,0.0,False,0.0,30.78,general,study,False,,Study - AI,,"197,222,446,470,485,600,730,830,930,1030",,
+32,intent,HyDE and query expansion techniques,hard,0.0,0.0,False,0.0,22.27,general,study,False,,Study - AI,,"531,683,783,883,983,1083",,
+33,intent,Operating systems study notes,medium,0.0,0.0,False,0.0,25.26,study,study,True,Study - Operating Systems,Study - Operating Systems,True,"59,132,141,146,174,179,203,205,233,255","1106,1038,1006,930,830",
+34,intent,OS concepts I need to review for exams,easy,0.0,0.0,False,0.0,27.95,idea,study,False,,Study - Operating Systems,,"59,132,141,146,174,179,203,205,233,255",,
+35,intent,Database management systems notes,medium,0.0,0.0,False,0.0,29.33,general,study,False,,Study - DBMS,,"139,144,198,229,252,308,321,417,425,593",,
+36,intent,Computer networks study notes,medium,0.0,0.0,False,0.0,24.5,study,study,True,,Study - Computer Networks,,"75,118,159,162,168,180,237,276,280,298",,
+37,intent,Algorithm and data structures notes,medium,0.0,0.0,False,0.0,24.76,general,study,False,,Study - Algorithms,,"59,60,116,156,182,204,215,244,247,261",,
+38,intent,What algorithms have I studied?,easy,0.0,0.0,False,0.0,24.06,question,study,False,,Study - Algorithms,,"59,60,116,156,182,204,215,244,247,261",,
+39,intent,Compiler design and theory of computation notes,hard,0.0,0.0,False,0.0,25.02,general,study,False,,Study - Compiler Design,,"148,227,228,241,311,578,633",,
+40,intent,Capstone project notes,medium,0.0,0.0,False,0.0,24.38,general,study,False,,Study - Capstone,,"175,190,199,225,233,236,263,277,285,382",,
+41,intent,Parallel programming and concurrency notes,hard,0.0,0.0,False,0.0,24.56,general,study,False,,Study - Operating Systems,,"151,229,283,287,296,304,421,462,474,504",,
+42,intent,LeetCode problem patterns and solutions,medium,0.0,0.0,False,0.0,21.5,general,study,False,,Study - Interview Prep,,"117,127,187,224,271,279,282,316,327,387",,
+43,intent,Dynamic programming notes and patterns,hard,0.0,0.0,False,0.0,24.9,general,study,False,,Study - Algorithms,,"118,129,152,157,178,224,271,328,349,399",,
+44,intent,System design interview prep notes,medium,0.0,0.0,False,0.0,23.55,general,study,False,,Study - System Design,,"70,145,255,267,305,309,334,344,346,360",,
+45,intent,What system design topics have I covered?,easy,0.0,0.0,False,0.0,30.0,question,study,False,,Study - System Design,,"70,145,255,267,305,309,334,344,346,360",,
+46,intent,Behavioral interview preparation notes,medium,0.0,0.0,False,0.0,27.77,general,study,False,,Study - Interview Prep,,"169,197,263,294,309,344,468,478,504,605",,
+47,intent,Mock interview notes and feedback,medium,0.0,0.0,False,0.0,26.21,general,study,False,,Study - Interview Prep,,"126,152,154,199,280,352,507,521,609,611",,
+48,intent,Resume writing and improvement tips,easy,0.0,0.0,False,0.0,22.11,general,reference,False,,Reference - Career,,"100,142,185,270,523,525",,
+49,intent,Campus placement preparation notes,easy,0.0,0.0,False,0.0,34.49,general,study,False,,Study - Interview Prep,,"54,77,100,111,176,225,236,318,343,344",,
+50,intent,Database sharding and partitioning notes,hard,0.0,0.0,False,0.0,32.43,general,study,False,Study - Sqlalchemy,Study - System Design,True,"259,292,417,580,608,695,731,795,831,895","1095,1094,1059,1056,1023",
+51,intent,Caching strategies and implementations,medium,0.0,0.0,False,0.0,29.2,general,study,False,Study - Operating Systems,Study - System Design,True,"103,124,146,237,269,275,284,295,318,336","1106,1038,1006,930,830",
+52,intent,Message queue and event streaming notes,medium,0.0,0.0,False,0.0,29.26,communication,study,False,,Study - System Design,,"71,102,144,174,200,218,238,269,297,304",,
+53,intent,Microservices architecture notes,hard,0.0,0.0,False,0.0,27.44,general,study,False,,Study - System Design,,"189,263,299,372,410,652,665,697,752,765",,
+54,intent,Distributed systems consensus notes,hard,0.0,0.0,False,0.0,30.94,general,study,False,,Study - Distributed Systems,,"99,140,264,299,308,346,354,390,439,450",,
+55,intent,Observability and monitoring notes,medium,0.0,0.0,False,0.0,29.09,general,reference,False,,Reference - DevOps,,"299,477,570,665,765,865,965,1065",,
+56,intent,Idempotency and distributed system reliability notes,hard,0.0,0.0,False,0.0,31.19,general,reference,False,,Reference - System Design,,"140,299,392,431,665,765,865,965,1065",,
+57,intent,KnowledgeVault project notes,easy,0.0,0.0,False,0.0,32.07,general,reference,False,Study - Knowledge Vault,Reference - KnowledgeVault,False,"57,88,89,90,91,94,95,96,97,107","638,603,555,540,505",
+58,intent,What decisions have I made for the KnowledgeVault project?,medium,0.0,0.0,False,0.0,27.59,question,reference,False,,Reference - KnowledgeVault,,"57,88,89,90,91,94,95,96,97,107",,
+59,intent,Notes about hybrid retrieval implementation,hard,0.0,0.0,False,0.0,30.14,general,reference,False,Study - API Performance,Reference - KnowledgeVault,False,"183,213,252,375,381,486,518,555,696,702","1029,1017,929,917,829",
+60,intent,Docker and containerization notes,easy,0.0,0.0,False,0.0,31.01,general,study,False,,Study - Docker,,"72,75,91,105,118,138,188,192,242,295",,
+61,intent,What Docker tips have I collected?,easy,0.0,0.0,False,0.0,25.55,question,reference,False,,Reference - Docker,,"72,75,91,105,118,138,188,192,242,295",,
+62,intent,FastAPI development notes,medium,0.0,0.0,False,0.0,39.85,general,study,False,Study - FastAPI,Study - FastAPI,True,"68,132,145,165,167,266,272,313,350,365","1063,1025,963,925,920",
+63,intent,PostgreSQL database notes,medium,0.0,0.0,False,0.0,41.54,general,study,False,Reference - PostgreSQL,Study - PostgreSQL,False,"58,66,74,104,139,144,168,175,215,267","1104,1099,1004,999,904",
+64,intent,What PostgreSQL features and tips do I have?,easy,0.0,0.0,False,0.0,31.95,question,study,False,,Study - PostgreSQL,,"58,66,74,104,139,144,168,175,215,267",,
+65,intent,Redis usage and patterns,easy,0.4,0.2,True,1.0,38.77,general,study,False,Study - Redis,Study - Redis,True,"61,73,92,103,124,146,157,174,237,246","92,61,1105,1073,1046",
+66,intent,pgvector and vector search notes,hard,0.0,0.0,False,0.0,27.81,general,study,False,,Study - PostgreSQL,,"66,168,183,215,217,228,252,298,323,333",,
+67,intent,What meetings have I had?,easy,0.0,0.0,False,0.0,35.23,event,event,True,Meetings,Meetings,True,"56,106,107,149,170,233,251,283,304,359","1044,944,844,744,601",
+68,intent,Team meeting notes,easy,0.0,0.0,False,0.0,32.56,event,event,True,Meetings,Meetings,True,"56,106,107,149,170,233,251,283,304,359","1044,944,844,744,601",
+69,intent,Mentor and senior advice I've received,easy,0.0,0.0,False,0.0,31.19,general,communication,False,,Communication,,"68,126,185,199,236,260,272,274,330,372",,
+70,intent,Hackathon planning notes,easy,0.0,0.0,False,0.0,27.03,general,event,False,,Meetings,,"55,324,448,463,535,542",,
+71,intent,What are my pending tasks and deadlines?,easy,0.0,0.0,False,0.0,42.25,todo,todo,True,Tasks,Tasks,True,"155,179,184,207,233,266","1108,1102,1098,1096,1092",
+72,intent,What health appointments do I have?,easy,0.4,0.2,True,0.3333,32.2,reminder,reminder,True,Appointments,Appointments,True,"78,79,109,157,179,201,210,212,224,226","325,291,201,79",
+73,intent,What payments and bills do I need to make?,easy,0.0,0.0,False,0.0,30.44,question,todo,False,,Bills,,"77,120,126,128,131,137,140,144,160,162",,
+74,intent,What is on my shopping list?,easy,0.0,0.0,False,0.0,29.67,question,todo,False,,Shopping,,"76,322",,
+75,intent,Show all my reminders,easy,0.0,0.0,False,0.0,35.01,reminder,reminder,True,Reminders,Reminders,True,"55,152,212,312,542,557","1052,952,852,752,700",
+76,intent,What do I need to remember this week?,medium,0.0,0.0,False,0.0,25.3,question,reminder,False,,Reminders,,"55,152,212,312,542,557",,
+77,intent,My budget and expense tracking notes,easy,0.0,0.0,False,0.0,24.14,general,todo,False,,Finance,,"82,153,202,210,216,254,281,291,331,345",,
+78,intent,Monthly expense breakdown,medium,0.0,0.0,False,0.0,22.48,general,reference,False,,Finance,,"82,153,202,210,216,254,281,291,331,345",,
+79,intent,Investment and savings notes,medium,0.0,0.0,False,0.0,24.05,general,reference,False,,Finance,,"113,273,496,561,591,594,750,850,950,1050",,
+80,intent,Tech purchase notes and wishlists,easy,0.0,0.0,False,0.0,26.91,general,todo,False,,Shopping,,"115,124,174,200,211,307,420,434,442,445",,
+81,intent,My travel plans and notes,easy,0.0,0.0,False,0.0,22.71,general,todo,False,,Travel,,"78,81,115,126,128,130,160,171,175,176",,
+82,intent,Upcoming trips and travel bookings,easy,0.0,0.0,False,0.0,25.11,general,todo,False,,Travel,,"78,81,115,126,128,130,160,171,175,176",,
+83,intent,Delhi trip plans,easy,0.0,0.0,False,0.0,22.86,general,todo,False,,Travel,,"55,115,256,324,448,463,524,535,542,577",,
+84,intent,Hill station and trekking plans,medium,0.0,0.0,False,0.0,25.86,general,todo,False,,Travel,,"81,128,351,407",,
+85,intent,Train booking tips and notes,easy,0.0,0.0,False,0.0,24.26,general,reference,False,,Reference - Travel,,"160,463,596",,
+86,intent,Fitness and workout notes,easy,0.0,0.0,False,0.0,26.17,general,todo,False,,Health,,"173,185,202,232,246,291,317,380,392,427",,
+87,intent,My exercise routine notes,easy,0.0,0.0,False,0.0,23.01,general,todo,False,,Health,,"173,185,202,232,246,291,317,380,392,427",,
+88,intent,Sleep improvement notes,medium,0.0,0.0,False,0.0,24.08,general,reference,False,,Reference - Health,,"133,136,202,288,348,380,434,538,548,574",,
+89,intent,Nutrition and supplement notes,medium,0.0,0.0,False,0.0,24.77,general,reference,False,,Reference - Health,,"109,133,226,286",,
+90,intent,Mental health and wellbeing notes,medium,0.0,0.0,False,0.0,28.75,general,reference,False,,Reference - Health,,"152,288,291,317,472,575",,
+91,intent,My startup ideas and business notes,easy,0.0,0.0,False,0.0,28.37,idea,idea,True,,Ideas - Startups,,"85,86,117,120,125,128,131,134,143,157",,
+92,intent,What business ideas have I documented?,easy,0.0,0.0,False,0.0,25.39,idea,idea,True,,Ideas,,"85,86,117,120,125,128,131,134,143,157",,
+93,intent,Y Combinator and startup ecosystem notes,medium,0.0,0.0,False,0.0,31.58,idea,reference,False,,Reference - Startups,,"72,133,137,205,248,307,342,347,438,536",,
+94,intent,Business model and monetization notes,medium,0.0,0.0,False,0.0,36.59,general,reference,False,,Ideas - Startups,,"210,216,330,331,514,594,617,624,649",,
+95,intent,Startup idea validation notes,medium,0.0,0.0,False,0.0,32.41,idea,reference,False,,Ideas - Startups,,"108,117,126,132,134,146,173,199,204,210",,
+96,intent,What books have I taken notes on?,easy,0.0,0.0,False,0.0,29.22,question,reference,False,,Reference - Books,,"78,128,141,155,160,172,182,194,208,234",,
+97,intent,My book notes and summaries,easy,0.0,0.0,False,0.0,25.89,general,reference,False,,Reference - Books,,"78,128,141,155,160,172,182,194,208,234",,
+98,intent,Notes from Designing Data-Intensive Applications,hard,0.0,0.0,False,0.0,28.21,general,study,False,,Study - Books,,"439,528",,
+99,intent,Atomic Habits notes and takeaways,easy,0.0,0.0,False,0.0,29.4,general,study,False,,Study - Books,,"164,304,317,349,482,557,631,634,698,734",,
+100,intent,Podcast notes and key insights,easy,0.0,0.0,False,0.0,21.73,general,reference,False,,Reference - Learning,,"230,419,548",,
+101,intent,Online courses I'm taking or completed,easy,0.0,0.0,False,0.0,25.96,general,study,False,,Study - Learning,,"71,145,231,266,357,394,417,471,519,611",,
+102,intent,Kubernetes learning notes,medium,0.0,0.0,False,0.0,31.72,study,study,True,Study - Kubernetes,Study - Kubernetes,True,"62,101,118,180,181,225,230,263,299,355","1071,971,871,865,797",
+103,intent,Terraform and infrastructure as code notes,medium,0.0,0.0,False,0.0,22.13,general,study,False,,Study - DevOps,,274,,
+104,intent,Authentication and authorization notes,medium,0.0,0.0,False,0.0,23.19,general,study,False,,Study - Security,,"63,129,165,189,227,244,276,287,338,346",,
+105,intent,Testing and pytest notes,medium,0.0,0.0,False,0.0,26.24,general,reference,False,,Reference - Testing,,"108,124,126,152,153,163,165,172,245,277",,
+106,intent,Debugging sessions and fixes,medium,0.0,0.0,False,0.0,24.91,general,reference,False,,Reference - Debugging,,"94,136,161,246,258,335,340,362,421,461",,
+107,intent,What bugs have I debugged recently?,easy,0.0,0.0,False,0.0,27.76,question,reference,False,,Reference - Debugging,,"94,136,161,246,258,335",,
+108,intent,SQLAlchemy N+1 query problem notes,hard,0.0,0.0,False,0.0,28.3,general,reference,False,,Reference - Database,,"363,588,589,659,759,859,959,1059",,
+109,intent,Race condition and concurrency bug notes,hard,0.0,0.0,False,0.0,25.08,general,reference,False,,Reference - Debugging,,"229,246,296,321,384,421,462,474,482,499",,
+110,intent,Memory management and leak debugging notes,hard,0.0,0.0,False,0.0,23.51,general,reference,False,,Reference - Debugging,,"124,146,169,175,182,219,248,273,275,279",,
+111,intent,My journal entries and personal reflections,easy,0.0,0.0,False,0.0,32.89,general,general,True,,General,,"113,149,152,162,166,191,251,255",,
+112,intent,Productivity tips and personal notes,easy,0.0,0.0,False,0.0,28.9,general,reference,False,,Reference - Productivity,,"85,199,224,240,248,286,429,453,529,550",,
+113,intent,Career direction and goal notes,medium,0.0,0.0,False,0.0,29.29,general,general,True,,General,,"56,61,91,96,101,106,166,175,177,180",,
+114,intent,Open source and building in public notes,medium,0.0,0.0,False,0.0,26.27,general,idea,False,,Ideas,,"117,141,255,395,400,440,453,522,554,555",,
+115,intent,KnowledgeVault RAG pipeline decisions and findings,hard,0.0,0.0,False,0.0,29.03,general,reference,False,,Reference - KnowledgeVault,,"1028,262,1030,1032,523,267,533,1053",,
+116,intent,All my interview preparation notes — coding and system design,hard,0.0,0.0,False,0.0,29.34,general,study,False,,Study - Interview Prep,,"769,129,387,642,516,255,392,267,271,399",,
+117,intent,"AI system infrastructure notes: vector DB, cache, and retrieval",hard,0.0,0.0,False,0.0,27.32,general,study,False,,Study - AI,,"1024,1030,1031,1032,520,523,1036,1042",,
+118,intent,All my health and wellness notes,medium,0.0,0.0,False,0.0,38.27,general,reference,False,,Reference - Health,,"643,764,773,646,133,392,905,522",,
+119,intent,Financial tasks and expense notes,medium,0.0,0.0,False,0.0,31.97,todo,todo,True,Tasks,Finance,True,"1028,1035,1043,1044,1046,535,538,540","1108,1102,1098,1096,1092",
+120,intent,My university computer science notes,hard,0.0,0.0,False,0.0,25.27,general,study,False,,Study - Computer Science,,"513,1026,1027,515,516,510,1031,1034,1038,526",,
+121,intent,Things I need to do this week,medium,0.0,0.0,False,0.0,21.09,general,todo,False,,Tasks,,"155,179,184,207,233,266",,
+122,intent,What tasks are pending for me?,medium,0.0,0.0,False,0.0,32.84,todo,todo,True,Tasks,Tasks,True,"155,179,184,207,233,266","1108,1102,1098,1096,1092",
+123,intent,Resources for learning backend development,medium,0.0,0.0,False,0.0,25.89,study,study,True,,Study - Backend,,"1025,772,775,1031,1032,266,523,267",,
+124,intent,How do I get better at backend engineering?,medium,0.0,0.0,False,0.0,29.16,question,study,False,,Study - Backend,,"1025,772,775,1031,1032,266",,
+125,intent,What are distributed systems trade-offs?,hard,0.0,0.0,False,0.0,28.83,question,study,False,,Study - System Design,,"897,771,259,390,1031,264",,
+126,intent,Notes on scalability and reliability,hard,0.0,0.0,False,0.0,23.37,general,study,False,,Study - System Design,,"1024,259,644,1031,520,906",,
+127,intent,What are my creative ideas?,easy,0.0,0.0,False,0.0,27.63,idea,idea,True,,Ideas,,"85,86,117,120,125,128",,
+128,intent,Show my brainstorming notes,easy,0.0,0.0,False,0.0,24.21,general,idea,False,,Ideas,,"128,514,131,260,134,262,1035,525",,
+129,intent,Advice and wisdom I've collected,medium,0.0,0.0,False,0.0,25.27,general,general,True,,General,,"260,1028,522,1035,525,272",,
+130,intent,BM25,easy,0.0,0.0,False,0.0,23.27,general,study,False,,Study - AI,,"228,252,696,796,896,996,1096",,
+131,intent,HNSW index,easy,0.0,0.0,False,0.0,23.45,general,study,False,,Study - AI,,"215,430,681,781,881,981,1081",,
+132,intent,HNSW vector index configuration,medium,0.0,0.0,False,0.0,34.83,general,study,False,,Study - AI,,"215,430,681,781,881,981,1081",,
+133,intent,Reciprocal Rank Fusion,medium,0.0,0.0,False,0.0,22.23,general,study,False,,Study - AI,,"518,718,818,918,1018",,
+134,intent,two sum problem,easy,0.0,0.0,False,0.0,29.21,general,study,False,,Study - Interview Prep,,"278,677,777,877,977,1077",,
+135,intent,LRU cache implementation,medium,0.0,0.0,False,0.0,23.61,general,study,False,,Study - Interview Prep,,"318,336,520,530,579,736,738,836,838,936",,
+136,intent,CAP theorem,easy,0.0,0.0,False,0.0,25.51,general,study,False,,Study - System Design,,"580,608",,
+137,intent,PageRank or graph algorithms notes,medium,0.0,0.0,False,0.0,23.32,general,study,False,,Study - Algorithms,,"60,158,224,316,342,347,545,546,619,667",,
+138,intent,What have I been working on this month?,hard,0.0,0.0,False,0.0,28.67,question,general,False,,General,,"77,149,164,182,216,286",,
+139,intent,Recent notes and activities,hard,0.0,0.0,False,0.0,24.05,general,general,True,,General,,"77,149,164,182,216,286",,
+140,intent,Redis vs Kafka — when to use each,hard,0.0,0.0,False,0.0,26.12,question,study,False,,Study - System Design,,"1024,771,1027,773,520,1034",,
+141,intent,Python vs Go programming notes,hard,0.0,0.0,False,0.0,24.75,general,study,False,,Study - Programming,,"512,320,898,266,138,586",,
+142,intent,SQL vs NoSQL database comparison,hard,0.0,0.0,False,0.0,28.07,general,study,False,,Study - Database,,"772,775,904,1031,1032,139",,
+143,intent,"Comparing RAG retrieval strategies: dense, sparse, and reranking",hard,0.0,0.0,False,0.0,31.71,general,study,False,Study - API Performance,Study - AI,True,"386,1030,648,649,776,267","1029,1017,929,917,829",
+144,intent,REST vs GraphQL API design trade-offs,hard,0.0,0.0,False,0.0,28.5,general,study,False,,Study - System Design,,"68,93,96,132,136,142",,
+145,intent,Show all my communication notes,easy,0.0,0.0,False,0.0,27.56,general,communication,False,,Communication,,"54,55,56,57,106,117",,
+146,intent,All my reminder notes,easy,0.0,0.0,False,0.0,27.25,reminder,reminder,True,Reminders,Reminders,True,"55,152,212,312,542,557","1052,952,852,752,700",
+147,intent,My study notes on AI and machine learning,easy,0.0,0.0,False,0.0,28.06,study,study,True,,Study - AI,,"1026,774,1030,510,523,268,267,782",,
+148,intent,Notes categorized under system design,easy,0.0,0.0,False,0.0,34.25,general,study,False,,Study - System Design,,"70,145,255,267,305,309",,
+149,intent,Programming notes I've taken recently,medium,0.0,0.0,False,0.0,35.29,general,study,False,,Study - Programming,,"512,1025,898,132,266,523",,
+150,intent,My financial notes,medium,0.0,0.0,False,0.0,35.14,general,todo,False,,Finance,,"646,202,331,591,273,82",,
+151,intent,Projects and ideas I'm excited about,hard,0.0,0.0,False,0.0,26.29,idea,idea,True,,Ideas,,"514,260,1028,262,1032,522",,
+152,intent,Personal notes and self-improvement,hard,0.0,0.0,False,0.0,23.41,general,general,True,,General,,"522,1035,785,529,277,283",,
+1,hybrid,What are useful Python tips and tricks I've learned?,easy,0.2,0.125,True,0.5,87.58,question,study,False,,Study - Python,,"108,174,177,206,232,239,272,283","318,206,633,357,464",
+2,hybrid,Show my Python programming notes,easy,0.0,0.0,False,0.0,75.99,general,study,False,,Study - Python,,"108,174,177,206,232,239,272,283","87,583,699,799,899",
+3,hybrid,Notes about Python dictionaries and hash maps,easy,0.8,0.4,True,1.0,73.7,general,reference,False,,Reference - Python,,"108,271,278,284,397,464,483,560,579,587","284,587,397,464,745",
+4,hybrid,How does Python async programming work?,medium,0.2,0.1,True,1.0,76.88,question,study,False,,Study - Python,,"170,283,304,359,364,372,471,661,662,663","304,734,834,934,1034",
+5,hybrid,Concurrency and asynchronous patterns in Python,medium,0.2,0.1,True,1.0,75.78,general,study,False,,Study - Python,,"170,283,304,359,364,372,471,661,662,663","304,734,834,934,1034",
+6,hybrid,Python decorator notes,easy,0.6,0.4286,True,1.0,79.54,general,reference,False,,Reference - Python,,"174,414,435,455,549,610,614","610,549,177,318,414",
+7,hybrid,What git commands and workflows have I noted?,easy,0.2,0.1,True,0.5,80.44,question,reference,False,,Reference - Git,,"130,135,144,169,229,272,317,328,366,395","612,328,501,614,522",
+8,hybrid,Git tips and tricks,easy,0.0,0.0,False,0.0,76.33,general,reference,False,Ideas - Semantic Retrieval,Reference - Git,False,"130,135,144,169,229,272,317,328,366,395","646,497,719,819,919",
+9,hybrid,JavaScript and TypeScript notes,easy,0.8,0.4,True,1.0,74.75,general,study,False,,Study - JavaScript,,"218,220,250,297,418,713,720,813,820,913","218,713,813,913,1013",
+10,hybrid,What have I learned about Go programming?,medium,0.0,0.0,False,0.0,73.33,question,study,False,,Study - Go,,"114,138,206,208,266,297,320,339,488,512","572,634,698,798,898",
+11,hybrid,Rust ownership and borrowing notes,medium,0.2,0.1,True,1.0,79.37,general,study,False,Study - System Design,Study - Rust,True,"151,182,210,351,370,380,459,494,539,563","370,689,789,889,989",
+12,hybrid,What design patterns have I documented?,medium,0.4,0.2,True,1.0,75.29,question,reference,False,,Reference - Design Patterns,,"102,121,189,203,224,238,246,254,266,269","102,121,687,787,887",
+13,hybrid,Software design patterns notes,easy,0.4,0.2,True,1.0,66.59,general,reference,False,,Reference - Design Patterns,,"102,121,189,203,224,238,246,254,266,269","102,106,309,121,687",
+14,hybrid,Performance optimization notes,medium,0.2,0.1,True,1.0,72.93,general,reference,False,,Reference - Performance,,"93,98,108,142,159,160,183,195,196,213","195,547,58,530,738",
+15,hybrid,SQL tips and advanced query techniques,medium,0.2,0.1,True,0.2,74.39,general,study,False,,Study - SQL,,"58,69,74,104,123,136,139,144,175,176","398,184,385,402,58",
+16,hybrid,Regular expression notes and examples,easy,0.4,0.2,True,1.0,72.21,general,reference,False,,Reference - Regex,,"102,121,135,148,189,224,238,246,254,266","135,148,515,489,227",
+17,hybrid,Shell and command line tips I've collected,easy,0.2,0.1,True,1.0,80.6,general,reference,False,,Reference - Shell,,"147,153,243,314,355,374,379,455,597,688","597,268,682,782,882",
+18,hybrid,What do I know about RAG systems?,medium,0.2,0.1,True,0.2,69.72,question,study,False,,Study - AI,,"65,114,186,197,219,222,267,296,310,376","386,436,470,565,197",
+19,hybrid,Retrieval augmented generation notes,easy,0.4,0.2,True,1.0,75.97,general,study,False,,Study - AI,,"65,114,186,197,219,222,267,296,310,376","65,186,398,184,289",
+20,hybrid,Notes about embeddings and vector search,medium,0.2,0.1,True,0.3333,91.0,general,study,False,Study - Cross-encoder Reranking,Study - AI,True,"168,183,228,289,298,323,376,486,487,523","196,333,298,726,826",
+21,hybrid,How do text embeddings work?,medium,0.2,0.1,True,1.0,76.44,question,study,False,,Study - AI,,"168,183,228,289,298,323,376,486,487,523","298,726,826,926,1026",
+22,hybrid,Large language model notes and findings,medium,0.2,0.1,True,1.0,107.42,general,study,False,Tasks,Study - AI,False,"60,119,122,136,143,186,251,268,313,329","186,404,708,808,908",
+23,hybrid,What LLMs have I worked with?,easy,0.4,0.2,True,1.0,75.92,question,study,False,,Study - AI,,"60,119,122,136,143,186,251,268,313,329","143,543,427,509,268",
+24,hybrid,Document chunking strategy notes,medium,0.0,0.0,False,0.0,67.52,general,reference,False,,Reference - AI,,"197,214,257,268,289,432,446,478,487,510","558,533,721,821,921",
+25,hybrid,Notes about reranking in search systems,hard,0.6,0.3,True,1.0,78.16,general,study,False,,Study - AI,,"67,119,123,176,386,648,676,776,876,976","67,176,119,305,58",
+26,hybrid,RAG and retrieval evaluation metrics,hard,0.6,0.375,True,0.5,84.79,general,study,False,,Study - AI,,"90,119,210,310,402,485,487,595","386,485,310,595,186",
+27,hybrid,How do I measure retrieval quality?,hard,0.6,0.375,True,1.0,76.52,question,study,False,,Study - AI,,"90,119,210,310,402,485,487,595","310,86,485,402,213",
+28,hybrid,LLM fine-tuning and alignment notes,hard,0.2,0.1,True,0.5,89.09,general,study,False,,Study - AI,,"118,129,137,143,157,171,178,196,264,328","592,143,613,268,682",
+29,hybrid,Prompting techniques and tips,medium,0.4,0.2,True,1.0,100.49,general,study,False,,Study - AI,,"130,191,264,268,406,436,446,456,467,493","406,264,507,459,199",
+30,hybrid,What have I learned about LLM prompting?,easy,0.2,0.1,True,1.0,87.16,question,study,False,,Study - AI,,"130,191,264,268,406,436,446,456,467,493","268,682,782,882,982",
+31,hybrid,Notes about LLM hallucination and grounding,medium,0.4,0.2,True,1.0,84.73,general,study,False,,Study - AI,,"197,222,446,470,485,600,730,830,930,1030","197,478,600,651,716",
+32,hybrid,HyDE and query expansion techniques,hard,0.8,0.6667,True,0.5,97.75,general,study,False,,Study - AI,,"531,683,783,883,983,1083","184,531,683,783,883",
+33,hybrid,Operating systems study notes,medium,0.2,0.1,True,1.0,84.68,study,study,True,Study - Operating Systems,Study - Operating Systems,True,"59,132,141,146,174,179,203,205,233,255","59,527,106,547,465",
+34,hybrid,OS concepts I need to review for exams,easy,0.2,0.1,True,0.5,75.21,idea,study,False,,Study - Operating Systems,,"59,132,141,146,174,179,203,205,233,255","360,59,309,169,527",
+35,hybrid,Database management systems notes,medium,0.4,0.2,True,1.0,77.83,general,study,False,,Study - DBMS,,"139,144,198,229,252,308,321,417,425,593","425,231,439,608,144",
+36,hybrid,Computer networks study notes,medium,0.0,0.0,False,0.0,74.18,study,study,True,,Study - Computer Networks,,"75,118,159,162,168,180,237,276,280,298","327,532,106,99,439",
+37,hybrid,Algorithm and data structures notes,medium,0.0,0.0,False,0.0,72.12,general,study,False,,Study - Algorithms,,"59,60,116,156,182,204,215,244,247,261","530,738,838,938,1038",
+38,hybrid,What algorithms have I studied?,easy,0.2,0.1,True,0.5,69.32,question,study,False,,Study - Algorithms,,"59,60,116,156,182,204,215,244,247,261","619,60,333,66,536",
+39,hybrid,Compiler design and theory of computation notes,hard,0.4,0.2857,True,1.0,75.8,general,study,False,,Study - Compiler Design,,"148,227,228,241,311,578,633","227,547,465,311,530",
+40,hybrid,Capstone project notes,medium,0.6,0.3,True,0.5,73.33,general,study,False,,Study - Capstone,,"175,190,199,225,233,236,263,277,285,382","568,233,498,382,175",
+41,hybrid,Parallel programming and concurrency notes,hard,0.4,0.2,True,1.0,70.73,general,study,False,,Study - Operating Systems,,"151,229,283,287,296,304,421,462,474,504","296,283,662,762,862",
+42,hybrid,LeetCode problem patterns and solutions,medium,0.4,0.2,True,1.0,71.22,general,study,False,,Study - Interview Prep,,"117,127,187,224,271,279,282,316,327,387","224,611,316,399,546",
+43,hybrid,Dynamic programming notes and patterns,hard,0.0,0.0,False,0.0,77.44,general,study,False,,Study - Algorithms,,"118,129,152,157,178,224,271,328,349,399","562,227,460,701,801",
+44,hybrid,System design interview prep notes,medium,0.6,0.3,True,1.0,78.06,general,study,False,,Study - System Design,,"70,145,255,267,305,309,334,344,346,360","360,70,106,309,99",
+45,hybrid,What system design topics have I covered?,easy,0.6,0.3,True,1.0,79.26,question,study,False,,Study - System Design,,"70,145,255,267,305,309,334,344,346,360","360,392,309,70,99",
+46,hybrid,Behavioral interview preparation notes,medium,0.4,0.2,True,1.0,75.02,general,study,False,,Study - Interview Prep,,"169,197,263,294,309,344,468,478,504,605","294,468,360,288,352",
+47,hybrid,Mock interview notes and feedback,medium,0.6,0.3,True,1.0,77.5,general,study,False,,Study - Interview Prep,,"126,152,154,199,280,352,507,521,609,611","126,360,540,352,507",
+48,hybrid,Resume writing and improvement tips,easy,0.8,0.6667,True,1.0,87.53,general,reference,False,,Reference - Career,,"100,142,185,270,523,525","100,142,185,525,472",
+49,hybrid,Campus placement preparation notes,easy,0.6,0.3,True,0.3333,79.99,general,study,False,,Study - Interview Prep,,"54,77,100,111,176,225,236,318,343,344","415,620,100,236,343",
+50,hybrid,Database sharding and partitioning notes,hard,0.8,0.4,True,1.0,104.43,general,study,False,Study - Sqlalchemy,Study - System Design,True,"259,292,417,580,608,695,731,795,831,895","292,695,795,895,995",
+51,hybrid,Caching strategies and implementations,medium,0.0,0.0,False,0.0,89.07,general,study,False,Study - Operating Systems,Study - System Design,True,"103,124,146,237,269,275,284,295,318,336","61,93,644,602,467",
+52,hybrid,Message queue and event streaming notes,medium,0.0,0.0,False,0.0,80.44,communication,study,False,,Study - System Design,,"71,102,144,174,200,218,238,269,297,304","450,671,771,871,971",
+53,hybrid,Microservices architecture notes,hard,0.4,0.2,True,1.0,83.37,general,study,False,,Study - System Design,,"189,263,299,372,410,652,665,697,752,765","372,392,106,102,410",
+54,hybrid,Distributed systems consensus notes,hard,0.6,0.3,True,1.0,79.55,general,study,False,,Study - Distributed Systems,,"99,140,264,299,308,346,354,390,439,450","354,608,99,580,439",
+55,hybrid,Observability and monitoring notes,medium,0.2,0.125,True,1.0,79.27,general,reference,False,,Reference - DevOps,,"299,477,570,665,765,865,965,1065","477,410,424,140,372",
+56,hybrid,Idempotency and distributed system reliability notes,hard,0.4,0.2222,True,1.0,73.92,general,reference,False,,Reference - System Design,,"140,299,392,431,665,765,865,965,1065","140,431,608,99,580",
+57,hybrid,KnowledgeVault project notes,easy,0.8,0.4,True,0.5,87.01,general,reference,False,Study - Knowledge Vault,Reference - KnowledgeVault,False,"57,88,89,90,91,94,95,96,97,107","125,95,96,89,90",
+58,hybrid,What decisions have I made for the KnowledgeVault project?,medium,0.2,0.1,True,0.5,97.1,question,reference,False,,Reference - KnowledgeVault,,"57,88,89,90,91,94,95,96,97,107","638,90,428,728,828",
+59,hybrid,Notes about hybrid retrieval implementation,hard,0.4,0.2,True,1.0,74.96,general,reference,False,Study - API Performance,Reference - KnowledgeVault,False,"183,213,252,375,381,486,518,555,696,702","486,702,802,902,1002",
+60,hybrid,Docker and containerization notes,easy,0.8,0.4,True,1.0,85.23,general,study,False,,Study - Docker,,"72,75,91,105,118,138,188,192,242,295","72,105,192,75,491",
+61,hybrid,What Docker tips have I collected?,easy,1.0,0.5,True,1.0,186.11,question,reference,False,,Reference - Docker,,"72,75,91,105,118,138,188,192,242,295","72,192,295,105,75",
+62,hybrid,FastAPI development notes,medium,0.4,0.2,True,1.0,156.84,general,study,False,Study - FastAPI,Study - FastAPI,True,"68,132,145,165,167,266,272,313,350,365","68,165,725,825,925",
+63,hybrid,PostgreSQL database notes,medium,0.4,0.2,True,1.0,102.58,general,study,False,Reference - PostgreSQL,Study - PostgreSQL,False,"58,66,74,104,139,144,168,175,215,267","74,144,417,731,831",
+64,hybrid,What PostgreSQL features and tips do I have?,easy,0.6,0.3,True,1.0,122.3,question,study,False,,Study - PostgreSQL,,"58,66,74,104,139,144,168,175,215,267","58,74,144,367,628",
+65,hybrid,Redis usage and patterns,easy,0.4,0.2,True,1.0,105.22,general,study,False,Study - Redis,Study - Redis,True,"61,73,92,103,124,146,157,174,237,246","73,92,269,724,824",
+66,hybrid,pgvector and vector search notes,hard,0.4,0.2,True,1.0,110.86,general,study,False,,Study - PostgreSQL,,"66,168,183,215,217,228,252,298,323,333","66,323,742,842,942",
+67,hybrid,What meetings have I had?,easy,0.4,0.2,True,0.5,143.6,event,event,True,Meetings,Meetings,True,"56,106,107,149,170,233,251,283,304,359","371,107,263,559,233",
+68,hybrid,Team meeting notes,easy,0.4,0.2,True,1.0,110.72,event,event,True,Meetings,Meetings,True,"56,106,107,149,170,233,251,283,304,359","233,203,87,107,125",
+69,hybrid,Mentor and senior advice I've received,easy,0.4,0.2,True,1.0,102.89,general,communication,False,,Communication,,"68,126,185,199,236,260,272,274,330,372","199,185,428,728,828",
+70,hybrid,Hackathon planning notes,easy,1.0,0.8333,True,1.0,94.16,general,event,False,,Meetings,,"55,324,448,463,535,542","448,324,463,55,542",
+71,hybrid,What are my pending tasks and deadlines?,easy,0.2,0.1667,True,0.3333,124.73,todo,todo,True,Tasks,Tasks,True,"155,179,184,207,233,266","498,453,233,647,235",
+72,hybrid,What health appointments do I have?,easy,0.2,0.1,True,1.0,96.17,reminder,reminder,True,Appointments,Appointments,True,"78,79,109,157,179,201,210,212,224,226","79,601,559,575,198",
+73,hybrid,What payments and bills do I need to make?,easy,0.2,0.1,True,0.5,91.91,question,todo,False,,Bills,,"77,120,126,128,131,137,140,144,160,162","341,77,82,635,368",
+74,hybrid,What is on my shopping list?,easy,0.4,1.0,True,0.5,92.6,question,todo,False,,Shopping,,"76,322","393,322,606,115,76",
+75,hybrid,Show all my reminders,easy,0.2,0.1667,True,0.3333,135.66,reminder,reminder,True,Reminders,Reminders,True,"55,152,212,312,542,557","382,56,312,290,442",
+76,hybrid,What do I need to remember this week?,medium,0.2,0.1667,True,0.5,91.11,question,reminder,False,,Reminders,,"55,152,212,312,542,557","77,212,475,442,755",
+77,hybrid,My budget and expense tracking notes,easy,0.4,0.2,True,1.0,96.25,general,todo,False,,Finance,,"82,153,202,210,216,254,281,291,331,345","82,216,606,393,285",
+78,hybrid,Monthly expense breakdown,medium,0.4,0.2,True,1.0,91.81,general,reference,False,,Finance,,"82,153,202,210,216,254,281,291,331,345","82,216,490,606,341",
+79,hybrid,Investment and savings notes,medium,0.4,0.2,True,0.3333,95.86,general,reference,False,,Finance,,"113,273,496,561,591,594,750,850,950,1050","162,285,113,594,539",
+80,hybrid,Tech purchase notes and wishlists,easy,0.0,0.0,False,0.0,95.53,general,todo,False,,Shopping,,"115,124,174,200,211,307,420,434,442,445","444,605,87,262,285",
+81,hybrid,My travel plans and notes,easy,0.2,0.1,True,0.5,94.91,general,todo,False,,Travel,,"78,81,115,126,128,130,160,171,175,176","290,81,212,393,444",
+82,hybrid,Upcoming trips and travel bookings,easy,0.4,0.2,True,0.3333,97.53,general,todo,False,,Travel,,"78,81,115,126,128,130,160,171,175,176","538,627,81,128,190",
+83,hybrid,Delhi trip plans,easy,0.8,0.4,True,1.0,97.56,general,todo,False,,Travel,,"55,115,256,324,448,463,524,535,542,577","115,324,535,407,463",
+84,hybrid,Hill station and trekking plans,medium,0.2,0.25,True,1.0,101.81,general,todo,False,,Travel,,"81,128,351,407","351,137,60,498,324",
+85,hybrid,Train booking tips and notes,easy,0.4,0.6667,True,1.0,96.78,general,reference,False,,Reference - Travel,,"160,463,596","596,160,393,203,290",
+86,hybrid,Fitness and workout notes,easy,0.0,0.0,False,0.0,93.76,general,todo,False,,Health,,"173,185,202,232,246,291,317,380,392,427","631,481,87,482,83",
+87,hybrid,My exercise routine notes,easy,0.2,0.1,True,0.25,98.28,general,todo,False,,Health,,"173,185,202,232,246,291,317,380,392,427","631,83,87,380,680",
+88,hybrid,Sleep improvement notes,medium,0.8,0.4,True,1.0,92.45,general,reference,False,,Reference - Health,,"133,136,202,288,348,380,434,538,548,574","548,622,434,574,348",
+89,hybrid,Nutrition and supplement notes,medium,0.4,0.5,True,1.0,100.37,general,reference,False,,Reference - Health,,"109,133,226,286","286,133,322,87,285",
+90,hybrid,Mental health and wellbeing notes,medium,0.6,0.5,True,1.0,101.65,general,reference,False,,Reference - Health,,"152,288,291,317,472,575","575,201,291,212,472",
+91,hybrid,My startup ideas and business notes,easy,0.2,0.1,True,1.0,97.05,idea,idea,True,,Ideas - Startups,,"85,86,117,120,125,128,131,134,143,157","85,525,459,617,441",
+92,hybrid,What business ideas have I documented?,easy,0.2,0.1,True,0.3333,107.38,idea,idea,True,,Ideas,,"85,86,117,120,125,128,131,134,143,157","225,178,85,441,459",
+93,hybrid,Y Combinator and startup ecosystem notes,medium,0.0,0.0,False,0.0,114.97,idea,reference,False,,Reference - Startups,,"72,133,137,205,248,307,342,347,438,536","462,267,85,482,118",
+94,hybrid,Business model and monetization notes,medium,0.0,0.0,False,0.0,151.26,general,reference,False,,Ideas - Startups,,"210,216,330,331,514,594,617,624,649","178,262,285,308,393",
+95,hybrid,Startup idea validation notes,medium,0.2,0.1,True,0.3333,123.14,idea,reference,False,,Ideas - Startups,,"108,117,126,132,134,146,173,199,204,210","459,525,134,617,441",
+96,hybrid,What books have I taken notes on?,easy,0.0,0.0,False,0.0,107.23,question,reference,False,,Reference - Books,,"78,128,141,155,160,172,182,194,208,234","309,290,240,444,87",
+97,hybrid,My book notes and summaries,easy,0.0,0.0,False,0.0,117.18,general,reference,False,,Reference - Books,,"78,128,141,155,160,172,182,194,208,234","87,583,699,799,899",
+98,hybrid,Notes from Designing Data-Intensive Applications,hard,0.4,1.0,True,1.0,138.53,general,study,False,,Study - Books,,"439,528","528,439,267,106,402",
+99,hybrid,Atomic Habits notes and takeaways,easy,0.2,0.1,True,1.0,110.25,general,study,False,,Study - Books,,"164,304,317,349,482,557,631,634,698,734","482,229,690,790,890",
+100,hybrid,Podcast notes and key insights,easy,0.4,0.6667,True,1.0,108.09,general,reference,False,,Reference - Learning,,"230,419,548","230,87,419,442,755",
+101,hybrid,Online courses I'm taking or completed,easy,0.4,0.2,True,0.5,101.78,general,study,False,,Study - Learning,,"71,145,231,266,357,394,417,471,519,611","343,145,471,663,763",
+102,hybrid,Kubernetes learning notes,medium,0.4,0.2,True,1.0,121.51,study,study,True,Study - Kubernetes,Study - Kubernetes,True,"62,101,118,180,181,225,230,263,299,355","62,118,712,812,912",
+103,hybrid,Terraform and infrastructure as code notes,medium,0.2,1.0,True,1.0,112.69,general,study,False,,Study - DevOps,,274,"274,62,181,106,316",
+104,hybrid,Authentication and authorization notes,medium,0.2,0.1,True,0.5,107.02,general,study,False,,Study - Security,,"63,129,165,189,227,244,276,287,338,346","408,63,637,733,833",
+105,hybrid,Testing and pytest notes,medium,0.2,0.1,True,0.5,107.23,general,reference,False,,Reference - Testing,,"108,124,126,152,153,163,165,172,245,277","435,245,313,177,258",
+106,hybrid,Debugging sessions and fixes,medium,0.2,0.1,True,0.2,115.21,general,reference,False,,Reference - Debugging,,"94,136,161,246,258,335,340,362,421,461","632,591,163,522,246",
+107,hybrid,What bugs have I debugged recently?,easy,0.2,0.1667,True,0.25,121.4,question,reference,False,,Reference - Debugging,,"94,136,161,246,258,335","591,632,522,246,684",
+108,hybrid,SQLAlchemy N+1 query problem notes,hard,1.0,0.625,True,1.0,122.09,general,reference,False,,Reference - Database,,"363,588,589,659,759,859,959,1059","589,659,759,859,959",
+109,hybrid,Race condition and concurrency bug notes,hard,0.4,0.2,True,1.0,100.34,general,reference,False,,Reference - Debugging,,"229,246,296,321,384,421,462,474,482,499","462,384,727,827,927",
+110,hybrid,Memory management and leak debugging notes,hard,0.4,0.2,True,0.25,105.52,general,reference,False,,Reference - Debugging,,"124,146,169,175,182,219,248,273,275,279","547,591,318,169,275",
+111,hybrid,My journal entries and personal reflections,easy,0.0,0.0,False,0.0,95.66,general,general,True,,General,,"113,149,152,162,166,191,251,255","472,290,550,700,800",
+112,hybrid,Productivity tips and personal notes,easy,0.0,0.0,False,0.0,97.06,general,reference,False,,Reference - Productivity,,"85,199,224,240,248,286,429,453,529,550","87,583,699,799,899",
+113,hybrid,Career direction and goal notes,medium,0.2,0.1,True,1.0,106.84,general,general,True,,General,,"56,61,91,96,101,106,166,175,177,180","166,685,785,885,985",
+114,hybrid,Open source and building in public notes,medium,0.4,0.2,True,1.0,94.83,general,idea,False,,Ideas,,"117,141,255,395,400,440,453,522,554,555","255,285,106,87,141",
+115,hybrid,KnowledgeVault RAG pipeline decisions and findings,hard,0.0,0.0,False,0.0,136.92,general,reference,False,,Reference - KnowledgeVault,,"1028,262,1030,1032,523,267,533,1053","310,90,446,730,830",
+116,hybrid,All my interview preparation notes — coding and system design,hard,0.0,0.0,False,0.0,115.95,general,study,False,,Study - Interview Prep,,"769,129,387,642,516,255,392,267,271,399","360,70,309,99,126",
+117,hybrid,"AI system infrastructure notes: vector DB, cache, and retrieval",hard,0.2,0.125,True,0.2,130.24,general,study,False,,Study - AI,,"1024,1030,1031,1032,520,523,1036,1042","333,66,61,644,523",
+118,hybrid,All my health and wellness notes,medium,0.0,0.0,False,0.0,104.85,general,reference,False,,Reference - Health,,"643,764,773,646,133,392,905,522","212,322,79,444,442",
+119,hybrid,Financial tasks and expense notes,medium,0.0,0.0,False,0.0,154.96,todo,todo,True,Tasks,Finance,True,"1028,1035,1043,1044,1046,535,538,540","82,87,393,216,285",
+120,hybrid,My university computer science notes,hard,0.0,0.0,False,0.0,99.1,general,study,False,,Study - Computer Science,,"513,1026,1027,515,516,510,1031,1034,1038,526","87,106,583,699,799",
+121,hybrid,Things I need to do this week,medium,0.0,0.0,False,0.0,99.95,general,todo,False,,Tasks,,"155,179,184,207,233,266","77,81,76,322,79",
+122,hybrid,What tasks are pending for me?,medium,0.0,0.0,False,0.0,129.84,todo,todo,True,Tasks,Tasks,True,"155,179,184,207,233,266","235,264,283,289,504",
+123,hybrid,Resources for learning backend development,medium,0.0,0.0,False,0.0,126.12,study,study,True,,Study - Backend,,"1025,772,775,1031,1032,266,523,267","106,61,330,96,101",
+124,hybrid,How do I get better at backend engineering?,medium,0.0,0.0,False,0.0,120.28,question,study,False,,Study - Backend,,"1025,772,775,1031,1032,266","272,106,166,685,785",
+125,hybrid,What are distributed systems trade-offs?,hard,0.0,0.0,False,0.0,147.69,question,study,False,,Study - System Design,,"897,771,259,390,1031,264","308,99,608,516,711",
+126,hybrid,Notes on scalability and reliability,hard,0.0,0.0,False,0.0,108.58,general,study,False,,Study - System Design,,"1024,259,644,1031,520,906","608,354,439,530,738",
+127,hybrid,What are my creative ideas?,easy,0.2,0.1667,True,0.5,126.14,idea,idea,True,,Ideas,,"85,86,117,120,125,128","382,85,416,240,496",
+128,hybrid,Show my brainstorming notes,easy,0.0,0.0,False,0.0,110.16,general,idea,False,,Ideas,,"128,514,131,260,134,262,1035,525","87,85,290,416,583",
+129,hybrid,Advice and wisdom I've collected,medium,0.2,0.1667,True,0.2,106.99,general,general,True,,General,,"260,1028,522,1035,525,272","428,728,828,928,1028",
+130,hybrid,BM25,easy,1.0,0.7143,True,1.0,98.94,general,study,False,,Study - AI,,"228,252,696,796,896,996,1096","252,696,796,896,996",
+131,hybrid,HNSW index,easy,1.0,0.7143,True,1.0,99.25,general,study,False,,Study - AI,,"215,430,681,781,881,981,1081","430,215,681,781,881",
+132,hybrid,HNSW vector index configuration,medium,0.2,0.1429,True,1.0,98.68,general,study,False,,Study - AI,,"215,430,681,781,881,981,1081","430,66,323,742,842",
+133,hybrid,Reciprocal Rank Fusion,medium,1.0,1.0,True,1.0,92.28,general,study,False,,Study - AI,,"518,718,818,918,1018","518,718,818,918,1018",
+134,hybrid,two sum problem,easy,1.0,0.8333,True,1.0,105.34,general,study,False,,Study - Interview Prep,,"278,677,777,877,977,1077","278,677,777,877,977",
+135,hybrid,LRU cache implementation,medium,1.0,0.5,True,1.0,126.22,general,study,False,,Study - Interview Prep,,"318,336,520,530,579,736,738,836,838,936","520,318,579,736,836",
+136,hybrid,CAP theorem,easy,0.4,1.0,True,1.0,115.15,general,study,False,,Study - System Design,,"580,608","580,608,233,607,753",
+137,hybrid,PageRank or graph algorithms notes,medium,0.4,0.2,True,1.0,144.8,general,study,False,,Study - Algorithms,,"60,158,224,316,342,347,545,546,619,667","619,333,60,215,681",
+138,hybrid,What have I been working on this month?,hard,0.2,0.1667,True,0.5,100.0,question,general,False,,General,,"77,149,164,182,216,286","453,77,82,647,375",
+139,hybrid,Recent notes and activities,hard,0.0,0.0,False,0.0,110.28,general,general,True,,General,,"77,149,164,182,216,286","87,444,565,290,203",
+140,hybrid,Redis vs Kafka — when to use each,hard,0.2,0.1667,True,0.3333,108.69,question,study,False,,Study - System Design,,"1024,771,1027,773,520,1034","643,673,773,873,973",
+141,hybrid,Python vs Go programming notes,hard,0.0,0.0,False,0.0,106.46,general,study,False,,Study - Programming,,"512,320,898,266,138,586","572,327,283,662,762",
+142,hybrid,SQL vs NoSQL database comparison,hard,0.0,0.0,False,0.0,102.38,general,study,False,,Study - Database,,"772,775,904,1031,1032,139","300,754,854,954,1054",
+143,hybrid,"Comparing RAG retrieval strategies: dense, sparse, and reranking",hard,0.2,0.1667,True,1.0,118.01,general,study,False,Study - API Performance,Study - AI,True,"386,1030,648,649,776,267","386,310,595,492,186",
+144,hybrid,REST vs GraphQL API design trade-offs,hard,0.2,0.1667,True,0.3333,107.05,general,study,False,,Study - System Design,,"68,93,96,132,136,142","484,644,93,450,671",
+145,hybrid,Show all my communication notes,easy,0.0,0.0,False,0.0,98.77,general,communication,False,,Communication,,"54,55,56,57,106,117","141,583,699,799,899",
+146,hybrid,All my reminder notes,easy,0.0,0.0,False,0.0,117.27,reminder,reminder,True,Reminders,Reminders,True,"55,152,212,312,542,557","290,583,699,799,899",
+147,hybrid,My study notes on AI and machine learning,easy,0.0,0.0,False,0.0,102.81,study,study,True,,Study - AI,,"1026,774,1030,510,523,268,267,782","529,230,87,619,85",
+148,hybrid,Notes categorized under system design,easy,0.2,0.1667,True,0.2,97.94,general,study,False,,Study - System Design,,"70,145,255,267,305,309","106,392,87,602,309",
+149,hybrid,Programming notes I've taken recently,medium,0.0,0.0,False,0.0,97.79,general,study,False,,Study - Programming,,"512,1025,898,132,266,523","87,583,699,799,899",
+150,hybrid,My financial notes,medium,0.0,0.0,False,0.0,95.74,general,todo,False,,Finance,,"646,202,331,591,273,82","290,87,637,733,833",
+151,hybrid,Projects and ideas I'm excited about,hard,0.0,0.0,False,0.0,111.48,idea,idea,True,,Ideas,,"514,260,1028,262,1032,522","85,528,442,755,855",
+152,hybrid,Personal notes and self-improvement,hard,0.0,0.0,False,0.0,124.36,general,general,True,,General,,"522,1035,785,529,277,283","444,290,212,87,583",

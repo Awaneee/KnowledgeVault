@@ -1,0 +1,123 @@
+{
+  "query_id": "study_07",
+  "question": "What notes do I have about knowledge retrieval systems?",
+  "category": "study",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    88,
+    89,
+    90
+  ],
+  "reference_answer": "Your notes on knowledge retrieval systems cover semantic search techniques, ideas for improving retrieval quality, and the KnowledgeVault project evaluation approach.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Ideas for improving semantic retrieval quality.",
+      "Read about Retrieval-Augmented Generation architectures.",
+      "Document KnowledgeVault backend APIs.",
+      "Design KnowledgeVault retrieval improvements.",
+      "Implement semantic search optimization in KnowledgeVault.",
+      "Create architecture diagrams for KnowledgeVault.",
+      "Improve KnowledgeVault evaluation metrics.",
+      "Reference PostgreSQL VACUUM and ANALYZE documentation."
+    ],
+    "retrieval_ms": 219.0,
+    "llm_ms": 703.0,
+    "total_ms": 922.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Ideas for improving semantic retrieval quality.\nIdeas for improving semantic retrieval quality.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n\nCategory: Semantic match\nNote: Document KnowledgeVault backend APIs.\nDocument KnowledgeVault backend APIs.\n\nCategory: Semantic match\nNote: Design KnowledgeVault retrieval improvements.\nDesign KnowledgeVault retrieval improvements.\n\nCategory: Semantic match\nNote: Implement semantic search optimization in KnowledgeVault.\nImplement semantic search optimization in KnowledgeVault.\n\nCategory: Semantic match\nNote: Create architecture diagrams for KnowledgeVault.\nCreate architecture diagrams for KnowledgeVault.\n\nCategory: Semantic match\nNote: Improve KnowledgeVault evaluation metrics.\nImprove KnowledgeVault evaluation metrics.\n\nCategory: Semantic match\nNote: Reference PostgreSQL VACUUM and ANALYZE documentation.\nReference PostgreSQL VACUUM and ANALYZE documentation.\n</context>\n\n<question>\nWhat notes do I have about knowledge retrieval systems?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 86,
+        "note_title": "Ideas for improving semantic retrieval quality.",
+        "chunk_text": "Ideas for improving semantic retrieval quality.",
+        "chunk_index": 0,
+        "score": 0.5636835266257386,
+        "semantic_score": 0.5636835266257386,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.5624772142625708,
+        "semantic_score": 0.5624772142625708,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 96,
+        "note_title": "Document KnowledgeVault backend APIs.",
+        "chunk_text": "Document KnowledgeVault backend APIs.",
+        "chunk_index": 0,
+        "score": 0.5368822973037453,
+        "semantic_score": 0.5368822973037453,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 88,
+        "note_title": "Design KnowledgeVault retrieval improvements.",
+        "chunk_text": "Design KnowledgeVault retrieval improvements.",
+        "chunk_index": 0,
+        "score": 0.508650645355863,
+        "semantic_score": 0.508650645355863,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 89,
+        "note_title": "Implement semantic search optimization in KnowledgeVault.",
+        "chunk_text": "Implement semantic search optimization in KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.4595237785152001,
+        "semantic_score": 0.4595237785152001,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 95,
+        "note_title": "Create architecture diagrams for KnowledgeVault.",
+        "chunk_text": "Create architecture diagrams for KnowledgeVault.",
+        "chunk_index": 0,
+        "score": 0.43200720238750023,
+        "semantic_score": 0.43200720238750023,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 90,
+        "note_title": "Improve KnowledgeVault evaluation metrics.",
+        "chunk_text": "Improve KnowledgeVault evaluation metrics.",
+        "chunk_index": 0,
+        "score": 0.4146160258009459,
+        "semantic_score": 0.4146160258009459,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 74,
+        "note_title": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_text": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_index": 0,
+        "score": 0.3901483532830583,
+        "semantic_score": 0.3901483532830583,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

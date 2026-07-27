@@ -1,0 +1,131 @@
+{
+  "query_id": "aq_024",
+  "question": "What are my financial obligations this month?",
+  "category": "temporal",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    77,
+    140,
+    160,
+    164,
+    178,
+    312,
+    341,
+    368,
+    431,
+    490,
+    635
+  ],
+  "reference_answer": "Monthly financial obligations from notes: hostel fees due March 31, electricity bill Rs 1,240 due March 5, internet and water bill payments, Jio recharge needed, mess bill split with roommates. Monthly subscriptions (Netflix, Spotify, ChatGPT Plus) total ~Rs 1,945.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Pay electricity and internet bills this weekend.",
+      "Water bill due this week. Pay via Google Pay to the society account. Around Rs 320 this month.",
+      "Pay hostel fees before March 31st. Late payment incurs a fine of Rs 500 per day. Log into the student portal.",
+      "Monthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, ",
+      "Schedule a health checkup before August.",
+      "Schedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.",
+      "Savings goal: build Rs 50,000 emergency fund before graduation. Currently at Rs 18,000. Depositing Rs 2,000 per month fr"
+    ],
+    "retrieval_ms": 62.0,
+    "llm_ms": 64594.0,
+    "total_ms": 64656.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Semantic match\nNote: Water bill due this week. Pay via Google Pay to the society account. Around Rs 320 this month.\nWater bill due this week. Pay via Google Pay to the society account. Around Rs 320 this month.\n\nCategory: Semantic match\nNote: Pay hostel fees before March 31st. Late payment incurs a fine of Rs 500 per day. Log into the student portal.\nPay hostel fees before March 31st. Late payment incurs a fine of Rs 500 per day. Log into the student portal.\n\nCategory: Semantic match\nNote: Monthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, \nMonthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, Misc: 500. Total: 6900. Need to reduce misc spending.\n\nCategory: Semantic match\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Schedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.\nSchedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.\n\nCategory: Semantic match\nNote: Savings goal: build Rs 50,000 emergency fund before graduation. Currently at Rs 18,000. Depositing Rs 2,000 per month fr\nSavings goal: build Rs 50,000 emergency fund before graduation. Currently at Rs 18,000. Depositing Rs 2,000 per month from stipend.\n</context>\n\n<question>\nWhat are my financial obligations this month?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.4374356400202407,
+        "semantic_score": 0.4374356400202407,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.4268723130226135,
+        "semantic_score": 0.4268723130226135,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 341,
+        "note_title": "Water bill due this week. Pay via Google Pay to the society account. Around Rs 320 this month.",
+        "chunk_text": "Water bill due this week. Pay via Google Pay to the society account. Around Rs 320 this month.",
+        "chunk_index": 0,
+        "score": 0.3872336149215698,
+        "semantic_score": 0.3872336149215698,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 635,
+        "note_title": "Pay hostel fees before March 31st. Late payment incurs a fine of Rs 500 per day. Log into the student portal.",
+        "chunk_text": "Pay hostel fees before March 31st. Late payment incurs a fine of Rs 500 per day. Log into the student portal.",
+        "chunk_index": 0,
+        "score": 0.37340429425239563,
+        "semantic_score": 0.37340429425239563,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 216,
+        "note_title": "Monthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, ",
+        "chunk_text": "Monthly budget tracking: Feb 2024. Mess: 3200, Transport: 800, Groceries: 1400, Coffee/snacks: 600, Subscriptions: 400, Misc: 500. Total: 6900. Need to reduce misc spending.",
+        "chunk_index": 0,
+        "score": 0.3681215722488427,
+        "semantic_score": 0.3681215722488427,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.3616202473640442,
+        "semantic_score": 0.3616202473640442,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 601,
+        "note_title": "Schedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.",
+        "chunk_text": "Schedule health checkup before the semester ends. Basic blood panel + eye check. Haven't had a checkup in 18 months.",
+        "chunk_index": 0,
+        "score": 0.3290178473905798,
+        "semantic_score": 0.3290178473905798,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 162,
+        "note_title": "Savings goal: build Rs 50,000 emergency fund before graduation. Currently at Rs 18,000. Depositing Rs 2,000 per month fr",
+        "chunk_text": "Savings goal: build Rs 50,000 emergency fund before graduation. Currently at Rs 18,000. Depositing Rs 2,000 per month from stipend.",
+        "chunk_index": 0,
+        "score": 0.3268982172012329,
+        "semantic_score": 0.3268982172012329,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

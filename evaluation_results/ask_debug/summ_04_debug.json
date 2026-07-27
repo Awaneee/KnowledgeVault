@@ -1,0 +1,128 @@
+{
+  "query_id": "summ_04",
+  "question": "What are all my pending tasks and reminders?",
+  "category": "summarization",
+  "difficulty": "hard",
+  "expected_note_ids": [
+    76,
+    77,
+    78,
+    79,
+    80,
+    82,
+    83,
+    84
+  ],
+  "reference_answer": "Your pending tasks and reminders include grocery shopping, finance-related tasks, health appointments (dentist, checkup), vehicle insurance renewal, and personal health action items.",
+  "eval_notes": "Partial credit for any three of the four main categories (shopping, finance, health, vehicle).",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Pay electricity and internet bills this weekend.",
+      "Schedule a health checkup before August.",
+      "Revise operating systems process scheduling algorithms.",
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Meeting summary for weekly KnowledgeVault sprint planning.",
+      "Brainstorm startup ideas around AI productivity tools.",
+      "Message Siddhant about tomorrow's backend meeting.",
+      "Implement Redis-backed background workers."
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 547.0,
+    "total_ms": 672.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Appointments\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Revise operating systems process scheduling algorithms.\nRevise operating systems process scheduling algorithms.\n\nCategory: Semantic match\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Meeting summary for weekly KnowledgeVault sprint planning.\nMeeting summary for weekly KnowledgeVault sprint planning.\n\nCategory: Semantic match\nNote: Brainstorm startup ideas around AI productivity tools.\nBrainstorm startup ideas around AI productivity tools.\n\nCategory: Semantic match\nNote: Message Siddhant about tomorrow's backend meeting.\nMessage Siddhant about tomorrow's backend meeting.\n\nCategory: Semantic match\nNote: Implement Redis-backed background workers.\nImplement Redis-backed background workers.\n</context>\n\n<question>\nWhat are all my pending tasks and reminders?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.3210061383847087,
+        "semantic_score": 0.3210061383847087,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.29801960575697506,
+        "semantic_score": 0.29801960575697506,
+        "intent_score": 0.20444444444444443,
+        "intent_category": "Appointments"
+      },
+      {
+        "note_id": 59,
+        "note_title": "Revise operating systems process scheduling algorithms.",
+        "chunk_text": "Revise operating systems process scheduling algorithms.",
+        "chunk_index": 0,
+        "score": 0.27886542677879533,
+        "semantic_score": 0.27886542677879533,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.2663378357593271,
+        "semantic_score": 0.2663378357593271,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 107,
+        "note_title": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_text": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_index": 0,
+        "score": 0.26055298808532923,
+        "semantic_score": 0.26055298808532923,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 85,
+        "note_title": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_text": "Brainstorm startup ideas around AI productivity tools.",
+        "chunk_index": 0,
+        "score": 0.259166852186135,
+        "semantic_score": 0.259166852186135,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 56,
+        "note_title": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_text": "Message Siddhant about tomorrow's backend meeting.",
+        "chunk_index": 0,
+        "score": 0.23310050368309188,
+        "semantic_score": 0.23310050368309188,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 92,
+        "note_title": "Implement Redis-backed background workers.",
+        "chunk_text": "Implement Redis-backed background workers.",
+        "chunk_index": 0,
+        "score": 0.22233959867594277,
+        "semantic_score": 0.22233959867594277,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

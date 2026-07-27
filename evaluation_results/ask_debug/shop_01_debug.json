@@ -1,0 +1,121 @@
+{
+  "query_id": "shop_01",
+  "question": "What is on my shopping list?",
+  "category": "shopping",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    76
+  ],
+  "reference_answer": "Your shopping notes contain items you need to purchase.",
+  "eval_notes": "Any answer referencing the contents of the shopping note is acceptable.",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Buy groceries including milk, eggs, bread and fruits.",
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Pay electricity and internet bills this weekend.",
+      "Read about Retrieval-Augmented Generation architectures.",
+      "Learn Redis caching strategies for backend systems.",
+      "Plan a trip to Manali with friends.",
+      "Watch a tutorial on Kafka producers and consumers.",
+      "Refactor backend service layer for maintainability."
+    ],
+    "retrieval_ms": 125.0,
+    "llm_ms": 672.0,
+    "total_ms": 797.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Buy groceries including milk, eggs, bread and fruits.\nBuy groceries including milk, eggs, bread and fruits.\n\nCategory: Semantic match\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n\nCategory: Semantic match\nNote: Learn Redis caching strategies for backend systems.\nLearn Redis caching strategies for backend systems.\n\nCategory: Semantic match\nNote: Plan a trip to Manali with friends.\nPlan a trip to Manali with friends.\n\nCategory: Semantic match\nNote: Watch a tutorial on Kafka producers and consumers.\nWatch a tutorial on Kafka producers and consumers.\n\nCategory: Semantic match\nNote: Refactor backend service layer for maintainability.\nRefactor backend service layer for maintainability.\n</context>\n\n<question>\nWhat is on my shopping list?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 76,
+        "note_title": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_text": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_index": 0,
+        "score": 0.3264978528022766,
+        "semantic_score": 0.3264978528022766,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.24904385951292107,
+        "semantic_score": 0.24904385951292107,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.2237929254770279,
+        "semantic_score": 0.2237929254770279,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.1580858434387542,
+        "semantic_score": 0.1580858434387542,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 61,
+        "note_title": "Learn Redis caching strategies for backend systems.",
+        "chunk_text": "Learn Redis caching strategies for backend systems.",
+        "chunk_index": 0,
+        "score": 0.1496278688200674,
+        "semantic_score": 0.1496278688200674,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 81,
+        "note_title": "Plan a trip to Manali with friends.",
+        "chunk_text": "Plan a trip to Manali with friends.",
+        "chunk_index": 0,
+        "score": 0.13922063346032132,
+        "semantic_score": 0.13922063346032132,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 71,
+        "note_title": "Watch a tutorial on Kafka producers and consumers.",
+        "chunk_text": "Watch a tutorial on Kafka producers and consumers.",
+        "chunk_index": 0,
+        "score": 0.1285353528580282,
+        "semantic_score": 0.1285353528580282,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 101,
+        "note_title": "Refactor backend service layer for maintainability.",
+        "chunk_text": "Refactor backend service layer for maintainability.",
+        "chunk_index": 0,
+        "score": 0.1268112063407898,
+        "semantic_score": 0.1268112063407898,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

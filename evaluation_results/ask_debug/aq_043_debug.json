@@ -1,0 +1,123 @@
+{
+  "query_id": "aq_043",
+  "question": "Show all my university study notes.",
+  "category": "category",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    138,
+    175,
+    198,
+    227,
+    231,
+    233,
+    236,
+    270
+  ],
+  "reference_answer": "University study notes cover: OS (scheduling algorithms, page replacement, deadlock conditions, virtual memory), DBMS (normalization, ACID, B+ trees, ER diagrams), Computer Networks (TCP, OSI model, subnetting), Algorithms (dynamic programming, graph algorithms, greedy), and Compiler Design (lexer implementation, DFA, CFG). Capstone project is building a Timetable Management System.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these ",
+      "Feeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights ",
+      "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com"
+    ],
+    "retrieval_ms": 94.0,
+    "llm_ms": 63688.0,
+    "total_ms": 63782.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these \nHad a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these and see how I was thinking. Write clearly.\n\nCategory: Semantic match\nNote: Feeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights \nFeeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights studying the system design were worth it.\n\nCategory: Semantic match\nNote: Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com\nStarting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.\n</context>\n\n<question>\nShow all my university study notes.\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 290,
+        "note_title": "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these ",
+        "chunk_text": "Had a philosophical thought: the notes I'm taking now are evidence of who I am at this point. Future me will read these and see how I was thinking. Write clearly.",
+        "chunk_index": 0,
+        "score": 0.36872250940568785,
+        "semantic_score": 0.36872250940568785,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 540,
+        "note_title": "Feeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights ",
+        "chunk_text": "Feeling good about the capstone demo. The professors asked hard questions but I knew the answers. All those late nights studying the system design were worth it.",
+        "chunk_index": 0,
+        "score": 0.35854960556476145,
+        "semantic_score": 0.35854960556476145,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 583,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.34878263916917573,
+        "semantic_score": 0.34878263916917573,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 699,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.34878263916917573,
+        "semantic_score": 0.34878263916917573,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 799,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.34878263916917573,
+        "semantic_score": 0.34878263916917573,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 899,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.34878263916917573,
+        "semantic_score": 0.34878263916917573,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 999,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.34878263916917573,
+        "semantic_score": 0.34878263916917573,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 1099,
+        "note_title": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a com",
+        "chunk_text": "Starting to appreciate documentation more. Spent 30 minutes reading a confusing function only to realize there was a comment explaining it in another file. Write the comment.",
+        "chunk_index": 0,
+        "score": 0.34878263916917573,
+        "semantic_score": 0.34878263916917573,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini failed after 5 retries due to rate limiting (429)",
+    "root_cause": "evaluator_failure"
+  }
+}

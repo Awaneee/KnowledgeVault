@@ -1,0 +1,122 @@
+{
+  "query_id": "rem_04",
+  "question": "What health-related tasks do I need to do?",
+  "category": "reminders",
+  "difficulty": "easy",
+  "expected_note_ids": [
+    83,
+    84
+  ],
+  "reference_answer": "Your notes include health-related action items covering personal wellness or healthcare tasks you need to complete.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Schedule a health checkup before August.",
+      "Buy groceries including milk, eggs, bread and fruits.",
+      "Drink at least three liters of water every day.",
+      "Start exercising four times every week.",
+      "Track monthly expenses and reduce unnecessary spending.",
+      "Pay electricity and internet bills this weekend.",
+      "Plan a trip to Manali with friends.",
+      "Prepare resume before placement season."
+    ],
+    "retrieval_ms": 140.0,
+    "llm_ms": 563.0,
+    "total_ms": 703.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Schedule a health checkup before August.\nSchedule a health checkup before August.\n\nCategory: Semantic match\nNote: Buy groceries including milk, eggs, bread and fruits.\nBuy groceries including milk, eggs, bread and fruits.\n\nCategory: Semantic match\nNote: Drink at least three liters of water every day.\nDrink at least three liters of water every day.\n\nCategory: Tasks\nNote: Start exercising four times every week.\nStart exercising four times every week.\n\nCategory: Tasks\nNote: Track monthly expenses and reduce unnecessary spending.\nTrack monthly expenses and reduce unnecessary spending.\n\nCategory: Semantic match\nNote: Pay electricity and internet bills this weekend.\nPay electricity and internet bills this weekend.\n\nCategory: Semantic match\nNote: Plan a trip to Manali with friends.\nPlan a trip to Manali with friends.\n\nCategory: Tasks\nNote: Prepare resume before placement season.\nPrepare resume before placement season.\n</context>\n\n<question>\nWhat health-related tasks do I need to do?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 79,
+        "note_title": "Schedule a health checkup before August.",
+        "chunk_text": "Schedule a health checkup before August.",
+        "chunk_index": 0,
+        "score": 0.46172991394996643,
+        "semantic_score": 0.46172991394996643,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 76,
+        "note_title": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_text": "Buy groceries including milk, eggs, bread and fruits.",
+        "chunk_index": 0,
+        "score": 0.302592009305954,
+        "semantic_score": 0.302592009305954,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 84,
+        "note_title": "Drink at least three liters of water every day.",
+        "chunk_text": "Drink at least three liters of water every day.",
+        "chunk_index": 0,
+        "score": 0.28046418544863605,
+        "semantic_score": 0.28046418544863605,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 83,
+        "note_title": "Start exercising four times every week.",
+        "chunk_text": "Start exercising four times every week.",
+        "chunk_index": 0,
+        "score": 0.2735741599544387,
+        "semantic_score": 0.2735741599544387,
+        "intent_score": 0.15555555555555553,
+        "intent_category": "Tasks"
+      },
+      {
+        "note_id": 82,
+        "note_title": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_text": "Track monthly expenses and reduce unnecessary spending.",
+        "chunk_index": 0,
+        "score": 0.26335740874282754,
+        "semantic_score": 0.26335740874282754,
+        "intent_score": 0.15555555555555553,
+        "intent_category": "Tasks"
+      },
+      {
+        "note_id": 77,
+        "note_title": "Pay electricity and internet bills this weekend.",
+        "chunk_text": "Pay electricity and internet bills this weekend.",
+        "chunk_index": 0,
+        "score": 0.2329615205526352,
+        "semantic_score": 0.2329615205526352,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 81,
+        "note_title": "Plan a trip to Manali with friends.",
+        "chunk_text": "Plan a trip to Manali with friends.",
+        "chunk_index": 0,
+        "score": 0.2095561450455279,
+        "semantic_score": 0.2095561450455279,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 100,
+        "note_title": "Prepare resume before placement season.",
+        "chunk_text": "Prepare resume before placement season.",
+        "chunk_index": 0,
+        "score": 0.20179538428783417,
+        "semantic_score": 0.20179538428783417,
+        "intent_score": 0.15555555555555553,
+        "intent_category": "Tasks"
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "query_id": "study_02",
+  "question": "What have I been studying about databases?",
+  "category": "study",
+  "difficulty": "medium",
+  "expected_note_ids": [
+    58,
+    61,
+    74,
+    73
+  ],
+  "reference_answer": "Your database study notes cover PostgreSQL internals, Redis caching strategies, and database query optimisation techniques.",
+  "eval_notes": "",
+  "pipeline": {
+    "status": "degraded",
+    "retrieval_only": true,
+    "answer": "AI-generated responses are temporarily unavailable. Here are the most relevant notes we found for your question.",
+    "sources": [
+      "Study vector databases and pgvector indexing.",
+      "Learn SQLAlchemy relationship loading strategies.",
+      "Study PostgreSQL indexing and query optimization.",
+      "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+      "Read about Retrieval-Augmented Generation architectures.",
+      "What is the difference between PostgreSQL indexes and hash indexes?",
+      "Understand event-driven architecture patterns.",
+      "Meeting summary for weekly KnowledgeVault sprint planning."
+    ],
+    "retrieval_ms": 110.0,
+    "llm_ms": 531.0,
+    "total_ms": 641.0
+  },
+  "context": {
+    "prompt": "You are a retrieval assistant helping a user search their personal knowledge notes.\n\n<context>\nCategory: Semantic match\nNote: Study vector databases and pgvector indexing.\nStudy vector databases and pgvector indexing.\n\nCategory: Semantic match\nNote: Learn SQLAlchemy relationship loading strategies.\nLearn SQLAlchemy relationship loading strategies.\n\nCategory: Semantic match\nNote: Study PostgreSQL indexing and query optimization.\nStudy PostgreSQL indexing and query optimization.\n\nCategory: Semantic match\nNote: Reference PostgreSQL VACUUM and ANALYZE documentation.\nReference PostgreSQL VACUUM and ANALYZE documentation.\n\nCategory: Semantic match\nNote: Read about Retrieval-Augmented Generation architectures.\nRead about Retrieval-Augmented Generation architectures.\n\nCategory: Semantic match\nNote: What is the difference between PostgreSQL indexes and hash indexes?\nWhat is the difference between PostgreSQL indexes and hash indexes?\n\nCategory: Semantic match\nNote: Understand event-driven architecture patterns.\nUnderstand event-driven architecture patterns.\n\nCategory: Semantic match\nNote: Meeting summary for weekly KnowledgeVault sprint planning.\nMeeting summary for weekly KnowledgeVault sprint planning.\n</context>\n\n<question>\nWhat have I been studying about databases?\n</question>\n\nInstructions:\n- Read all retrieved context carefully.\n- Write a clear, complete answer of 2–5 sentences.\n- Synthesise information from multiple notes when relevant.\n- Never respond with a single keyword or phrase alone.\n- Do not invent or infer information that is not present in the context.\n- Do not explain your reasoning; just answer.\n- If the context does not contain enough information, say exactly:\n  \"I could not find that information in your notes.\"\n\nAnswer:\n",
+    "retrieved_chunks": [
+      {
+        "note_id": 66,
+        "note_title": "Study vector databases and pgvector indexing.",
+        "chunk_text": "Study vector databases and pgvector indexing.",
+        "chunk_index": 0,
+        "score": 0.4435215328024913,
+        "semantic_score": 0.4435215328024913,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 69,
+        "note_title": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_text": "Learn SQLAlchemy relationship loading strategies.",
+        "chunk_index": 0,
+        "score": 0.4042247888907924,
+        "semantic_score": 0.4042247888907924,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 58,
+        "note_title": "Study PostgreSQL indexing and query optimization.",
+        "chunk_text": "Study PostgreSQL indexing and query optimization.",
+        "chunk_index": 0,
+        "score": 0.3896087408065796,
+        "semantic_score": 0.3896087408065796,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 74,
+        "note_title": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_text": "Reference PostgreSQL VACUUM and ANALYZE documentation.",
+        "chunk_index": 0,
+        "score": 0.3410182595252991,
+        "semantic_score": 0.3410182595252991,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 65,
+        "note_title": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_text": "Read about Retrieval-Augmented Generation architectures.",
+        "chunk_index": 0,
+        "score": 0.29587934637788904,
+        "semantic_score": 0.29587934637788904,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 104,
+        "note_title": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_text": "What is the difference between PostgreSQL indexes and hash indexes?",
+        "chunk_index": 0,
+        "score": 0.25227415561676025,
+        "semantic_score": 0.25227415561676025,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 102,
+        "note_title": "Understand event-driven architecture patterns.",
+        "chunk_text": "Understand event-driven architecture patterns.",
+        "chunk_index": 0,
+        "score": 0.2463570533011592,
+        "semantic_score": 0.2463570533011592,
+        "intent_score": 0.0,
+        "intent_category": null
+      },
+      {
+        "note_id": 107,
+        "note_title": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_text": "Meeting summary for weekly KnowledgeVault sprint planning.",
+        "chunk_index": 0,
+        "score": 0.23655089735984802,
+        "semantic_score": 0.23655089735984802,
+        "intent_score": 0.0,
+        "intent_category": null
+      }
+    ],
+    "raw_chunk_count": 8,
+    "filtered_chunk_count": 8
+  },
+  "judge": {
+    "scores": null,
+    "error": "Judge Gemini HTTP error: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=REDACTED",
+    "root_cause": "evaluator_failure"
+  }
+}
