@@ -65,6 +65,38 @@ class Settings(BaseSettings):
     RETRIEVAL_MIN_SCORE: float = 0.10
 
     # ------------------------------------------------------------------
+    # Phase 2 category pipeline feature flags
+    # All default to True (new behaviour). Set False to revert to Phase 1.
+    # ------------------------------------------------------------------
+
+    # Adaptive cap: max categories scales with corpus size instead of a
+    # hard constant.  When False, MAX_CATEGORIES_PER_USER (50) is used.
+    CATEGORY_ADAPTIVE_CAP_ENABLED: bool = True
+    # One category per N notes (floor / ceiling apply below).
+    CATEGORY_NOTES_PER_CAP: int = 10
+    # Absolute minimum categories regardless of corpus size.
+    CATEGORY_ADAPTIVE_CAP_MIN: int = 50
+    # Absolute maximum categories per user (prevents UI overload at 100K notes).
+    CATEGORY_ADAPTIVE_CAP_MAX: int = 2000
+
+    # Fuzzy-compatible reuse: _compatible() checks intent_type + actor only.
+    # When False, the old exact topic-string equality check is restored
+    # (which makes vector reuse structurally unreachable, per ADR-002).
+    CATEGORY_FUZZY_COMPAT_ENABLED: bool = True
+
+    # Per-intent-type reuse distance thresholds (cosine distance, lower = stricter).
+    # "Precise" applies to study/reference/question where topic specificity matters.
+    # "Broad" applies to idea/general/event/reminder/todo where overlap is acceptable.
+    CATEGORY_REUSE_THRESHOLD_PRECISE: float = 0.30
+    CATEGORY_REUSE_THRESHOLD_BROAD: float = 0.40
+
+    # Conservative general-intent category creation: validates the LLM-extracted
+    # topic before creating a new general category.  Prevents single-word verbs
+    # ("Added", "Create") and question fragments ("Does Redis Eviction") from
+    # becoming singleton categories.  When False, all general topics create freely.
+    CATEGORY_CONSERVATIVE_GENERAL_ENABLED: bool = True
+
+    # ------------------------------------------------------------------
     # Ask / cache
     # ------------------------------------------------------------------
     # TTL (seconds) for cached Ask responses. Set to 0 to disable caching.

@@ -432,18 +432,34 @@ class IntentCategoryService:
         )
 
     # ------------------------------------------------------------------
-    # Category find-or-create
+    # Category find-or-create  (Phase 2 — ADR-002)
     # ------------------------------------------------------------------
+
+    # Per-intent-type cosine distance thresholds for semantic reuse.
+    # Precise intents (study/reference/question): topic specificity matters.
+    # At T=0.30, "Kafka" and "Redis" stay separate (~0.55 apart in embedding space).
+    # Broad intents: semantic overlap is acceptable.
+    _REUSE_THRESHOLDS: dict[str, float] = {
+        "study":         0.30,
+        "reference":     0.30,
+        "question":      0.30,
+        "communication": 0.35,
+        "general":       0.35,
+        "idea":          0.40,
+        "reminder":      0.40,
+        "event":         0.40,
+        "todo":          0.40,
+    }
 
     def _find_or_create_category(
         self, user_id: int, intent: dict
-    ) -> tuple[IntentCategory, str, float]:
+    ) -> tuple[IntentCategory | None, str, float]:
         intent = self._normalize_intent_fields(intent)
         intent_type = intent["intent_type"]
         name = self._generate_category_name(intent)
-        has_topic = self._has_meaningful_topic(intent)
 
-        # 1. Exact canonical name match — fastest, most precise.
+        # Step 1 — Exact canonical name match (unchanged, fast path).
+        # Handles 34% of notes at 1,055-note scale.
         category = self.category_repo.find_by_name(
             user_id=user_id,
             name=name,
@@ -452,53 +468,83 @@ class IntentCategoryService:
         if category:
             return category, "canonical_name", 1.0
 
-        # 2. Exact rule match — used for communication (actor-specific) and
-        #    generic (no topic) buckets.  Skip for topic-bearing intents so
-        #    "Study - PostgreSQL" is not lumped into a broad "Study" bucket.
-        skip_rule = intent_type in self.TOPIC_INTENT_TYPES and has_topic
-        if not skip_rule:
-            category = self.category_repo.find_rule_match(
-                user_id=user_id,
-                intent_type=intent_type,
-                actor=intent["actor"],
-            )
-            if category:
-                return category, "exact_rule", 1.0
-
-        # 3. Semantic reuse — search existing categories and reuse if the
-        #    nearest neighbour is close enough AND compatible.
+        # Step 2 — Fuzzy vector reuse.
+        #
+        # Rule-match is retired: diagnostic showed 0% hit rate across 1,055 notes
+        # because every generic bucket ("Tasks", "General") found by rule-match
+        # was already found by canonical name in Step 1.  Removing it eliminates
+        # a dead code path without any behavioural change.
+        #
+        # _compatible() now gates on intent_type + actor only (ADR-002).
+        # The old exact topic-string equality check was dead code: it required
+        # the same condition as canonical_name (Step 1), so any note satisfying
+        # _compatible() would already have been caught above.  The distance
+        # threshold T controls topic proximity instead.
+        #
+        # When CATEGORY_FUZZY_COMPAT_ENABLED=False the strict Phase-1 path runs.
         vector = embedding_model.encode(self._intent_signature(intent)).tolist()
-        candidates = self.category_repo.search_by_embedding_with_distance(
-            user_id=user_id,
-            query_vector=vector,
-            limit=3,
-            max_distance=settings.CATEGORY_INGEST_THRESHOLD,
-        )
-        for candidate, distance in candidates:
-            if self._compatible(candidate, intent):
-                logger.info(
-                    "CATEGORY SEMANTIC REUSE name=%r distance=%.3f",
-                    candidate.name,
-                    distance,
-                )
-                return candidate, "vector", 1.0 - float(distance)
 
-        # 4. Cap guard — when per-user limit is reached, do NOT force the note
-        # into an unrelated category.  Return a sentinel (None) so the caller
-        # can skip the assignment entirely.  The note remains fully retrievable
-        # via semantic search; it simply has no category tag until the user
-        # removes old categories and the backfill re-runs.
-        if self.category_repo.count_by_user(user_id) >= self.MAX_CATEGORIES_PER_USER:
+        if settings.CATEGORY_FUZZY_COMPAT_ENABLED:
+            threshold = self._reuse_threshold(intent_type)
+            candidates = self.category_repo.search_by_embedding_with_distance(
+                user_id=user_id,
+                query_vector=vector,
+                limit=self.VECTOR_CANDIDATE_LIMIT,
+                max_distance=threshold,
+                intent_type=intent_type,   # hard SQL filter — prevents cross-type merges
+                actor=intent.get("actor"), # hard SQL filter for communication categories
+            )
+            for candidate, distance in candidates:
+                if self._compatible(candidate, intent):
+                    logger.info(
+                        "CATEGORY FUZZY REUSE name=%r distance=%.3f threshold=%.2f",
+                        candidate.name, distance, threshold,
+                    )
+                    return candidate, "vector", 1.0 - float(distance)
+        else:
+            # Phase 1 fallback: original CATEGORY_INGEST_THRESHOLD, no intent_type filter.
+            candidates = self.category_repo.search_by_embedding_with_distance(
+                user_id=user_id,
+                query_vector=vector,
+                limit=3,
+                max_distance=settings.CATEGORY_INGEST_THRESHOLD,
+            )
+            for candidate, distance in candidates:
+                if self._compatible_strict(candidate, intent):
+                    logger.info(
+                        "CATEGORY SEMANTIC REUSE name=%r distance=%.3f",
+                        candidate.name, distance,
+                    )
+                    return candidate, "vector", 1.0 - float(distance)
+
+        # Step 3 — Adaptive cap check.
+        # The cap scales with corpus size (NOTES_PER_CAP target, bounded by MIN/MAX).
+        # When CATEGORY_ADAPTIVE_CAP_ENABLED=False, falls back to MAX_CATEGORIES_PER_USER=50.
+        max_cats = self._adaptive_max_categories(user_id)
+        if self.category_repo.count_by_user(user_id) >= max_cats:
             logger.warning(
-                "CATEGORY CAP REACHED user_id=%d intent=%s topic=%s — "
+                "CATEGORY CAP REACHED user_id=%d cap=%d intent=%s topic=%s — "
                 "note will be uncategorized rather than force-assigned",
-                user_id,
-                intent_type,
-                self._resolve_topic_label(intent),
+                user_id, max_cats, intent_type, self._resolve_topic_label(intent),
             )
             return None, "cap_hit", 0.0
 
-        # 5. Create new category.
+        # Step 4 — Create category.
+        # For general-intent notes with the conservative guard enabled, validate
+        # the topic before creating a dedicated category.  LLM-extracted topics
+        # for general notes are frequently verbs ("Added"), question fragments
+        # ("Does Redis Eviction"), or 2-char tokens.  Those notes are directed to
+        # a shared "General" catchall instead of creating a singleton category.
+        if intent_type == "general" and settings.CATEGORY_CONSERVATIVE_GENERAL_ENABLED:
+            if not self._should_create_general_category(intent):
+                catchall = self._get_or_create_general_catchall(user_id)
+                logger.info(
+                    "GENERAL CATCHALL topic=%r category=%r",
+                    self._resolve_topic_label(intent),
+                    catchall.name if catchall else None,
+                )
+                return catchall, "general_catchall", 0.5
+
         category = self.category_repo.create(
             user_id=user_id,
             name=name,
@@ -510,6 +556,133 @@ class IntentCategoryService:
             confidence=intent["confidence"],
         )
         return category, "created", 1.0
+
+    # ------------------------------------------------------------------
+    # Adaptive cap and per-intent thresholds
+    # ------------------------------------------------------------------
+
+    def _reuse_threshold(self, intent_type: str) -> float:
+        """
+        Per-intent cosine distance threshold for semantic reuse.
+
+        Configured via CATEGORY_REUSE_THRESHOLD_PRECISE and _BROAD, but
+        _REUSE_THRESHOLDS provides per-intent granularity.
+        """
+        base = self._REUSE_THRESHOLDS.get(intent_type)
+        if base is not None:
+            return base
+        # For study/reference/question use the precise threshold from config
+        # (allows runtime tuning without code changes).
+        if intent_type in {"study", "reference", "question"}:
+            return settings.CATEGORY_REUSE_THRESHOLD_PRECISE
+        return settings.CATEGORY_REUSE_THRESHOLD_BROAD
+
+    def _adaptive_max_categories(self, user_id: int) -> int:
+        """
+        Compute the per-user category cap.
+
+        When CATEGORY_ADAPTIVE_CAP_ENABLED=False: returns MAX_CATEGORIES_PER_USER.
+
+        When enabled: max(MIN, min(MAX, note_count // NOTES_PER_CAP)).
+        At 1,055 notes with NOTES_PER_CAP=10: cap = 105.
+        At 3,000 notes: cap = 300.
+        At 100,000 notes: capped at MAX=2,000.
+        """
+        if not settings.CATEGORY_ADAPTIVE_CAP_ENABLED:
+            return self.MAX_CATEGORIES_PER_USER
+
+        from sqlalchemy import func as sqla_func
+        note_count = (
+            self.db.query(sqla_func.count(Note.id))
+            .filter(Note.user_id == user_id)
+            .scalar()
+        ) or 0
+
+        cap = note_count // settings.CATEGORY_NOTES_PER_CAP
+        return max(
+            settings.CATEGORY_ADAPTIVE_CAP_MIN,
+            min(settings.CATEGORY_ADAPTIVE_CAP_MAX, cap),
+        )
+
+    # ------------------------------------------------------------------
+    # General-intent conservation helpers
+    # ------------------------------------------------------------------
+
+    def _should_create_general_category(self, intent: dict) -> bool:
+        """
+        For general-intent notes: is the LLM-extracted topic substantive
+        enough to justify a dedicated category?
+
+        Returns True for known brand/tech names and meaningful noun phrases.
+        Returns False for single verbs, question fragments, 2-char tokens,
+        and other low-quality topic extractions that produce singleton
+        categories with no future reuse value.
+        """
+        import keyword as _kw
+
+        topic = self._resolve_topic_label(intent)
+        if not topic:
+            return False
+
+        words = topic.lower().split()
+
+        if len(words) == 1:
+            w = words[0]
+            # Always allow known good single-word terms
+            if w in self._BRAND_WORDS or w in self._ACRONYM_WORDS:
+                return True
+            # Reject Python keywords/built-ins and generic words
+            if (_kw.iskeyword(w) or w in self._PYTHON_BUILTINS
+                    or w in self.GENERIC_CATEGORY_WORDS):
+                return False
+            # Reject very short tokens that slipped past _sanitize_category_name
+            if len(w) < 4:
+                return False
+            # Reject common action verbs and auxiliaries that appear as topics
+            # when the LLM can't identify the subject of a general note
+            _WEAK_WORDS = {
+                "added", "changed", "create", "update", "fixed", "removed",
+                "deleted", "modified", "refactored", "improved", "does",
+                "make", "build", "find", "show", "gets", "sets",
+            }
+            if w in _WEAK_WORDS:
+                return False
+            return True
+
+        # Multi-word: reject if it starts with a question word (fragment topics)
+        _QUESTION_STARTS = {"does", "are", "what", "why", "how", "when", "is", "can"}
+        if words[0] in _QUESTION_STARTS:
+            return False
+
+        return True
+
+    def _get_or_create_general_catchall(self, user_id: int) -> IntentCategory | None:
+        """
+        Return or create a shared 'General' bucket for general-intent notes
+        whose topic is not substantive enough to merit a dedicated category.
+
+        Returns None (→ cap_hit behaviour) if the adaptive cap has been reached.
+        """
+        catchall = self.category_repo.find_by_name(
+            user_id=user_id, name="General", intent_type="general",
+        )
+        if catchall:
+            return catchall
+
+        max_cats = self._adaptive_max_categories(user_id)
+        if self.category_repo.count_by_user(user_id) >= max_cats:
+            return None
+
+        return self.category_repo.create(
+            user_id=user_id,
+            name="General",
+            intent_type="general",
+            actor=None,
+            action=None,
+            time_scope=None,
+            description="General notes without a specific identifiable topic.",
+            confidence=0.5,
+        )
 
     # ------------------------------------------------------------------
     # Deterministic category naming (Python-only, no LLM)
@@ -830,24 +1003,52 @@ class IntentCategoryService:
 
     def _compatible(self, category: IntentCategory, intent: dict) -> bool:
         """
-        True if `category` is semantically compatible with `intent` and
-        can safely absorb the new note.
+        Phase 2 compatibility check (ADR-002): intent_type + actor gates only.
+
+        The exact topic-string equality check from Phase 1 has been removed.
+        It was structurally dead code: it required the same condition as
+        canonical_name matching (Step 1 of _find_or_create_category), so any
+        note satisfying _compatible() would already have been caught by
+        canonical_name.
+
+        Topic proximity is now controlled by the per-intent cosine distance
+        threshold in _reuse_threshold().  At T=0.30, "Kafka" and "Redis" study
+        notes remain in separate categories (~0.55 apart); near-miss LLM variants
+        like "k8s" vs "Kubernetes" correctly reuse (<0.20 apart).
+
+        Investigation evidence:
+        - Cross-intent merges at T=0.40 (without intent_type gate): 5% same-type purity
+        - Keeping intent_type as a hard gate prevents those 95% wrong-type merges
+        - The SQL query in _find_or_create_category already pre-filters by intent_type
+          and actor; _compatible() is a Python-level guard after the DB result arrives
         """
+        # Hard gate 1: intent type must match.
         if category.intent_type != intent["intent_type"]:
             return False
+        # Hard gate 2: actor must match for communication categories.
+        # "Communication - Sid" must not absorb messages intended for "Siddhant"
+        # even when their embedding signatures are close (shared vocabulary).
         if category.actor and intent.get("actor"):
             if category.actor.lower() != intent["actor"].lower():
                 return False
         elif bool(category.actor) != bool(intent.get("actor")):
             return False
+        return True
 
+    def _compatible_strict(self, category: IntentCategory, intent: dict) -> bool:
+        """
+        Phase 1 fallback: adds exact topic-string equality on top of _compatible().
+        Used when CATEGORY_FUZZY_COMPAT_ENABLED=False for full backwards compatibility.
+        This check is structurally dead code for topic-bearing intents (see ADR-002)
+        but preserves the exact Phase 1 behaviour when the flag is off.
+        """
+        if not self._compatible(category, intent):
+            return False
         intent_topic = self._normalize_topic(self._resolve_topic_label(intent))
-        category_topic = self._normalize_topic(self._get_topic_from_category_name(category.name, category.intent_type))
-
-        intent_topic_str = (intent_topic or "").lower().strip()
-        category_topic_str = (category_topic or "").lower().strip()
-
-        return intent_topic_str == category_topic_str
+        category_topic = self._normalize_topic(
+            self._get_topic_from_category_name(category.name, category.intent_type)
+        )
+        return (intent_topic or "").lower().strip() == (category_topic or "").lower().strip()
 
     def _normalize_intent_fields(self, intent: dict) -> dict:
         normalized = dict(intent)

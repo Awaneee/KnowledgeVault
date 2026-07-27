@@ -219,7 +219,9 @@ class TestFindOrCreateCategoryCapHit:
         self.MAX = IntentCategoryService.MAX_CATEGORIES_PER_USER
 
     def _run_at_cap(self, intent):
-        """Drive _find_or_create_category with the category count at the cap."""
+        """Drive _find_or_create_category with the category count at the cap.
+        Patches _adaptive_max_categories to return the legacy constant so that
+        Phase 1 cap-hit tests are not affected by the Phase 2 adaptive cap."""
         # All early-exit paths miss so we reach the cap check.
         self.svc.category_repo.find_by_name.return_value = None
         self.svc.category_repo.find_rule_match.return_value = None
@@ -228,7 +230,9 @@ class TestFindOrCreateCategoryCapHit:
 
         with patch(
             "app.services.intent_category_service.embedding_model"
-        ) as mock_model:
+        ) as mock_model, patch.object(
+            self.svc, "_adaptive_max_categories", return_value=self.MAX
+        ):
             mock_model.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
             return self.svc._find_or_create_category(
                 user_id=1, intent=intent
@@ -270,7 +274,9 @@ class TestFindOrCreateCategoryCapHit:
 
         with patch(
             "app.services.intent_category_service.embedding_model"
-        ) as mock_model:
+        ) as mock_model, patch.object(
+            self.svc, "_adaptive_max_categories", return_value=self.MAX
+        ):
             mock_model.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
             category, method, _ = self.svc._find_or_create_category(
                 user_id=1, intent=_make_intent()
