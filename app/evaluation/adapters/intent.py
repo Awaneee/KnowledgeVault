@@ -47,6 +47,9 @@ class IntentAdapter(BaseRetrievalAdapter):
             if categories
             else None
         )
+        predicted_intent = self._service.extractor.extract_query_intent_fast(
+            benchmark_query.query
+        )["intent_type"]
 
         note_ids = []
         seen = set()
@@ -74,6 +77,6 @@ class IntentAdapter(BaseRetrievalAdapter):
             strategy=self.strategy,
             query=benchmark_query.query,
             retrieved_note_ids=note_ids,
-            predicted_intent=None,
+            predicted_intent=predicted_intent,
             predicted_category=predicted_category,
         )

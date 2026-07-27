@@ -101,6 +101,7 @@ class RetrievalResult(BaseModel):
     predicted_intent: Optional[str] = None
     predicted_category: Optional[str] = None
     latency_ms: float = 0.0
+    end_to_end_latency_ms: Optional[float] = None
     error: Optional[str] = None
 
 
@@ -120,6 +121,7 @@ class QueryEvaluation(BaseModel):
     # Retrieval metrics (computed against relevant_note_ids)
     precision_at_k: float
     recall_at_k: float
+    ndcg_at_k: float
     hit: bool                   # True if ≥1 relevant note in top-K
     reciprocal_rank: float      # 1/rank of first relevant note, 0 if none
 
@@ -129,6 +131,7 @@ class QueryEvaluation(BaseModel):
 
     # Latency
     latency_ms: float
+    end_to_end_latency_ms: Optional[float] = None
 
     # Pass-through for report rendering
     relevant_note_ids: list[int]
@@ -155,6 +158,7 @@ class StrategySummary(BaseModel):
     # Retrieval
     mean_precision_at_k: float
     mean_recall_at_k: float
+    mean_ndcg_at_k: float
     hit_rate: float
     mrr: float                  # Mean Reciprocal Rank
 
@@ -167,6 +171,8 @@ class StrategySummary(BaseModel):
     median_latency_ms: float
     p95_latency_ms: float
     max_latency_ms: float
+    
+    avg_end_to_end_latency_ms: Optional[float] = None
 
     error_count: int = 0
 

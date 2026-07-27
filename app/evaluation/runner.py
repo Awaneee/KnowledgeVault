@@ -45,11 +45,13 @@ from app.evaluation.metrics.retrieval import (
     recall_at_k,
     reciprocal_rank,
     hit_rate,
+    ndcg_at_k,
 )
 
 from app.evaluation.metrics.classification import (
     intent_accuracy,
     category_accuracy,
+    canonicalize_category_name,
 )
 
 from app.evaluation.metrics.latency import (
@@ -201,13 +203,15 @@ class EvaluationRunner:
         )
 
         hit = hit_rate(
-
             retrieval.retrieved_note_ids,
-
             benchmark.relevant_note_ids,
-
             self.k,
+        )
 
+        ndcg = ndcg_at_k(
+            retrieved=retrieval.retrieved_note_ids,
+            relevant=benchmark.relevant_note_ids,
+            k=self.k,
         )
 
         intent_correct = None
@@ -228,9 +232,9 @@ class EvaluationRunner:
 
             category_correct = (
 
-                retrieval.predicted_category.strip().lower()
+                canonicalize_category_name(retrieval.predicted_category)
 
-                == benchmark.expected_category.strip().lower()
+                == canonicalize_category_name(benchmark.expected_category)
 
             )
 
@@ -245,19 +249,14 @@ class EvaluationRunner:
             difficulty=benchmark.difficulty,
 
             precision_at_k=precision,
-
             recall_at_k=recall,
-
+            ndcg_at_k=ndcg,
             hit=hit,
-
             reciprocal_rank=rr,
-
             intent_correct=intent_correct,
-
             category_correct=category_correct,
-
             latency_ms=retrieval.latency_ms,
-
+            end_to_end_latency_ms=retrieval.end_to_end_latency_ms,
             relevant_note_ids=benchmark.relevant_note_ids,
 
             retrieved_note_ids=retrieval.retrieved_note_ids,
@@ -290,6 +289,7 @@ class EvaluationRunner:
                 query_count=0,
                 mean_precision_at_k=0.0,
                 mean_recall_at_k=0.0,
+                mean_ndcg_at_k=0.0,
                 hit_rate=0.0,
                 mrr=0.0,
                 intent_accuracy=None,
@@ -324,6 +324,16 @@ class EvaluationRunner:
         latencies = [
             e.latency_ms
             for e in evaluations
+        ]
+
+        ndcgs = [
+            e.ndcg_at_k
+            for e in evaluations
+        ]
+        
+        e2e_latencies = [
+            e.end_to_end_latency_ms
+            for e in evaluations if e.end_to_end_latency_ms is not None
         ]
 
         predicted_intents = []
@@ -382,14 +392,16 @@ class EvaluationRunner:
                 sum(precisions) / len(precisions),
 
             mean_recall_at_k=
-                sum(recalls) / len(recalls),
+                sum(recalls) / len(recalls) if recalls else 0.0,
+
+            mean_ndcg_at_k=
+                sum(ndcgs) / len(ndcgs) if ndcgs else 0.0,
 
             hit_rate=
-                sum(hit_values) / len(hit_values),
+                sum(hit_values) / len(hit_values) if hit_values else 0.0,
 
             mrr=
-                sum(reciprocal_ranks)
-                / len(reciprocal_ranks),
+                sum(reciprocal_ranks) / len(reciprocal_ranks) if reciprocal_ranks else 0.0,
 
             intent_accuracy=intent_acc,
 
@@ -397,6 +409,9 @@ class EvaluationRunner:
 
             avg_latency_ms=
                 average_latency(latencies),
+                
+            avg_end_to_end_latency_ms=
+                (sum(e2e_latencies) / len(e2e_latencies)) if e2e_latencies else None,
 
             median_latency_ms=
                 median_latency(latencies),
@@ -508,9 +523,55 @@ def main():
                 f"Errors              : {summary.error_count}"
             )
 
+            print(
+                f"nDCG@{report.k:<2}         : {summary.mean_ndcg_at_k:.3f}"
+            )
+            print(
+                f"Average E2E Latency(ms): {summary.avg_end_to_end_latency_ms:.2f}" if summary.avg_end_to_end_latency_ms is not None else "Average E2E Latency(ms): N/A"
+            )
+
             print()
 
         print("=" * 70)
+        
+        # Export logic
+        import csv
+        import json
+        with open("app/evaluation/benchmark/results.csv", "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Strategy", "Queries", "Precision@K", "Recall@K", "nDCG@K", "Hit Rate", "MRR", "Intent Acc", "Category Acc", "Avg Retrieval Latency(ms)", "Avg E2E Latency(ms)"])
+            for summary in report.summaries:
+                writer.writerow([
+                    summary.strategy.value,
+                    summary.query_count,
+                    f"{summary.mean_precision_at_k:.3f}",
+                    f"{summary.mean_recall_at_k:.3f}",
+                    f"{summary.mean_ndcg_at_k:.3f}",
+                    f"{summary.hit_rate:.3f}",
+                    f"{summary.mrr:.3f}",
+                    f"{summary.intent_accuracy:.3f}" if summary.intent_accuracy is not None else "N/A",
+                    f"{summary.category_accuracy:.3f}" if summary.category_accuracy is not None else "N/A",
+                    f"{summary.avg_latency_ms:.2f}",
+                    f"{summary.avg_end_to_end_latency_ms:.2f}" if summary.avg_end_to_end_latency_ms is not None else "N/A"
+                ])
+                
+        with open("app/evaluation/benchmark/results.md", "w") as f:
+            f.write("# KnowledgeVault Benchmark Results\n\n")
+            f.write(f"**Total Queries**: {report.total_queries} | **K**: {report.k}\n\n")
+            f.write("| Strategy | Queries | Precision@K | Recall@K | nDCG@K | Hit Rate | MRR | Intent Acc | Category Acc | Avg Retr Latency(ms) | Avg E2E Latency(ms) |\n")
+            f.write("|---|---|---|---|---|---|---|---|---|---|---|\n")
+            for summary in report.summaries:
+                intent_acc_str = f"{summary.intent_accuracy:.3f}" if summary.intent_accuracy is not None else "N/A"
+                cat_acc_str = f"{summary.category_accuracy:.3f}" if summary.category_accuracy is not None else "N/A"
+                e2e_str = f"{summary.avg_end_to_end_latency_ms:.2f}" if summary.avg_end_to_end_latency_ms is not None else "N/A"
+                f.write(
+                    f"| {summary.strategy.value.upper()} | {summary.query_count} "
+                    f"| {summary.mean_precision_at_k:.3f} | {summary.mean_recall_at_k:.3f} | {summary.mean_ndcg_at_k:.3f} "
+                    f"| {summary.hit_rate:.3f} | {summary.mrr:.3f} "
+                    f"| {intent_acc_str} | {cat_acc_str} "
+                    f"| {summary.avg_latency_ms:.2f} | {e2e_str} |\n"
+                )
+        print("\nResults exported to app/evaluation/benchmark/results.csv and results.md")
 
     finally:
 
@@ -518,4 +579,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main()

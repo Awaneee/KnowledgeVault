@@ -1,201 +1,753 @@
-
 [
   {
     "id": "1",
     "query": "What startup ideas do I have?",
     "expected_intent": "idea",
     "expected_category": "Ideas",
-    "relevant_note_ids": [52],
+    "relevant_note_ids": [
+      85,
+      86,
+      87
+    ],
     "difficulty": "easy",
-    "tags": ["startup", "idea"]
+    "tags": [
+      "startup",
+      "idea"
+    ]
   },
   {
     "id": "2",
     "query": "Show my AI research reading goals",
     "expected_intent": "study",
     "expected_category": "Study Tasks",
-    "relevant_note_ids": [51],
+    "relevant_note_ids": [
+      65,
+      64,
+      66,
+      67
+    ],
     "difficulty": "easy",
-    "tags": ["ai", "study"]
+    "tags": [
+      "ai",
+      "study"
+    ]
   },
   {
     "id": "3",
     "query": "How can I improve my health?",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [49,50],
+    "relevant_note_ids": [
+      83,
+      84
+    ],
     "difficulty": "medium",
-    "tags": ["health"]
+    "tags": [
+      "health"
+    ]
   },
   {
     "id": "4",
     "query": "Show my finance reminders",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [48],
+    "relevant_note_ids": [
+      77,
+      82
+    ],
     "difficulty": "easy",
-    "tags": ["finance"]
+    "tags": [
+      "finance"
+    ]
   },
   {
     "id": "5",
     "query": "Evaluation report work",
     "expected_intent": "reference",
     "expected_category": "Reference Notes",
-    "relevant_note_ids": [47],
+    "relevant_note_ids": [
+      90,
+      89
+    ],
     "difficulty": "medium",
-    "tags": ["evaluation"]
+    "tags": [
+      "evaluation"
+    ]
   },
   {
     "id": "6",
     "query": "Markdown support",
     "expected_intent": "reference",
     "expected_category": "Reference Notes",
-    "relevant_note_ids": [46],
+    "relevant_note_ids": [
+      72,
+      73,
+      74,
+      75
+    ],
     "difficulty": "easy",
-    "tags": ["markdown"]
+    "tags": [
+      "markdown"
+    ]
   },
   {
     "id": "7",
     "query": "Improve search latency",
     "expected_intent": "reference",
     "expected_category": "Reference Notes",
-    "relevant_note_ids": [45],
+    "relevant_note_ids": [
+      93,
+      89
+    ],
     "difficulty": "easy",
-    "tags": ["search"]
+    "tags": [
+      "search"
+    ]
   },
   {
     "id": "8",
     "query": "Attachment upload feature",
     "expected_intent": "reference",
     "expected_category": "Reference Notes",
-    "relevant_note_ids": [44],
+    "relevant_note_ids": [
+      94
+    ],
     "difficulty": "easy",
-    "tags": ["attachments"]
+    "tags": [
+      "attachments"
+    ]
   },
   {
     "id": "9",
     "query": "Flutter improvements",
     "expected_intent": "reference",
     "expected_category": "Reference Notes",
-    "relevant_note_ids": [43],
+    "relevant_note_ids": [
+      97,
+      98
+    ],
     "difficulty": "easy",
-    "tags": ["flutter"]
+    "tags": [
+      "flutter"
+    ]
   },
   {
     "id": "10",
     "query": "Networking concepts",
     "expected_intent": "study",
     "expected_category": "Study Tasks",
-    "relevant_note_ids": [41],
+    "relevant_note_ids": [
+      71,
+      62
+    ],
     "difficulty": "easy",
-    "tags": ["networking"]
+    "tags": [
+      "networking"
+    ]
   },
   {
     "id": "11",
     "query": "Object oriented programming revision",
     "expected_intent": "study",
     "expected_category": "Study Tasks",
-    "relevant_note_ids": [40],
+    "relevant_note_ids": [
+      59,
+      60
+    ],
     "difficulty": "easy",
-    "tags": ["oop"]
+    "tags": [
+      "oop"
+    ]
   },
   {
     "id": "12",
     "query": "Interview preparation",
     "expected_intent": "study",
     "expected_category": "Study Tasks",
-    "relevant_note_ids": [38,39],
+    "relevant_note_ids": [
+      70,
+      99
+    ],
     "difficulty": "medium",
-    "tags": ["interview"]
+    "tags": [
+      "interview"
+    ]
   },
   {
     "id": "13",
     "query": "Portfolio website",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [37],
+    "relevant_note_ids": [
+      100,
+      97
+    ],
     "difficulty": "easy",
-    "tags": ["portfolio"]
+    "tags": [
+      "portfolio"
+    ]
   },
   {
     "id": "14",
     "query": "Documentation tasks",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [36],
+    "relevant_note_ids": [
+      96,
+      95
+    ],
     "difficulty": "easy",
-    "tags": ["documentation"]
+    "tags": [
+      "documentation"
+    ]
   },
   {
     "id": "15",
     "query": "Deploy KnowledgeVault",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [35],
+    "relevant_note_ids": [
+      91
+    ],
     "difficulty": "easy",
-    "tags": ["docker"]
+    "tags": [
+      "docker"
+    ]
   },
   {
     "id": "16",
     "query": "Update GitHub README",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [34],
+    "relevant_note_ids": [
+      96
+    ],
     "difficulty": "easy",
-    "tags": ["github"]
+    "tags": [
+      "github"
+    ]
   },
   {
     "id": "17",
     "query": "Resume preparation",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [33],
+    "relevant_note_ids": [
+      100
+    ],
     "difficulty": "easy",
-    "tags": ["resume"]
+    "tags": [
+      "resume"
+    ]
   },
   {
     "id": "18",
     "query": "Weekend trip",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [32],
+    "relevant_note_ids": [
+      81
+    ],
     "difficulty": "easy",
-    "tags": ["travel"]
+    "tags": [
+      "travel"
+    ]
   },
   {
     "id": "19",
     "query": "Bills to pay",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [29,31],
+    "relevant_note_ids": [
+      77,
+      82
+    ],
     "difficulty": "medium",
-    "tags": ["bills"]
+    "tags": [
+      "bills"
+    ]
   },
   {
     "id": "20",
     "query": "Doctor appointment",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [30],
+    "relevant_note_ids": [
+      78,
+      79
+    ],
     "difficulty": "easy",
-    "tags": ["health"]
+    "tags": [
+      "health"
+    ]
   },
   {
     "id": "21",
     "query": "Shopping list",
     "expected_intent": "todo",
     "expected_category": "To Do",
-    "relevant_note_ids": [27,28],
+    "relevant_note_ids": [
+      76
+    ],
     "difficulty": "medium",
-    "tags": ["shopping"]
+    "tags": [
+      "shopping"
+    ]
   },
   {
     "id": "22",
     "query": "Things I need to tell Sid",
     "expected_intent": "communication",
     "expected_category": "Things to Tell Sid",
-    "relevant_note_ids": [26],
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57
+    ],
     "difficulty": "easy",
-    "tags": ["sid"]
+    "tags": [
+      "sid"
+    ]
+  },
+  {
+    "id": "23",
+    "query": "Next meeting with the design team",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      106,
+      107
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "meeting",
+      "design"
+    ]
+  },
+  {
+    "id": "24",
+    "query": "Project deadline for the alpha release",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      89,
+      91
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "project",
+      "deadline"
+    ]
+  },
+  {
+    "id": "25",
+    "query": "Remind me to call mom",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      78,
+      79
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminder"
+    ]
+  },
+  {
+    "id": "26",
+    "query": "What is the theory of relativity?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      103,
+      104,
+      105
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "physics"
+    ]
+  },
+  {
+    "id": "27",
+    "query": "Ideas for my new blog post",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      87,
+      88
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "blog",
+      "idea"
+    ]
+  },
+  {
+    "id": "28",
+    "query": "How to set up a kubernetes cluster",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      62
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "kubernetes",
+      "devops"
+    ]
+  },
+  {
+    "id": "29",
+    "query": "Things to discuss with Sid at the next meeting",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid"
+    ]
+  },
+  {
+    "id": "30",
+    "query": "Study materials for machine learning",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      64,
+      65,
+      66,
+      67
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "ml",
+      "study"
+    ]
+  },
+  {
+    "id": "31",
+    "query": "Meeting notes from Q3 planning",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      106,
+      107
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting",
+      "q3"
+    ]
+  },
+  {
+    "id": "32",
+    "query": "What are the project requirements for KnowledgeVault?",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project"
+    ]
+  },
+  {
+    "id": "33",
+    "query": "Reminders for next week",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      76,
+      77,
+      78,
+      79,
+      80
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "reminder"
+    ]
+  },
+  {
+    "id": "34",
+    "query": "Questions to ask during the interview",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      70,
+      99
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "interview"
+    ]
+  },
+  {
+    "id": "35",
+    "query": "Brainstorming app names",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      87,
+      88
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "idea",
+      "naming"
+    ]
+  },
+  {
+    "id": "36",
+    "query": "Redis and PostgreSQL reference notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      73,
+      74,
+      58
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "redis",
+      "postgres"
+    ]
+  },
+  {
+    "id": "37",
+    "query": "Message to send to Siddhant about backend",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      56,
+      57,
+      54
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "siddhant",
+      "backend"
+    ]
+  },
+  {
+    "id": "38",
+    "query": "Study schedule for finals",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      58,
+      59,
+      60,
+      61
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "study",
+      "schedule"
+    ]
+  },
+  {
+    "id": "39",
+    "query": "Sprint planning meeting summary",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      107,
+      106
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting",
+      "sprint"
+    ]
+  },
+  {
+    "id": "40",
+    "query": "Timeline for the beta launch",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      89,
+      91
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project",
+      "launch"
+    ]
+  },
+  {
+    "id": "41",
+    "query": "Don't forget to buy milk",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      76
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminder",
+      "shopping"
+    ]
+  },
+  {
+    "id": "42",
+    "query": "How does Redis eviction work?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      103,
+      73,
+      61
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "redis"
+    ]
+  },
+  {
+    "id": "43",
+    "query": "Ideas for improving KnowledgeVault",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      86,
+      87,
+      88,
+      89,
+      90
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "knowledgevault",
+      "idea"
+    ]
+  },
+  {
+    "id": "44",
+    "query": "Docker commands cheat sheet",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      72,
+      75
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "docker",
+      "cheatsheet"
+    ]
+  },
+  {
+    "id": "45",
+    "query": "Tell Sid about the hackathon",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      55,
+      54
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid",
+      "hackathon"
+    ]
+  },
+  {
+    "id": "46",
+    "query": "System design interview study",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      70,
+      99,
+      59,
+      60
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "interview",
+      "study"
+    ]
+  },
+  {
+    "id": "47",
+    "query": "Weekly sync notes",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      106,
+      107
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting",
+      "sync"
+    ]
+  },
+  {
+    "id": "48",
+    "query": "Budget and monthly expenses",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      82,
+      77
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "budget",
+      "expenses"
+    ]
+  },
+  {
+    "id": "49",
+    "query": "Health checkup and appointments",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      78,
+      79,
+      80
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health",
+      "appointment"
+    ]
+  },
+  {
+    "id": "50",
+    "query": "What are PostgreSQL index types?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      104,
+      74,
+      58
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "postgres"
+    ]
   }
 ]

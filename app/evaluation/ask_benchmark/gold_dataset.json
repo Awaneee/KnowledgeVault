@@ -1,0 +1,488 @@
+[
+  {
+    "id": "fq_01",
+    "question": "What is Docker Compose and what is it used for?",
+    "expected_note_ids": [72, 75],
+    "reference_answer": "Docker Compose is a tool for defining and running multi-container Docker applications using a YAML configuration file. It allows you to configure application services, networks, and volumes, then start all services with a single command.",
+    "category": "factual_lookup",
+    "difficulty": "easy",
+    "eval_notes": "Accept any answer that correctly explains YAML-based service orchestration."
+  },
+  {
+    "id": "fq_02",
+    "question": "What are the main features of Redis?",
+    "expected_note_ids": [73],
+    "reference_answer": "Redis is an in-memory data structure store that supports strings, hashes, lists, sets, sorted sets, and more. It is used as a database, cache, and message broker, offering high-speed read and write operations.",
+    "category": "factual_lookup",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "fq_03",
+    "question": "What is PostgreSQL and how does it differ from other databases?",
+    "expected_note_ids": [74],
+    "reference_answer": "PostgreSQL is an advanced open-source relational database management system supporting SQL and JSON. Unlike other databases, it supports advanced features like full-text search, JSONB storage, custom extensions, and strong ACID compliance.",
+    "category": "factual_lookup",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "fq_04",
+    "question": "What is semantic search and how does it work?",
+    "expected_note_ids": [89],
+    "reference_answer": "Semantic search finds results based on the meaning and context of a query rather than keyword matching. It uses vector embeddings to represent text in high-dimensional space and retrieves documents whose embeddings are closest to the query embedding.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "fq_05",
+    "question": "What is a cross-encoder reranker and when should I use it?",
+    "expected_note_ids": [67],
+    "reference_answer": "A cross-encoder reranker is a model that jointly encodes a query and document pair and outputs a relevance score. Unlike bi-encoders, it compares query and document together, producing higher accuracy at the cost of more computation. Use it as a second-stage ranker over a candidate set retrieved by a fast bi-encoder.",
+    "category": "factual_lookup",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "fq_06",
+    "question": "How does NLP model training work?",
+    "expected_note_ids": [64, 65],
+    "reference_answer": "NLP model training involves preprocessing text data, tokenising it, feeding it to a neural network architecture, and optimising model parameters using a loss function via backpropagation. Modern NLP uses pre-trained transformer models that are then fine-tuned on task-specific datasets.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "fq_07",
+    "question": "What is system design and what topics does it cover?",
+    "expected_note_ids": [70, 99],
+    "reference_answer": "System design involves architecting scalable, reliable, and maintainable software systems. Key topics include load balancing, database sharding, caching strategies, microservices, API design, message queues, and distributed consensus.",
+    "category": "factual_lookup",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "fq_08",
+    "question": "What are graph algorithms used for?",
+    "expected_note_ids": [60],
+    "reference_answer": "Graph algorithms solve problems involving relationships between entities. Common uses include shortest path finding (Dijkstra, BFS), network flow, minimum spanning trees, topological sorting, and detecting cycles or connected components.",
+    "category": "factual_lookup",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "rem_01",
+    "question": "What do I need to buy at the grocery store?",
+    "expected_note_ids": [76],
+    "reference_answer": "Based on your notes, you need to buy items on your grocery list.",
+    "category": "reminders",
+    "difficulty": "easy",
+    "eval_notes": "Accept any answer that references grocery or shopping list content from notes. Do not penalise if the exact list items differ — the model can only report what is in the retrieved notes."
+  },
+  {
+    "id": "rem_02",
+    "question": "What are my reminders for this week?",
+    "expected_note_ids": [79, 77, 78, 80],
+    "reference_answer": "Your reminders include various pending tasks and time-sensitive items noted in your reminders notes.",
+    "category": "reminders",
+    "difficulty": "medium",
+    "eval_notes": "The answer should mention at least two specific reminders from the retrieved notes."
+  },
+  {
+    "id": "rem_03",
+    "question": "Do I have any pending finance-related reminders?",
+    "expected_note_ids": [77, 82],
+    "reference_answer": "Yes, you have finance-related reminders in your notes covering upcoming bills or financial tasks.",
+    "category": "reminders",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "rem_04",
+    "question": "What health-related tasks do I need to do?",
+    "expected_note_ids": [83, 84],
+    "reference_answer": "Your notes include health-related action items covering personal wellness or healthcare tasks you need to complete.",
+    "category": "reminders",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "rem_05",
+    "question": "When does my vehicle insurance expire?",
+    "expected_note_ids": [80],
+    "reference_answer": "According to your notes, you have a reminder to renew your vehicle insurance before it expires.",
+    "category": "reminders",
+    "difficulty": "easy",
+    "eval_notes": "High correctness only if the answer references vehicle insurance specifically."
+  },
+  {
+    "id": "rem_06",
+    "question": "What do I need to do before the end of the month?",
+    "expected_note_ids": [77, 78, 79, 80, 82],
+    "reference_answer": "Your notes contain various end-of-month action items and reminders covering financial, health, and personal tasks.",
+    "category": "reminders",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "appt_01",
+    "question": "When is my dentist appointment?",
+    "expected_note_ids": [78],
+    "reference_answer": "According to your notes, you have a reminder to book a dentist appointment for next month.",
+    "category": "appointments",
+    "difficulty": "easy",
+    "eval_notes": "Accept answers mentioning dentist appointment or dental health."
+  },
+  {
+    "id": "appt_02",
+    "question": "Do I have any scheduled health checkups?",
+    "expected_note_ids": [78, 79],
+    "reference_answer": "Yes, your notes include reminders for health-related appointments and checkups.",
+    "category": "appointments",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "appt_03",
+    "question": "What appointments do I have coming up?",
+    "expected_note_ids": [78, 79, 80],
+    "reference_answer": "Your notes contain reminders for upcoming appointments including health and personal tasks.",
+    "category": "appointments",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "appt_04",
+    "question": "Are there any appointments related to vehicle maintenance?",
+    "expected_note_ids": [80],
+    "reference_answer": "Your notes have a reminder about renewing your vehicle insurance, which is a time-sensitive administrative task.",
+    "category": "appointments",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "appt_05",
+    "question": "What should I schedule for next month?",
+    "expected_note_ids": [78, 79, 80, 82],
+    "reference_answer": "Based on your notes, you should schedule a dentist appointment, look into health checkups, and take care of vehicle insurance renewal next month.",
+    "category": "appointments",
+    "difficulty": "hard",
+    "eval_notes": "Partial credit if any two of the three expected items are mentioned."
+  },
+  {
+    "id": "comm_01",
+    "question": "What do I need to tell Sid?",
+    "expected_note_ids": [54, 56, 57, 55],
+    "reference_answer": "According to your notes, you need to discuss the KnowledgeVault backend architecture with Sid, and message Siddhant about tomorrow's backend meeting.",
+    "category": "communication",
+    "difficulty": "easy",
+    "eval_notes": "High correctness requires mentioning Sid/Siddhant and a specific communication topic."
+  },
+  {
+    "id": "comm_02",
+    "question": "What are my pending messages and communications?",
+    "expected_note_ids": [54, 55, 56, 57],
+    "reference_answer": "Your communication notes include messages and follow-ups to send, including discussions with team members about backend projects.",
+    "category": "communication",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "comm_03",
+    "question": "Who do I need to contact about the backend project?",
+    "expected_note_ids": [56, 57],
+    "reference_answer": "You need to contact Siddhant about the backend meeting and discuss the KnowledgeVault backend architecture.",
+    "category": "communication",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "comm_04",
+    "question": "What meetings do I have notes about?",
+    "expected_note_ids": [56, 57, 106, 107],
+    "reference_answer": "Your notes mention a backend meeting with Siddhant and weekly sync notes for the KnowledgeVault project.",
+    "category": "communication",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "comm_05",
+    "question": "What should I discuss with my team this week?",
+    "expected_note_ids": [56, 57, 107],
+    "reference_answer": "Based on your notes, you should discuss the KnowledgeVault backend architecture and address topics from your weekly sync notes.",
+    "category": "communication",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "shop_01",
+    "question": "What is on my shopping list?",
+    "expected_note_ids": [76],
+    "reference_answer": "Your shopping notes contain items you need to purchase.",
+    "category": "shopping",
+    "difficulty": "easy",
+    "eval_notes": "Any answer referencing the contents of the shopping note is acceptable."
+  },
+  {
+    "id": "shop_02",
+    "question": "What do I need to buy this week?",
+    "expected_note_ids": [76, 77],
+    "reference_answer": "This week you need to buy grocery items from your shopping list and take care of any finance-related purchases noted in your reminders.",
+    "category": "shopping",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "shop_03",
+    "question": "Do I have any grocery shopping to do?",
+    "expected_note_ids": [76],
+    "reference_answer": "Yes, you have a shopping note with grocery items that need to be purchased.",
+    "category": "shopping",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "shop_04",
+    "question": "What pending purchases are in my notes?",
+    "expected_note_ids": [76, 77],
+    "reference_answer": "Your notes contain a shopping list with items to buy and some finance-related purchase reminders.",
+    "category": "shopping",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "study_01",
+    "question": "What are my study notes on machine learning?",
+    "expected_note_ids": [64, 65, 66, 67],
+    "reference_answer": "Your study notes on machine learning cover NLP models, AI model training techniques, ML research topics, and cross-encoder reranking methods.",
+    "category": "study",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "study_02",
+    "question": "What have I been studying about databases?",
+    "expected_note_ids": [58, 61, 74, 73],
+    "reference_answer": "Your database study notes cover PostgreSQL internals, Redis caching strategies, and database query optimisation techniques.",
+    "category": "study",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "study_03",
+    "question": "What operating systems concepts do my notes cover?",
+    "expected_note_ids": [59],
+    "reference_answer": "Your study notes on operating systems cover topics related to OS concepts and internals.",
+    "category": "study",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "study_04",
+    "question": "What have I learned about system design?",
+    "expected_note_ids": [70, 99],
+    "reference_answer": "Your system design notes cover scalability principles, distributed systems, database design patterns, and architecture concepts for technical interviews.",
+    "category": "study",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "study_05",
+    "question": "What study material do I have for technical interviews?",
+    "expected_note_ids": [70, 99, 59, 60],
+    "reference_answer": "Your notes contain study material for system design, graph algorithms, operating systems, and other computer science topics relevant to technical interviews.",
+    "category": "study",
+    "difficulty": "hard",
+    "eval_notes": "Partial credit if any two expected topics are mentioned."
+  },
+  {
+    "id": "study_06",
+    "question": "What is API performance optimisation?",
+    "expected_note_ids": [93],
+    "reference_answer": "Your API performance notes cover strategies for improving API response time including caching, connection pooling, query optimisation, and load balancing.",
+    "category": "study",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "study_07",
+    "question": "What notes do I have about knowledge retrieval systems?",
+    "expected_note_ids": [88, 89, 90],
+    "reference_answer": "Your notes on knowledge retrieval systems cover semantic search techniques, ideas for improving retrieval quality, and the KnowledgeVault project evaluation approach.",
+    "category": "study",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "idea_01",
+    "question": "What are my startup ideas?",
+    "expected_note_ids": [85, 86, 87],
+    "reference_answer": "Your idea notes include brainstorming around AI productivity tools and startup concepts. You have several ideas documented including AI-powered applications.",
+    "category": "ideas",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "idea_02",
+    "question": "What ideas do I have for improving KnowledgeVault?",
+    "expected_note_ids": [86, 87, 88, 89, 90],
+    "reference_answer": "Your improvement ideas for KnowledgeVault include enhancing semantic retrieval quality, adding AI summarisation capabilities, and improving the overall knowledge retrieval system.",
+    "category": "ideas",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "idea_03",
+    "question": "What new app ideas have I been brainstorming?",
+    "expected_note_ids": [85, 86, 87],
+    "reference_answer": "Your brainstorming notes contain ideas for new applications including AI-powered productivity tools.",
+    "category": "ideas",
+    "difficulty": "easy",
+    "eval_notes": ""
+  },
+  {
+    "id": "idea_04",
+    "question": "What are my ideas related to AI?",
+    "expected_note_ids": [85, 86, 87, 88],
+    "reference_answer": "Your AI-related ideas span startup concepts around AI productivity, improvements to semantic retrieval, and AI summarisation features.",
+    "category": "ideas",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "idea_05",
+    "question": "What ideas do I have for blog post topics?",
+    "expected_note_ids": [85, 86, 87],
+    "reference_answer": "Your idea notes contain topics that could serve as blog post material, including thoughts on AI tools, productivity systems, and technology.",
+    "category": "ideas",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "mns_01",
+    "question": "Compare Redis caching with PostgreSQL query optimisation for improving application performance.",
+    "expected_note_ids": [61, 73, 74, 93],
+    "reference_answer": "Redis is an in-memory cache that provides sub-millisecond read speeds for frequently accessed data. PostgreSQL query optimisation focuses on improving query plans, indexing, and connection pooling. For high-traffic applications, using Redis as a caching layer in front of PostgreSQL offers the best of both approaches.",
+    "category": "multi_note_synthesis",
+    "difficulty": "hard",
+    "eval_notes": "Full credit requires mentioning both Redis caching and PostgreSQL optimisation with a synthesis statement."
+  },
+  {
+    "id": "mns_02",
+    "question": "What is the KnowledgeVault project about and what are its goals?",
+    "expected_note_ids": [89, 90, 91, 92, 94, 95, 96],
+    "reference_answer": "KnowledgeVault is a personal knowledge management system with retrieval-augmented generation capabilities. Its goals include building high-quality semantic and hybrid retrieval, integrating an LLM for question answering, and providing a comprehensive evaluation framework.",
+    "category": "multi_note_synthesis",
+    "difficulty": "hard",
+    "eval_notes": "Partial credit for any two relevant aspects of the project."
+  },
+  {
+    "id": "mns_03",
+    "question": "What are the technical requirements and tasks for the KnowledgeVault backend?",
+    "expected_note_ids": [89, 90, 91, 92, 93, 94, 95, 96],
+    "reference_answer": "The KnowledgeVault backend requires PostgreSQL for data storage, Redis for caching, semantic search capabilities, intent-based retrieval, and an LLM integration for answer generation. Outstanding tasks include evaluation framework improvements and performance optimisation.",
+    "category": "multi_note_synthesis",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "mns_04",
+    "question": "What have I studied and what ideas have I had this month?",
+    "expected_note_ids": [64, 65, 66, 85, 86, 87],
+    "reference_answer": "This month you have studied NLP models, machine learning techniques, and AI research. Alongside your studies, you have brainstormed startup ideas and AI product concepts.",
+    "category": "multi_note_synthesis",
+    "difficulty": "hard",
+    "eval_notes": "Must reference at least one study topic and one idea to get full credit."
+  },
+  {
+    "id": "mns_05",
+    "question": "What are the differences between semantic search, intent retrieval, and hybrid retrieval?",
+    "expected_note_ids": [89, 90, 88],
+    "reference_answer": "Semantic search uses vector embeddings to find conceptually similar content. Intent retrieval uses query intent classification to find notes in matching categories. Hybrid retrieval combines both signals, using semantic similarity as the primary ranking signal and intent as an additive boost.",
+    "category": "multi_note_synthesis",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "mns_06",
+    "question": "What is my overall plan for the KnowledgeVault evaluation and what remains to be done?",
+    "expected_note_ids": [89, 90, 92, 95, 96],
+    "reference_answer": "The KnowledgeVault evaluation plan includes a retrieval benchmark for semantic and hybrid strategies and a new end-to-end RAG evaluation for answer quality. Outstanding work includes building the ask endpoint evaluation framework and completing the engineering review.",
+    "category": "multi_note_synthesis",
+    "difficulty": "hard",
+    "eval_notes": ""
+  },
+  {
+    "id": "summ_01",
+    "question": "Summarise my study notes.",
+    "expected_note_ids": [58, 59, 60, 61, 64, 65, 66, 67, 70],
+    "reference_answer": "Your study notes cover a wide range of computer science topics including databases (PostgreSQL, Redis), algorithms (graph algorithms), operating systems, NLP and machine learning, cross-encoder reranking, and system design for technical interviews.",
+    "category": "summarization",
+    "difficulty": "hard",
+    "eval_notes": "Award full credit if the summary covers at least four distinct study topics."
+  },
+  {
+    "id": "summ_02",
+    "question": "Give me an overview of my communication notes.",
+    "expected_note_ids": [54, 55, 56, 57],
+    "reference_answer": "Your communication notes include messages and follow-ups with Sid and Siddhant, covering discussions about the KnowledgeVault backend project and meeting coordination.",
+    "category": "summarization",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "summ_03",
+    "question": "Summarise my ideas and brainstorming notes.",
+    "expected_note_ids": [85, 86, 87, 88],
+    "reference_answer": "Your brainstorming notes contain startup concepts around AI productivity tools, ideas for improving semantic retrieval in KnowledgeVault, and AI summarisation feature proposals.",
+    "category": "summarization",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "summ_04",
+    "question": "What are all my pending tasks and reminders?",
+    "expected_note_ids": [76, 77, 78, 79, 80, 82, 83, 84],
+    "reference_answer": "Your pending tasks and reminders include grocery shopping, finance-related tasks, health appointments (dentist, checkup), vehicle insurance renewal, and personal health action items.",
+    "category": "summarization",
+    "difficulty": "hard",
+    "eval_notes": "Partial credit for any three of the four main categories (shopping, finance, health, vehicle)."
+  },
+  {
+    "id": "cmp_01",
+    "question": "What is the difference between Docker and Docker Compose?",
+    "expected_note_ids": [72, 75],
+    "reference_answer": "Docker is a container runtime that packages applications and their dependencies into portable containers. Docker Compose is a tool built on top of Docker that allows you to define and run multi-container applications using a YAML file, simplifying orchestration of multiple services.",
+    "category": "comparison",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "cmp_02",
+    "question": "How does semantic search compare to traditional keyword search?",
+    "expected_note_ids": [89],
+    "reference_answer": "Traditional keyword search matches exact or near-exact word occurrences. Semantic search understands the meaning and intent behind a query, finding relevant results even when they use different vocabulary. Semantic search uses vector embeddings and achieves higher relevance for ambiguous or paraphrased queries.",
+    "category": "comparison",
+    "difficulty": "medium",
+    "eval_notes": ""
+  },
+  {
+    "id": "cmp_03",
+    "question": "Compare the study topics I am covering: which are most advanced?",
+    "expected_note_ids": [67, 70, 64, 65],
+    "reference_answer": "Among your study topics, cross-encoder reranking and system design are the most advanced, requiring deep understanding of machine learning and distributed systems. NLP model training and graph algorithms are intermediate topics.",
+    "category": "comparison",
+    "difficulty": "hard",
+    "eval_notes": "Accept any reasonable difficulty ranking as long as it references specific study topics from the notes."
+  },
+  {
+    "id": "cmp_04",
+    "question": "How do my ideas for KnowledgeVault compare to what is already implemented?",
+    "expected_note_ids": [86, 87, 88, 89, 90],
+    "reference_answer": "Your ideas for KnowledgeVault include improving semantic retrieval quality and adding AI summarisation. The current implementation already has semantic and hybrid retrieval. The summarisation and retrieval quality improvement ideas represent future enhancements not yet implemented.",
+    "category": "comparison",
+    "difficulty": "hard",
+    "eval_notes": ""
+  }
+]

@@ -19,7 +19,9 @@ ChunkService.retrieve_hybrid() returns
     }
 ]
 
-The adapter deduplicates note_ids while preserving ranking.
+The adapter deduplicates note_ids while preserving ranking. It measures only
+retrieval: invoking AskService here would run retrieval a second time and let
+the answer cache distort benchmark latency.
 
 Required production changes
 ---------------------------
@@ -94,10 +96,14 @@ class HybridAdapter(BaseRetrievalAdapter):
             if categories
             else None
         )
+        predicted_intent = self._intent_service.extractor.extract_query_intent_fast(
+            benchmark_query.query
+        )["intent_type"]
 
         return RetrievalResult(
             strategy=self.strategy,
             query=benchmark_query.query,
             retrieved_note_ids=note_ids,
+            predicted_intent=predicted_intent,
             predicted_category=predicted_category,
         )

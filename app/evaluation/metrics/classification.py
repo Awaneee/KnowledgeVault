@@ -56,16 +56,59 @@ def intent_accuracy(
 # Category Accuracy
 # ---------------------------------------------------------------------------
 
+def canonicalize_category_name(name: Optional[str]) -> str:
+    if name is None:
+        return ""
+    cleaned = name.strip().lower()
+    
+    if cleaned in {"study tasks", "study"}:
+        return "study"
+    if cleaned.startswith("study tasks - ") or cleaned.startswith("study - "):
+        return "study"
+        
+    if cleaned in {"reference notes", "reference"}:
+        return "reference"
+    if cleaned.startswith("reference notes - ") or cleaned.startswith("reference - "):
+        return "reference"
+        
+    if cleaned == "to do":
+        return "tasks"
+    todo_buckets = {"tasks", "shopping", "bills", "appointments", "errands", "health", "finance", "travel"}
+    if cleaned in todo_buckets:
+        return "tasks"
+        
+    if cleaned == "things to tell sid":
+        return "communication"
+    if cleaned.startswith("communication"):
+        return "communication"
+        
+    if cleaned == "questions":
+        return "questions"
+    if cleaned.startswith("questions - "):
+        return "questions"
+        
+    if cleaned == "meetings":
+        return "meetings"
+    if cleaned.startswith("meetings - "):
+        return "meetings"
+        
+    if cleaned == "ideas":
+        return "ideas"
+    if cleaned.startswith("ideas - "):
+        return "ideas"
+        
+    if cleaned == "reminders":
+        return "reminders"
+        
+    return cleaned
+
 def category_accuracy(
     predicted_categories: Sequence[Optional[str]],
     expected_categories: Sequence[str],
 ) -> float:
     """
-    Fraction of queries where the predicted category name exactly matches
-    the expected category name.
-
-    Comparison is case-insensitive after stripping whitespace, matching
-    the format produced by IntentCategoryService._generate_category_name().
+    Fraction of queries where the predicted category name matches the
+    expected category name (after canonicalization of stale/old names).
 
     A None prediction is always counted as incorrect.
     Returns 0.0 if the sequence is empty.
@@ -83,7 +126,7 @@ def category_accuracy(
         1
         for predicted, expected in zip(predicted_categories, expected_categories)
         if predicted is not None
-        and predicted.strip().lower() == expected.strip().lower()
+        and canonicalize_category_name(predicted) == canonicalize_category_name(expected)
     )
 
     return correct / len(expected_categories)

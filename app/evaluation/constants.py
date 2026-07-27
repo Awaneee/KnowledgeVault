@@ -30,7 +30,7 @@ EMBEDDING_MODEL_NAME: str = "all-MiniLM-L6-v2"
 # --- Retrieval defaults ----------------------------------------------------
 # Source: ChunkService.retrieve_hybrid / EmbeddingService.search_notes
 DEFAULT_RETRIEVAL_LIMIT: int = 5
-DEFAULT_HYBRID_LIMIT: int = 3       # limit used by AskService -> retrieve_hybrid
+DEFAULT_HYBRID_LIMIT: int = 5
 DEFAULT_SEMANTIC_LIMIT: int = 5 
 
 DEFAULT_INTENT_LIMIT = 5

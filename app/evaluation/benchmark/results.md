@@ -1,0 +1,9 @@
+# KnowledgeVault Benchmark Results
+
+**Total Queries**: 50 | **K**: 5
+
+| Strategy | Queries | Precision@K | Recall@K | nDCG@K | Hit Rate | MRR | Intent Acc | Category Acc | Avg Retr Latency(ms) | Avg E2E Latency(ms) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| SEMANTIC | 50 | 0.340 | 0.712 | 0.689 | 0.900 | 0.776 | N/A | N/A | 2.36 | N/A |
+| INTENT | 50 | 0.152 | 0.282 | 0.281 | 0.440 | 0.367 | N/A | 0.062 | 59.35 | N/A |
+| HYBRID | 50 | 0.256 | 0.539 | 0.555 | 0.760 | 0.683 | N/A | 0.062 | 142.11 | 2.46 |

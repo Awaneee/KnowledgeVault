@@ -130,3 +130,54 @@ def mean_reciprocal_rank(
         for retrieved, relevant in zip(all_retrieved, all_relevant)
     ]
     return statistics.mean(rr_scores)
+
+
+# ---------------------------------------------------------------------------
+# nDCG@K
+# ---------------------------------------------------------------------------
+
+import math
+
+def ndcg_at_k(
+    retrieved: Sequence[int],
+    relevant: Sequence[int],
+    k: int,
+) -> float:
+    """
+    Normalized Discounted Cumulative Gain at K.
+    Assuming binary relevance (1 if relevant, 0 otherwise).
+    """
+    if k <= 0 or not relevant:
+        return 0.0
+
+    relevant_set = set(relevant)
+    dcg = 0.0
+    for i, item in enumerate(retrieved[:k]):
+        if item in relevant_set:
+            dcg += 1.0 / math.log2(i + 2)  # +2 because i is 0-indexed and log2(rank+1)
+
+    idcg = 0.0
+    for i in range(min(k, len(relevant_set))):
+        idcg += 1.0 / math.log2(i + 2)
+
+    if idcg == 0.0:
+        return 0.0
+
+    return dcg / idcg
+
+def mean_ndcg_at_k(
+    all_retrieved: Sequence[Sequence[int]],
+    all_relevant: Sequence[Sequence[int]],
+    k: int,
+) -> float:
+    """
+    Average nDCG@K across multiple queries.
+    """
+    if not all_retrieved:
+        return 0.0
+
+    scores = [
+        ndcg_at_k(retrieved, relevant, k)
+        for retrieved, relevant in zip(all_retrieved, all_relevant)
+    ]
+    return statistics.mean(scores)
