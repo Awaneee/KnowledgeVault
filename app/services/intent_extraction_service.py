@@ -130,6 +130,62 @@ class IntentExtractionService:
         "client", "api", "sdk",
     })
 
+    # -----------------------------------------------------------------------
+    # Topic validation constants
+    # _TOPIC_COMMON_BUILTINS overlaps with IntentCategoryService._PYTHON_BUILTINS.
+    # _TOPIC_SHORT_ACRONYMS overlaps with IntentCategoryService._ACRONYM_WORDS.
+    # Both are kept as separate class-level constants to avoid cross-service
+    # imports. Keep in sync manually when either service's set changes.
+    # -----------------------------------------------------------------------
+
+    _TOPIC_STOP_WORDS: frozenset = frozenset({
+        # Articles / determiners
+        "the", "a", "an", "this", "that", "these", "those", "each", "every",
+        # Coordinating conjunctions
+        "and", "but", "or", "nor", "for", "so", "yet",
+        # Discourse markers / adverbs seen as garbage topics in the corpus
+        "also", "even", "just", "only", "well", "then", "thus", "hence",
+        "instead", "rather", "however", "moreover", "meanwhile", "therefore",
+        "although", "though", "since", "because", "while", "unless",
+        "always", "never", "often", "usually", "sometimes", "already",
+        "still", "soon", "now", "here", "there",
+        # Generic filler words observed in phase2 garbage categories
+        "used", "using", "based", "given", "some", "more", "most", "both",
+        "common", "important", "crucial", "useful", "available", "possible",
+        "needed", "related", "similar", "different", "various",
+        "cross", "main", "key", "basic", "advanced", "simple",
+    })
+
+    _TOPIC_WEAK_VERBS: frozenset = frozenset({
+        # Past-tense and base verb forms seen as garbage topics in the corpus
+        "added", "changed", "create", "update", "fixed", "removed", "deleted",
+        "modified", "refactored", "improved", "make", "build", "find",
+        "show", "gets", "sets", "booked", "checked", "used", "works",
+        "created", "updated", "found", "shown", "made", "built", "written",
+        "called", "named", "defined", "declared", "initialized",
+    })
+
+    _TOPIC_QUESTION_STARTS: frozenset = frozenset({
+        "does", "are", "what", "why", "how", "when", "is", "can", "will",
+        "should", "would", "could", "did", "do", "has", "have", "had",
+    })
+
+    # Common Python built-ins observed as garbage topics in the corpus.
+    # Subset of IntentCategoryService._PYTHON_BUILTINS — see that class for the full set.
+    _TOPIC_COMMON_BUILTINS: frozenset = frozenset({
+        "print", "reduce", "map", "filter", "id", "type", "list",
+        "dict", "set", "str", "int", "float", "bool", "len", "range",
+        "enumerate", "zip", "sorted", "reversed", "sum", "max", "min",
+        "input", "open", "eval", "exec", "repr", "hash", "dir",
+    })
+
+    # Short tokens (≤ 2 chars) that are valid topic acronyms.
+    # Subset of IntentCategoryService._ACRONYM_WORDS — see that class for the full set.
+    _TOPIC_SHORT_ACRONYMS: frozenset = frozenset({
+        "ai", "api", "ui", "ux", "ml", "nlp", "llm", "sql",
+        "rag", "jwt", "aws", "gcp", "css", "go",
+    })
+
     COMMUNICATION_ACTIONS = {
         "tell", "inform", "discuss", "ask", "message",
         "call", "email", "share", "meet",
@@ -514,13 +570,12 @@ Input:
         )
         action = self._clean_token(data.get("action"), _LEN_ACTION, "action", repairs)
         actor = self._clean_actor(data.get("actor"), repairs)
-        topic = self._clean_short_text(data.get("topic"), _LEN_TOPIC, "topic", repairs)
+        topic = self._validate_topic(data.get("topic"), repairs)
 
         # Tech-actor rescue: if the LLM placed a technology name in the actor
         # field and extracted no topic, move the canonical tech name to topic.
         # Only fires for _ACTOR_TECH_TERMS members (which have TECH_MAP entries).
         # Does NOT fire for _ACTOR_NOISE_WORDS (no canonical form to rescue).
-        # Uses _clean_short_text here; EXTR-002 upgrades this to _validate_topic().
         raw_actor_str = self._strip_safe(data.get("actor"))
         if (
             actor is None
@@ -529,9 +584,7 @@ Input:
             and raw_actor_str.lower() in self._ACTOR_TECH_TERMS
         ):
             rescued = self.TECH_MAP[raw_actor_str.lower()]
-            topic = self._clean_short_text(
-                rescued, _LEN_TOPIC, "topic(rescued_from_actor)", repairs
-            )
+            topic = self._validate_topic(rescued, repairs)
             if topic:
                 repairs.append(f"topic rescued from actor: {raw_actor_str!r} → {topic!r}")
 
@@ -651,6 +704,60 @@ Input:
             repairs.append(f"actor truncated {len(text)} → {_LEN_ACTOR}")
             text = text[:_LEN_ACTOR]
         return text.title()
+
+    def _validate_topic(
+        self, value: object, repairs: list[str]
+    ) -> str | None:
+        """
+        Validate and sanitise a topic value.
+
+        Extends _clean_short_text() with semantic quality checks.
+        All checks operate on the first word of the topic to avoid rejecting
+        legitimate multi-word topics (e.g. "Cross-encoder Reranking" survives
+        because its first word "cross-encoder" is not in the stop-word set).
+        """
+        import keyword as _kw
+
+        text = self._strip_safe(value)
+        if text is None:
+            return None
+
+        # Strip trailing sentence punctuation before any other check.
+        stripped = text.rstrip(".,;:!?\"'").strip()
+        if not stripped:
+            repairs.append(f"topic={text!r} → None (empty after punct strip)")
+            return None
+        if stripped != text:
+            repairs.append(f"topic punct stripped: {text!r} → {stripped!r}")
+            text = stripped
+
+        if len(text) > _LEN_TOPIC:
+            repairs.append(f"topic truncated {len(text)} → {_LEN_TOPIC}")
+            text = text[:_LEN_TOPIC]
+
+        lowered = text.lower().strip()
+        first_word = lowered.split()[0]
+
+        if first_word in self._TOPIC_STOP_WORDS:
+            repairs.append(f"topic={text!r} → None (stop word: {first_word!r})")
+            return None
+        if first_word in self._TOPIC_WEAK_VERBS:
+            repairs.append(f"topic={text!r} → None (weak verb: {first_word!r})")
+            return None
+        if first_word in self._TOPIC_QUESTION_STARTS:
+            repairs.append(f"topic={text!r} → None (question fragment: {first_word!r})")
+            return None
+        if _kw.iskeyword(lowered):
+            repairs.append(f"topic={text!r} → None (python keyword)")
+            return None
+        if lowered in self._TOPIC_COMMON_BUILTINS:
+            repairs.append(f"topic={text!r} → None (python builtin)")
+            return None
+        if len(lowered) <= 2 and lowered not in self._TOPIC_SHORT_ACRONYMS:
+            repairs.append(f"topic={text!r} → None (too short, not acronym)")
+            return None
+
+        return text or None
 
     def _clean_token(
         self, value: object, max_len: int, field: str, repairs: list[str]
@@ -821,9 +928,14 @@ Input:
             if caps and caps[0] == first_raw:
                 caps = caps[1:]
             for cap in caps:
-                if cap.lower() not in self._ACTOR_GENERIC_WORDS and (not actor or cap.lower() != actor.lower()):
-                    topic = cap
-                    break
+                if (
+                    cap.lower() not in self._ACTOR_GENERIC_WORDS
+                    and (not actor or cap.lower() != actor.lower())
+                ):
+                    validated = self._validate_topic(cap, [])
+                    if validated:
+                        topic = validated
+                        break
 
         due_date, temporal_text = self._infer_due_date(lowered)
 
