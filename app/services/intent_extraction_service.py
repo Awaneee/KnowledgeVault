@@ -79,6 +79,13 @@ VALID_URGENCY = {"low", "medium", "high"}
 class IntentExtractionService:
     PROMPT_VERSION = "intent-v3"
 
+    # Minimum fast-classifier accuracy on the 50-query benchmark required for
+    # CI to pass. Defined here so all test files import a single source of
+    # truth rather than embedding a magic float.  Update this constant when a
+    # new EXTR sprint raises the measured baseline.
+    # History: EXTR-005 → 48% measured (gate 43%), EXTR-008 → 54% measured (gate 49%).
+    FAST_CLASSIFIER_MIN_ACCURACY: float = 0.49
+
     TECH_MAP = {
         "redis": "Redis",
         "postgresql": "PostgreSQL",
