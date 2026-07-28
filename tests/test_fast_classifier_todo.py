@@ -218,9 +218,9 @@ class TestBenchmarkRegressionGate:
     """
 
     BENCHMARK_PATH = "app/evaluation/benchmark/benchmark.json"
-    # Threshold: baseline was 34%, EXTR-005 target is 48%.
-    # Gate is set to (new_accuracy - 0.05) = 43% to allow 5-point regression buffer.
-    MIN_ACCURACY = 0.43
+    # Threshold: baseline was 34%, EXTR-005 target is 48%, EXTR-008 target is 54%.
+    # Gate is set to (new_accuracy - 0.05) = 49% to allow 5-point regression buffer.
+    MIN_ACCURACY = 0.49
 
     # Benchmark uses "meeting" and "project" as intent labels; normalize to
     # valid system intent types.

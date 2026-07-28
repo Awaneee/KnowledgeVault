@@ -225,12 +225,26 @@ class IntentExtractionService:
     QUERY_STUDY_KEYWORDS = {
         "study", "studies", "learn", "learning",
         "revise", "revision", "practice",
+        # EXTR-008: retrieval-query forms absent from note-creation vocabulary
+        "research",   # "Show my AI research reading goals", "security research"
+        "tutorial",   # "FastAPI tutorial", "Kubernetes tutorial for beginners"
+        "tutorials",  # plural form
     }
     QUERY_IDEA_KEYWORDS = {
         "idea", "ideas", "startup", "concept", "concepts", "brainstorm",
+        "brainstorming",  # EXTR-008: gerund form absent from existing set
     }
     QUERY_REFERENCE_KEYWORDS = {
         "reference", "references", "docs", "documentation",
+        # EXTR-008: retrieval-query forms for reference intent.
+        # "notes" is the most frequent retrieval pattern ("my X notes", "X notes").
+        # QUERY_STOPWORDS is independent — "notes" there filters topic extraction
+        # only; adding it here triggers intent classification independently.
+        # "cheat" covers the two-token form "cheat sheet" (tokenised separately).
+        "notes", "note",
+        "cheat", "cheatsheet", "cheatsheets",
+        "resources", "resource",
+        "guide", "guides",
     }
     QUERY_EVENT_KEYWORDS = {
         "event", "events", "meeting", "meetings", "scheduled", "schedule",
@@ -243,14 +257,16 @@ class IntentExtractionService:
     }
 
     # Priority order: first match wins.
+    # EXTR-008: event moved before reference so that "meeting notes" is
+    # classified as event (via "meeting") rather than reference (via "notes").
     QUERY_INTENT_KEYWORD_GROUPS = (
         ("communication", QUERY_COMMUNICATION_KEYWORDS),
-        ("reminder", QUERY_REMINDER_KEYWORDS),
-        ("study", QUERY_STUDY_KEYWORDS),
-        ("idea", QUERY_IDEA_KEYWORDS),
-        ("reference", QUERY_REFERENCE_KEYWORDS),
-        ("event", QUERY_EVENT_KEYWORDS),
-        ("todo", QUERY_TODO_KEYWORDS),
+        ("reminder",      QUERY_REMINDER_KEYWORDS),
+        ("study",         QUERY_STUDY_KEYWORDS),
+        ("idea",          QUERY_IDEA_KEYWORDS),
+        ("event",         QUERY_EVENT_KEYWORDS),      # was position 6
+        ("reference",     QUERY_REFERENCE_KEYWORDS),  # was position 5
+        ("todo",          QUERY_TODO_KEYWORDS),
     )
 
     # Stopwords stripped before scanning for actor/topic tokens.
