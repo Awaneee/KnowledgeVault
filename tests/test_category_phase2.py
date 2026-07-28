@@ -611,8 +611,10 @@ class TestBackwardsCompatibility:
         assert method == "created"
 
     def test_flags_off_uses_legacy_cap(self):
-        """With CATEGORY_ADAPTIVE_CAP_ENABLED=False, old hard cap of 50 applies."""
-        self.svc.category_repo.count_by_user.return_value = 50
+        """With CATEGORY_ADAPTIVE_CAP_ENABLED=False, falls back to MAX_CATEGORIES_PER_USER (now 200)."""
+        # Must equal IntentCategoryService.MAX_CATEGORIES_PER_USER (currently 200).
+        # Update here if the constant changes again.
+        self.svc.category_repo.count_by_user.return_value = 200
         cat, method, _ = self._run_flags_off()
         assert method == "cap_hit"
         assert cat is None

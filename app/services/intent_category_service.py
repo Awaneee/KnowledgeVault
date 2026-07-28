@@ -96,7 +96,7 @@ class IntentCategoryService:
         "todo", "study", "reference", "question", "idea", "event",
     }
 
-    MAX_CATEGORIES_PER_USER = 50
+    MAX_CATEGORIES_PER_USER = 200
 
     # ---- Todo bucket keywords ----------------------------------------
     TODO_LABEL_KEYWORDS = (
@@ -542,7 +542,7 @@ class IntentCategoryService:
 
         # Step 3 — Adaptive cap check.
         # The cap scales with corpus size (NOTES_PER_CAP target, bounded by MIN/MAX).
-        # When CATEGORY_ADAPTIVE_CAP_ENABLED=False, falls back to MAX_CATEGORIES_PER_USER=50.
+        # When CATEGORY_ADAPTIVE_CAP_ENABLED=False, falls back to MAX_CATEGORIES_PER_USER.
         max_cats = self._adaptive_max_categories(user_id)
         if self.category_repo.count_by_user(user_id) >= max_cats:
             logger.warning(

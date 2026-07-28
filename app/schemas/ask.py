@@ -1,12 +1,19 @@
 from __future__ import annotations
 
-from typing import Any
-
 from pydantic import BaseModel
 
 
 class AskRequest(BaseModel):
     question: str
+
+
+class Citation(BaseModel):
+    """A single inline citation reference resolved from the answer text."""
+    ref: int            # The [N] number as it appears in the answer
+    note_id: int        # Database ID of the source note — for navigation
+    note_title: str     # Display title of the source note
+    chunk_id: int | None = None  # DocumentChunk.id; None for note-level hybrid arm
+    snippet: str        # First 200 chars of the cited passage for hover preview
 
 
 class ChunkPreview(BaseModel):
@@ -19,7 +26,8 @@ class ChunkPreview(BaseModel):
 class AskResponse(BaseModel):
     question: str
     answer: str
-    sources: list[str]
+    sources: list[str]           # Kept unchanged for backward compatibility
+    citations: list[Citation] = []  # Inline citation references; empty when none found
     retrieval_only: bool = False
     status: str = "ok"
     provider: str | None = None

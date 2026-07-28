@@ -16,6 +16,7 @@ repaired or discarded.  All repairs are logged at WARNING level.
 """
 
 import json
+import keyword
 import logging
 import re
 import unicodedata
@@ -86,6 +87,12 @@ class IntentExtractionService:
     # History: EXTR-005 → 48% measured (gate 43%), EXTR-008 → 54% measured (gate 49%).
     FAST_CLASSIFIER_MIN_ACCURACY: float = 0.49
 
+    # Minimum accuracy on the 152-query diagnostic benchmark.
+    # More realistic than the 50-query gate: 51% of queries expect study intent,
+    # 25% expect reference.  Gate = measured (28.9%) − 4.9pp buffer → 24%.
+    # Update alongside FAST_CLASSIFIER_MIN_ACCURACY after each sprint.
+    FAST_CLASSIFIER_152Q_MIN_ACCURACY: float = 0.24
+
     TECH_MAP = {
         "redis": "Redis",
         "postgresql": "PostgreSQL",
@@ -124,8 +131,8 @@ class IntentExtractionService:
     }
 
     # Derived from TECH_MAP — add technologies to TECH_MAP only.
-    # When the LLM places a technology name in the actor field, the actor is
-    # suppressed and the technology is rescued as topic (if topic is absent).
+    # Used for: (1) actor rejection, (2) tech-actor rescue to topic,
+    # (3) topic quality scoring in compute_extraction_quality().
     _ACTOR_TECH_TERMS: frozenset = frozenset(TECH_MAP)
 
     # Non-tech words the LLM occasionally returns as actor.
@@ -136,9 +143,6 @@ class IntentExtractionService:
         "backend", "frontend", "middleware", "endpoint", "server",
         "client", "api", "sdk",
     })
-
-    # Derived from TECH_MAP — used by compute_extraction_quality().
-    _QUALITY_KNOWN_TECH: frozenset = frozenset(TECH_MAP)
 
     # -----------------------------------------------------------------------
     # Topic validation constants
@@ -244,9 +248,14 @@ class IntentExtractionService:
     QUERY_REFERENCE_KEYWORDS = {
         "reference", "references", "docs", "documentation",
         # EXTR-008: retrieval-query forms for reference intent.
-        # "notes" is the most frequent retrieval pattern ("my X notes", "X notes").
-        # QUERY_STOPWORDS is independent — "notes" there filters topic extraction
-        # only; adding it here triggers intent classification independently.
+        # "notes" / "note" is the most frequent retrieval pattern ("my X notes").
+        # Design note: adding "notes" here makes "X notes" queries go to
+        # reference (priority 6) rather than study (priority 3) when no explicit
+        # study keyword is present.  This is intentional — the 152-query
+        # benchmark treats "X notes" queries as study intent, so this creates a
+        # known study/reference accuracy trade-off that Sprint 2 will address.
+        # QUERY_STOPWORDS is independent: "notes" there filters topic extraction;
+        # adding it here is what triggers intent classification.
         # "cheat" covers the two-token form "cheat sheet" (tokenised separately).
         "notes", "note",
         "cheat", "cheatsheet", "cheatsheets",
@@ -633,14 +642,17 @@ Input:
             data.get("intent_type"), repairs
         )
         action = self._clean_token(data.get("action"), _LEN_ACTION, "action", repairs)
-        actor = self._clean_actor(data.get("actor"), repairs)
+        # Pre-strip the raw actor value once so _clean_actor and the rescue
+        # block below share the same stripped string without a second dict
+        # lookup or a second _strip_safe call.
+        raw_actor_str = self._strip_safe(data.get("actor"))
+        actor = self._clean_actor(raw_actor_str, repairs)
         topic = self._validate_topic(data.get("topic"), repairs)
 
         # Tech-actor rescue: if the LLM placed a technology name in the actor
         # field and extracted no topic, move the canonical tech name to topic.
         # Only fires for _ACTOR_TECH_TERMS members (which have TECH_MAP entries).
         # Does NOT fire for _ACTOR_NOISE_WORDS (no canonical form to rescue).
-        raw_actor_str = self._strip_safe(data.get("actor"))
         if (
             actor is None
             and topic is None
@@ -678,6 +690,20 @@ Input:
             )
 
         model_name = data.get("_provider", "unknown")
+        quality_score = self.compute_extraction_quality({
+            "intent_type": intent_type,
+            "topic": topic,
+            "actor": actor,
+            "object": obj,
+            "confidence": confidence,
+            "model_name": model_name,
+        })
+        if quality_score < 0.5:
+            logger.warning(
+                "LOW_EXTRACTION_QUALITY score=%.4f intent=%s topic=%r "
+                "confidence=%.2f model=%s note=%.60s",
+                quality_score, intent_type, topic, confidence, model_name, text,
+            )
         return {
             "intent_type": intent_type,
             "action": action,
@@ -699,14 +725,7 @@ Input:
             "model_name": model_name,
             "prompt_version": self.PROMPT_VERSION,
             "source_text": text,
-            "extraction_quality_score": self.compute_extraction_quality({
-                "intent_type": intent_type,
-                "topic": topic,
-                "actor": actor,
-                "object": obj,
-                "confidence": confidence,
-                "model_name": model_name,
-            }),
+            "extraction_quality_score": quality_score,
         }
 
     # --- Validators ----------------------------------------------------
@@ -789,8 +808,6 @@ Input:
         legitimate multi-word topics (e.g. "Cross-encoder Reranking" survives
         because its first word "cross-encoder" is not in the stop-word set).
         """
-        import keyword as _kw
-
         text = self._strip_safe(value)
         if text is None:
             return None
@@ -820,7 +837,7 @@ Input:
         if first_word in self._TOPIC_QUESTION_STARTS:
             repairs.append(f"topic={text!r} → None (question fragment: {first_word!r})")
             return None
-        if _kw.iskeyword(lowered):
+        if keyword.iskeyword(lowered):
             repairs.append(f"topic={text!r} → None (python keyword)")
             return None
         if lowered in self._TOPIC_COMMON_BUILTINS:
@@ -960,7 +977,7 @@ Input:
         # --- Topic quality (0.0–1.0) ---
         if not topic:
             topic_q = 0.0
-        elif topic.lower() in cls._QUALITY_KNOWN_TECH:
+        elif topic.lower() in cls._ACTOR_TECH_TERMS:
             topic_q = 1.0
         elif len(topic.split()) >= 2:
             topic_q = 0.85
@@ -973,7 +990,7 @@ Input:
         if actor is None:
             # Null actor is expected for non-communication intents.
             actor_q = 0.8 if intent_type != "communication" else 0.1
-        elif actor.lower() in cls._QUALITY_KNOWN_TECH:
+        elif actor.lower() in cls._ACTOR_TECH_TERMS:
             actor_q = 0.0  # tech term passed through as actor — wrong type
         else:
             words = actor.split()
@@ -1084,6 +1101,20 @@ Input:
         due_date, temporal_text = self._infer_due_date(lowered)
         inferred_obj = self._infer_object(text, action, actor)
 
+        quality_score = self.compute_extraction_quality({
+            "intent_type": intent_type,
+            "topic": topic,
+            "actor": actor,
+            "object": inferred_obj,
+            "confidence": confidence,
+            "model_name": "heuristic",
+        })
+        if quality_score < 0.5:
+            logger.warning(
+                "LOW_EXTRACTION_QUALITY score=%.4f intent=%s topic=%r "
+                "confidence=%.2f model=heuristic note=%.60s",
+                quality_score, intent_type, topic, confidence, text,
+            )
         result = {
             "intent_type": intent_type,
             "action": action,
@@ -1101,14 +1132,7 @@ Input:
             "model_name": "heuristic",
             "prompt_version": self.PROMPT_VERSION,
             "source_text": text,
-            "extraction_quality_score": self.compute_extraction_quality({
-                "intent_type": intent_type,
-                "topic": topic,
-                "actor": actor,
-                "object": inferred_obj,
-                "confidence": confidence,
-                "model_name": "heuristic",
-            }),
+            "extraction_quality_score": quality_score,
         }
 
         logger.info(

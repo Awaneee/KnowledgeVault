@@ -1,0 +1,1003 @@
+{
+  "total_notes": 1055,
+  "organized": 1055,
+  "failed": 0,
+  "total_categories": 105,
+  "singleton_categories": 69,
+  "empty_categories": 0,
+  "avg_notes_per_category": 5.05,
+  "max_notes_in_category": 229,
+  "min_notes_in_category": 1,
+  "fragmentation_rate": 0.6571,
+  "category_cap_used": true,
+  "category_reuse_rate": 0.3429,
+  "duplicates": {
+    "docker": [
+      "Reference - Docker",
+      "Docker"
+    ],
+    "kubernetes": [
+      "Study - Kubernetes",
+      "Kubernetes"
+    ],
+    "ai": [
+      "Study - AI",
+      "AI"
+    ],
+    "fastapi": [
+      "Study - FastAPI",
+      "FastAPI"
+    ],
+    "postgresql": [
+      "Reference - PostgreSQL",
+      "Study - PostgreSQL"
+    ],
+    "redis": [
+      "Reference - Redis",
+      "Study - Redis"
+    ]
+  },
+  "suspicious_categories": [
+    "Tasks",
+    "General"
+  ],
+  "intent_distribution": {
+    "communication": [
+      "Communication - Siddhant",
+      "Communication - Sid",
+      "Communication - Python",
+      "Communication - Mock",
+      "Communication - Show",
+      "Communication - Ask",
+      "Communication - Microsoft",
+      "Communication - Unprocessable"
+    ],
+    "event": [
+      "Meetings - Social"
+    ],
+    "general": [
+      "General",
+      "Flutter UI Knowledgevault",
+      "Backend Service Layer",
+      "Flutter Application Performance",
+      "Distributed Systems Interview",
+      "Event-driven Architecture Patterns",
+      "From Backend Architecture",
+      "Summary Weekly Knowledgevault",
+      "Docker",
+      "FastAPI",
+      "Window Maximum Sum",
+      "Kubernetes",
+      "Expressions Cheat `.`",
+      "API",
+      "AI",
+      "Alembic",
+      "Crucial",
+      "Cross",
+      "Booked",
+      "Distillation",
+      "Always",
+      "React",
+      "Isolation",
+      "Danger",
+      "Instead",
+      "Parameter",
+      "Nginx",
+      "Semantic",
+      "Also",
+      "Realm",
+      "Embeddings",
+      "Common",
+      "None",
+      "Migration `alembic Revision",
+      "Navigable",
+      "Typescript",
+      "Leetcode"
+    ],
+    "idea": [
+      "Ideas - AI",
+      "Ideas - Semantic Retrieval",
+      "Ideas - AI Summarization",
+      "Ideas - Leetcode",
+      "Ideas - India",
+      "Ideas - AI Writing",
+      "Ideas - Redis",
+      "Ideas - API Monetization"
+    ],
+    "question": [
+      "Questions - Nginx",
+      "Questions - Diameter",
+      "Questions - Python",
+      "Questions - Ego",
+      "Questions - Philosophy",
+      "Questions - Factory",
+      "Questions - API",
+      "Questions - Ssd",
+      "Questions - Targets Are",
+      "Questions - Movie",
+      "Questions - Ola",
+      "Questions - Don T",
+      "Questions - Preventing",
+      "Questions - Apply",
+      "Questions - Typescript",
+      "Questions",
+      "Questions - Monthly",
+      "Questions - Memory"
+    ],
+    "reference": [
+      "Reference - Docker",
+      "Reference - PostgreSQL",
+      "Reference - Redis",
+      "Reference - Knowledgevault Backend",
+      "Reference - Shared"
+    ],
+    "reminder": [
+      "Appointments",
+      "Reminders"
+    ],
+    "study": [
+      "Study - Knowledgeretrievalsystems",
+      "Study - Operating Systems",
+      "Study - Graph Algorithms",
+      "Study - Kubernetes",
+      "Study - JWT Authentication",
+      "Study - NLP Models",
+      "Study - AI",
+      "Study - Vector Databases",
+      "Study - Cross-encoder Reranking",
+      "Study - FastAPI",
+      "Study - Sqlalchemy",
+      "Study - System Design",
+      "Study - Kafka",
+      "Study - Semantic Search",
+      "Study - Knowledge Vault",
+      "Study - Redis",
+      "Study - API Performance",
+      "Study - PostgreSQL",
+      "Study - Pipelining",
+      "Study - Writing"
+    ],
+    "todo": [
+      "Tasks",
+      "Travel",
+      "Shopping",
+      "Bills",
+      "Health",
+      "Errands"
+    ]
+  },
+  "method_distribution": {
+    "created": 104,
+    "canonical_name": 420,
+    "general_catchall": 6
+  },
+  "top_categories": [
+    {
+      "id": 191,
+      "name": "Tasks",
+      "intent_type": "todo",
+      "notes": 229
+    },
+    {
+      "id": 205,
+      "name": "General",
+      "intent_type": "general",
+      "notes": 38
+    },
+    {
+      "id": 208,
+      "name": "Questions - Python",
+      "intent_type": "question",
+      "notes": 23
+    },
+    {
+      "id": 230,
+      "name": "FastAPI",
+      "intent_type": "general",
+      "notes": 15
+    },
+    {
+      "id": 271,
+      "name": "Questions",
+      "intent_type": "question",
+      "notes": 10
+    },
+    {
+      "id": 226,
+      "name": "Docker",
+      "intent_type": "general",
+      "notes": 8
+    },
+    {
+      "id": 245,
+      "name": "Communication - Python",
+      "intent_type": "communication",
+      "notes": 8
+    },
+    {
+      "id": 232,
+      "name": "Questions - Nginx",
+      "intent_type": "question",
+      "notes": 8
+    },
+    {
+      "id": 185,
+      "name": "Reference - Redis",
+      "intent_type": "reference",
+      "notes": 7
+    },
+    {
+      "id": 168,
+      "name": "Reminders",
+      "intent_type": "reminder",
+      "notes": 7
+    },
+    {
+      "id": 250,
+      "name": "Errands",
+      "intent_type": "todo",
+      "notes": 7
+    },
+    {
+      "id": 188,
+      "name": "Bills",
+      "intent_type": "todo",
+      "notes": 6
+    },
+    {
+      "id": 247,
+      "name": "API",
+      "intent_type": "general",
+      "notes": 6
+    },
+    {
+      "id": 215,
+      "name": "Cross",
+      "intent_type": "general",
+      "notes": 6
+    },
+    {
+      "id": 214,
+      "name": "Questions - Factory",
+      "intent_type": "question",
+      "notes": 6
+    }
+  ],
+  "all_categories": [
+    {
+      "id": 213,
+      "name": "AI",
+      "intent_type": "general",
+      "notes": 4,
+      "actor": "Reranking"
+    },
+    {
+      "id": 247,
+      "name": "API",
+      "intent_type": "general",
+      "notes": 6,
+      "actor": "Rerank"
+    },
+    {
+      "id": 238,
+      "name": "Alembic",
+      "intent_type": "general",
+      "notes": 5,
+      "actor": "Root"
+    },
+    {
+      "id": 252,
+      "name": "Also",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Arjun"
+    },
+    {
+      "id": 231,
+      "name": "Always",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Shell"
+    },
+    {
+      "id": 189,
+      "name": "Appointments",
+      "intent_type": "reminder",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 203,
+      "name": "Backend Service Layer",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 188,
+      "name": "Bills",
+      "intent_type": "todo",
+      "notes": 6,
+      "actor": null
+    },
+    {
+      "id": 220,
+      "name": "Booked",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Rs"
+    },
+    {
+      "id": 259,
+      "name": "Common",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Rag"
+    },
+    {
+      "id": 234,
+      "name": "Communication - Ask",
+      "intent_type": "communication",
+      "notes": 2,
+      "actor": "Ask"
+    },
+    {
+      "id": 260,
+      "name": "Communication - Microsoft",
+      "intent_type": "communication",
+      "notes": 1,
+      "actor": "Microsoft"
+    },
+    {
+      "id": 218,
+      "name": "Communication - Mock",
+      "intent_type": "communication",
+      "notes": 1,
+      "actor": "Mock"
+    },
+    {
+      "id": 245,
+      "name": "Communication - Python",
+      "intent_type": "communication",
+      "notes": 8,
+      "actor": "Python"
+    },
+    {
+      "id": 228,
+      "name": "Communication - Show",
+      "intent_type": "communication",
+      "notes": 1,
+      "actor": "Show"
+    },
+    {
+      "id": 167,
+      "name": "Communication - Sid",
+      "intent_type": "communication",
+      "notes": 3,
+      "actor": "Sid"
+    },
+    {
+      "id": 169,
+      "name": "Communication - Siddhant",
+      "intent_type": "communication",
+      "notes": 2,
+      "actor": "Siddhant"
+    },
+    {
+      "id": 223,
+      "name": "Communication - Unprocessable",
+      "intent_type": "communication",
+      "notes": 6,
+      "actor": "Unprocessable"
+    },
+    {
+      "id": 215,
+      "name": "Cross",
+      "intent_type": "general",
+      "notes": 6,
+      "actor": "Highe"
+    },
+    {
+      "id": 227,
+      "name": "Crucial",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Learned"
+    },
+    {
+      "id": 239,
+      "name": "Danger",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Useful"
+    },
+    {
+      "id": 221,
+      "name": "Distillation",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Student"
+    },
+    {
+      "id": 202,
+      "name": "Distributed Systems Interview",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 226,
+      "name": "Docker",
+      "intent_type": "general",
+      "notes": 8,
+      "actor": "Example"
+    },
+    {
+      "id": 258,
+      "name": "Embeddings",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Much"
+    },
+    {
+      "id": 250,
+      "name": "Errands",
+      "intent_type": "todo",
+      "notes": 7,
+      "actor": "Prashant"
+    },
+    {
+      "id": 204,
+      "name": "Event-driven Architecture Patterns",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 224,
+      "name": "Expressions Cheat `.`",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Regular"
+    },
+    {
+      "id": 230,
+      "name": "FastAPI",
+      "intent_type": "general",
+      "notes": 15,
+      "actor": "Rs"
+    },
+    {
+      "id": 201,
+      "name": "Flutter Application Performance",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 200,
+      "name": "Flutter UI Knowledgevault",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 206,
+      "name": "From Backend Architecture",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 205,
+      "name": "General",
+      "intent_type": "general",
+      "notes": 38,
+      "actor": null
+    },
+    {
+      "id": 244,
+      "name": "Health",
+      "intent_type": "todo",
+      "notes": 1,
+      "actor": "Getting"
+    },
+    {
+      "id": 192,
+      "name": "Ideas - AI",
+      "intent_type": "idea",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 194,
+      "name": "Ideas - AI Summarization",
+      "intent_type": "idea",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 229,
+      "name": "Ideas - AI Writing",
+      "intent_type": "idea",
+      "notes": 1,
+      "actor": "Indian"
+    },
+    {
+      "id": 248,
+      "name": "Ideas - API Monetization",
+      "intent_type": "idea",
+      "notes": 1,
+      "actor": "Api"
+    },
+    {
+      "id": 222,
+      "name": "Ideas - India",
+      "intent_type": "idea",
+      "notes": 1,
+      "actor": "Edtech"
+    },
+    {
+      "id": 211,
+      "name": "Ideas - Leetcode",
+      "intent_type": "idea",
+      "notes": 1,
+      "actor": "Takes"
+    },
+    {
+      "id": 236,
+      "name": "Ideas - Redis",
+      "intent_type": "idea",
+      "notes": 1,
+      "actor": "Db"
+    },
+    {
+      "id": 193,
+      "name": "Ideas - Semantic Retrieval",
+      "intent_type": "idea",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 241,
+      "name": "Instead",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "True"
+    },
+    {
+      "id": 235,
+      "name": "Isolation",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Multi"
+    },
+    {
+      "id": 212,
+      "name": "Kubernetes",
+      "intent_type": "general",
+      "notes": 5,
+      "actor": "Pods"
+    },
+    {
+      "id": 254,
+      "name": "Leetcode",
+      "intent_type": "general",
+      "notes": 4,
+      "actor": "Trapping"
+    },
+    {
+      "id": 262,
+      "name": "Meetings - Social",
+      "intent_type": "event",
+      "notes": 1,
+      "actor": "Social"
+    },
+    {
+      "id": 255,
+      "name": "Migration `alembic Revision",
+      "intent_type": "general",
+      "notes": 6,
+      "actor": "Alembic"
+    },
+    {
+      "id": 267,
+      "name": "Navigable",
+      "intent_type": "general",
+      "notes": 6,
+      "actor": "Hierarchical"
+    },
+    {
+      "id": 249,
+      "name": "Nginx",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Ssl"
+    },
+    {
+      "id": 264,
+      "name": "None",
+      "intent_type": "general",
+      "notes": 5,
+      "actor": null
+    },
+    {
+      "id": 242,
+      "name": "Parameter",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Peft"
+    },
+    {
+      "id": 271,
+      "name": "Questions",
+      "intent_type": "question",
+      "notes": 10,
+      "actor": "Cpu"
+    },
+    {
+      "id": 225,
+      "name": "Questions - API",
+      "intent_type": "question",
+      "notes": 2,
+      "actor": "Gemini"
+    },
+    {
+      "id": 263,
+      "name": "Questions - Apply",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Yc"
+    },
+    {
+      "id": 237,
+      "name": "Questions - Diameter",
+      "intent_type": "question",
+      "notes": 5,
+      "actor": "Dfs"
+    },
+    {
+      "id": 257,
+      "name": "Questions - Don T",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Get"
+    },
+    {
+      "id": 209,
+      "name": "Questions - Ego",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 214,
+      "name": "Questions - Factory",
+      "intent_type": "question",
+      "notes": 6,
+      "actor": "Useful"
+    },
+    {
+      "id": 269,
+      "name": "Questions - Memory",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Insert"
+    },
+    {
+      "id": 265,
+      "name": "Questions - Monthly",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Mrr"
+    },
+    {
+      "id": 243,
+      "name": "Questions - Movie",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Oppenheimer"
+    },
+    {
+      "id": 232,
+      "name": "Questions - Nginx",
+      "intent_type": "question",
+      "notes": 8,
+      "actor": "Nginx"
+    },
+    {
+      "id": 256,
+      "name": "Questions - Ola",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Rapido"
+    },
+    {
+      "id": 210,
+      "name": "Questions - Philosophy",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Star"
+    },
+    {
+      "id": 261,
+      "name": "Questions - Preventing",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Ergonomic"
+    },
+    {
+      "id": 208,
+      "name": "Questions - Python",
+      "intent_type": "question",
+      "notes": 23,
+      "actor": "Python"
+    },
+    {
+      "id": 216,
+      "name": "Questions - Ssd",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Ram"
+    },
+    {
+      "id": 233,
+      "name": "Questions - Targets Are",
+      "intent_type": "question",
+      "notes": 1,
+      "actor": "Make"
+    },
+    {
+      "id": 268,
+      "name": "Questions - Typescript",
+      "intent_type": "question",
+      "notes": 5,
+      "actor": "It"
+    },
+    {
+      "id": 246,
+      "name": "React",
+      "intent_type": "general",
+      "notes": 2,
+      "actor": "Thapar"
+    },
+    {
+      "id": 253,
+      "name": "Realm",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Paper"
+    },
+    {
+      "id": 184,
+      "name": "Reference - Docker",
+      "intent_type": "reference",
+      "notes": 2,
+      "actor": null
+    },
+    {
+      "id": 199,
+      "name": "Reference - Knowledgevault Backend",
+      "intent_type": "reference",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 186,
+      "name": "Reference - PostgreSQL",
+      "intent_type": "reference",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 185,
+      "name": "Reference - Redis",
+      "intent_type": "reference",
+      "notes": 7,
+      "actor": null
+    },
+    {
+      "id": 217,
+      "name": "Reference - Shared",
+      "intent_type": "reference",
+      "notes": 1,
+      "actor": "Confluence"
+    },
+    {
+      "id": 168,
+      "name": "Reminders",
+      "intent_type": "reminder",
+      "notes": 7,
+      "actor": "Sid"
+    },
+    {
+      "id": 251,
+      "name": "Semantic",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": "Hybrid"
+    },
+    {
+      "id": 187,
+      "name": "Shopping",
+      "intent_type": "todo",
+      "notes": 2,
+      "actor": null
+    },
+    {
+      "id": 177,
+      "name": "Study - AI",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 198,
+      "name": "Study - API Performance",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 179,
+      "name": "Study - Cross-encoder Reranking",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 180,
+      "name": "Study - FastAPI",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 172,
+      "name": "Study - Graph Algorithms",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 175,
+      "name": "Study - JWT Authentication",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 183,
+      "name": "Study - Kafka",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 197,
+      "name": "Study - Knowledge Vault",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 195,
+      "name": "Study - Knowledgeretrievalsystems",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 174,
+      "name": "Study - Kubernetes",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 176,
+      "name": "Study - NLP Models",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 171,
+      "name": "Study - Operating Systems",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 240,
+      "name": "Study - Pipelining",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": "Cpu"
+    },
+    {
+      "id": 170,
+      "name": "Study - PostgreSQL",
+      "intent_type": "study",
+      "notes": 2,
+      "actor": null
+    },
+    {
+      "id": 173,
+      "name": "Study - Redis",
+      "intent_type": "study",
+      "notes": 2,
+      "actor": null
+    },
+    {
+      "id": 196,
+      "name": "Study - Semantic Search",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 181,
+      "name": "Study - Sqlalchemy",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 182,
+      "name": "Study - System Design",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 178,
+      "name": "Study - Vector Databases",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 266,
+      "name": "Study - Writing",
+      "intent_type": "study",
+      "notes": 1,
+      "actor": "Keep"
+    },
+    {
+      "id": 207,
+      "name": "Summary Weekly Knowledgevault",
+      "intent_type": "general",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 191,
+      "name": "Tasks",
+      "intent_type": "todo",
+      "notes": 229,
+      "actor": null
+    },
+    {
+      "id": 190,
+      "name": "Travel",
+      "intent_type": "todo",
+      "notes": 1,
+      "actor": null
+    },
+    {
+      "id": 270,
+      "name": "Typescript",
+      "intent_type": "general",
+      "notes": 2,
+      "actor": "Typescript"
+    },
+    {
+      "id": 219,
+      "name": "Window Maximum Sum",
+      "intent_type": "general",
+      "notes": 5,
+      "actor": "Sliding"
+    }
+  ]
+}

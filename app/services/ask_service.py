@@ -25,11 +25,14 @@ Context construction
 
 import hashlib
 import logging
+import re
 import time
+from dataclasses import dataclass
 
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
+from app.schemas.ask import Citation
 from app.services.cache_service import CacheService
 from app.services.chunk_service import ChunkService
 from app.services.llm_metrics import metrics
@@ -45,6 +48,19 @@ _MAX_CONTEXT_CHARS = 3_000
 
 # Minimum content fingerprint length for dedup (very short chunks are kept as-is).
 _MIN_DEDUP_LEN = 40
+
+
+@dataclass(frozen=True)
+class ContextEntry:
+    """Bridges a context passage with its stable citation reference number."""
+    ref: int                     # [N] as it appears in the prompt and answer
+    note_id: int
+    note_title: str
+    chunk_id: int | None         # None for hybrid note-level arm
+    chunk_index: int
+    chunk_text: str              # full text used in the context string
+    snippet: str                 # first 200 chars — for citation preview
+    intent_category: str | None
 
 
 class AskService:
@@ -140,7 +156,11 @@ class AskService:
             time.monotonic() - t0,
         )
 
-        prompt = self._build_prompt(question, chunks)
+        # Citations are not parsed in the streaming path (Sprint 4-C).
+        # _build_context_map is still called so the prompt format is consistent
+        # with the blocking ask() path.
+        context, _context_map = self._build_context_map(chunks)
+        prompt = self._build_prompt(question, context)
 
         try:
             yield from LLMService.generate_stream(prompt=prompt)
@@ -170,17 +190,17 @@ class AskService:
                 "question": question,
                 "answer": "No relevant notes were found for your question.",
                 "sources": [],
+                "citations": [],
                 "retrieval_only": False,
                 "status": "no_results",
             }
 
-        prompt = self._build_prompt(question, chunks)
+        context, context_map = self._build_context_map(chunks)
+        prompt = self._build_prompt(question, context)
 
         try:
-            answer = LLMService.generate(prompt=prompt)
-            # Sanity-check: reject answers that look like single-word keyword leakage.
-            answer = self._validate_answer(answer, chunks)
-            provider_used = "llm"
+            raw_answer = LLMService.generate(prompt=prompt)
+            raw_answer = self._validate_answer(raw_answer, chunks)
         except AllProvidersExhausted as exc:
             logger.warning(
                 "ASK ALL PROVIDERS EXHAUSTED — returning retrieval-only response. errors=%s",
@@ -191,13 +211,24 @@ class AskService:
             logger.exception("ASK unexpected LLM error: %s", exc)
             return self._retrieval_only_response(question=question, chunks=chunks, sources=sources)
 
+        try:
+            answer, citations = self._parse_citations(raw_answer, context_map)
+            if not citations:
+                logger.info("ASK no citations found in answer (graceful degradation)")
+            citation_dicts = [c.model_dump() for c in citations]
+        except Exception as exc:
+            logger.error("ASK citation parse failed — returning uncited answer: %s", exc)
+            answer = raw_answer
+            citation_dicts = []
+
         return {
             "question": question,
             "answer": answer,
             "sources": sources,
+            "citations": citation_dicts,
             "retrieval_only": False,
             "status": "ok",
-            "provider": provider_used,
+            "provider": "llm",
         }
 
     def _retrieval_only_response(
@@ -239,8 +270,7 @@ class AskService:
     # Prompt construction
     # ------------------------------------------------------------------
 
-    def _build_prompt(self, question: str, chunks: list[dict]) -> str:
-        context = self._build_context(chunks)
+    def _build_prompt(self, question: str, context: str) -> str:
         return f"""\
 You are a retrieval assistant helping a user search their personal knowledge notes.
 
@@ -256,6 +286,10 @@ Instructions:
 - Read all retrieved context carefully.
 - Write a clear, complete answer of 2–5 sentences.
 - Synthesise information from multiple notes when relevant.
+- Cite the source of every factual claim using its bracket number, e.g. [1] or [2].
+- Only use bracket numbers that appear in the context above. Never invent numbers.
+- If you cite the same source twice, write [1]...[1] — that is correct.
+- Multiple sources per sentence are allowed: "X is true [1] and Y is also true [2]."
 - Never respond with a single keyword or phrase alone.
 - Do not invent or infer information that is not present in the context.
 - Do not explain your reasoning; just answer.
@@ -266,44 +300,117 @@ Answer:
 """
 
     @staticmethod
-    def _build_context(chunks: list[dict]) -> str:
+    def _build_context_map(chunks: list[dict]) -> tuple[str, list[ContextEntry]]:
         """
-        Build deduplicated, token-budget-aware context string.
+        Build a deduplicated, token-budget-aware context string with stable
+        reference numbers ([1], [2], ...) and the mapping that lets
+        _parse_citations() resolve those numbers back to note/chunk IDs.
 
-        Deduplication: chunks whose normalised text starts with the same
-        80-char prefix are considered duplicates; only the highest-scored
-        copy is kept.
+        Returns:
+            (context_str, context_map) where context_map[i].ref == i + 1.
+            Only entries whose text actually made it into context_str are
+            included in context_map — so citation validation is accurate.
         """
         seen_fingerprints: set[str] = set()
-        kept: list[dict] = []
+        pending: list[ContextEntry] = []
+
         for chunk in chunks:
             text = chunk["chunk_text"]
-            # Fingerprint: first 80 chars, lowercased, whitespace-normalised.
             fp = " ".join(text.lower().split())[:80] if len(text) >= _MIN_DEDUP_LEN else None
             if fp and fp in seen_fingerprints:
                 continue
             if fp:
                 seen_fingerprints.add(fp)
-            kept.append(chunk)
+            ref = len(pending) + 1
+            pending.append(ContextEntry(
+                ref=ref,
+                note_id=chunk["note_id"],
+                note_title=chunk["note_title"],
+                chunk_id=chunk.get("chunk_id"),
+                chunk_index=chunk["chunk_index"],
+                chunk_text=text,
+                snippet=text[:200],
+                intent_category=chunk.get("intent_category"),
+            ))
 
-        # Token-budget guard: truncate total context to _MAX_CONTEXT_CHARS.
+        # Token-budget guard — track only entries that fit.
         parts: list[str] = []
+        included: list[ContextEntry] = []
         total_chars = 0
-        for chunk in kept:
-            entry = (
-                f"Category: {chunk.get('intent_category') or 'Semantic match'}\n"
-                f"Note: {chunk['note_title']}\n"
-                f"{chunk['chunk_text']}"
-            )
-            if total_chars + len(entry) > _MAX_CONTEXT_CHARS:
-                remaining = _MAX_CONTEXT_CHARS - total_chars
-                if remaining > 100:  # only include if there's meaningful space left
-                    parts.append(entry[:remaining] + "…")
-                break
-            parts.append(entry)
-            total_chars += len(entry)
 
-        return "\n\n".join(parts)
+        for entry in pending:
+            category = entry.intent_category or "Semantic match"
+            entry_str = (
+                f"[{entry.ref}] {category} | {entry.note_title}\n"
+                f"{entry.chunk_text}"
+            )
+            if total_chars + len(entry_str) > _MAX_CONTEXT_CHARS:
+                remaining = _MAX_CONTEXT_CHARS - total_chars
+                if remaining > 100:
+                    parts.append(entry_str[:remaining] + "…")
+                    included.append(entry)
+                break
+            parts.append(entry_str)
+            included.append(entry)
+            total_chars += len(entry_str)
+
+        return "\n\n".join(parts), included
+
+    @staticmethod
+    def _parse_citations(
+        answer: str,
+        context_map: list[ContextEntry],
+    ) -> tuple[str, list[Citation]]:
+        """
+        Extract [N] citation markers from the LLM answer.
+
+        Valid markers (1 ≤ N ≤ len(context_map)) are kept in the answer text
+        and resolved to Citation objects.  Invalid markers (hallucinated numbers
+        outside the valid range) are removed from the answer and logged.
+
+        Returns:
+            (cleaned_answer, citations) where citations contains one entry per
+            unique ref, ordered by first appearance in the answer.
+        """
+        if not context_map:
+            return answer, []
+
+        valid_refs: set[int] = {entry.ref for entry in context_map}
+        entry_by_ref: dict[int, ContextEntry] = {entry.ref: entry for entry in context_map}
+        found_refs: list[int] = []  # insertion-ordered, deduplicated
+
+        def _replace(match: re.Match) -> str:
+            try:
+                n = int(match.group(1))
+            except ValueError:
+                return match.group(0)  # leave unchanged if not parseable
+            if n not in valid_refs:
+                logger.warning(
+                    "CITATION hallucinated ref=[%d] (valid: %s) — removing from answer",
+                    n,
+                    sorted(valid_refs),
+                )
+                return ""
+            if n not in found_refs:
+                found_refs.append(n)
+            return f"[{n}]"
+
+        cleaned = re.sub(r"\[(\d+)\]", _replace, answer)
+        # Collapse whitespace artifacts left by removed markers.
+        cleaned = re.sub(r" {2,}", " ", cleaned).strip()
+
+        citations = [
+            Citation(
+                ref=n,
+                note_id=entry_by_ref[n].note_id,
+                note_title=entry_by_ref[n].note_title,
+                chunk_id=entry_by_ref[n].chunk_id,
+                snippet=entry_by_ref[n].snippet,
+            )
+            for n in found_refs
+        ]
+
+        return cleaned, citations
 
     @staticmethod
     def _validate_answer(answer: str, chunks: list[dict]) -> str:
@@ -387,7 +494,8 @@ Answer:
         retrieval_ms = (time.monotonic() - t_ret) * 1000.0
 
         filtered_chunks = self._filter_chunks(raw_chunks)
-        prompt = self._build_prompt(question, filtered_chunks)
+        context, context_map = self._build_context_map(filtered_chunks)
+        prompt = self._build_prompt(question, context)
 
         # LLM synthesis
         t_llm = time.monotonic()
@@ -403,6 +511,18 @@ Answer:
         result["_eval"] = {
             "retrieved_chunks": raw_chunks,
             "filtered_chunks": filtered_chunks,
+            "context_map": [
+                {
+                    "ref": e.ref,
+                    "note_id": e.note_id,
+                    "note_title": e.note_title,
+                    "chunk_id": e.chunk_id,
+                    "chunk_index": e.chunk_index,
+                    "snippet": e.snippet,
+                    "intent_category": e.intent_category,
+                }
+                for e in context_map
+            ],
             "prompt": prompt,
             "retrieval_ms": round(retrieval_ms, 2),
             "llm_ms": round(llm_ms, 2),

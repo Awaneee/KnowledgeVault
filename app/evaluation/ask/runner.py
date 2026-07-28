@@ -324,10 +324,12 @@ class AskEvaluationRunner:
                 "status": "error",
                 "answer": "",
                 "sources": [],
+                "citations": [],
                 "retrieval_only": True,
                 "_eval": {
                     "retrieved_chunks": [],
                     "filtered_chunks": [],
+                    "context_map": [],
                     "prompt": "",
                     "retrieval_ms": 0.0,
                     "llm_ms": 0.0,

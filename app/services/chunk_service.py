@@ -119,6 +119,7 @@ class ChunkService:
             {
                 "note_id": note.id,
                 "note_title": note.title,
+                "chunk_id": chunk.id,
                 "chunk_text": chunk.chunk_text,
                 "chunk_index": chunk.chunk_index,
                 "semantic_score": self._distance_to_score(distance),
@@ -198,6 +199,7 @@ class ChunkService:
             fused[note.id] = {
                 "note_id": note.id,
                 "note_title": note.title,
+                "chunk_id": chunk.id,
                 "chunk_text": chunk.chunk_text,
                 "chunk_index": chunk.chunk_index,
                 "source": "semantic",
@@ -238,6 +240,7 @@ class ChunkService:
                 current = {
                     "note_id": note.id,
                     "note_title": note.title,
+                    "chunk_id": chunk.id,
                     "chunk_text": chunk.chunk_text,
                     "chunk_index": chunk.chunk_index,
                     "source": "intent",

@@ -271,3 +271,49 @@ class TestBenchmarkRegressionGate:
             assert predicted == expected, (
                 f"EXTR-005 should fix: {query!r} → expected={expected!r} got={predicted!r}"
             )
+
+
+# ---------------------------------------------------------------------------
+# Benchmark regression gate — fast classifier on 152-query diagnostic benchmark
+#
+# This benchmark is more representative than the 50-query gate: 51% of queries
+# expect study intent and 25% reference.  The study accuracy is known to be low
+# (6% as of Sprint 1 end) due to the "notes" → reference collision introduced
+# by EXTR-008; Sprint 2 will resolve this.  The gate is set on the overall
+# accuracy only until the collision is fixed and per-intent gates are viable.
+# ---------------------------------------------------------------------------
+
+class TestBenchmarkRegressionGate152:
+    """
+    Runs the 152-query diagnostic benchmark and asserts overall minimum accuracy.
+    Threshold is FAST_CLASSIFIER_152Q_MIN_ACCURACY from IntentExtractionService.
+    """
+
+    BENCHMARK_PATH = "evaluation_results/benchmarks/retrieval_benchmark.json"
+    MIN_ACCURACY = IntentExtractionService.FAST_CLASSIFIER_152Q_MIN_ACCURACY
+
+    def _load_benchmark(self):
+        import json
+        with open(self.BENCHMARK_PATH) as f:
+            return json.load(f)
+
+    def test_overall_accuracy_not_regressed(self):
+        svc = IntentExtractionService()
+        data = self._load_benchmark()
+        correct = 0
+        failures = []
+        for item in data:
+            q = item["query"]
+            expected = item.get("expected_intent", "general")
+            predicted = svc.extract_query_intent_fast(q)["intent_type"]
+            if predicted == expected:
+                correct += 1
+            else:
+                failures.append(f"  {q!r}: expected={expected!r} got={predicted!r}")
+
+        accuracy = correct / len(data)
+        failure_detail = "\n".join(failures[:20]) if failures else "none"
+        assert accuracy >= self.MIN_ACCURACY, (
+            f"152-query accuracy {accuracy:.1%} < gate {self.MIN_ACCURACY:.1%}.\n"
+            f"First 20 failures ({len(failures)} total):\n{failure_detail}"
+        )
