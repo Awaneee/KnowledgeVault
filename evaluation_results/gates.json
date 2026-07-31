@@ -1,0 +1,42 @@
+{
+  "_comment": "Regression gate floors for each retrieval strategy. Established from Benchmark v2.0.0 run 2c80e257 (205 queries, graded relevance, k=5). Floors are set at 97% of best observed value (3% relative tolerance). Update this file explicitly via PR when a strategy improvement raises the bar. Sprint 2-B floors (50-query benchmark v1.0.0, run c1df0566) are superseded by this file.",
+  "established_at": "2026-07-31",
+  "established_from_run": "2c80e257",
+  "benchmark_version": "2.0.0",
+  "k": 5,
+  "strategies": {
+    "SEMANTIC": {
+      "mrr_floor": 0.5625,
+      "hit_rate_floor": 0.7239,
+      "ndcg_at_k_floor": 0.3697,
+      "avg_latency_ms_ceiling": 100.0,
+      "mrr_observed": 0.5799,
+      "mrr_ci_95": [0.5187, 0.6397],
+      "hit_rate_observed": 0.7463,
+      "ndcg_at_k_observed": 0.3811,
+      "basis": "v2.0.0 run 2c80e257 (205q): MRR=0.5799, HitRate=0.7463, nDCG@5=0.3811. Floors at 97% of observed."
+    },
+    "HYBRID": {
+      "mrr_floor": 0.5851,
+      "hit_rate_floor": 0.7239,
+      "ndcg_at_k_floor": 0.3737,
+      "avg_latency_ms_ceiling": 300.0,
+      "mrr_observed": 0.6032,
+      "mrr_ci_95": [0.5468, 0.6608],
+      "hit_rate_observed": 0.7463,
+      "ndcg_at_k_observed": 0.3853,
+      "basis": "v2.0.0 run 2c80e257 (205q): MRR=0.6032, HitRate=0.7463, nDCG@5=0.3853. Floors at 97% of observed."
+    },
+    "RERANK": {
+      "mrr_floor": null,
+      "hit_rate_floor": null,
+      "ndcg_at_k_floor": null,
+      "avg_latency_ms_ceiling": 500.0,
+      "mrr_observed": 0.5981,
+      "mrr_ci_95": [0.541, 0.6566],
+      "hit_rate_observed": 0.7463,
+      "ndcg_at_k_observed": 0.3853,
+      "basis": "RERANKING_ENABLED=False (ADR-003). Observed metrics reflect HYBRID candidate pool without cross-encoder scoring. MRR, HR, and nDCG floors remain null until a domain-appropriate cross-encoder model is validated. Latency ceiling (500ms) preserved to accommodate future cross-encoder inference overhead."
+    }
+  }
+}

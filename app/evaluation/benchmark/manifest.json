@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "created_at": "2026-07-31",
+  "corpus_version": "sprint2b",
+  "note_count_at_labeling": 1055,
+  "query_file": "verified.json",
+  "query_count": 205,
+  "labeler": "awane",
+  "relevance_model": "graded",
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-07-29",
+      "change": "Initial 50-query benchmark, binary relevance, hand-labeled by developer. See ADR-003 and docs/design/evaluation-framework.md for known limitations."
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-07-31",
+      "change": "205-query benchmark with graded relevance (grade 2 = highly relevant, grade 1 = partially relevant). 155 new queries added from pool/supplementary/throughput candidates. 18 HIGH-priority entries manually reviewed and corrected (57 false-positive notes removed from keyword-union expansion). Benchmark is now the authoritative source for Sprint 3+ gate decisions. See evaluation_results/human_review_checklist.json for review provenance."
+    }
+  ],
+  "candidate_count": 205,
+  "note_count_at_generation": 1055
+}

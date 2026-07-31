@@ -38,6 +38,7 @@ from app.services.chunk_service import ChunkService
 from app.services.llm_metrics import metrics
 from app.services.llm_service import AllProvidersExhausted
 from app.services.llm_service import LLMService
+from app.services.reranking_service import RerankingService
 
 
 logger = logging.getLogger(__name__)
@@ -91,21 +92,33 @@ class AskService:
         t0 = time.monotonic()
 
         # --- Retrieval (always runs) ---
+        pool_limit = settings.RERANK_CANDIDATE_POOL if settings.RERANKING_ENABLED else 8
         with metrics.track_retrieval():
             chunks = self.chunk_service.retrieve_hybrid(
                 query=question,
                 user_id=user_id,
-                limit=8,  # fetch more, filter below
+                limit=pool_limit,
             )
+
+        # --- Optional cross-encoder reranking ---
+        rerank_result = RerankingService.rerank(
+            query=question,
+            candidates=chunks,
+            top_k=settings.RERANK_TOP_K,
+            user_id=user_id,
+        )
+        chunks = rerank_result.candidates
+        reranked = rerank_result.reranked
 
         retrieval_elapsed = time.monotonic() - t0
         # Filter low-confidence chunks before synthesis.
         chunks = self._filter_chunks(chunks)
 
         logger.info(
-            "ASK RETRIEVAL user_id=%d chunks=%d (after filter) elapsed=%.2fs sources=%s",
+            "ASK RETRIEVAL user_id=%d chunks=%d (after filter) reranked=%s elapsed=%.2fs sources=%s",
             user_id,
             len(chunks),
+            reranked,
             retrieval_elapsed,
             [c["note_title"] for c in chunks[:5]],
         )
@@ -126,6 +139,8 @@ class AskService:
             time.monotonic() - t0,
         )
 
+        result["reranked"] = reranked
+
         # Cache only when we have a real answer (avoid caching degraded responses).
         ttl = settings.ASK_CACHE_TTL_SECONDS
         if not result.get("retrieval_only") and ttl > 0:
@@ -141,18 +156,27 @@ class AskService:
         """
         t0 = time.monotonic()
 
+        pool_limit = settings.RERANK_CANDIDATE_POOL if settings.RERANKING_ENABLED else 8
         with metrics.track_retrieval():
             chunks = self.chunk_service.retrieve_hybrid(
                 query=question,
                 user_id=user_id,
-                limit=8,
+                limit=pool_limit,
             )
+        rerank_result = RerankingService.rerank(
+            query=question,
+            candidates=chunks,
+            top_k=settings.RERANK_TOP_K,
+            user_id=user_id,
+        )
+        chunks = rerank_result.candidates
         chunks = self._filter_chunks(chunks)
 
         logger.info(
-            "STREAM RETRIEVAL user_id=%d chunks=%d elapsed=%.2fs",
+            "STREAM RETRIEVAL user_id=%d chunks=%d reranked=%s elapsed=%.2fs",
             user_id,
             len(chunks),
+            rerank_result.reranked,
             time.monotonic() - t0,
         )
 
@@ -486,14 +510,22 @@ Answer:
 
         # Retrieval — no cache
         t_ret = time.monotonic()
+        pool_limit = settings.RERANK_CANDIDATE_POOL if settings.RERANKING_ENABLED else 8
         raw_chunks = self.chunk_service.retrieve_hybrid(
             query=question,
             user_id=user_id,
-            limit=8,
+            limit=pool_limit,
         )
+        rerank_result = RerankingService.rerank(
+            query=question,
+            candidates=raw_chunks,
+            top_k=settings.RERANK_TOP_K,
+            user_id=user_id,
+        )
+        reranked_chunks = rerank_result.candidates
         retrieval_ms = (time.monotonic() - t_ret) * 1000.0
 
-        filtered_chunks = self._filter_chunks(raw_chunks)
+        filtered_chunks = self._filter_chunks(reranked_chunks)
         context, context_map = self._build_context_map(filtered_chunks)
         prompt = self._build_prompt(question, context)
 
@@ -508,8 +540,10 @@ Answer:
         llm_ms = (time.monotonic() - t_llm) * 1000.0
         total_ms = (time.monotonic() - t_start) * 1000.0
 
+        result["reranked"] = rerank_result.reranked
         result["_eval"] = {
             "retrieved_chunks": raw_chunks,
+            "reranked": rerank_result.reranked,
             "filtered_chunks": filtered_chunks,
             "context_map": [
                 {

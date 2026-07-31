@@ -1,0 +1,251 @@
+pool,benchmark_id,query,difficulty,hit,rr_k5,rr_full,precision,recall,map,ndcg,latency_ms
+5,1,What startup ideas do I have?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,96.93
+5,2,Show my AI research reading goals,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,85.01
+5,3,How can I improve my health?,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,88.11
+5,4,Show my finance reminders,easy,1,0.3333,0.3333,0.4,1.0,0.4167,0.5706,112.67
+5,5,Evaluation report work,medium,1,0.5,0.5,0.2,0.5,0.25,0.3869,99.81
+5,6,Markdown support,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,120.1
+5,7,Improve search latency,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,99.6
+5,8,Attachment upload feature,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,103.33
+5,9,Flutter improvements,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,118.98
+5,10,Networking concepts,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,97.02
+5,11,Object oriented programming revision,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,110.78
+5,12,Interview preparation,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,103.24
+5,13,Portfolio website,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,98.35
+5,14,Documentation tasks,easy,1,0.5,0.5,0.2,0.5,0.25,0.3869,80.59
+5,15,Deploy KnowledgeVault,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,120.16
+5,16,Update GitHub README,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,119.67
+5,17,Resume preparation,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,95.73
+5,18,Weekend trip,easy,1,0.25,0.25,0.2,1.0,0.25,0.4307,96.66
+5,19,Bills to pay,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,107.84
+5,20,Doctor appointment,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,88.69
+5,21,Shopping list,medium,0,0.0,0.0,0.0,0.0,0.0,0.0,98.47
+5,22,Things I need to tell Sid,easy,1,1.0,1.0,0.8,1.0,1.0,1.0,90.47
+5,23,Next meeting with the design team,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,82.75
+5,24,Project deadline for the alpha release,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,99.47
+5,25,Remind me to call mom,easy,1,0.3333,0.3333,0.2,0.5,0.1667,0.3066,78.53
+5,26,What is the theory of relativity?,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,86.37
+5,27,Ideas for my new blog post,medium,1,0.2,0.2,0.2,0.25,0.05,0.151,79.44
+5,28,How to set up a kubernetes cluster,hard,1,1.0,1.0,0.2,1.0,1.0,1.0,89.57
+5,29,Things to discuss with Sid at the next meeting,easy,1,1.0,1.0,0.6,0.75,0.75,0.8319,79.53
+5,30,Study materials for machine learning,medium,0,0.0,0.0,0.0,0.0,0.0,0.0,85.02
+5,31,Meeting notes from Q3 planning,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,79.65
+5,32,What are the project requirements for KnowledgeVault?,medium,1,1.0,1.0,0.4,0.25,0.1875,0.4852,81.7
+5,33,Reminders for next week,medium,1,1.0,1.0,0.4,0.4,0.4,0.5531,82.73
+5,34,Questions to ask during the interview,easy,1,0.5,0.5,0.4,1.0,0.5,0.6509,74.69
+5,35,Brainstorming app names,easy,1,1.0,1.0,0.2,0.25,0.25,0.3904,84.55
+5,36,Redis and PostgreSQL reference notes,hard,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,100.11
+5,37,Message to send to Siddhant about backend,medium,1,1.0,1.0,0.6,1.0,0.7556,0.8855,100.3
+5,38,Study schedule for finals,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,118.47
+5,39,Sprint planning meeting summary,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,132.65
+5,40,Timeline for the beta launch,medium,0,0.0,0.0,0.0,0.0,0.0,0.0,111.76
+5,41,Don't forget to buy milk,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,115.18
+5,42,How does Redis eviction work?,easy,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,90.02
+5,43,Ideas for improving KnowledgeVault,medium,1,1.0,1.0,0.6,0.6,0.4533,0.6399,86.85
+5,44,Docker commands cheat sheet,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,86.02
+5,45,Tell Sid about the hackathon,easy,1,1.0,1.0,0.4,1.0,0.8333,0.9197,87.04
+5,46,System design interview study,medium,1,1.0,1.0,0.4,0.5,0.5,0.6367,83.63
+5,47,Weekly sync notes,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,88.96
+5,48,Budget and monthly expenses,medium,1,1.0,1.0,0.2,0.5,0.5,0.6131,94.86
+5,49,Health checkup and appointments,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,161.36
+5,50,What are PostgreSQL index types?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,69.38
+10,1,What startup ideas do I have?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,83.88
+10,2,Show my AI research reading goals,easy,0,0.0,0.1429,0.0,0.0,0.0,0.0,90.07
+10,3,How can I improve my health?,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,82.48
+10,4,Show my finance reminders,easy,1,0.3333,0.3333,0.4,1.0,0.4167,0.5706,120.52
+10,5,Evaluation report work,medium,1,0.5,0.5,0.2,0.5,0.25,0.3869,99.53
+10,6,Markdown support,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,111.75
+10,7,Improve search latency,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,94.9
+10,8,Attachment upload feature,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,98.4
+10,9,Flutter improvements,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,97.82
+10,10,Networking concepts,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,82.09
+10,11,Object oriented programming revision,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,86.54
+10,12,Interview preparation,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,100.87
+10,13,Portfolio website,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,94.15
+10,14,Documentation tasks,easy,1,0.5,0.5,0.2,0.5,0.25,0.3869,87.59
+10,15,Deploy KnowledgeVault,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,114.77
+10,16,Update GitHub README,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,125.41
+10,17,Resume preparation,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,93.46
+10,18,Weekend trip,easy,1,0.5,0.5,0.2,1.0,0.5,0.6309,93.2
+10,19,Bills to pay,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,102.41
+10,20,Doctor appointment,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,92.96
+10,21,Shopping list,medium,0,0.0,0.1,0.0,0.0,0.0,0.0,89.21
+10,22,Things I need to tell Sid,easy,1,1.0,1.0,0.8,1.0,1.0,1.0,95.08
+10,23,Next meeting with the design team,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,86.05
+10,24,Project deadline for the alpha release,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,122.69
+10,25,Remind me to call mom,easy,1,0.3333,0.3333,0.2,0.5,0.1667,0.3066,81.39
+10,26,What is the theory of relativity?,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,77.08
+10,27,Ideas for my new blog post,medium,1,0.2,0.2,0.2,0.25,0.05,0.151,87.69
+10,28,How to set up a kubernetes cluster,hard,1,1.0,1.0,0.2,1.0,1.0,1.0,76.17
+10,29,Things to discuss with Sid at the next meeting,easy,1,1.0,1.0,0.6,0.75,0.75,0.8319,85.43
+10,30,Study materials for machine learning,medium,0,0.0,0.125,0.0,0.0,0.0,0.0,73.84
+10,31,Meeting notes from Q3 planning,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,85.4
+10,32,What are the project requirements for KnowledgeVault?,medium,1,1.0,1.0,0.4,0.25,0.1875,0.4852,95.05
+10,33,Reminders for next week,medium,1,1.0,1.0,0.4,0.4,0.4,0.5531,119.49
+10,34,Questions to ask during the interview,easy,1,0.5,0.5,0.4,1.0,0.5,0.6509,95.52
+10,35,Brainstorming app names,easy,1,1.0,1.0,0.2,0.25,0.25,0.3904,116.67
+10,36,Redis and PostgreSQL reference notes,hard,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,132.93
+10,37,Message to send to Siddhant about backend,medium,1,1.0,1.0,0.6,1.0,0.7556,0.8855,88.9
+10,38,Study schedule for finals,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,86.64
+10,39,Sprint planning meeting summary,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,91.36
+10,40,Timeline for the beta launch,medium,0,0.0,0.0,0.0,0.0,0.0,0.0,120.81
+10,41,Don't forget to buy milk,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,115.15
+10,42,How does Redis eviction work?,easy,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,86.16
+10,43,Ideas for improving KnowledgeVault,medium,1,1.0,1.0,0.6,0.6,0.4533,0.6399,80.04
+10,44,Docker commands cheat sheet,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,83.9
+10,45,Tell Sid about the hackathon,easy,1,1.0,1.0,0.4,1.0,0.8333,0.9197,92.78
+10,46,System design interview study,medium,1,1.0,1.0,0.4,0.5,0.5,0.6367,95.32
+10,47,Weekly sync notes,easy,0,0.0,0.125,0.0,0.0,0.0,0.0,74.13
+10,48,Budget and monthly expenses,medium,1,1.0,1.0,0.2,0.5,0.5,0.6131,99.1
+10,49,Health checkup and appointments,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,101.57
+10,50,What are PostgreSQL index types?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,87.51
+20,1,What startup ideas do I have?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,101.76
+20,2,Show my AI research reading goals,easy,0,0.0,0.1429,0.0,0.0,0.0,0.0,90.5
+20,3,How can I improve my health?,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,99.2
+20,4,Show my finance reminders,easy,1,0.3333,0.3333,0.4,1.0,0.4167,0.5706,95.49
+20,5,Evaluation report work,medium,1,0.5,0.5,0.2,0.5,0.25,0.3869,93.44
+20,6,Markdown support,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,111.16
+20,7,Improve search latency,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,102.36
+20,8,Attachment upload feature,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,109.06
+20,9,Flutter improvements,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,107.61
+20,10,Networking concepts,easy,0,0.0,0.0588,0.0,0.0,0.0,0.0,85.64
+20,11,Object oriented programming revision,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,98.97
+20,12,Interview preparation,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,95.05
+20,13,Portfolio website,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,101.39
+20,14,Documentation tasks,easy,1,0.5,0.5,0.2,0.5,0.25,0.3869,85.4
+20,15,Deploy KnowledgeVault,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,114.23
+20,16,Update GitHub README,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,105.56
+20,17,Resume preparation,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,92.57
+20,18,Weekend trip,easy,1,0.5,0.5,0.2,1.0,0.5,0.6309,85.26
+20,19,Bills to pay,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,119.17
+20,20,Doctor appointment,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,90.37
+20,21,Shopping list,medium,1,0.2,0.2,0.2,1.0,0.2,0.3869,94.53
+20,22,Things I need to tell Sid,easy,1,1.0,1.0,0.8,1.0,1.0,1.0,88.95
+20,23,Next meeting with the design team,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,91.26
+20,24,Project deadline for the alpha release,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,111.02
+20,25,Remind me to call mom,easy,1,0.3333,0.3333,0.2,0.5,0.1667,0.3066,80.04
+20,26,What is the theory of relativity?,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,86.42
+20,27,Ideas for my new blog post,medium,1,0.2,0.2,0.2,0.25,0.05,0.151,86.81
+20,28,How to set up a kubernetes cluster,hard,1,1.0,1.0,0.2,1.0,1.0,1.0,97.73
+20,29,Things to discuss with Sid at the next meeting,easy,1,1.0,1.0,0.6,0.75,0.75,0.8319,93.58
+20,30,Study materials for machine learning,medium,0,0.0,0.125,0.0,0.0,0.0,0.0,90.67
+20,31,Meeting notes from Q3 planning,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,78.9
+20,32,What are the project requirements for KnowledgeVault?,medium,1,1.0,1.0,0.4,0.25,0.1875,0.4852,78.59
+20,33,Reminders for next week,medium,1,1.0,1.0,0.2,0.2,0.2,0.3392,96.45
+20,34,Questions to ask during the interview,easy,1,0.5,0.5,0.4,1.0,0.5,0.6509,111.6
+20,35,Brainstorming app names,easy,1,1.0,1.0,0.2,0.25,0.25,0.3904,121.05
+20,36,Redis and PostgreSQL reference notes,hard,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,109.82
+20,37,Message to send to Siddhant about backend,medium,1,1.0,1.0,0.6,1.0,0.7556,0.8855,98.7
+20,38,Study schedule for finals,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,94.01
+20,39,Sprint planning meeting summary,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,93.64
+20,40,Timeline for the beta launch,medium,0,0.0,0.0,0.0,0.0,0.0,0.0,114.94
+20,41,Don't forget to buy milk,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,277.34
+20,42,How does Redis eviction work?,easy,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,95.87
+20,43,Ideas for improving KnowledgeVault,medium,1,1.0,1.0,0.6,0.6,0.4533,0.6399,83.13
+20,44,Docker commands cheat sheet,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,93.78
+20,45,Tell Sid about the hackathon,easy,1,1.0,1.0,0.4,1.0,0.8333,0.9197,87.58
+20,46,System design interview study,medium,1,1.0,1.0,0.4,0.5,0.5,0.6367,90.85
+20,47,Weekly sync notes,easy,0,0.0,0.125,0.0,0.0,0.0,0.0,91.99
+20,48,Budget and monthly expenses,medium,1,1.0,1.0,0.2,0.5,0.5,0.6131,98.15
+20,49,Health checkup and appointments,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,99.53
+20,50,What are PostgreSQL index types?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,93.36
+40,1,What startup ideas do I have?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,104.54
+40,2,Show my AI research reading goals,easy,0,0.0,0.1429,0.0,0.0,0.0,0.0,95.84
+40,3,How can I improve my health?,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,94.78
+40,4,Show my finance reminders,easy,1,0.3333,0.3333,0.4,1.0,0.4167,0.5706,105.2
+40,5,Evaluation report work,medium,1,0.5,0.5,0.2,0.5,0.25,0.3869,100.88
+40,6,Markdown support,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,106.79
+40,7,Improve search latency,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,91.97
+40,8,Attachment upload feature,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,99.6
+40,9,Flutter improvements,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,117.51
+40,10,Networking concepts,easy,0,0.0,0.0588,0.0,0.0,0.0,0.0,93.32
+40,11,Object oriented programming revision,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,91.82
+40,12,Interview preparation,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,108.62
+40,13,Portfolio website,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,120.35
+40,14,Documentation tasks,easy,1,0.5,0.5,0.2,0.5,0.25,0.3869,97.37
+40,15,Deploy KnowledgeVault,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,110.47
+40,16,Update GitHub README,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,117.97
+40,17,Resume preparation,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,99.82
+40,18,Weekend trip,easy,1,0.5,0.5,0.2,1.0,0.5,0.6309,117.17
+40,19,Bills to pay,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,117.0
+40,20,Doctor appointment,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,106.5
+40,21,Shopping list,medium,1,0.2,0.2,0.2,1.0,0.2,0.3869,99.59
+40,22,Things I need to tell Sid,easy,1,1.0,1.0,0.8,1.0,1.0,1.0,98.81
+40,23,Next meeting with the design team,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,93.51
+40,24,Project deadline for the alpha release,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,145.02
+40,25,Remind me to call mom,easy,1,0.3333,0.3333,0.2,0.5,0.1667,0.3066,120.73
+40,26,What is the theory of relativity?,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,100.27
+40,27,Ideas for my new blog post,medium,1,0.2,0.2,0.2,0.25,0.05,0.151,136.84
+40,28,How to set up a kubernetes cluster,hard,1,1.0,1.0,0.2,1.0,1.0,1.0,96.07
+40,29,Things to discuss with Sid at the next meeting,easy,1,1.0,1.0,0.6,0.75,0.75,0.8319,100.26
+40,30,Study materials for machine learning,medium,0,0.0,0.125,0.0,0.0,0.0,0.0,91.89
+40,31,Meeting notes from Q3 planning,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,94.12
+40,32,What are the project requirements for KnowledgeVault?,medium,1,1.0,1.0,0.4,0.25,0.1875,0.4852,110.0
+40,33,Reminders for next week,medium,1,1.0,1.0,0.2,0.2,0.2,0.3392,115.3
+40,34,Questions to ask during the interview,easy,1,0.5,0.5,0.4,1.0,0.5,0.6509,103.19
+40,35,Brainstorming app names,easy,1,1.0,1.0,0.2,0.25,0.25,0.3904,96.75
+40,36,Redis and PostgreSQL reference notes,hard,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,102.71
+40,37,Message to send to Siddhant about backend,medium,1,1.0,1.0,0.6,1.0,0.7556,0.8855,100.18
+40,38,Study schedule for finals,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,86.55
+40,39,Sprint planning meeting summary,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,94.28
+40,40,Timeline for the beta launch,medium,0,0.0,0.0,0.0,0.0,0.0,0.0,122.4
+40,41,Don't forget to buy milk,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,120.25
+40,42,How does Redis eviction work?,easy,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,97.26
+40,43,Ideas for improving KnowledgeVault,medium,1,1.0,1.0,0.6,0.6,0.4533,0.6399,104.74
+40,44,Docker commands cheat sheet,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,97.61
+40,45,Tell Sid about the hackathon,easy,1,1.0,1.0,0.4,1.0,0.8333,0.9197,109.42
+40,46,System design interview study,medium,1,1.0,1.0,0.4,0.5,0.5,0.6367,96.96
+40,47,Weekly sync notes,easy,0,0.0,0.125,0.0,0.0,0.0,0.0,97.72
+40,48,Budget and monthly expenses,medium,1,1.0,1.0,0.2,0.5,0.5,0.6131,104.02
+40,49,Health checkup and appointments,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,107.94
+40,50,What are PostgreSQL index types?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,109.11
+80,1,What startup ideas do I have?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,109.8
+80,2,Show my AI research reading goals,easy,0,0.0,0.1429,0.0,0.0,0.0,0.0,104.99
+80,3,How can I improve my health?,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,115.4
+80,4,Show my finance reminders,easy,1,0.3333,0.3333,0.4,1.0,0.4167,0.5706,114.74
+80,5,Evaluation report work,medium,1,0.5,0.5,0.2,0.5,0.25,0.3869,117.6
+80,6,Markdown support,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,172.61
+80,7,Improve search latency,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,136.8
+80,8,Attachment upload feature,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,117.46
+80,9,Flutter improvements,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,123.48
+80,10,Networking concepts,easy,0,0.0,0.0588,0.0,0.0,0.0,0.0,105.27
+80,11,Object oriented programming revision,easy,0,0.0,0.0133,0.0,0.0,0.0,0.0,108.27
+80,12,Interview preparation,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,116.55
+80,13,Portfolio website,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,108.02
+80,14,Documentation tasks,easy,1,0.5,0.5,0.2,0.5,0.25,0.3869,115.29
+80,15,Deploy KnowledgeVault,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,133.98
+80,16,Update GitHub README,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,150.45
+80,17,Resume preparation,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,119.22
+80,18,Weekend trip,easy,1,0.5,0.5,0.2,1.0,0.5,0.6309,117.93
+80,19,Bills to pay,medium,1,1.0,1.0,0.4,1.0,0.8333,0.9197,315.24
+80,20,Doctor appointment,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,111.98
+80,21,Shopping list,medium,1,0.25,0.25,0.2,1.0,0.25,0.4307,115.12
+80,22,Things I need to tell Sid,easy,1,1.0,1.0,0.8,1.0,1.0,1.0,116.98
+80,23,Next meeting with the design team,medium,1,0.25,0.25,0.2,0.5,0.125,0.2641,152.55
+80,24,Project deadline for the alpha release,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,148.45
+80,25,Remind me to call mom,easy,1,0.3333,0.3333,0.2,0.5,0.1667,0.3066,136.77
+80,26,What is the theory of relativity?,easy,0,0.0,0.0154,0.0,0.0,0.0,0.0,131.58
+80,27,Ideas for my new blog post,medium,1,0.2,0.2,0.2,0.25,0.05,0.151,120.2
+80,28,How to set up a kubernetes cluster,hard,1,1.0,1.0,0.2,1.0,1.0,1.0,120.94
+80,29,Things to discuss with Sid at the next meeting,easy,1,1.0,1.0,0.6,0.75,0.75,0.8319,120.61
+80,30,Study materials for machine learning,medium,0,0.0,0.125,0.0,0.0,0.0,0.0,108.22
+80,31,Meeting notes from Q3 planning,easy,1,0.5,0.5,0.4,1.0,0.45,0.6241,108.94
+80,32,What are the project requirements for KnowledgeVault?,medium,1,1.0,1.0,0.4,0.25,0.1875,0.4852,126.91
+80,33,Reminders for next week,medium,1,1.0,1.0,0.2,0.2,0.2,0.3392,114.05
+80,34,Questions to ask during the interview,easy,1,0.5,0.5,0.4,1.0,0.5,0.6509,129.7
+80,35,Brainstorming app names,easy,1,1.0,1.0,0.2,0.25,0.25,0.3904,125.67
+80,36,Redis and PostgreSQL reference notes,hard,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,126.98
+80,37,Message to send to Siddhant about backend,medium,1,1.0,1.0,0.6,1.0,0.7556,0.8855,118.44
+80,38,Study schedule for finals,easy,0,0.0,0.0,0.0,0.0,0.0,0.0,110.45
+80,39,Sprint planning meeting summary,easy,1,1.0,1.0,0.2,0.5,0.5,0.6131,114.04
+80,40,Timeline for the beta launch,medium,0,0.0,0.0,0.0,0.0,0.0,0.0,128.34
+80,41,Don't forget to buy milk,easy,1,1.0,1.0,0.2,1.0,1.0,1.0,141.77
+80,42,How does Redis eviction work?,easy,1,1.0,1.0,0.4,0.6667,0.6667,0.7654,129.96
+80,43,Ideas for improving KnowledgeVault,medium,1,1.0,1.0,0.6,0.6,0.4533,0.6399,110.43
+80,44,Docker commands cheat sheet,easy,1,1.0,1.0,0.4,1.0,1.0,1.0,115.37
+80,45,Tell Sid about the hackathon,easy,1,1.0,1.0,0.4,1.0,0.8333,0.9197,119.17
+80,46,System design interview study,medium,1,1.0,1.0,0.4,0.5,0.5,0.6367,119.21
+80,47,Weekly sync notes,easy,0,0.0,0.125,0.0,0.0,0.0,0.0,120.69
+80,48,Budget and monthly expenses,medium,1,1.0,1.0,0.2,0.5,0.5,0.6131,131.74
+80,49,Health checkup and appointments,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,124.93
+80,50,What are PostgreSQL index types?,easy,1,1.0,1.0,0.2,0.3333,0.3333,0.4693,125.46

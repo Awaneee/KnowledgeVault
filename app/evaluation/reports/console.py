@@ -24,8 +24,13 @@ class ConsoleReport:
 
         print(f"Run ID        : {report.run_id}")
         print(f"Created At    : {report.created_at}")
+        if report.git_commit:
+            print(f"Git Commit    : {report.git_commit}")
+        print(f"Benchmark Ver : {report.benchmark_version}")
         print(f"Queries       : {report.total_queries}")
         print(f"K             : {report.k}")
+        if report.corpus_coverage > 0:
+            print(f"Corpus Cov.   : {report.corpus_coverage:.1%}")
 
         print()
 
@@ -62,10 +67,11 @@ class ConsoleReport:
                 f"{summary.hit_rate:.3f}"
             )
 
-            print(
-                f"  MRR           : "
-                f"{summary.mrr:.3f}"
-            )
+            ci = summary.mrr_ci
+            ci_str = f"  [{ci[0]:.3f}, {ci[1]:.3f}]" if ci else ""
+            print(f"  MRR           : {summary.mrr:.3f}{ci_str}")
+            print(f"  MAP@K         : {summary.mean_map_at_k:.3f}")
+            print(f"  R-Precision   : {summary.mean_r_precision:.3f}")
 
             print()
 

@@ -1,0 +1,6083 @@
+[
+  {
+    "id": "1",
+    "query": "What startup ideas do I have?",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      87
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "startup",
+      "idea"
+    ],
+    "graded_relevance": {
+      "85": 1,
+      "86": 1,
+      "87": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "2",
+    "query": "Show my AI research reading goals",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      65,
+      64,
+      66,
+      67
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "ai",
+      "study"
+    ],
+    "graded_relevance": {
+      "65": 1,
+      "64": 1,
+      "66": 1,
+      "67": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "3",
+    "query": "How can I improve my health?",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      83,
+      84
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "health"
+    ],
+    "graded_relevance": {
+      "83": 1,
+      "84": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "4",
+    "query": "Show my finance reminders",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      77,
+      82
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "finance"
+    ],
+    "graded_relevance": {
+      "77": 1,
+      "82": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "5",
+    "query": "Evaluation report work",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      90,
+      89
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "evaluation"
+    ],
+    "graded_relevance": {
+      "90": 1,
+      "89": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "6",
+    "query": "Markdown support",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "markdown"
+    ],
+    "graded_relevance": {
+      "72": 1,
+      "73": 1,
+      "74": 1,
+      "75": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "7",
+    "query": "Improve search latency",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      93,
+      89
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "search"
+    ],
+    "graded_relevance": {
+      "93": 1,
+      "89": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "8",
+    "query": "Attachment upload feature",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      94
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "attachments"
+    ],
+    "graded_relevance": {
+      "94": 2
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "9",
+    "query": "Flutter improvements",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      97,
+      98
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "flutter"
+    ],
+    "graded_relevance": {
+      "97": 1,
+      "98": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "10",
+    "query": "Networking concepts",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      71,
+      62
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "networking"
+    ],
+    "graded_relevance": {
+      "71": 1,
+      "62": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "11",
+    "query": "Object oriented programming revision",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      59,
+      60
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "oop"
+    ],
+    "graded_relevance": {
+      "59": 1,
+      "60": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "12",
+    "query": "Interview preparation",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      70,
+      99
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "interview"
+    ],
+    "graded_relevance": {
+      "70": 1,
+      "99": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "13",
+    "query": "Portfolio website",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      100,
+      97
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "portfolio"
+    ],
+    "graded_relevance": {
+      "100": 1,
+      "97": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "14",
+    "query": "Documentation tasks",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      96,
+      95
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "documentation"
+    ],
+    "graded_relevance": {
+      "96": 1,
+      "95": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "15",
+    "query": "Deploy KnowledgeVault",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      91
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "docker"
+    ],
+    "graded_relevance": {
+      "91": 2
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "16",
+    "query": "Update GitHub README",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      96
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "github"
+    ],
+    "graded_relevance": {
+      "96": 2
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "17",
+    "query": "Resume preparation",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      100
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "resume"
+    ],
+    "graded_relevance": {
+      "100": 2
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "18",
+    "query": "Weekend trip",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      81
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "travel"
+    ],
+    "graded_relevance": {
+      "81": 2
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "19",
+    "query": "Bills to pay",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      77,
+      82
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "bills"
+    ],
+    "graded_relevance": {
+      "77": 1,
+      "82": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "20",
+    "query": "Doctor appointment",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      78,
+      79
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health"
+    ],
+    "graded_relevance": {
+      "78": 1,
+      "79": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "21",
+    "query": "Shopping list",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      76
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "shopping"
+    ],
+    "graded_relevance": {
+      "76": 2
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "22",
+    "query": "Things I need to tell Sid",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid"
+    ],
+    "graded_relevance": {
+      "54": 1,
+      "55": 1,
+      "56": 1,
+      "57": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "23",
+    "query": "Next meeting with the design team",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      106,
+      107
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "meeting",
+      "design"
+    ],
+    "graded_relevance": {
+      "106": 1,
+      "107": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "24",
+    "query": "Project deadline for the alpha release",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      89,
+      91
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "project",
+      "deadline"
+    ],
+    "graded_relevance": {
+      "89": 1,
+      "91": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "25",
+    "query": "Remind me to call mom",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      78,
+      79
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminder"
+    ],
+    "graded_relevance": {
+      "78": 1,
+      "79": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "26",
+    "query": "What is the theory of relativity?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      103,
+      104,
+      105
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "physics"
+    ],
+    "graded_relevance": {
+      "103": 1,
+      "104": 1,
+      "105": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "27",
+    "query": "Ideas for my new blog post",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      87,
+      88
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "blog",
+      "idea"
+    ],
+    "graded_relevance": {
+      "85": 1,
+      "86": 1,
+      "87": 1,
+      "88": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "28",
+    "query": "How to set up a kubernetes cluster",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      62
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "kubernetes",
+      "devops"
+    ],
+    "graded_relevance": {
+      "62": 2
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "29",
+    "query": "Things to discuss with Sid at the next meeting",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid"
+    ],
+    "graded_relevance": {
+      "54": 1,
+      "55": 1,
+      "56": 1,
+      "57": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "30",
+    "query": "Study materials for machine learning",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      64,
+      65,
+      66,
+      67
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "ml",
+      "study"
+    ],
+    "graded_relevance": {
+      "64": 1,
+      "65": 1,
+      "66": 1,
+      "67": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "31",
+    "query": "Meeting notes from Q3 planning",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      106,
+      107
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting",
+      "q3"
+    ],
+    "graded_relevance": {
+      "106": 1,
+      "107": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "32",
+    "query": "What are the project requirements for KnowledgeVault?",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project"
+    ],
+    "graded_relevance": {
+      "89": 1,
+      "90": 1,
+      "91": 1,
+      "92": 1,
+      "93": 1,
+      "94": 1,
+      "95": 1,
+      "96": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "33",
+    "query": "Reminders for next week",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      76,
+      77,
+      78,
+      79,
+      80
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "reminder"
+    ],
+    "graded_relevance": {
+      "76": 1,
+      "77": 1,
+      "78": 1,
+      "79": 1,
+      "80": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "34",
+    "query": "Questions to ask during the interview",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      70,
+      99
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "interview"
+    ],
+    "graded_relevance": {
+      "70": 1,
+      "99": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "35",
+    "query": "Brainstorming app names",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      87,
+      88
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "idea",
+      "naming"
+    ],
+    "graded_relevance": {
+      "85": 1,
+      "86": 1,
+      "87": 1,
+      "88": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "36",
+    "query": "Redis and PostgreSQL reference notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      73,
+      74,
+      58
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "redis",
+      "postgres"
+    ],
+    "graded_relevance": {
+      "73": 1,
+      "74": 1,
+      "58": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "37",
+    "query": "Message to send to Siddhant about backend",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      56,
+      57,
+      54
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "siddhant",
+      "backend"
+    ],
+    "graded_relevance": {
+      "56": 1,
+      "57": 1,
+      "54": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "38",
+    "query": "Study schedule for finals",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      58,
+      59,
+      60,
+      61
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "study",
+      "schedule"
+    ],
+    "graded_relevance": {
+      "58": 1,
+      "59": 1,
+      "60": 1,
+      "61": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "39",
+    "query": "Sprint planning meeting summary",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      107,
+      106
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting",
+      "sprint"
+    ],
+    "graded_relevance": {
+      "107": 1,
+      "106": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "40",
+    "query": "Timeline for the beta launch",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      89,
+      91
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project",
+      "launch"
+    ],
+    "graded_relevance": {
+      "89": 1,
+      "91": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "41",
+    "query": "Don't forget to buy milk",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      76
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminder",
+      "shopping"
+    ],
+    "graded_relevance": {
+      "76": 2
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "42",
+    "query": "How does Redis eviction work?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      103,
+      73,
+      61
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "redis"
+    ],
+    "graded_relevance": {
+      "103": 1,
+      "73": 1,
+      "61": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "43",
+    "query": "Ideas for improving KnowledgeVault",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      86,
+      87,
+      88,
+      89,
+      90
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "knowledgevault",
+      "idea"
+    ],
+    "graded_relevance": {
+      "86": 1,
+      "87": 1,
+      "88": 1,
+      "89": 1,
+      "90": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "44",
+    "query": "Docker commands cheat sheet",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      72,
+      75
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "docker",
+      "cheatsheet"
+    ],
+    "graded_relevance": {
+      "72": 1,
+      "75": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "45",
+    "query": "Tell Sid about the hackathon",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      55,
+      54
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid",
+      "hackathon"
+    ],
+    "graded_relevance": {
+      "55": 1,
+      "54": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "46",
+    "query": "System design interview study",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      70,
+      99,
+      59,
+      60
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "interview",
+      "study"
+    ],
+    "graded_relevance": {
+      "70": 1,
+      "99": 1,
+      "59": 1,
+      "60": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "47",
+    "query": "Weekly sync notes",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      106,
+      107
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting",
+      "sync"
+    ],
+    "graded_relevance": {
+      "106": 1,
+      "107": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "48",
+    "query": "Budget and monthly expenses",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      82,
+      77
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "budget",
+      "expenses"
+    ],
+    "graded_relevance": {
+      "82": 1,
+      "77": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "49",
+    "query": "Health checkup and appointments",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      78,
+      79,
+      80
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health",
+      "appointment"
+    ],
+    "graded_relevance": {
+      "78": 1,
+      "79": 1,
+      "80": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "50",
+    "query": "What are PostgreSQL index types?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      104,
+      74,
+      58
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "postgres"
+    ],
+    "graded_relevance": {
+      "104": 1,
+      "74": 1,
+      "58": 1
+    },
+    "retrieval_challenge": null,
+    "labeling_notes": "Migrated from benchmark.json v1.0.0 (binary relevance). Single-note entries promoted to grade 2; multi-note entries set to grade 1 pending manual review of note content.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "108_tp_62f888",
+    "query": "What are useful Python tips and tricks I've learned?",
+    "expected_intent": "study",
+    "expected_category": "Study - Python",
+    "relevant_note_ids": [
+      108,
+      174,
+      177,
+      206,
+      232,
+      239,
+      272,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "python"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "108": 2,
+      "174": 1,
+      "177": 1,
+      "206": 1,
+      "232": 1,
+      "239": 1,
+      "272": 1,
+      "283": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "108_tp_89ce75",
+    "query": "Show my Python programming notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Python",
+    "relevant_note_ids": [
+      108,
+      174,
+      177,
+      206,
+      232,
+      239,
+      272,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "python"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "108": 2,
+      "174": 1,
+      "177": 1,
+      "206": 1,
+      "232": 1,
+      "239": 1,
+      "272": 1,
+      "283": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "170_tp_39fb15",
+    "query": "How does Python async programming work?",
+    "expected_intent": "study",
+    "expected_category": "Study - Python",
+    "relevant_note_ids": [
+      170,
+      283,
+      304,
+      359,
+      364,
+      372,
+      471,
+      661,
+      662,
+      663
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "python",
+      "async"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "170": 2,
+      "283": 1,
+      "304": 1,
+      "359": 1,
+      "364": 1,
+      "372": 1,
+      "471": 1,
+      "661": 1,
+      "662": 1,
+      "663": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "130_tp_e144a1",
+    "query": "What git commands and workflows have I noted?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Git",
+    "relevant_note_ids": [
+      130,
+      135,
+      144,
+      169,
+      229,
+      272,
+      317,
+      328,
+      366,
+      395
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "git"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "130": 2,
+      "135": 1,
+      "144": 1,
+      "169": 1,
+      "229": 1,
+      "272": 1,
+      "317": 1,
+      "328": 1,
+      "366": 1,
+      "395": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "130_tp_832398",
+    "query": "Git tips and tricks",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Git",
+    "relevant_note_ids": [
+      130,
+      135,
+      144,
+      169,
+      229,
+      272,
+      317,
+      328,
+      366,
+      395
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "git"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "130": 2,
+      "135": 1,
+      "144": 1,
+      "169": 1,
+      "229": 1,
+      "272": 1,
+      "317": 1,
+      "328": 1,
+      "366": 1,
+      "395": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "65_tp_3e802c",
+    "query": "What do I know about RAG systems?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      65,
+      114,
+      186,
+      197,
+      219,
+      222,
+      267,
+      296,
+      310,
+      376
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "rag",
+      "ai"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "65": 2,
+      "114": 1,
+      "186": 1,
+      "197": 1,
+      "219": 1,
+      "222": 1,
+      "267": 1,
+      "296": 1,
+      "310": 1,
+      "376": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "65_tp_034576",
+    "query": "Retrieval augmented generation notes",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      65,
+      114,
+      186,
+      197,
+      219,
+      222,
+      267,
+      296,
+      310,
+      376
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "rag"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "65": 2,
+      "114": 1,
+      "186": 1,
+      "197": 1,
+      "219": 1,
+      "222": 1,
+      "267": 1,
+      "296": 1,
+      "310": 1,
+      "376": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "168_tp_f44ea2",
+    "query": "Notes about embeddings and vector search",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      168,
+      183,
+      228,
+      289,
+      298,
+      323,
+      376,
+      486,
+      487,
+      523
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "embeddings",
+      "vectors"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "168": 2,
+      "183": 1,
+      "228": 1,
+      "289": 1,
+      "298": 1,
+      "323": 1,
+      "376": 1,
+      "486": 1,
+      "487": 1,
+      "523": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "60_tp_438fb0",
+    "query": "Large language model notes and findings",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      60,
+      119,
+      122,
+      136,
+      143,
+      186,
+      251,
+      268,
+      313,
+      329
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "llm",
+      "ai"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "60": 2,
+      "119": 1,
+      "122": 1,
+      "136": 1,
+      "143": 1,
+      "186": 1,
+      "251": 1,
+      "268": 1,
+      "313": 1,
+      "329": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "67_tp_248b82",
+    "query": "Notes about reranking in search systems",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      67,
+      119,
+      123,
+      176,
+      386,
+      648,
+      676,
+      776,
+      876,
+      976
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "reranking",
+      "search"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "67": 2,
+      "119": 1,
+      "123": 1,
+      "176": 1,
+      "386": 1,
+      "648": 1,
+      "676": 1,
+      "776": 1,
+      "876": 1,
+      "976": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "90_tp_bed875",
+    "query": "RAG and retrieval evaluation metrics",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      90,
+      119,
+      310,
+      402,
+      485,
+      487,
+      595
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "evaluation",
+      "metrics"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": {
+      "90": 2,
+      "119": 1,
+      "310": 1,
+      "402": 1,
+      "485": 1,
+      "487": 1,
+      "595": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "90_tp_c1f487",
+    "query": "How do I measure retrieval quality?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      90,
+      119,
+      210,
+      310,
+      402,
+      485,
+      487,
+      595
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "evaluation"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "90": 2,
+      "119": 1,
+      "210": 1,
+      "310": 1,
+      "402": 1,
+      "485": 1,
+      "487": 1,
+      "595": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "130_tp_d166fd",
+    "query": "Prompting techniques and tips",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      130,
+      191,
+      264,
+      268,
+      406,
+      436,
+      446,
+      456,
+      467,
+      493
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "prompting"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "130": 2,
+      "191": 1,
+      "264": 1,
+      "268": 1,
+      "406": 1,
+      "436": 1,
+      "446": 1,
+      "456": 1,
+      "467": 1,
+      "493": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "103_tp_bee00a",
+    "query": "Caching strategies and implementations",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      103,
+      124,
+      146,
+      237,
+      269,
+      275,
+      284,
+      295,
+      318,
+      336
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "caching"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "103": 2,
+      "124": 1,
+      "146": 1,
+      "237": 1,
+      "269": 1,
+      "275": 1,
+      "284": 1,
+      "295": 1,
+      "318": 1,
+      "336": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "71_tp_b1348d",
+    "query": "Message queue and event streaming notes",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      71,
+      102,
+      144,
+      174,
+      200,
+      218,
+      238,
+      269,
+      297,
+      304
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "kafka",
+      "queues"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "71": 2,
+      "102": 1,
+      "144": 1,
+      "174": 1,
+      "200": 1,
+      "218": 1,
+      "238": 1,
+      "269": 1,
+      "297": 1,
+      "304": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "70_tp_c5e045",
+    "query": "System design interview prep notes",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      70,
+      145,
+      255,
+      267,
+      305,
+      309,
+      334,
+      344,
+      346,
+      360
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "system_design",
+      "interview"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "70": 2,
+      "145": 1,
+      "255": 1,
+      "267": 1,
+      "305": 1,
+      "309": 1,
+      "334": 1,
+      "344": 1,
+      "346": 1,
+      "360": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "58_tp_257a95",
+    "query": "PostgreSQL database notes",
+    "expected_intent": "study",
+    "expected_category": "Study - PostgreSQL",
+    "relevant_note_ids": [
+      58,
+      66,
+      74,
+      104,
+      139,
+      144,
+      168,
+      175,
+      215,
+      267
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "postgresql"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "58": 2,
+      "66": 1,
+      "74": 1,
+      "104": 1,
+      "139": 1,
+      "144": 1,
+      "168": 1,
+      "175": 1,
+      "215": 1,
+      "267": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "61_tp_89afdd",
+    "query": "Redis usage and patterns",
+    "expected_intent": "study",
+    "expected_category": "Study - Redis",
+    "relevant_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      124,
+      146,
+      157,
+      174,
+      237,
+      246
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "redis"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "61": 2,
+      "73": 1,
+      "92": 1,
+      "103": 1,
+      "124": 1,
+      "146": 1,
+      "157": 1,
+      "174": 1,
+      "237": 1,
+      "246": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "72_tp_c8e7e1",
+    "query": "Docker and containerization notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Docker",
+    "relevant_note_ids": [
+      72,
+      75,
+      91,
+      105,
+      118,
+      138,
+      188,
+      192,
+      242,
+      295
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "docker"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "72": 2,
+      "75": 1,
+      "91": 1,
+      "105": 1,
+      "118": 1,
+      "138": 1,
+      "188": 1,
+      "192": 1,
+      "242": 1,
+      "295": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "72_tp_808bd0",
+    "query": "What Docker tips have I collected?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Docker",
+    "relevant_note_ids": [
+      72,
+      75,
+      91,
+      105,
+      118,
+      138,
+      188,
+      192,
+      242,
+      295
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "docker"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "72": 2,
+      "75": 1,
+      "91": 1,
+      "105": 1,
+      "118": 1,
+      "138": 1,
+      "188": 1,
+      "192": 1,
+      "242": 1,
+      "295": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "68_tp_d59df1",
+    "query": "FastAPI development notes",
+    "expected_intent": "study",
+    "expected_category": "Study - FastAPI",
+    "relevant_note_ids": [
+      68,
+      132,
+      145,
+      165,
+      167,
+      266,
+      272,
+      313,
+      350,
+      365
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "fastapi"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "68": 2,
+      "132": 1,
+      "145": 1,
+      "165": 1,
+      "167": 1,
+      "266": 1,
+      "272": 1,
+      "313": 1,
+      "350": 1,
+      "365": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "57_tp_c30342",
+    "query": "KnowledgeVault project notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96,
+      97,
+      107
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "project"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "57": 2,
+      "88": 1,
+      "89": 1,
+      "90": 1,
+      "91": 1,
+      "94": 1,
+      "95": 1,
+      "96": 1,
+      "97": 1,
+      "107": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "57_tp_5bc303",
+    "query": "What decisions have I made for the KnowledgeVault project?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      88,
+      89,
+      90,
+      91,
+      95,
+      96,
+      97
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project",
+      "architecture"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": {
+      "88": 2,
+      "89": 1,
+      "90": 1,
+      "91": 1,
+      "95": 1,
+      "96": 1,
+      "97": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "56_tp_7b886e",
+    "query": "What meetings have I had?",
+    "expected_intent": "event",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283,
+      304,
+      359
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meetings"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "56": 2,
+      "106": 1,
+      "107": 1,
+      "149": 1,
+      "170": 1,
+      "233": 1,
+      "251": 1,
+      "283": 1,
+      "304": 1,
+      "359": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "233_tp_b305bf",
+    "query": "What are my pending tasks and deadlines?",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      233
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "todo",
+      "deadlines"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "233": 2
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "78_tp_db66ee",
+    "query": "What health appointments do I have?",
+    "expected_intent": "reminder",
+    "expected_category": "Appointments",
+    "relevant_note_ids": [
+      78,
+      79,
+      109,
+      157,
+      201,
+      210,
+      212,
+      226,
+      231,
+      355
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "appointments",
+      "health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "78": 2,
+      "79": 1,
+      "109": 1,
+      "157": 1,
+      "201": 1,
+      "210": 1,
+      "212": 1,
+      "226": 1,
+      "231": 1,
+      "355": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "77_tp_c2ce55",
+    "query": "What payments and bills do I need to make?",
+    "expected_intent": "todo",
+    "expected_category": "Bills",
+    "relevant_note_ids": [
+      77,
+      120,
+      126,
+      128,
+      131,
+      137,
+      140,
+      144,
+      160,
+      162
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "bills",
+      "finance"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "77": 2,
+      "120": 1,
+      "126": 1,
+      "128": 1,
+      "131": 1,
+      "137": 1,
+      "140": 1,
+      "144": 1,
+      "160": 1,
+      "162": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "76_tp_d5a3f9",
+    "query": "What is on my shopping list?",
+    "expected_intent": "todo",
+    "expected_category": "Shopping",
+    "relevant_note_ids": [
+      76,
+      322
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "shopping",
+      "grocery"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "76": 2,
+      "322": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "55_tp_1c812c",
+    "query": "Show all my reminders",
+    "expected_intent": "reminder",
+    "expected_category": "Reminders",
+    "relevant_note_ids": [
+      55,
+      152,
+      212,
+      312,
+      542,
+      557
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminders"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "55": 2,
+      "152": 1,
+      "212": 1,
+      "312": 1,
+      "542": 1,
+      "557": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "82_tp_feed7d",
+    "query": "My budget and expense tracking notes",
+    "expected_intent": "todo",
+    "expected_category": "Finance",
+    "relevant_note_ids": [
+      82,
+      153,
+      202,
+      210,
+      216,
+      254,
+      281,
+      291,
+      331,
+      345
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "budget",
+      "finance"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "82": 2,
+      "153": 1,
+      "202": 1,
+      "210": 1,
+      "216": 1,
+      "254": 1,
+      "281": 1,
+      "291": 1,
+      "331": 1,
+      "345": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "81_tp_4afce2",
+    "query": "My travel plans and notes",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      81,
+      115,
+      126,
+      128,
+      130,
+      171,
+      175,
+      176,
+      178,
+      186
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "travel"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "81": 2,
+      "115": 1,
+      "126": 1,
+      "128": 1,
+      "130": 1,
+      "171": 1,
+      "175": 1,
+      "176": 1,
+      "178": 1,
+      "186": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "173_tp_d9566a",
+    "query": "Fitness and workout notes",
+    "expected_intent": "todo",
+    "expected_category": "Health",
+    "relevant_note_ids": [
+      173,
+      185,
+      202,
+      232,
+      246,
+      291,
+      317,
+      380,
+      392,
+      433
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "fitness",
+      "workout"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "173": 2,
+      "185": 1,
+      "202": 1,
+      "232": 1,
+      "246": 1,
+      "291": 1,
+      "317": 1,
+      "380": 1,
+      "392": 1,
+      "433": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "85_tp_6a3292",
+    "query": "My startup ideas and business notes",
+    "expected_intent": "idea",
+    "expected_category": "Ideas - Startups",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      120,
+      125,
+      128,
+      131,
+      134,
+      143,
+      157
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "startup"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "85": 2,
+      "86": 1,
+      "117": 1,
+      "120": 1,
+      "125": 1,
+      "128": 1,
+      "131": 1,
+      "134": 1,
+      "143": 1,
+      "157": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "85_tp_aeedec",
+    "query": "What business ideas have I documented?",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      120,
+      125,
+      128,
+      131,
+      134,
+      143,
+      157
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "startup",
+      "ideas"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "85": 2,
+      "86": 1,
+      "117": 1,
+      "120": 1,
+      "125": 1,
+      "128": 1,
+      "131": 1,
+      "134": 1,
+      "143": 1,
+      "157": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "54_tp_6e7d12",
+    "query": "Things I need to tell Sid",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220,
+      225,
+      247
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "54": 2,
+      "55": 1,
+      "56": 1,
+      "57": 1,
+      "117": 1,
+      "187": 1,
+      "203": 1,
+      "220": 1,
+      "225": 1,
+      "247": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "54_tp_68cb9e",
+    "query": "Things to discuss with Sid at the next meeting",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220,
+      225,
+      247
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "54": 2,
+      "55": 1,
+      "56": 1,
+      "57": 1,
+      "117": 1,
+      "187": 1,
+      "203": 1,
+      "220": 1,
+      "225": 1,
+      "247": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "54_tp_a4d45e",
+    "query": "Message to send to Siddhant about backend",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220,
+      225,
+      247
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "siddhant",
+      "backend"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "54": 2,
+      "55": 1,
+      "56": 1,
+      "57": 1,
+      "117": 1,
+      "187": 1,
+      "203": 1,
+      "220": 1,
+      "225": 1,
+      "247": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "518_tp_583ff7",
+    "query": "Reciprocal Rank Fusion",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      518,
+      718,
+      818,
+      918,
+      1018
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "rrf",
+      "exact"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": {
+      "518": 2,
+      "718": 1,
+      "818": 1,
+      "918": 1,
+      "1018": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "1024_tp_8759f9",
+    "query": "Redis vs Kafka — when to use each",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      1024,
+      771,
+      773,
+      520
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "redis",
+      "kafka"
+    ],
+    "retrieval_challenge": "comparison",
+    "graded_relevance": {
+      "1024": 2,
+      "771": 1,
+      "773": 1,
+      "520": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "108_tp_d16fba",
+    "query": "Resources for learning backend development",
+    "expected_intent": "study",
+    "expected_category": "Study - Backend",
+    "relevant_note_ids": [
+      132,
+      68,
+      165,
+      108,
+      206,
+      174,
+      177,
+      145
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "backend",
+      "learning"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "132": 1,
+      "68": 1,
+      "165": 1,
+      "108": 2,
+      "206": 1,
+      "174": 1,
+      "177": 1,
+      "145": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "0_tp_6cd1aa",
+    "query": "Notes about Fortran programming",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "fortran",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": {},
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "0_tp_b73b18",
+    "query": "My notes on ancient Roman history",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "history",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": {},
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "0_tp_fe75c4",
+    "query": "Cooking recipes I've saved",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "cooking",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": {},
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "1028_tp_65ec5f",
+    "query": "KnowledgeVault RAG pipeline decisions and findings",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      1030,
+      1032,
+      533
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "rag",
+      "project"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": {
+      "1030": 1,
+      "1032": 1,
+      "533": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "1028_tp_2e0731",
+    "query": "What benchmark results have I recorded for KnowledgeVault retrieval?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      1032,
+      523,
+      402
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "evaluation",
+      "project"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": {
+      "1032": 1,
+      "523": 1,
+      "402": 2
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "77_tp_d33a9c",
+    "query": "What have I been working on this month?",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      149
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "temporal"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": {
+      "149": 2
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "77_tp_c2c25c",
+    "query": "Recent notes and activities",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      149,
+      286
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "temporal"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": {
+      "149": 1,
+      "286": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "1026_tp_74f5bc",
+    "query": "My study notes on AI and machine learning",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      1026,
+      774,
+      1030,
+      510,
+      523,
+      268,
+      267,
+      782
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "study",
+      "ai"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": {
+      "1026": 2,
+      "774": 1,
+      "1030": 1,
+      "510": 1,
+      "523": 1,
+      "268": 1,
+      "267": 1,
+      "782": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "54_tp_636e21",
+    "query": "Messages I need to send Siddhant",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "54": 2,
+      "55": 1,
+      "56": 1,
+      "57": 1,
+      "117": 1,
+      "187": 1,
+      "203": 1,
+      "220": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "54_tp_d0b55d",
+    "query": "Pending conversations with Sid",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "54": 2,
+      "55": 1,
+      "56": 1,
+      "57": 1,
+      "117": 1,
+      "187": 1,
+      "203": 1,
+      "220": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "54_tp_e69fe7",
+    "query": "Notes about Sid and our project discussions",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sid"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "54": 2,
+      "55": 1,
+      "56": 1,
+      "57": 1,
+      "117": 1,
+      "187": 1,
+      "203": 1,
+      "220": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "85_tp_712892",
+    "query": "Business concepts I want to explore",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      131,
+      134,
+      143,
+      157,
+      166
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "startup",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "85": 2,
+      "86": 1,
+      "117": 1,
+      "131": 1,
+      "134": 1,
+      "143": 1,
+      "157": 1,
+      "166": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "85_tp_46bae2",
+    "query": "Product ideas I have noted down",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      131,
+      134,
+      143,
+      157,
+      166
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "idea",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "85": 2,
+      "86": 1,
+      "117": 1,
+      "131": 1,
+      "134": 1,
+      "143": 1,
+      "157": 1,
+      "166": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "85_tp_97280d",
+    "query": "Entrepreneurship and venture ideas",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      131,
+      134,
+      143,
+      157,
+      166
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "startup"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "85": 2,
+      "86": 1,
+      "117": 1,
+      "131": 1,
+      "134": 1,
+      "143": 1,
+      "157": 1,
+      "166": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "77_tp_c85047",
+    "query": "Outstanding financial obligations",
+    "expected_intent": "todo",
+    "expected_category": "Bills",
+    "relevant_note_ids": [
+      77,
+      120,
+      126,
+      128,
+      131,
+      137,
+      140,
+      144
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "bills",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "77": 2,
+      "120": 1,
+      "126": 1,
+      "128": 1,
+      "131": 1,
+      "137": 1,
+      "140": 1,
+      "144": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "77_tp_573aa5",
+    "query": "Payments I still need to make",
+    "expected_intent": "todo",
+    "expected_category": "Bills",
+    "relevant_note_ids": [
+      77,
+      120,
+      126,
+      128,
+      131,
+      137,
+      140,
+      144
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "bills"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "77": 2,
+      "120": 1,
+      "126": 1,
+      "128": 1,
+      "131": 1,
+      "137": 1,
+      "140": 1,
+      "144": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "77_tp_e477f7",
+    "query": "Monthly expenses and dues",
+    "expected_intent": "todo",
+    "expected_category": "Bills",
+    "relevant_note_ids": [
+      77,
+      120,
+      126,
+      128,
+      131,
+      137,
+      140,
+      144
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "finance"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "77": 2,
+      "120": 1,
+      "126": 1,
+      "128": 1,
+      "131": 1,
+      "137": 1,
+      "140": 1,
+      "144": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "78_tp_c31b3d",
+    "query": "Medical appointments on my calendar",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      78,
+      79,
+      109,
+      157,
+      201,
+      210,
+      212,
+      226
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "78": 2,
+      "79": 1,
+      "109": 1,
+      "157": 1,
+      "201": 1,
+      "210": 1,
+      "212": 1,
+      "226": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "78_tp_d52f8d",
+    "query": "Healthcare and wellness reminders",
+    "expected_intent": "reminder",
+    "expected_category": "Appointments",
+    "relevant_note_ids": [
+      78,
+      79,
+      109,
+      157,
+      201,
+      210,
+      212,
+      226
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "78": 2,
+      "79": 1,
+      "109": 1,
+      "157": 1,
+      "201": 1,
+      "210": 1,
+      "212": 1,
+      "226": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "61_tp_0bc3d9",
+    "query": "In-memory datastore behavior notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Redis",
+    "relevant_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      157,
+      174,
+      269,
+      303
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "redis",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "61": 2,
+      "73": 1,
+      "92": 1,
+      "103": 1,
+      "157": 1,
+      "174": 1,
+      "269": 1,
+      "303": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "61_tp_d58d06",
+    "query": "Cache eviction policy details",
+    "expected_intent": "study",
+    "expected_category": "Study - Redis",
+    "relevant_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      157,
+      174,
+      269,
+      303
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "redis"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "61": 2,
+      "73": 1,
+      "92": 1,
+      "103": 1,
+      "157": 1,
+      "174": 1,
+      "269": 1,
+      "303": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "56_tp_3888f9",
+    "query": "Team meetings I have attended",
+    "expected_intent": "event",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "56": 2,
+      "106": 1,
+      "107": 1,
+      "149": 1,
+      "170": 1,
+      "233": 1,
+      "251": 1,
+      "283": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "56_tp_b7d172",
+    "query": "Sprint retrospective and planning notes",
+    "expected_intent": "event",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "56": 2,
+      "106": 1,
+      "107": 1,
+      "149": 1,
+      "170": 1,
+      "233": 1,
+      "251": 1,
+      "283": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "56_tp_1162c8",
+    "query": "Sync notes with the team",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "56": 2,
+      "106": 1,
+      "107": 1,
+      "149": 1,
+      "170": 1,
+      "233": 1,
+      "251": 1,
+      "283": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "56_tp_59ba00",
+    "query": "Weekly standup summaries",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "56": 2,
+      "106": 1,
+      "107": 1,
+      "149": 1,
+      "170": 1,
+      "233": 1,
+      "251": 1,
+      "283": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "57_tp_d91b61",
+    "query": "KnowledgeVault project milestones and deliverables",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "57": 2,
+      "88": 1,
+      "89": 1,
+      "90": 1,
+      "91": 1,
+      "94": 1,
+      "95": 1,
+      "96": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "57_tp_92649a",
+    "query": "What is the architecture of my main project?",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      95,
+      96
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "project"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": {
+      "57": 1,
+      "88": 2,
+      "89": 1,
+      "90": 1,
+      "91": 1,
+      "95": 1,
+      "96": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "57_tp_74e120",
+    "query": "Current sprint goals for KnowledgeVault",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project",
+      "sprint"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "57": 2,
+      "88": 1,
+      "89": 1,
+      "90": 1,
+      "91": 1,
+      "94": 1,
+      "95": 1,
+      "96": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "175_tp_9c7eb5",
+    "query": "Capstone project tasks and status",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      175,
+      190,
+      199,
+      225,
+      233,
+      263,
+      285,
+      382
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "capstone",
+      "project"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "175": 2,
+      "190": 1,
+      "199": 1,
+      "225": 1,
+      "233": 1,
+      "263": 1,
+      "285": 1,
+      "382": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "175_tp_c51da4",
+    "query": "University project submission deadlines",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      175,
+      190,
+      199,
+      225,
+      233,
+      263,
+      285,
+      382
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "capstone"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "175": 2,
+      "190": 1,
+      "199": 1,
+      "225": 1,
+      "233": 1,
+      "263": 1,
+      "285": 1,
+      "382": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "113_tp_6bba32",
+    "query": "My personal reflections and journal entries",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      113,
+      149,
+      152,
+      162,
+      166,
+      191
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "journal"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "113": 2,
+      "149": 1,
+      "152": 1,
+      "162": 1,
+      "166": 1,
+      "191": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "113_tp_ff1a3d",
+    "query": "What did I realize recently?",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      113,
+      149,
+      152,
+      162,
+      166,
+      191
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "journal",
+      "reflection"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "113": 2,
+      "149": 1,
+      "152": 1,
+      "162": 1,
+      "166": 1,
+      "191": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "113_tp_be2de4",
+    "query": "Insights I've been writing down",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      113,
+      149,
+      152,
+      162,
+      166,
+      191
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "journal"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "113": 2,
+      "149": 1,
+      "152": 1,
+      "162": 1,
+      "166": 1,
+      "191": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "56_tp_f28e5b",
+    "query": "My career goals and direction notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      56,
+      61,
+      91,
+      96,
+      101,
+      106,
+      114,
+      155
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "career"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "56": 2,
+      "61": 1,
+      "91": 1,
+      "96": 1,
+      "101": 1,
+      "106": 1,
+      "114": 1,
+      "155": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "56_tp_e42aaa",
+    "query": "Long-term professional planning notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      56,
+      61,
+      91,
+      96,
+      101,
+      106,
+      114,
+      155
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "career"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "56": 2,
+      "61": 1,
+      "91": 1,
+      "96": 1,
+      "101": 1,
+      "106": 1,
+      "114": 1,
+      "155": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "85_tp_c33ed2",
+    "query": "Time management and focus techniques",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Productivity",
+    "relevant_note_ids": [
+      85,
+      199,
+      224,
+      240,
+      248,
+      286,
+      429,
+      453
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "productivity"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "85": 2,
+      "199": 1,
+      "224": 1,
+      "240": 1,
+      "248": 1,
+      "286": 1,
+      "429": 1,
+      "453": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "85_tp_a94724",
+    "query": "Notes on staying productive while studying",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Productivity",
+    "relevant_note_ids": [
+      85,
+      199,
+      224,
+      240,
+      248,
+      286,
+      429,
+      453
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "productivity"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "85": 2,
+      "199": 1,
+      "224": 1,
+      "240": 1,
+      "248": 1,
+      "286": 1,
+      "429": 1,
+      "453": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "68_tp_025916",
+    "query": "FastAPI route and dependency injection notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault Backend",
+    "relevant_note_ids": [
+      68,
+      120,
+      132,
+      145,
+      153,
+      165,
+      167,
+      169
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "fastapi"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "68": 2,
+      "120": 1,
+      "132": 1,
+      "145": 1,
+      "153": 1,
+      "165": 1,
+      "167": 1,
+      "169": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "68_tp_f99196",
+    "query": "Python web framework notes for FastAPI",
+    "expected_intent": "study",
+    "expected_category": "Study - FastAPI",
+    "relevant_note_ids": [
+      68,
+      120,
+      132,
+      145,
+      153,
+      165,
+      167,
+      169
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "fastapi"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "68": 2,
+      "120": 1,
+      "132": 1,
+      "145": 1,
+      "153": 1,
+      "165": 1,
+      "167": 1,
+      "169": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "68_tp_9b1c89",
+    "query": "API endpoint design patterns in FastAPI",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault Backend",
+    "relevant_note_ids": [
+      68,
+      120,
+      132,
+      145,
+      153,
+      165,
+      167,
+      169
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "fastapi",
+      "api"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "68": 2,
+      "120": 1,
+      "132": 1,
+      "145": 1,
+      "153": 1,
+      "165": 1,
+      "167": 1,
+      "169": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "55_tp_fbaf81",
+    "query": "SQLAlchemy ORM usage patterns",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault Backend",
+    "relevant_note_ids": [
+      55,
+      58,
+      69,
+      85,
+      98,
+      123,
+      129,
+      132
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sqlalchemy"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "55": 2,
+      "58": 1,
+      "69": 1,
+      "85": 1,
+      "98": 1,
+      "123": 1,
+      "129": 1,
+      "132": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "55_tp_e342eb",
+    "query": "Database session management in Python",
+    "expected_intent": "study",
+    "expected_category": "Study - FastAPI",
+    "relevant_note_ids": [
+      55,
+      58,
+      69,
+      85,
+      98,
+      123,
+      129,
+      132
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sqlalchemy",
+      "db"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "55": 2,
+      "58": 1,
+      "69": 1,
+      "85": 1,
+      "98": 1,
+      "123": 1,
+      "129": 1,
+      "132": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "55_tp_d34490",
+    "query": "How do I fix N+1 query problems?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      55,
+      58,
+      69,
+      85,
+      98,
+      123,
+      129,
+      132
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "sqlalchemy",
+      "n1"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "55": 2,
+      "58": 1,
+      "69": 1,
+      "85": 1,
+      "98": 1,
+      "123": 1,
+      "129": 1,
+      "132": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "66_tp_9be255",
+    "query": "pgvector setup and index configuration",
+    "expected_intent": "reference",
+    "expected_category": "Reference - PostgreSQL",
+    "relevant_note_ids": [
+      66,
+      168,
+      215,
+      298,
+      323,
+      337,
+      367,
+      500
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "pgvector",
+      "vector"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "66": 2,
+      "168": 1,
+      "215": 1,
+      "298": 1,
+      "323": 1,
+      "337": 1,
+      "367": 1,
+      "500": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "66_tp_72bd4f",
+    "query": "Vector similarity search configuration",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      66,
+      168,
+      215,
+      298,
+      323,
+      337,
+      367,
+      500
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "pgvector",
+      "vectors"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "66": 2,
+      "168": 1,
+      "215": 1,
+      "298": 1,
+      "323": 1,
+      "337": 1,
+      "367": 1,
+      "500": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "59_tp_a4350a",
+    "query": "Algorithm and data structure study notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Algorithms",
+    "relevant_note_ids": [
+      59,
+      60,
+      182,
+      204,
+      215,
+      224,
+      244,
+      247
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "algorithms",
+      "dsa"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "59": 2,
+      "60": 1,
+      "182": 1,
+      "204": 1,
+      "215": 1,
+      "224": 1,
+      "244": 1,
+      "247": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "59_tp_a3126e",
+    "query": "Competitive programming problem patterns",
+    "expected_intent": "study",
+    "expected_category": "Study - Algorithms",
+    "relevant_note_ids": [
+      59,
+      60,
+      182,
+      204,
+      215,
+      224,
+      244,
+      247
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "algorithms"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "59": 2,
+      "60": 1,
+      "182": 1,
+      "204": 1,
+      "215": 1,
+      "224": 1,
+      "244": 1,
+      "247": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "59_tp_fe7b32",
+    "query": "How do I solve graph traversal problems?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      59,
+      60,
+      182,
+      204,
+      215,
+      224,
+      244,
+      247
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "algorithms",
+      "graph"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "59": 2,
+      "60": 1,
+      "182": 1,
+      "204": 1,
+      "215": 1,
+      "224": 1,
+      "244": 1,
+      "247": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "59_tp_652a70",
+    "query": "Operating systems exam preparation notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Operating Systems",
+    "relevant_note_ids": [
+      59,
+      132,
+      141,
+      146,
+      174,
+      179,
+      203,
+      205
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "os",
+      "university"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "59": 2,
+      "132": 1,
+      "141": 1,
+      "146": 1,
+      "174": 1,
+      "179": 1,
+      "203": 1,
+      "205": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "59_tp_566c28",
+    "query": "CPU scheduling algorithms I need to know",
+    "expected_intent": "study",
+    "expected_category": "Study - Operating Systems",
+    "relevant_note_ids": [
+      59,
+      132,
+      141,
+      146,
+      174,
+      179,
+      203,
+      205
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "os"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "59": 2,
+      "132": 1,
+      "141": 1,
+      "146": 1,
+      "174": 1,
+      "179": 1,
+      "203": 1,
+      "205": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "75_tp_eae57f",
+    "query": "Computer networking concepts for university",
+    "expected_intent": "study",
+    "expected_category": "Study - Computer Networks",
+    "relevant_note_ids": [
+      75,
+      118,
+      159,
+      162,
+      168,
+      180,
+      237,
+      276
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "networking",
+      "university"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "75": 2,
+      "118": 1,
+      "159": 1,
+      "162": 1,
+      "168": 1,
+      "180": 1,
+      "237": 1,
+      "276": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "75_tp_ac0c4f",
+    "query": "TCP/IP and HTTP protocol notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Computer Networks",
+    "relevant_note_ids": [
+      75,
+      118,
+      159,
+      162,
+      168,
+      180,
+      237,
+      276
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "networking"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "75": 2,
+      "118": 1,
+      "159": 1,
+      "162": 1,
+      "168": 1,
+      "180": 1,
+      "237": 1,
+      "276": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "62_tp_d2020d",
+    "query": "Kubernetes cluster management notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Kubernetes",
+    "relevant_note_ids": [
+      62,
+      118,
+      181,
+      230,
+      383,
+      410,
+      419,
+      548
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "kubernetes"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "62": 2,
+      "118": 1,
+      "181": 1,
+      "230": 1,
+      "383": 1,
+      "410": 1,
+      "419": 1,
+      "548": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "62_tp_9d6d2c",
+    "query": "Container orchestration with K8s",
+    "expected_intent": "study",
+    "expected_category": "Study - Kubernetes",
+    "relevant_note_ids": [
+      62,
+      118,
+      181,
+      230,
+      383,
+      410,
+      419,
+      548
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "kubernetes"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "62": 2,
+      "118": 1,
+      "181": 1,
+      "230": 1,
+      "383": 1,
+      "410": 1,
+      "419": 1,
+      "548": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "63_tp_d8d22b",
+    "query": "Authentication and JWT token notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Security",
+    "relevant_note_ids": [
+      63,
+      129,
+      165,
+      189,
+      227,
+      244,
+      276,
+      287
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "auth",
+      "jwt"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "63": 2,
+      "129": 1,
+      "165": 1,
+      "189": 1,
+      "227": 1,
+      "244": 1,
+      "276": 1,
+      "287": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "63_tp_6690cb",
+    "query": "How does OAuth 2.0 work?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      63,
+      129,
+      165,
+      189,
+      227,
+      244,
+      276,
+      287
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "auth",
+      "oauth"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "63": 2,
+      "129": 1,
+      "165": 1,
+      "189": 1,
+      "227": 1,
+      "244": 1,
+      "276": 1,
+      "287": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "61_tp_217848",
+    "query": "What eviction policies does Redis support?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      124,
+      146,
+      157,
+      169
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "redis",
+      "eviction"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "61": 2,
+      "73": 1,
+      "92": 1,
+      "103": 1,
+      "124": 1,
+      "146": 1,
+      "157": 1,
+      "169": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "58_tp_3d1edd",
+    "query": "What types of indexes does PostgreSQL support?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      58,
+      66,
+      74,
+      104,
+      113,
+      114,
+      136,
+      139
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "postgres",
+      "index"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "58": 2,
+      "66": 1,
+      "74": 1,
+      "104": 1,
+      "113": 1,
+      "114": 1,
+      "136": 1,
+      "139": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "58_tp_7b89c1",
+    "query": "When should I use GIN vs B-tree indexes?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      58,
+      66,
+      74,
+      104,
+      139
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "postgres",
+      "index"
+    ],
+    "retrieval_challenge": "comparison",
+    "graded_relevance": {
+      "58": 2,
+      "66": 1,
+      "74": 1,
+      "104": 1,
+      "139": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "65_tp_d64f03",
+    "query": "How does retrieval augmented generation work?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      65,
+      114,
+      186,
+      197,
+      219,
+      222,
+      267,
+      296
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "rag",
+      "ai"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "65": 2,
+      "114": 1,
+      "186": 1,
+      "197": 1,
+      "219": 1,
+      "222": 1,
+      "267": 1,
+      "296": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "65_tp_0a59fb",
+    "query": "What are the steps in a RAG pipeline?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      65,
+      114,
+      186,
+      197,
+      219,
+      222,
+      267,
+      296
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "rag"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "65": 2,
+      "114": 1,
+      "186": 1,
+      "197": 1,
+      "219": 1,
+      "222": 1,
+      "267": 1,
+      "296": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "168_tp_cc9fa1",
+    "query": "How are text embeddings generated?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      168,
+      183,
+      228,
+      289,
+      298,
+      323,
+      376,
+      486
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "embeddings"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "168": 2,
+      "183": 1,
+      "228": 1,
+      "289": 1,
+      "298": 1,
+      "323": 1,
+      "376": 1,
+      "486": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "168_tp_df38ac",
+    "query": "What is the difference between semantic and keyword search?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      168,
+      183,
+      228,
+      289,
+      298,
+      323,
+      376,
+      486
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "embeddings",
+      "search"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "168": 2,
+      "183": 1,
+      "228": 1,
+      "289": 1,
+      "298": 1,
+      "323": 1,
+      "376": 1,
+      "486": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "184_tp_c5a4df",
+    "query": "What is due this week?",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      233,
+      368,
+      498
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "temporal",
+      "deadline"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": {
+      "233": 2,
+      "368": 1,
+      "498": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "184_tp_cf679c",
+    "query": "Upcoming deadlines and submission dates",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      233,
+      368,
+      498
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "temporal"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": {
+      "233": 2,
+      "368": 1,
+      "498": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "184_tp_96ea32",
+    "query": "Tasks I need to complete before month end",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      233,
+      368,
+      498
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "temporal"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": {
+      "233": 2,
+      "368": 1,
+      "498": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "78_tp_63adc1",
+    "query": "What appointments have I booked this month?",
+    "expected_intent": "reminder",
+    "expected_category": "Appointments",
+    "relevant_note_ids": [
+      78,
+      559
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "temporal",
+      "appointment"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": {
+      "78": 1,
+      "559": 2
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "78_tp_a0f1d8",
+    "query": "My upcoming travel and trip bookings",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      78,
+      81,
+      115
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "travel",
+      "temporal"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": {
+      "78": 2,
+      "81": 1,
+      "115": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "78_tp_219ffa",
+    "query": "Transport and accommodation I need to arrange",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      78,
+      81,
+      115,
+      126,
+      128,
+      130,
+      160,
+      171
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "travel"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "78": 2,
+      "81": 1,
+      "115": 1,
+      "126": 1,
+      "128": 1,
+      "130": 1,
+      "160": 1,
+      "171": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "103_tp_7520ad",
+    "query": "Redis vs PostgreSQL — when to use each for persistence?",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      103,
+      104,
+      73,
+      74,
+      58,
+      92,
+      61
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "redis",
+      "postgres"
+    ],
+    "retrieval_challenge": "comparison",
+    "graded_relevance": {
+      "103": 2,
+      "104": 1,
+      "73": 1,
+      "74": 1,
+      "58": 1,
+      "92": 1,
+      "61": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "72_tp_807260",
+    "query": "Docker vs Kubernetes — what is the difference?",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      118,
+      62,
+      383
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "docker",
+      "kubernetes"
+    ],
+    "retrieval_challenge": "comparison",
+    "graded_relevance": {
+      "118": 1,
+      "62": 1,
+      "383": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "65_tp_205f1c",
+    "query": "How do I decide between hybrid retrieval and cross-encoder reranking?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      67,
+      176,
+      119,
+      88,
+      123
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "rag",
+      "reranking"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": {
+      "67": 1,
+      "176": 1,
+      "119": 2,
+      "88": 1,
+      "123": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "89_tp_0f29db",
+    "query": "What have I documented about retrieval quality in KnowledgeVault?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      89,
+      485,
+      487,
+      402,
+      595,
+      88,
+      90
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "multi_hop",
+      "evaluation"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": {
+      "89": 2,
+      "485": 1,
+      "487": 1,
+      "402": 1,
+      "595": 1,
+      "88": 1,
+      "90": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29",
+    "reviewed_by_v2": "2026-07-31"
+  },
+  {
+    "id": "58_tp_32b5cf",
+    "query": "All my university and course study notes",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      58,
+      61,
+      62,
+      66,
+      69,
+      122,
+      130,
+      131
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "synthesis",
+      "study"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": {
+      "58": 2,
+      "61": 1,
+      "62": 1,
+      "66": 1,
+      "69": 1,
+      "122": 1,
+      "130": 1,
+      "131": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "85_tp_f46697",
+    "query": "All my brainstorming and ideation notes",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      143,
+      157,
+      178,
+      225,
+      240
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "synthesis",
+      "idea"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": {
+      "85": 2,
+      "86": 1,
+      "117": 1,
+      "143": 1,
+      "157": 1,
+      "178": 1,
+      "225": 1,
+      "240": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "72_tp_32bacd",
+    "query": "My technical reference cheat sheets",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      72,
+      73,
+      74,
+      75,
+      122,
+      135
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "synthesis",
+      "reference"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": {
+      "72": 2,
+      "73": 1,
+      "74": 1,
+      "75": 1,
+      "122": 1,
+      "135": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "54_tp_b42b02",
+    "query": "All my communication and message drafts",
+    "expected_intent": "communication",
+    "expected_category": "Communication",
+    "relevant_note_ids": [
+      54,
+      56,
+      57,
+      106,
+      132,
+      141
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "synthesis",
+      "communication"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": {
+      "54": 2,
+      "56": 1,
+      "57": 1,
+      "106": 1,
+      "132": 1,
+      "141": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "76_tp_c52e4b",
+    "query": "Errands I need to run today",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      76,
+      164,
+      190,
+      202,
+      286,
+      309,
+      322,
+      475
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "lexical_gap",
+      "shopping"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "76": 2,
+      "164": 1,
+      "190": 1,
+      "202": 1,
+      "286": 1,
+      "309": 1,
+      "322": 1,
+      "475": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "76_tp_c74a5f",
+    "query": "Things I need to pick up from the store",
+    "expected_intent": "todo",
+    "expected_category": "Shopping",
+    "relevant_note_ids": [
+      76,
+      164,
+      190,
+      202,
+      286,
+      309,
+      322,
+      475
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "shopping"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "76": 2,
+      "164": 1,
+      "190": 1,
+      "202": 1,
+      "286": 1,
+      "309": 1,
+      "322": 1,
+      "475": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "173_tp_f41c30",
+    "query": "Physical training and exercise plan",
+    "expected_intent": "todo",
+    "expected_category": "Health",
+    "relevant_note_ids": [
+      173,
+      202,
+      291,
+      317,
+      380,
+      621,
+      631,
+      680
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health",
+      "fitness"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "173": 2,
+      "202": 1,
+      "291": 1,
+      "317": 1,
+      "380": 1,
+      "621": 1,
+      "631": 1,
+      "680": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "173_tp_7bafaa",
+    "query": "How am I planning to stay healthy?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      173,
+      202,
+      291,
+      317,
+      380,
+      621,
+      631,
+      680
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "173": 2,
+      "202": 1,
+      "291": 1,
+      "317": 1,
+      "380": 1,
+      "621": 1,
+      "631": 1,
+      "680": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "82_tp_86df0e",
+    "query": "How much am I spending per month?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      82,
+      210,
+      216,
+      281,
+      331,
+      345,
+      407,
+      535
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "finance",
+      "budget"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "82": 2,
+      "210": 1,
+      "216": 1,
+      "281": 1,
+      "331": 1,
+      "345": 1,
+      "407": 1,
+      "535": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "82_tp_3665b0",
+    "query": "Personal finance tracking notes",
+    "expected_intent": "reference",
+    "expected_category": "Finance",
+    "relevant_note_ids": [
+      82,
+      210,
+      216,
+      281,
+      331,
+      345,
+      407,
+      535
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "finance"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "82": 2,
+      "210": 1,
+      "216": 1,
+      "281": 1,
+      "331": 1,
+      "345": 1,
+      "407": 1,
+      "535": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "246_tp_6ef122",
+    "query": "BRPOPLPUSH reliable queue implementation",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Redis",
+    "relevant_note_ids": [
+      246,
+      433,
+      643,
+      673,
+      684,
+      705,
+      773,
+      784
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "redis",
+      "exact_phrase"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": {
+      "246": 2,
+      "433": 1,
+      "643": 1,
+      "673": 1,
+      "684": 1,
+      "705": 1,
+      "773": 1,
+      "784": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "229_tp_454ff2",
+    "query": "ACID properties of databases",
+    "expected_intent": "study",
+    "expected_category": "Study - DBMS",
+    "relevant_note_ids": [
+      229,
+      690,
+      790,
+      890,
+      990,
+      1090
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "database",
+      "acid",
+      "exact_phrase"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": {
+      "229": 2,
+      "690": 1,
+      "790": 1,
+      "890": 1,
+      "990": 1,
+      "1090": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "518_tp_930ea0",
+    "query": "RRF score combination for hybrid search",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      518,
+      718,
+      818,
+      918,
+      1018
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "rag",
+      "rrf"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": {
+      "518": 2,
+      "718": 1,
+      "818": 1,
+      "918": 1,
+      "1018": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "215_tp_55df73",
+    "query": "HNSW approximate nearest neighbor algorithm",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      215,
+      430,
+      681,
+      781,
+      881,
+      981,
+      1081
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "vectors",
+      "hnsw"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": {
+      "215": 2,
+      "430": 1,
+      "681": 1,
+      "781": 1,
+      "881": 1,
+      "981": 1,
+      "1081": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "76_tp_5c724a",
+    "query": "What do I need to buy this weekend?",
+    "expected_intent": "todo",
+    "expected_category": "Shopping",
+    "relevant_note_ids": [
+      76,
+      164,
+      190,
+      202,
+      309,
+      322,
+      393,
+      475
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "shopping",
+      "reminder"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "76": 2,
+      "164": 1,
+      "190": 1,
+      "202": 1,
+      "309": 1,
+      "322": 1,
+      "393": 1,
+      "475": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "55_tp_3ff20c",
+    "query": "All my pending reminders and follow-ups",
+    "expected_intent": "reminder",
+    "expected_category": "Reminders",
+    "relevant_note_ids": [
+      55,
+      152,
+      212,
+      312,
+      542,
+      557
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminder"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "55": 2,
+      "152": 1,
+      "212": 1,
+      "312": 1,
+      "542": 1,
+      "557": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "55_tp_05e927",
+    "query": "What have I told myself not to forget?",
+    "expected_intent": "reminder",
+    "expected_category": "Reminders",
+    "relevant_note_ids": [
+      55,
+      152,
+      212,
+      312,
+      542,
+      557
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "reminder"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "55": 2,
+      "152": 1,
+      "212": 1,
+      "312": 1,
+      "542": 1,
+      "557": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "117_tp_44e6df",
+    "query": "LeetCode patterns and problem-solving techniques",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      117,
+      127,
+      187,
+      224,
+      271,
+      279,
+      282,
+      316
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "leetcode",
+      "interview"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "117": 2,
+      "127": 1,
+      "187": 1,
+      "224": 1,
+      "271": 1,
+      "279": 1,
+      "282": 1,
+      "316": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "117_tp_7bf7d7",
+    "query": "How do I approach dynamic programming questions?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      117,
+      127,
+      187,
+      224,
+      271,
+      279,
+      282,
+      316
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "dp",
+      "interview"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "117": 2,
+      "127": 1,
+      "187": 1,
+      "224": 1,
+      "271": 1,
+      "279": 1,
+      "282": 1,
+      "316": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "70_tp_39b780",
+    "query": "System design concepts I need to review",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      70,
+      145,
+      267,
+      305,
+      309,
+      334,
+      344,
+      346
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "system_design"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "70": 2,
+      "145": 1,
+      "267": 1,
+      "305": 1,
+      "309": 1,
+      "334": 1,
+      "344": 1,
+      "346": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "70_tp_c6f60d",
+    "query": "How do I design a scalable URL shortener?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      70,
+      145,
+      267,
+      305,
+      309,
+      334,
+      344,
+      346
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "system_design",
+      "interview"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "70": 2,
+      "145": 1,
+      "267": 1,
+      "305": 1,
+      "309": 1,
+      "334": 1,
+      "344": 1,
+      "346": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "83_tp_a140c7",
+    "query": "Behavioral interview story preparation",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      83,
+      85,
+      113,
+      114,
+      116,
+      131,
+      134,
+      135
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "behavioral",
+      "interview"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "83": 2,
+      "85": 1,
+      "113": 1,
+      "114": 1,
+      "116": 1,
+      "131": 1,
+      "134": 1,
+      "135": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "100_tp_b51d58",
+    "query": "Resume writing tips and improvement notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Career",
+    "relevant_note_ids": [
+      100,
+      142,
+      185,
+      270,
+      523,
+      525
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "resume"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "100": 2,
+      "142": 1,
+      "185": 1,
+      "270": 1,
+      "523": 1,
+      "525": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "100_tp_fcae97",
+    "query": "How should I write my software engineer resume?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      100,
+      142,
+      185,
+      270,
+      523,
+      525
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "resume",
+      "career"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "100": 2,
+      "142": 1,
+      "185": 1,
+      "270": 1,
+      "523": 1,
+      "525": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "78_tp_c601ae",
+    "query": "Books I am reading or have read recently",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Books",
+    "relevant_note_ids": [
+      78,
+      128,
+      155,
+      160,
+      172,
+      182,
+      194,
+      234
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "books"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "78": 2,
+      "128": 1,
+      "155": 1,
+      "160": 1,
+      "172": 1,
+      "182": 1,
+      "194": 1,
+      "234": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "78_tp_0f3259",
+    "query": "Reading list and book notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Books",
+    "relevant_note_ids": [
+      78,
+      128,
+      155,
+      160,
+      172,
+      182,
+      194,
+      234
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "books"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "78": 2,
+      "128": 1,
+      "155": 1,
+      "160": 1,
+      "172": 1,
+      "182": 1,
+      "194": 1,
+      "234": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "304_tp_4994bc",
+    "query": "Habit formation notes from Atomic Habits",
+    "expected_intent": "study",
+    "expected_category": "Study - Books",
+    "relevant_note_ids": [
+      304,
+      317,
+      482,
+      557,
+      631,
+      634,
+      698,
+      734
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "books",
+      "habits"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "304": 2,
+      "317": 1,
+      "482": 1,
+      "557": 1,
+      "631": 1,
+      "634": 1,
+      "698": 1,
+      "734": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "304_tp_37657b",
+    "query": "Summary of James Clear's key ideas on habits",
+    "expected_intent": "study",
+    "expected_category": "Study - Books",
+    "relevant_note_ids": [
+      304,
+      317,
+      482,
+      557,
+      631,
+      634,
+      698,
+      734
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "books"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "304": 2,
+      "317": 1,
+      "482": 1,
+      "557": 1,
+      "631": 1,
+      "634": 1,
+      "698": 1,
+      "734": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "71_tp_43e20b",
+    "query": "Online courses and tutorials I am taking",
+    "expected_intent": "study",
+    "expected_category": "Study - Learning",
+    "relevant_note_ids": [
+      71,
+      145,
+      231,
+      266,
+      357,
+      394,
+      417,
+      471
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "courses"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "71": 2,
+      "145": 1,
+      "231": 1,
+      "266": 1,
+      "357": 1,
+      "394": 1,
+      "417": 1,
+      "471": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "133_tp_12eb56",
+    "query": "Sleep improvement techniques and tips",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      133,
+      136,
+      202,
+      288,
+      348,
+      380,
+      434,
+      538
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sleep",
+      "health"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": {
+      "133": 2,
+      "136": 1,
+      "202": 1,
+      "288": 1,
+      "348": 1,
+      "380": 1,
+      "434": 1,
+      "538": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "133_tp_2c6b3e",
+    "query": "How can I improve my sleep quality?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      133,
+      136,
+      202,
+      288,
+      348,
+      380,
+      434,
+      538
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sleep"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "133": 2,
+      "136": 1,
+      "202": 1,
+      "288": 1,
+      "348": 1,
+      "380": 1,
+      "434": 1,
+      "538": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "109_tp_f852f9",
+    "query": "Nutrition and supplement tracking notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      109,
+      133,
+      226,
+      286
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "nutrition"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "109": 2,
+      "133": 1,
+      "226": 1,
+      "286": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "109_tp_f444c2",
+    "query": "What supplements should I be taking?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      109,
+      133,
+      226,
+      286
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "nutrition",
+      "health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "109": 2,
+      "133": 1,
+      "226": 1,
+      "286": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "152_tp_3685ae",
+    "query": "Mental health practices and coping strategies",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      152,
+      288,
+      317,
+      472,
+      575
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "mental_health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "152": 2,
+      "288": 1,
+      "317": 1,
+      "472": 1,
+      "575": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "152_tp_5aba2a",
+    "query": "My notes on managing stress and anxiety",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      152,
+      288,
+      317,
+      472,
+      575
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "mental_health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "152": 2,
+      "288": 1,
+      "317": 1,
+      "472": 1,
+      "575": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "117_tp_eab7a3",
+    "query": "Plans for open source and public building",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      117,
+      141,
+      395,
+      400,
+      440,
+      453,
+      522,
+      554
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "open_source",
+      "blog"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": {
+      "117": 2,
+      "141": 1,
+      "395": 1,
+      "400": 1,
+      "440": 1,
+      "453": 1,
+      "522": 1,
+      "554": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "117_tp_594cbf",
+    "query": "Notes on growing my developer presence online",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      117,
+      141,
+      395,
+      400,
+      440,
+      453,
+      522,
+      554
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "personal_brand"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": {
+      "117": 2,
+      "141": 1,
+      "395": 1,
+      "400": 1,
+      "440": 1,
+      "453": 1,
+      "522": 1,
+      "554": 1
+    },
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "0_tp_07253f",
+    "query": "Fortran programming and legacy code notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "fortran",
+      "cobol",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": {},
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "0_tp_13e990",
+    "query": "Ancient history and archaeology notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "history",
+      "archaeology",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": {},
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "0_tp_f9589c",
+    "query": "Wine and cheese pairing recommendations",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "food",
+      "wine",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": {},
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "0_tp_5abfd7",
+    "query": "Piano lessons and music theory notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "music",
+      "piano",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": {},
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  },
+  {
+    "id": "0_tp_4fb99e",
+    "query": "Gardening and plant care notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "gardening",
+      "plants",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": {},
+    "labeling_notes": "auto-approved: grade 2 = primary/sole relevant note, grade 1 = secondary relevant note. Pending human verification.",
+    "labeled_at": "2026-07-29"
+  }
+]

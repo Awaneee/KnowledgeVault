@@ -31,5 +31,7 @@ class AskResponse(BaseModel):
     retrieval_only: bool = False
     status: str = "ok"
     provider: str | None = None
+    # True when the cross-encoder reranker was applied to this response.
+    reranked: bool = False
     # Populated only when retrieval_only=True.
     chunks: list[ChunkPreview] = []

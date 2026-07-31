@@ -97,6 +97,24 @@ class Settings(BaseSettings):
     CATEGORY_CONSERVATIVE_GENERAL_ENABLED: bool = True
 
     # ------------------------------------------------------------------
+    # Cross-encoder reranking
+    # ------------------------------------------------------------------
+    # Feature flag — default OFF.
+    # Cross-encoder (ms-marco-MiniLM-L-6-v2) hurts on personal-note corpus;
+    # see ADR-003 addendum and evaluation_results/sprint2b_fresh/.
+    # The expanded candidate pool (RERANK_CANDIDATE_POOL=20) does help —
+    # set RERANKING_ENABLED=True only after a domain-appropriate model is found.
+    RERANKING_ENABLED: bool = False
+    # Hugging Face model ID for the cross-encoder.
+    RERANK_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    # Stage-1 candidate pool size when reranking is active.
+    RERANK_CANDIDATE_POOL: int = 20
+    # Number of candidates kept after reranking (top-K passed to context).
+    RERANK_TOP_K: int = 8
+    # TTL (seconds) for reranker score cache entries.
+    RERANK_CACHE_TTL_SECONDS: int = 900
+
+    # ------------------------------------------------------------------
     # Ask / cache
     # ------------------------------------------------------------------
     # TTL (seconds) for cached Ask responses. Set to 0 to disable caching.

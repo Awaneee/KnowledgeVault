@@ -19,7 +19,7 @@ from pydantic import BaseModel, Field
 
 class RetrievalStrategy(str, Enum):
     """
-    The three retrieval paths that exist in production:
+    Retrieval paths available in the evaluation framework.
 
     SEMANTIC  → EmbeddingService.search_notes()
                 Returns note-level results ranked by pgvector similarity.
@@ -31,10 +31,16 @@ class RetrievalStrategy(str, Enum):
     HYBRID    → ChunkService.retrieve_hybrid()
                 Intent-first then semantic fill, operating at chunk level.
                 This is what AskService.ask() uses.
+
+    RERANK    → ChunkService.retrieve_hybrid() + RerankingService.rerank()
+                Hybrid retrieval with a cross-encoder second-pass reranker.
+                Requires RERANKING_ENABLED=True; degrades to HYBRID ordering
+                if the model is unavailable.
     """
     SEMANTIC = "semantic"
     INTENT = "intent"
     HYBRID = "hybrid"
+    RERANK = "rerank"
 
 
 # ---------------------------------------------------------------------------
@@ -58,8 +64,20 @@ class BenchmarkQuery(BaseModel):
     relevant_note_ids
                     Ordered list of note IDs (notes.id integers) that
                     constitute a correct answer. Order matters for MRR.
+                    Must be the union of all non-zero-grade IDs when
+                    graded_relevance is provided.
     difficulty      "easy" | "medium" | "hard"
     tags            Free-form tags for filtering benchmark subsets.
+    graded_relevance
+                    Optional three-tier relevance grades. Keys are note_id
+                    strings (JSON limitation), values are 0=not_relevant,
+                    1=partially_relevant, 2=highly_relevant.  When None,
+                    binary relevance is assumed (all listed IDs grade = 1).
+    retrieval_challenge
+                    Axis-A tag from the query taxonomy (e.g. "lexical",
+                    "semantic", "multi_hop", "negative", "exact_phrase").
+    labeling_notes  Free-text explanation of relevance decisions.
+    labeled_at      ISO date when this entry was last human-reviewed.
     """
     id: str
     query: str
@@ -68,6 +86,11 @@ class BenchmarkQuery(BaseModel):
     relevant_note_ids: list[int] = Field(default_factory=list)
     difficulty: str = "medium"
     tags: list[str] = Field(default_factory=list)
+    # Sprint 2-C additions — all optional for backward compatibility
+    graded_relevance: Optional[dict[str, int]] = None
+    retrieval_challenge: Optional[str] = None
+    labeling_notes: str = ""
+    labeled_at: Optional[str] = None
 
 
 # ---------------------------------------------------------------------------
@@ -125,6 +148,12 @@ class QueryEvaluation(BaseModel):
     hit: bool                   # True if ≥1 relevant note in top-K
     reciprocal_rank: float      # 1/rank of first relevant note, 0 if none
 
+    # Sprint 2-C additions — all have defaults for backward compatibility
+    map_at_k: float = 0.0           # Mean Average Precision at K
+    r_precision: float = 0.0        # Precision at R = |relevant|
+    ndcg_at_k_graded: Optional[float] = None  # nDCG with grade_map (None when unavailable)
+    retrieval_challenge: Optional[str] = None  # Axis-A tag from query taxonomy
+
     # Classification metrics (may be None for SEMANTIC which has no intent)
     intent_correct: Optional[bool] = None
     category_correct: Optional[bool] = None
@@ -171,15 +200,58 @@ class StrategySummary(BaseModel):
     median_latency_ms: float
     p95_latency_ms: float
     max_latency_ms: float
-    
+
     avg_end_to_end_latency_ms: Optional[float] = None
 
     error_count: int = 0
+
+    # Sprint 2-C additions — all have defaults for backward compatibility
+    mean_map_at_k: float = 0.0
+    mean_r_precision: float = 0.0
+    mean_ndcg_at_k_graded: Optional[float] = None
+
+    # Bootstrap 95% confidence intervals on key metrics
+    mrr_ci: Optional[tuple[float, float]] = None
+    hit_rate_ci: Optional[tuple[float, float]] = None
+    precision_ci: Optional[tuple[float, float]] = None
+    recall_ci: Optional[tuple[float, float]] = None
+
+    # Per-difficulty breakdown: {"easy": {"mrr": ..., "hit_rate": ...}, ...}
+    difficulty_breakdown: dict[str, dict[str, float]] = Field(default_factory=dict)
+    # Per-intent breakdown: {"todo": {"mrr": ..., "hit_rate": ...}, ...}
+    intent_breakdown: dict[str, dict[str, float]] = Field(default_factory=dict)
 
 
 # ---------------------------------------------------------------------------
 # Full evaluation report
 # ---------------------------------------------------------------------------
+
+class StrategyComparison(BaseModel):
+    """
+    Statistical comparison between two retrieval strategies (candidate vs. baseline).
+    """
+    baseline: RetrievalStrategy
+    candidate: RetrievalStrategy
+
+    # MRR comparison
+    delta_mrr: float                # mean_mrr(candidate) - mean_mrr(baseline)
+    mrr_ci_lower: float             # 95% bootstrap CI lower bound on delta
+    mrr_ci_upper: float             # 95% bootstrap CI upper bound on delta
+    mrr_significant: bool           # CI excludes zero
+
+    # Hit-rate comparison
+    delta_hit_rate: float
+    hit_rate_ci_lower: float
+    hit_rate_ci_upper: float
+    hit_rate_significant: bool
+
+    # Wilcoxon p-values (None when scipy unavailable or all differences are zero)
+    p_value_mrr: Optional[float] = None
+    p_value_hit_rate: Optional[float] = None
+
+    # Human-readable verdict
+    recommendation: str  # "approve_candidate" | "keep_baseline" | "insufficient_evidence"
+
 
 class EvaluationReport(BaseModel):
     """
@@ -195,3 +267,9 @@ class EvaluationReport(BaseModel):
 
     # All individual query evaluations (useful for CSV export / debugging)
     evaluations: list[QueryEvaluation]
+
+    # Sprint 2-C additions — all have defaults for backward compatibility
+    benchmark_version: str = "unknown"
+    corpus_coverage: float = 0.0  # fraction of corpus notes retrieved across all queries
+    git_commit: Optional[str] = None
+    strategy_comparisons: list[StrategyComparison] = Field(default_factory=list)

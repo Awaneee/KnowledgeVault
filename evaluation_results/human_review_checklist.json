@@ -1,0 +1,847 @@
+[
+  {
+    "id": "72_tp_807260",
+    "query": "Docker vs Kubernetes \u2014 what is the difference?",
+    "difficulty": "hard",
+    "retrieval_challenge": "comparison",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [comparison]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "65_tp_205f1c",
+    "query": "How do I decide between hybrid retrieval and cross-encoder reranking?",
+    "difficulty": "hard",
+    "retrieval_challenge": "multi_hop",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [multi_hop]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "1028_tp_65ec5f",
+    "query": "KnowledgeVault RAG pipeline decisions and findings",
+    "difficulty": "hard",
+    "retrieval_challenge": "multi_hop",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [multi_hop]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "78_tp_a0f1d8",
+    "query": "My upcoming travel and trip bookings",
+    "difficulty": "easy",
+    "retrieval_challenge": "temporal",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [temporal]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "90_tp_bed875",
+    "query": "RAG and retrieval evaluation metrics",
+    "difficulty": "hard",
+    "retrieval_challenge": "multi_hop",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [multi_hop]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "77_tp_c2c25c",
+    "query": "Recent notes and activities",
+    "difficulty": "hard",
+    "retrieval_challenge": "temporal",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [temporal]: keyword-union cannot verify that each of the 6 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "1024_tp_8759f9",
+    "query": "Redis vs Kafka \u2014 when to use each",
+    "difficulty": "hard",
+    "retrieval_challenge": "comparison",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [comparison]: keyword-union cannot verify that each of the 6 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "103_tp_7520ad",
+    "query": "Redis vs PostgreSQL \u2014 when to use each for persistence?",
+    "difficulty": "hard",
+    "retrieval_challenge": "comparison",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [comparison]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "184_tp_96ea32",
+    "query": "Tasks I need to complete before month end",
+    "difficulty": "hard",
+    "retrieval_challenge": "temporal",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [temporal]: keyword-union cannot verify that each of the 6 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "184_tp_cf679c",
+    "query": "Upcoming deadlines and submission dates",
+    "difficulty": "medium",
+    "retrieval_challenge": "temporal",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [temporal]: keyword-union cannot verify that each of the 6 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "78_tp_63adc1",
+    "query": "What appointments have I booked this month?",
+    "difficulty": "medium",
+    "retrieval_challenge": "temporal",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [temporal]: keyword-union cannot verify that each of the 6 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "1028_tp_2e0731",
+    "query": "What benchmark results have I recorded for KnowledgeVault retrieval?",
+    "difficulty": "hard",
+    "retrieval_challenge": "multi_hop",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [multi_hop]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "57_tp_5bc303",
+    "query": "What decisions have I made for the KnowledgeVault project?",
+    "difficulty": "medium",
+    "retrieval_challenge": "multi_hop",
+    "n_relevant": 10,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [multi_hop]: keyword-union cannot verify that each of the 10 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "77_tp_d33a9c",
+    "query": "What have I been working on this month?",
+    "difficulty": "hard",
+    "retrieval_challenge": "temporal",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [temporal]: keyword-union cannot verify that each of the 6 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "89_tp_0f29db",
+    "query": "What have I documented about retrieval quality in KnowledgeVault?",
+    "difficulty": "hard",
+    "retrieval_challenge": "multi_hop",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [multi_hop]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "184_tp_c5a4df",
+    "query": "What is due this week?",
+    "difficulty": "medium",
+    "retrieval_challenge": "temporal",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [temporal]: keyword-union cannot verify that each of the 6 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "57_tp_92649a",
+    "query": "What is the architecture of my main project?",
+    "difficulty": "hard",
+    "retrieval_challenge": "multi_hop",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [multi_hop]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "58_tp_7b89c1",
+    "query": "When should I use GIN vs B-tree indexes?",
+    "difficulty": "hard",
+    "retrieval_challenge": "comparison",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "HIGH",
+    "reasons": [
+      "SET_UNCERTAIN [comparison]: keyword-union cannot verify that each of the 8 notes actually addresses this query"
+    ]
+  },
+  {
+    "id": "85_tp_f46697",
+    "query": "All my brainstorming and ideation notes",
+    "difficulty": "easy",
+    "retrieval_challenge": "synthesis",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "MEDIUM",
+    "reasons": [
+      "SET_POSSIBLY_WRONG [synthesis]: 'all my X notes' \u2014 completeness of the {n_ids}-note relevant set is unknown; spot-check 2\u20133 notes"
+    ]
+  },
+  {
+    "id": "54_tp_b42b02",
+    "query": "All my communication and message drafts",
+    "difficulty": "easy",
+    "retrieval_challenge": "synthesis",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "MEDIUM",
+    "reasons": [
+      "SET_POSSIBLY_WRONG [synthesis]: 'all my X notes' \u2014 completeness of the {n_ids}-note relevant set is unknown; spot-check 2\u20133 notes"
+    ]
+  },
+  {
+    "id": "58_tp_32b5cf",
+    "query": "All my university and course study notes",
+    "difficulty": "easy",
+    "retrieval_challenge": "synthesis",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "MEDIUM",
+    "reasons": [
+      "SET_POSSIBLY_WRONG [synthesis]: 'all my X notes' \u2014 completeness of the {n_ids}-note relevant set is unknown; spot-check 2\u20133 notes"
+    ]
+  },
+  {
+    "id": "1026_tp_74f5bc",
+    "query": "My study notes on AI and machine learning",
+    "difficulty": "easy",
+    "retrieval_challenge": "synthesis",
+    "n_relevant": 8,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "MEDIUM",
+    "reasons": [
+      "SET_POSSIBLY_WRONG [synthesis]: 'all my X notes' \u2014 completeness of the {n_ids}-note relevant set is unknown; spot-check 2\u20133 notes"
+    ]
+  },
+  {
+    "id": "72_tp_32bacd",
+    "query": "My technical reference cheat sheets",
+    "difficulty": "easy",
+    "retrieval_challenge": "synthesis",
+    "n_relevant": 6,
+    "has_grade2": true,
+    "is_old_migration": false,
+    "priority": "MEDIUM",
+    "reasons": [
+      "SET_POSSIBLY_WRONG [synthesis]: 'all my X notes' \u2014 completeness of the {n_ids}-note relevant set is unknown; spot-check 2\u20133 notes"
+    ]
+  },
+  {
+    "id": "19",
+    "query": "Bills to pay",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "35",
+    "query": "Brainstorming app names",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "48",
+    "query": "Budget and monthly expenses",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "44",
+    "query": "Docker commands cheat sheet",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "20",
+    "query": "Doctor appointment",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "14",
+    "query": "Documentation tasks",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "5",
+    "query": "Evaluation report work",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "9",
+    "query": "Flutter improvements",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "49",
+    "query": "Health checkup and appointments",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 3,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 3 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "3",
+    "query": "How can I improve my health?",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "42",
+    "query": "How does Redis eviction work?",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 3,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 3 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "43",
+    "query": "Ideas for improving KnowledgeVault",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 5,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 5 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "27",
+    "query": "Ideas for my new blog post",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "7",
+    "query": "Improve search latency",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "12",
+    "query": "Interview preparation",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "6",
+    "query": "Markdown support",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "31",
+    "query": "Meeting notes from Q3 planning",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "37",
+    "query": "Message to send to Siddhant about backend",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 3,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 3 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "10",
+    "query": "Networking concepts",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "23",
+    "query": "Next meeting with the design team",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "11",
+    "query": "Object oriented programming revision",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "13",
+    "query": "Portfolio website",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "24",
+    "query": "Project deadline for the alpha release",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "34",
+    "query": "Questions to ask during the interview",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "36",
+    "query": "Redis and PostgreSQL reference notes",
+    "difficulty": "hard",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 3,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 3 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "25",
+    "query": "Remind me to call mom",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "33",
+    "query": "Reminders for next week",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 5,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 5 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "2",
+    "query": "Show my AI research reading goals",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "4",
+    "query": "Show my finance reminders",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "39",
+    "query": "Sprint planning meeting summary",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "30",
+    "query": "Study materials for machine learning",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "38",
+    "query": "Study schedule for finals",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "46",
+    "query": "System design interview study",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "45",
+    "query": "Tell Sid about the hackathon",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "22",
+    "query": "Things I need to tell Sid",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "29",
+    "query": "Things to discuss with Sid at the next meeting",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 4,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 4 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "40",
+    "query": "Timeline for the beta launch",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "47",
+    "query": "Weekly sync notes",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 2,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 2 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "50",
+    "query": "What are PostgreSQL index types?",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 3,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 3 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "32",
+    "query": "What are the project requirements for KnowledgeVault?",
+    "difficulty": "medium",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 8,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 8 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "26",
+    "query": "What is the theory of relativity?",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 3,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 3 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  },
+  {
+    "id": "1",
+    "query": "What startup ideas do I have?",
+    "difficulty": "easy",
+    "retrieval_challenge": "untagged",
+    "n_relevant": 3,
+    "has_grade2": false,
+    "is_old_migration": true,
+    "priority": "LOW",
+    "reasons": [
+      "GRADE_ONLY: 3 notes all at grade-1; pick the primary answer note (promote to grade-2)"
+    ]
+  }
+]

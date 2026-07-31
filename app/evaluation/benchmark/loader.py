@@ -35,3 +35,24 @@ class BenchmarkLoader:
             BenchmarkQuery.model_validate(item)
             for item in raw
         ]
+
+    @staticmethod
+    def load_manifest(benchmark_path: str | Path) -> dict:
+        """
+        Load the benchmark manifest (version metadata) from manifest.json
+        in the same directory as the benchmark file.
+
+        Returns an empty dict with version "unknown" when no manifest exists.
+        """
+        benchmark_path = Path(benchmark_path)
+        manifest_path = benchmark_path.parent / "manifest.json"
+
+        if not manifest_path.exists():
+            return {"version": "unknown"}
+
+        try:
+            with open(manifest_path, "r", encoding="utf-8") as f:
+                manifest = json.load(f)
+            return manifest
+        except Exception:
+            return {"version": "unknown"}

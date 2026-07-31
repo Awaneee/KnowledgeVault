@@ -1,0 +1,2548 @@
+[
+  {
+    "id": "54_tp_636e21",
+    "query": "Messages I need to send Siddhant",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "54_tp_d0b55d",
+    "query": "Pending conversations with Sid",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "sid",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "54_tp_e69fe7",
+    "query": "Notes about Sid and our project discussions",
+    "expected_intent": "communication",
+    "expected_category": "Things to Tell Sid",
+    "relevant_note_ids": [
+      54,
+      55,
+      56,
+      57,
+      117,
+      187,
+      203,
+      220
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sid"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "85_tp_712892",
+    "query": "Business concepts I want to explore",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      131,
+      134,
+      143,
+      157,
+      166
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "startup",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "85_tp_46bae2",
+    "query": "Product ideas I have noted down",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      131,
+      134,
+      143,
+      157,
+      166
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "idea",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "85_tp_97280d",
+    "query": "Entrepreneurship and venture ideas",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      131,
+      134,
+      143,
+      157,
+      166
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "startup"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "77_tp_c85047",
+    "query": "Outstanding financial obligations",
+    "expected_intent": "todo",
+    "expected_category": "Bills",
+    "relevant_note_ids": [
+      77,
+      120,
+      126,
+      128,
+      131,
+      137,
+      140,
+      144
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "bills",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "77_tp_573aa5",
+    "query": "Payments I still need to make",
+    "expected_intent": "todo",
+    "expected_category": "Bills",
+    "relevant_note_ids": [
+      77,
+      120,
+      126,
+      128,
+      131,
+      137,
+      140,
+      144
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "bills"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "77_tp_e477f7",
+    "query": "Monthly expenses and dues",
+    "expected_intent": "todo",
+    "expected_category": "Bills",
+    "relevant_note_ids": [
+      77,
+      120,
+      126,
+      128,
+      131,
+      137,
+      140,
+      144
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "finance"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "78_tp_c31b3d",
+    "query": "Medical appointments on my calendar",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      78,
+      79,
+      109,
+      157,
+      201,
+      210,
+      212,
+      226
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "78_tp_d52f8d",
+    "query": "Healthcare and wellness reminders",
+    "expected_intent": "reminder",
+    "expected_category": "Appointments",
+    "relevant_note_ids": [
+      78,
+      79,
+      109,
+      157,
+      201,
+      210,
+      212,
+      226
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "61_tp_0bc3d9",
+    "query": "In-memory datastore behavior notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Redis",
+    "relevant_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      157,
+      174,
+      269,
+      303
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "redis",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "61_tp_d58d06",
+    "query": "Cache eviction policy details",
+    "expected_intent": "study",
+    "expected_category": "Study - Redis",
+    "relevant_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      157,
+      174,
+      269,
+      303
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "redis"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "56_tp_3888f9",
+    "query": "Team meetings I have attended",
+    "expected_intent": "event",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting",
+      "paraphrase"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "56_tp_b7d172",
+    "query": "Sprint retrospective and planning notes",
+    "expected_intent": "event",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "56_tp_1162c8",
+    "query": "Sync notes with the team",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "56_tp_59ba00",
+    "query": "Weekly standup summaries",
+    "expected_intent": "meeting",
+    "expected_category": "Meetings",
+    "relevant_note_ids": [
+      56,
+      106,
+      107,
+      149,
+      170,
+      233,
+      251,
+      283
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "meeting"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "57_tp_d91b61",
+    "query": "KnowledgeVault project milestones and deliverables",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "57_tp_92649a",
+    "query": "What is the architecture of my main project?",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "project"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "57_tp_74e120",
+    "query": "Current sprint goals for KnowledgeVault",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      57,
+      88,
+      89,
+      90,
+      91,
+      94,
+      95,
+      96
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "project",
+      "sprint"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "175_tp_9c7eb5",
+    "query": "Capstone project tasks and status",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      175,
+      190,
+      199,
+      225,
+      233,
+      263,
+      285,
+      382
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "capstone",
+      "project"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "175_tp_c51da4",
+    "query": "University project submission deadlines",
+    "expected_intent": "project",
+    "expected_category": "Projects",
+    "relevant_note_ids": [
+      175,
+      190,
+      199,
+      225,
+      233,
+      263,
+      285,
+      382
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "capstone"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "113_tp_6bba32",
+    "query": "My personal reflections and journal entries",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      113,
+      149,
+      152,
+      162,
+      166,
+      191
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "journal"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "113_tp_ff1a3d",
+    "query": "What did I realize recently?",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      113,
+      149,
+      152,
+      162,
+      166,
+      191
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "journal",
+      "reflection"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "113_tp_be2de4",
+    "query": "Insights I've been writing down",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      113,
+      149,
+      152,
+      162,
+      166,
+      191
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "journal"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "56_tp_f28e5b",
+    "query": "My career goals and direction notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      56,
+      61,
+      91,
+      96,
+      101,
+      106,
+      114,
+      155
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "career"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "56_tp_e42aaa",
+    "query": "Long-term professional planning notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [
+      56,
+      61,
+      91,
+      96,
+      101,
+      106,
+      114,
+      155
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "career"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "85_tp_c33ed2",
+    "query": "Time management and focus techniques",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Productivity",
+    "relevant_note_ids": [
+      85,
+      199,
+      224,
+      240,
+      248,
+      286,
+      429,
+      453
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "productivity"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "85_tp_a94724",
+    "query": "Notes on staying productive while studying",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Productivity",
+    "relevant_note_ids": [
+      85,
+      199,
+      224,
+      240,
+      248,
+      286,
+      429,
+      453
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "productivity"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "68_tp_025916",
+    "query": "FastAPI route and dependency injection notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault Backend",
+    "relevant_note_ids": [
+      68,
+      120,
+      132,
+      145,
+      153,
+      165,
+      167,
+      169
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "fastapi"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "68_tp_f99196",
+    "query": "Python web framework notes for FastAPI",
+    "expected_intent": "study",
+    "expected_category": "Study - FastAPI",
+    "relevant_note_ids": [
+      68,
+      120,
+      132,
+      145,
+      153,
+      165,
+      167,
+      169
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "fastapi"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "68_tp_9b1c89",
+    "query": "API endpoint design patterns in FastAPI",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault Backend",
+    "relevant_note_ids": [
+      68,
+      120,
+      132,
+      145,
+      153,
+      165,
+      167,
+      169
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "fastapi",
+      "api"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "55_tp_fbaf81",
+    "query": "SQLAlchemy ORM usage patterns",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault Backend",
+    "relevant_note_ids": [
+      55,
+      58,
+      69,
+      85,
+      98,
+      123,
+      129,
+      132
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sqlalchemy"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "55_tp_e342eb",
+    "query": "Database session management in Python",
+    "expected_intent": "study",
+    "expected_category": "Study - FastAPI",
+    "relevant_note_ids": [
+      55,
+      58,
+      69,
+      85,
+      98,
+      123,
+      129,
+      132
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sqlalchemy",
+      "db"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "55_tp_d34490",
+    "query": "How do I fix N+1 query problems?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      55,
+      58,
+      69,
+      85,
+      98,
+      123,
+      129,
+      132
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "sqlalchemy",
+      "n1"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "66_tp_9be255",
+    "query": "pgvector setup and index configuration",
+    "expected_intent": "reference",
+    "expected_category": "Reference - PostgreSQL",
+    "relevant_note_ids": [
+      66,
+      168,
+      215,
+      298,
+      323,
+      337,
+      367,
+      500
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "pgvector",
+      "vector"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "66_tp_72bd4f",
+    "query": "Vector similarity search configuration",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      66,
+      168,
+      215,
+      298,
+      323,
+      337,
+      367,
+      500
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "pgvector",
+      "vectors"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "59_tp_a4350a",
+    "query": "Algorithm and data structure study notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Algorithms",
+    "relevant_note_ids": [
+      59,
+      60,
+      182,
+      204,
+      215,
+      224,
+      244,
+      247
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "algorithms",
+      "dsa"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "59_tp_a3126e",
+    "query": "Competitive programming problem patterns",
+    "expected_intent": "study",
+    "expected_category": "Study - Algorithms",
+    "relevant_note_ids": [
+      59,
+      60,
+      182,
+      204,
+      215,
+      224,
+      244,
+      247
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "algorithms"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "59_tp_fe7b32",
+    "query": "How do I solve graph traversal problems?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      59,
+      60,
+      182,
+      204,
+      215,
+      224,
+      244,
+      247
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "algorithms",
+      "graph"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "59_tp_652a70",
+    "query": "Operating systems exam preparation notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Operating Systems",
+    "relevant_note_ids": [
+      59,
+      132,
+      141,
+      146,
+      174,
+      179,
+      203,
+      205
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "os",
+      "university"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "59_tp_566c28",
+    "query": "CPU scheduling algorithms I need to know",
+    "expected_intent": "study",
+    "expected_category": "Study - Operating Systems",
+    "relevant_note_ids": [
+      59,
+      132,
+      141,
+      146,
+      174,
+      179,
+      203,
+      205
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "os"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "75_tp_eae57f",
+    "query": "Computer networking concepts for university",
+    "expected_intent": "study",
+    "expected_category": "Study - Computer Networks",
+    "relevant_note_ids": [
+      75,
+      118,
+      159,
+      162,
+      168,
+      180,
+      237,
+      276
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "networking",
+      "university"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "75_tp_ac0c4f",
+    "query": "TCP/IP and HTTP protocol notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Computer Networks",
+    "relevant_note_ids": [
+      75,
+      118,
+      159,
+      162,
+      168,
+      180,
+      237,
+      276
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "networking"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "62_tp_d2020d",
+    "query": "Kubernetes cluster management notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Kubernetes",
+    "relevant_note_ids": [
+      62,
+      118,
+      181,
+      230,
+      383,
+      410,
+      419,
+      548
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "kubernetes"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "62_tp_9d6d2c",
+    "query": "Container orchestration with K8s",
+    "expected_intent": "study",
+    "expected_category": "Study - Kubernetes",
+    "relevant_note_ids": [
+      62,
+      118,
+      181,
+      230,
+      383,
+      410,
+      419,
+      548
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "kubernetes"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "63_tp_d8d22b",
+    "query": "Authentication and JWT token notes",
+    "expected_intent": "study",
+    "expected_category": "Study - Security",
+    "relevant_note_ids": [
+      63,
+      129,
+      165,
+      189,
+      227,
+      244,
+      276,
+      287
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "auth",
+      "jwt"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "63_tp_6690cb",
+    "query": "How does OAuth 2.0 work?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      63,
+      129,
+      165,
+      189,
+      227,
+      244,
+      276,
+      287
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "auth",
+      "oauth"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "61_tp_217848",
+    "query": "What eviction policies does Redis support?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      61,
+      73,
+      92,
+      103,
+      124,
+      146,
+      157,
+      169
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "redis",
+      "eviction"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "58_tp_3d1edd",
+    "query": "What types of indexes does PostgreSQL support?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      58,
+      66,
+      74,
+      104,
+      113,
+      114,
+      136,
+      139
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "postgres",
+      "index"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "58_tp_7b89c1",
+    "query": "When should I use GIN vs B-tree indexes?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      58,
+      66,
+      74,
+      104,
+      113,
+      114,
+      136,
+      139
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "postgres",
+      "index"
+    ],
+    "retrieval_challenge": "comparison",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "65_tp_d64f03",
+    "query": "How does retrieval augmented generation work?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      65,
+      114,
+      186,
+      197,
+      219,
+      222,
+      267,
+      296
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "rag",
+      "ai"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "65_tp_0a59fb",
+    "query": "What are the steps in a RAG pipeline?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      65,
+      114,
+      186,
+      197,
+      219,
+      222,
+      267,
+      296
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "rag"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "168_tp_cc9fa1",
+    "query": "How are text embeddings generated?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      168,
+      183,
+      228,
+      289,
+      298,
+      323,
+      376,
+      486
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "embeddings"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "168_tp_df38ac",
+    "query": "What is the difference between semantic and keyword search?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      168,
+      183,
+      228,
+      289,
+      298,
+      323,
+      376,
+      486
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "embeddings",
+      "search"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "184_tp_c5a4df",
+    "query": "What is due this week?",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      184,
+      233,
+      368,
+      469,
+      478,
+      498
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "temporal",
+      "deadline"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "184_tp_cf679c",
+    "query": "Upcoming deadlines and submission dates",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      184,
+      233,
+      368,
+      469,
+      478,
+      498
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "temporal"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "184_tp_96ea32",
+    "query": "Tasks I need to complete before month end",
+    "expected_intent": "todo",
+    "expected_category": "Tasks",
+    "relevant_note_ids": [
+      184,
+      233,
+      368,
+      469,
+      478,
+      498
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "temporal"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "78_tp_63adc1",
+    "query": "What appointments have I booked this month?",
+    "expected_intent": "reminder",
+    "expected_category": "Appointments",
+    "relevant_note_ids": [
+      78,
+      109,
+      128,
+      226,
+      231,
+      559
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "temporal",
+      "appointment"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "78_tp_a0f1d8",
+    "query": "My upcoming travel and trip bookings",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      78,
+      81,
+      115,
+      126,
+      128,
+      130,
+      160,
+      171
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "travel",
+      "temporal"
+    ],
+    "retrieval_challenge": "temporal",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "78_tp_219ffa",
+    "query": "Transport and accommodation I need to arrange",
+    "expected_intent": "todo",
+    "expected_category": "Travel",
+    "relevant_note_ids": [
+      78,
+      81,
+      115,
+      126,
+      128,
+      130,
+      160,
+      171
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "travel"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "103_tp_7520ad",
+    "query": "Redis vs PostgreSQL \u2014 when to use each for persistence?",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      103,
+      104,
+      73,
+      74,
+      139,
+      58,
+      92,
+      61
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "redis",
+      "postgres"
+    ],
+    "retrieval_challenge": "comparison",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "72_tp_807260",
+    "query": "Docker vs Kubernetes \u2014 what is the difference?",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      72,
+      105,
+      75,
+      118,
+      410,
+      91,
+      62,
+      383
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "docker",
+      "kubernetes"
+    ],
+    "retrieval_challenge": "comparison",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "65_tp_205f1c",
+    "query": "How do I decide between hybrid retrieval and cross-encoder reranking?",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      65,
+      67,
+      176,
+      114,
+      86,
+      119,
+      88,
+      123
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "comparison",
+      "rag",
+      "reranking"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "89_tp_0f29db",
+    "query": "What have I documented about retrieval quality in KnowledgeVault?",
+    "expected_intent": "reference",
+    "expected_category": "Reference - KnowledgeVault",
+    "relevant_note_ids": [
+      89,
+      485,
+      487,
+      402,
+      595,
+      88,
+      57,
+      90
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "multi_hop",
+      "evaluation"
+    ],
+    "retrieval_challenge": "multi_hop",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "58_tp_32b5cf",
+    "query": "All my university and course study notes",
+    "expected_intent": "study",
+    "expected_category": "Study Tasks",
+    "relevant_note_ids": [
+      58,
+      61,
+      62,
+      66,
+      69,
+      122,
+      130,
+      131
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "synthesis",
+      "study"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "85_tp_f46697",
+    "query": "All my brainstorming and ideation notes",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      85,
+      86,
+      117,
+      143,
+      157,
+      178,
+      225,
+      240
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "synthesis",
+      "idea"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "72_tp_32bacd",
+    "query": "My technical reference cheat sheets",
+    "expected_intent": "reference",
+    "expected_category": "Reference Notes",
+    "relevant_note_ids": [
+      72,
+      73,
+      74,
+      75,
+      122,
+      135
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "synthesis",
+      "reference"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "54_tp_b42b02",
+    "query": "All my communication and message drafts",
+    "expected_intent": "communication",
+    "expected_category": "Communication",
+    "relevant_note_ids": [
+      54,
+      56,
+      57,
+      106,
+      132,
+      141
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "synthesis",
+      "communication"
+    ],
+    "retrieval_challenge": "synthesis",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "76_tp_c52e4b",
+    "query": "Errands I need to run today",
+    "expected_intent": "todo",
+    "expected_category": "To Do",
+    "relevant_note_ids": [
+      76,
+      164,
+      190,
+      202,
+      286,
+      309,
+      322,
+      475
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "lexical_gap",
+      "shopping"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "76_tp_c74a5f",
+    "query": "Things I need to pick up from the store",
+    "expected_intent": "todo",
+    "expected_category": "Shopping",
+    "relevant_note_ids": [
+      76,
+      164,
+      190,
+      202,
+      286,
+      309,
+      322,
+      475
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "shopping"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "173_tp_f41c30",
+    "query": "Physical training and exercise plan",
+    "expected_intent": "todo",
+    "expected_category": "Health",
+    "relevant_note_ids": [
+      173,
+      202,
+      291,
+      317,
+      380,
+      621,
+      631,
+      680
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "health",
+      "fitness"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "173_tp_7bafaa",
+    "query": "How am I planning to stay healthy?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      173,
+      202,
+      291,
+      317,
+      380,
+      621,
+      631,
+      680
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "82_tp_86df0e",
+    "query": "How much am I spending per month?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      82,
+      210,
+      216,
+      281,
+      331,
+      345,
+      407,
+      535
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "finance",
+      "budget"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "82_tp_3665b0",
+    "query": "Personal finance tracking notes",
+    "expected_intent": "reference",
+    "expected_category": "Finance",
+    "relevant_note_ids": [
+      82,
+      210,
+      216,
+      281,
+      331,
+      345,
+      407,
+      535
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "finance"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "246_tp_6ef122",
+    "query": "BRPOPLPUSH reliable queue implementation",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Redis",
+    "relevant_note_ids": [
+      246,
+      433,
+      643,
+      673,
+      684,
+      705,
+      773,
+      784
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "redis",
+      "exact_phrase"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "229_tp_454ff2",
+    "query": "ACID properties of databases",
+    "expected_intent": "study",
+    "expected_category": "Study - DBMS",
+    "relevant_note_ids": [
+      229,
+      690,
+      790,
+      890,
+      990,
+      1090
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "database",
+      "acid",
+      "exact_phrase"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "518_tp_930ea0",
+    "query": "RRF score combination for hybrid search",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      518,
+      718,
+      818,
+      918,
+      1018
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "rag",
+      "rrf"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "215_tp_55df73",
+    "query": "HNSW approximate nearest neighbor algorithm",
+    "expected_intent": "study",
+    "expected_category": "Study - AI",
+    "relevant_note_ids": [
+      215,
+      430,
+      681,
+      781,
+      881,
+      981,
+      1081
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "vectors",
+      "hnsw"
+    ],
+    "retrieval_challenge": "exact_phrase",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "76_tp_5c724a",
+    "query": "What do I need to buy this weekend?",
+    "expected_intent": "todo",
+    "expected_category": "Shopping",
+    "relevant_note_ids": [
+      76,
+      164,
+      190,
+      202,
+      309,
+      322,
+      393,
+      475
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "shopping",
+      "reminder"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "55_tp_3ff20c",
+    "query": "All my pending reminders and follow-ups",
+    "expected_intent": "reminder",
+    "expected_category": "Reminders",
+    "relevant_note_ids": [
+      55,
+      152,
+      212,
+      312,
+      542,
+      557
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "reminder"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "55_tp_05e927",
+    "query": "What have I told myself not to forget?",
+    "expected_intent": "reminder",
+    "expected_category": "Reminders",
+    "relevant_note_ids": [
+      55,
+      152,
+      212,
+      312,
+      542,
+      557
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "reminder"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "117_tp_44e6df",
+    "query": "LeetCode patterns and problem-solving techniques",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      117,
+      127,
+      187,
+      224,
+      271,
+      279,
+      282,
+      316
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "leetcode",
+      "interview"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "117_tp_7bf7d7",
+    "query": "How do I approach dynamic programming questions?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      117,
+      127,
+      187,
+      224,
+      271,
+      279,
+      282,
+      316
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "dp",
+      "interview"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "70_tp_39b780",
+    "query": "System design concepts I need to review",
+    "expected_intent": "study",
+    "expected_category": "Study - System Design",
+    "relevant_note_ids": [
+      70,
+      145,
+      267,
+      305,
+      309,
+      334,
+      344,
+      346
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "system_design"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "70_tp_c6f60d",
+    "query": "How do I design a scalable URL shortener?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      70,
+      145,
+      267,
+      305,
+      309,
+      334,
+      344,
+      346
+    ],
+    "difficulty": "hard",
+    "tags": [
+      "system_design",
+      "interview"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "83_tp_a140c7",
+    "query": "Behavioral interview story preparation",
+    "expected_intent": "study",
+    "expected_category": "Study - Interview Prep",
+    "relevant_note_ids": [
+      83,
+      85,
+      113,
+      114,
+      116,
+      131,
+      134,
+      135
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "behavioral",
+      "interview"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "100_tp_b51d58",
+    "query": "Resume writing tips and improvement notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Career",
+    "relevant_note_ids": [
+      100,
+      142,
+      185,
+      270,
+      523,
+      525
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "resume"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "100_tp_fcae97",
+    "query": "How should I write my software engineer resume?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      100,
+      142,
+      185,
+      270,
+      523,
+      525
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "resume",
+      "career"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "78_tp_c601ae",
+    "query": "Books I am reading or have read recently",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Books",
+    "relevant_note_ids": [
+      78,
+      128,
+      155,
+      160,
+      172,
+      182,
+      194,
+      234
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "books"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "78_tp_0f3259",
+    "query": "Reading list and book notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Books",
+    "relevant_note_ids": [
+      78,
+      128,
+      155,
+      160,
+      172,
+      182,
+      194,
+      234
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "books"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "304_tp_4994bc",
+    "query": "Habit formation notes from Atomic Habits",
+    "expected_intent": "study",
+    "expected_category": "Study - Books",
+    "relevant_note_ids": [
+      304,
+      317,
+      482,
+      557,
+      631,
+      634,
+      698,
+      734
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "books",
+      "habits"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "304_tp_37657b",
+    "query": "Summary of James Clear's key ideas on habits",
+    "expected_intent": "study",
+    "expected_category": "Study - Books",
+    "relevant_note_ids": [
+      304,
+      317,
+      482,
+      557,
+      631,
+      634,
+      698,
+      734
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "books"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "71_tp_43e20b",
+    "query": "Online courses and tutorials I am taking",
+    "expected_intent": "study",
+    "expected_category": "Study - Learning",
+    "relevant_note_ids": [
+      71,
+      145,
+      231,
+      266,
+      357,
+      394,
+      417,
+      471
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "courses"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "133_tp_12eb56",
+    "query": "Sleep improvement techniques and tips",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      133,
+      136,
+      202,
+      288,
+      348,
+      380,
+      434,
+      538
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sleep",
+      "health"
+    ],
+    "retrieval_challenge": "lexical",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "133_tp_2c6b3e",
+    "query": "How can I improve my sleep quality?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      133,
+      136,
+      202,
+      288,
+      348,
+      380,
+      434,
+      538
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "sleep"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "109_tp_f852f9",
+    "query": "Nutrition and supplement tracking notes",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      109,
+      133,
+      226,
+      286
+    ],
+    "difficulty": "easy",
+    "tags": [
+      "nutrition"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "109_tp_f444c2",
+    "query": "What supplements should I be taking?",
+    "expected_intent": "question",
+    "expected_category": "Questions",
+    "relevant_note_ids": [
+      109,
+      133,
+      226,
+      286
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "nutrition",
+      "health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "152_tp_3685ae",
+    "query": "Mental health practices and coping strategies",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      152,
+      288,
+      317,
+      472,
+      575
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "mental_health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "152_tp_5aba2a",
+    "query": "My notes on managing stress and anxiety",
+    "expected_intent": "reference",
+    "expected_category": "Reference - Health",
+    "relevant_note_ids": [
+      152,
+      288,
+      317,
+      472,
+      575
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "mental_health"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "117_tp_eab7a3",
+    "query": "Plans for open source and public building",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      117,
+      141,
+      395,
+      400,
+      440,
+      453,
+      522,
+      554
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "open_source",
+      "blog"
+    ],
+    "retrieval_challenge": "semantic",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "117_tp_594cbf",
+    "query": "Notes on growing my developer presence online",
+    "expected_intent": "idea",
+    "expected_category": "Ideas",
+    "relevant_note_ids": [
+      117,
+      141,
+      395,
+      400,
+      440,
+      453,
+      522,
+      554
+    ],
+    "difficulty": "medium",
+    "tags": [
+      "personal_brand"
+    ],
+    "retrieval_challenge": "lexical_gap",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "0_tp_07253f",
+    "query": "Fortran programming and legacy code notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "fortran",
+      "cobol",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "0_tp_13e990",
+    "query": "Ancient history and archaeology notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "history",
+      "archaeology",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "0_tp_f9589c",
+    "query": "Wine and cheese pairing recommendations",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "food",
+      "wine",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "0_tp_5abfd7",
+    "query": "Piano lessons and music theory notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "music",
+      "piano",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  },
+  {
+    "id": "0_tp_4fb99e",
+    "query": "Gardening and plant care notes",
+    "expected_intent": "general",
+    "expected_category": "General",
+    "relevant_note_ids": [],
+    "difficulty": "hard",
+    "tags": [
+      "gardening",
+      "plants",
+      "negative"
+    ],
+    "retrieval_challenge": "negative",
+    "graded_relevance": null,
+    "labeling_notes": "",
+    "labeled_at": null
+  }
+]

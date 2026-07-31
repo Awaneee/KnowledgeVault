@@ -29,9 +29,12 @@ EMBEDDING_MODEL_NAME: str = "all-MiniLM-L6-v2"
 
 # --- Retrieval defaults ----------------------------------------------------
 # Source: ChunkService.retrieve_hybrid / EmbeddingService.search_notes
+# DEFAULT_HYBRID_LIMIT raised from 5 to 20 after pool-size experiment (2026-07-29).
+# Experiment showed pool=20 (ann_pool=80) yields Hit Rate@5=0.760 vs 0.740 at pool=5
+# at only 1.04x latency cost. See evaluation_results/pool_experiment/ANALYSIS.md.
 DEFAULT_RETRIEVAL_LIMIT: int = 5
-DEFAULT_HYBRID_LIMIT: int = 5
-DEFAULT_SEMANTIC_LIMIT: int = 5 
+DEFAULT_HYBRID_LIMIT: int = 20
+DEFAULT_SEMANTIC_LIMIT: int = 5
 
 DEFAULT_INTENT_LIMIT = 5
   # limit used by EmbeddingService.search_notes

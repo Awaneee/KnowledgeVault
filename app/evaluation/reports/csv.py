@@ -49,10 +49,14 @@ class CSVReport:
                     "strategy",
                     "query",
                     "difficulty",
+                    "retrieval_challenge",
                     "precision_at_k",
                     "recall_at_k",
                     "hit",
                     "reciprocal_rank",
+                    "map_at_k",
+                    "r_precision",
+                    "ndcg_at_k",
                     "latency_ms",
                     "predicted_intent",
                     "expected_intent",
@@ -78,41 +82,23 @@ class CSVReport:
                         evaluation.strategy.value,
                         evaluation.query,
                         evaluation.difficulty,
-                        round(
-                            evaluation.precision_at_k,
-                            4,
-                        ),
-                        round(
-                            evaluation.recall_at_k,
-                            4,
-                        ),
+                        evaluation.retrieval_challenge or "",
+                        round(evaluation.precision_at_k, 4),
+                        round(evaluation.recall_at_k, 4),
                         evaluation.hit,
-                        round(
-                            evaluation.reciprocal_rank,
-                            4,
-                        ),
-                        round(
-                            evaluation.latency_ms,
-                            2,
-                        ),
+                        round(evaluation.reciprocal_rank, 4),
+                        round(evaluation.map_at_k, 4),
+                        round(evaluation.r_precision, 4),
+                        round(evaluation.ndcg_at_k, 4),
+                        round(evaluation.latency_ms, 2),
                         evaluation.predicted_intent,
                         evaluation.expected_intent,
                         evaluation.intent_correct,
                         evaluation.predicted_category,
                         evaluation.expected_category,
                         evaluation.category_correct,
-                        ",".join(
-                            map(
-                                str,
-                                evaluation.relevant_note_ids,
-                            )
-                        ),
-                        ",".join(
-                            map(
-                                str,
-                                evaluation.retrieved_note_ids,
-                            )
-                        ),
+                        ",".join(map(str, evaluation.relevant_note_ids)),
+                        ",".join(map(str, evaluation.retrieved_note_ids)),
                         evaluation.error,
                     ]
                 )

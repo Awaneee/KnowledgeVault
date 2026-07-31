@@ -1,0 +1,122 @@
+{
+  "experiment": "pool_size_experiment",
+  "eval_k": 5,
+  "pool_sizes": [
+    5,
+    10,
+    20,
+    40,
+    80
+  ],
+  "pareto_optimal": [
+    10,
+    20
+  ],
+  "results": [
+    {
+      "pool": 5,
+      "ann_pool": 20,
+      "precision": 0.24,
+      "recall": 0.5267,
+      "hit_rate": 0.74,
+      "hit_rate_ci": [
+        0.62,
+        0.86
+      ],
+      "mrr_k5": 0.6023,
+      "mrr_k5_ci": [
+        0.479,
+        0.7256666666666667
+      ],
+      "mrr_full": 0.6023,
+      "map_k5": 0.4133,
+      "ndcg_k5": 0.4924,
+      "avg_latency_ms": 96.86,
+      "query_count": 50
+    },
+    {
+      "pool": 10,
+      "ann_pool": 40,
+      "precision": 0.24,
+      "recall": 0.5267,
+      "hit_rate": 0.74,
+      "hit_rate_ci": [
+        0.62,
+        0.86
+      ],
+      "mrr_k5": 0.6073,
+      "mrr_k5_ci": [
+        0.4856666666666667,
+        0.7296666666666667
+      ],
+      "mrr_full": 0.6172,
+      "map_k5": 0.4183,
+      "ndcg_k5": 0.4964,
+      "avg_latency_ms": 95.52,
+      "query_count": 50
+    },
+    {
+      "pool": 20,
+      "ann_pool": 80,
+      "precision": 0.24,
+      "recall": 0.5427,
+      "hit_rate": 0.76,
+      "hit_rate_ci": [
+        0.64,
+        0.88
+      ],
+      "mrr_k5": 0.6113,
+      "mrr_k5_ci": [
+        0.49133333333333334,
+        0.7316666666666667
+      ],
+      "mrr_full": 0.6204,
+      "map_k5": 0.4183,
+      "ndcg_k5": 0.4999,
+      "avg_latency_ms": 100.29,
+      "query_count": 50
+    },
+    {
+      "pool": 40,
+      "ann_pool": 160,
+      "precision": 0.24,
+      "recall": 0.5427,
+      "hit_rate": 0.76,
+      "hit_rate_ci": [
+        0.64,
+        0.88
+      ],
+      "mrr_k5": 0.6113,
+      "mrr_k5_ci": [
+        0.49133333333333334,
+        0.7316666666666667
+      ],
+      "mrr_full": 0.6204,
+      "map_k5": 0.4183,
+      "ndcg_k5": 0.4999,
+      "avg_latency_ms": 105.02,
+      "query_count": 50
+    },
+    {
+      "pool": 80,
+      "ann_pool": 320,
+      "precision": 0.24,
+      "recall": 0.5427,
+      "hit_rate": 0.76,
+      "hit_rate_ci": [
+        0.64,
+        0.88
+      ],
+      "mrr_k5": 0.6123,
+      "mrr_k5_ci": [
+        0.49233333333333335,
+        0.7316666666666667
+      ],
+      "mrr_full": 0.6219,
+      "map_k5": 0.4193,
+      "ndcg_k5": 0.5007,
+      "avg_latency_ms": 126.58,
+      "query_count": 50
+    }
+  ]
+}
