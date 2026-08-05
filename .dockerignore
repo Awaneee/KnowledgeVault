@@ -52,3 +52,12 @@ Thumbs.db
 # Docker/dev-only files that should not affect application image layers
 docker-compose*.yml
 dockerignore
+
+# Dev and evaluation artifacts — not needed at runtime
+docs/
+scripts/
+evaluation_results/
+SPRINT.md
+improvements.md
+*.md
+.claude/

@@ -5,6 +5,7 @@ from app.database.session import get_db
 from app.api.dependencies.auth import get_current_user
 from app.models.user import User
 from app.services.note_service import NoteService
+from app.schemas.attachment import AttachmentResponse
 from app.schemas.note import (
     NoteCreate,
     BulkNoteCreate,
@@ -129,7 +130,22 @@ def get_note(
     return note
 
 
-@router.get("/{note_id}/attachments")
+@router.delete("/{note_id}", status_code=204)
+def delete_note(
+    note_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    service = NoteService(db)
+    note = service.repo.get_note_by_id(note_id)
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+    if note.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Access forbidden")
+    service.delete_note(note_id=note_id, user_id=current_user.id)
+
+
+@router.get("/{note_id}/attachments", response_model=list[AttachmentResponse])
 def get_note_attachments(
     note_id: int,
     db: Session = Depends(get_db),

@@ -33,7 +33,7 @@ from app.evaluation.reports.csv import CSVReport
 from app.database.session import engine
 
 print("=" * 60)
-print("DATABASE URL:", engine.url)
+print("DATABASE URL:", engine.url.render_as_string(hide_password=True))
 print("=" * 60)
 
 
@@ -50,8 +50,8 @@ def _get_total_note_count(db, user_id: int) -> int:
         return 0
 
 
-def _emit_run_manifest(report, output_dir: Path, gates_path: Path) -> None:
-    """Write per-run manifest.json with gate check results."""
+def _emit_run_manifest(report, output_dir: Path, gates_path: Path) -> dict:
+    """Write per-run manifest.json with gate check results. Returns gate_results."""
     gates: dict = {}
     if gates_path.exists():
         try:
@@ -118,6 +118,7 @@ def _emit_run_manifest(report, output_dir: Path, gates_path: Path) -> None:
     manifest_path = output_dir / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(f"Run manifest written: {manifest_path}")
+    return gate_results
 
 
 def parse_args():
@@ -142,6 +143,10 @@ def parse_args():
     parser.add_argument(
         "--no-dashboard", action="store_true",
         help="Skip dashboard generation.",
+    )
+    parser.add_argument(
+        "--strict-gates", action="store_true",
+        help="Exit with code 1 if any regression gate fails (for CI use).",
     )
     return parser.parse_args()
 
@@ -178,7 +183,7 @@ def main():
             output_dir / "evaluation_results.csv",
         )
 
-        _emit_run_manifest(report, output_dir, Path(args.gates))
+        gate_results = _emit_run_manifest(report, output_dir, Path(args.gates))
 
         print()
         print("=" * 80)
@@ -192,6 +197,19 @@ def main():
 
     finally:
         db.close()
+
+    # Strict gate enforcement — fail CI if any gate is missed.
+    if args.strict_gates:
+        failed = [
+            f"{strategy}.{metric}"
+            for strategy, checks in gate_results.items()
+            for metric, passed in checks.items()
+            if not passed
+        ]
+        if failed:
+            print(f"\n❌ Gate failures: {', '.join(failed)}")
+            sys.exit(1)
+        print("\n✅ All regression gates passed.")
 
     # Dashboard generation (subprocess to avoid import issues)
     if not args.no_dashboard:

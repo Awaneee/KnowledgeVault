@@ -1,3 +1,4 @@
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -7,6 +8,20 @@ class Settings(BaseSettings):
     JWT_SECRET: str
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+
+    @field_validator("JWT_SECRET")
+    @classmethod
+    def jwt_secret_min_length(cls, v: str) -> str:
+        if len(v) < 32:
+            raise ValueError(
+                "JWT_SECRET must be at least 32 characters. "
+                "Generate one with: python -c \"import secrets; print(secrets.token_hex(32))\""
+            )
+        return v
+
+    # CORS — comma-separated origins or JSON list. Default ["*"] is safe for
+    # local dev only; set explicit origins for any internet-facing deployment.
+    CORS_ALLOWED_ORIGINS: list[str] = ["*"]
 
     REDIS_URL: str = "redis://redis:6379/0"
 
@@ -113,6 +128,28 @@ class Settings(BaseSettings):
     RERANK_TOP_K: int = 8
     # TTL (seconds) for reranker score cache entries.
     RERANK_CACHE_TTL_SECONDS: int = 900
+
+    # ------------------------------------------------------------------
+    # BM25 sparse retrieval + Reciprocal Rank Fusion
+    # ------------------------------------------------------------------
+    # Feature flag — default OFF.  When enabled, retrieve_bm25_hybrid() fuses
+    # PostgreSQL full-text search (tsvector/ts_rank_cd) with dense semantic
+    # retrieval using Reciprocal Rank Fusion (RRF).
+    # Requires migration c8d9e0f1a2b3 (search_vector + GIN index).
+    BM25_ENABLED: bool = False
+    # RRF constant k from Cormack et al. 2009.  Higher k smooths the fusion;
+    # 60 is the standard default used in the TREC literature.
+    BM25_RRF_K: int = 60
+    # Candidate pool drawn from each arm (semantic + BM25) before fusion.
+    # Larger pools increase recall at the cost of slightly higher latency.
+    BM25_CANDIDATE_POOL: int = 20
+
+    # ------------------------------------------------------------------
+    # Attachments
+    # ------------------------------------------------------------------
+    # Maximum size (bytes) for uploaded attachments via POST /attachments/.
+    # Default: 10 MB.
+    MAX_ATTACHMENT_BYTES: int = 10 * 1024 * 1024
 
     # ------------------------------------------------------------------
     # Ask / cache

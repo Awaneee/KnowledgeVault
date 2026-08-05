@@ -1,8 +1,12 @@
+import logging
+
 from sqlalchemy.orm import Session
 
 from app.core.embedding_model import embedding_model
 from app.repositories.embedding_repository import EmbeddingRepository
 from app.services.cache_service import CacheService
+
+logger = logging.getLogger(__name__)
 
 
 class EmbeddingService:
@@ -44,10 +48,10 @@ class EmbeddingService:
         )
 
         if cached_result:
-            print("CACHE HIT")
+            logger.debug("CACHE HIT semantic_search user_id=%s", user_id)
             return cached_result
 
-        print("CACHE MISS")
+        logger.debug("CACHE MISS semantic_search user_id=%s", user_id)
 
         query_vector = embedding_model.encode(
             query

@@ -63,3 +63,12 @@ class NoteRepository:
             .filter(Note.id == note_id)
             .first()
         )
+
+    def delete_note_by_id(self, note_id: int) -> bool:
+        """Delete note and all cascaded children. Returns True if deleted."""
+        note = self.get_note_by_id(note_id)
+        if not note:
+            return False
+        self.db.delete(note)
+        self.db.commit()
+        return True

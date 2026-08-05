@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.auth import get_current_user
@@ -17,7 +17,7 @@ router = APIRouter(
 # ── Request / Response schemas (local; move to app/schemas/ if desired) ──
 
 class RetrieveRequest(BaseModel):
-    query: str
+    query: str = Field(..., min_length=1, max_length=2000)
 
 
 class ChunkResult(BaseModel):

@@ -1,0 +1,253 @@
+{
+  "run_id": "50493705-e795-4776-b650-43e93640182d",
+  "created_at": "2026-08-04T19:41:03.739059",
+  "benchmark_version": "2.0.0",
+  "git_commit": "21b6bf3",
+  "corpus_coverage": 0.8114,
+  "k": 5,
+  "total_queries": 205,
+  "strategies": [
+    "semantic",
+    "intent",
+    "hybrid",
+    "rerank",
+    "bm25",
+    "hybrid_bm25",
+    "chunk_semantic",
+    "hybrid_no_intent"
+  ],
+  "summaries": {
+    "SEMANTIC": {
+      "mrr": 0.5799,
+      "mrr_ci": [
+        0.5187,
+        0.6397
+      ],
+      "hit_rate": 0.7463,
+      "precision": 0.282,
+      "recall": 0.2974,
+      "map_at_k": 0.2307,
+      "r_precision": 0.249,
+      "avg_latency_ms": 47.4
+    },
+    "INTENT": {
+      "mrr": 0.1124,
+      "mrr_ci": [
+        0.0733,
+        0.1569
+      ],
+      "hit_rate": 0.1317,
+      "precision": 0.04,
+      "recall": 0.0459,
+      "map_at_k": 0.0382,
+      "r_precision": 0.0385,
+      "avg_latency_ms": 47.82
+    },
+    "HYBRID": {
+      "mrr": 0.6032,
+      "mrr_ci": [
+        0.5468,
+        0.6608
+      ],
+      "hit_rate": 0.7463,
+      "precision": 0.281,
+      "recall": 0.2964,
+      "map_at_k": 0.2339,
+      "r_precision": 0.2788,
+      "avg_latency_ms": 145.04
+    },
+    "RERANK": {
+      "mrr": 0.5981,
+      "mrr_ci": [
+        0.541,
+        0.6566
+      ],
+      "hit_rate": 0.7463,
+      "precision": 0.281,
+      "recall": 0.2964,
+      "map_at_k": 0.2339,
+      "r_precision": 0.2764,
+      "avg_latency_ms": 141.81
+    },
+    "BM25": {
+      "mrr": 0.0585,
+      "mrr_ci": [
+        0.0293,
+        0.0927
+      ],
+      "hit_rate": 0.0585,
+      "precision": 0.0205,
+      "recall": 0.0321,
+      "map_at_k": 0.0321,
+      "r_precision": 0.0321,
+      "avg_latency_ms": 3.59
+    },
+    "HYBRID_BM25": {
+      "mrr": 0.6058,
+      "mrr_ci": [
+        0.5498,
+        0.6634
+      ],
+      "hit_rate": 0.7463,
+      "precision": 0.2829,
+      "recall": 0.2978,
+      "map_at_k": 0.2343,
+      "r_precision": 0.2807,
+      "avg_latency_ms": 44.73
+    },
+    "CHUNK_SEMANTIC": {
+      "mrr": 0.5823,
+      "mrr_ci": [
+        0.5265,
+        0.639
+      ],
+      "hit_rate": 0.7024,
+      "precision": 0.2624,
+      "recall": 0.2808,
+      "map_at_k": 0.2248,
+      "r_precision": 0.2748,
+      "avg_latency_ms": 38.2
+    },
+    "HYBRID_NO_INTENT": {
+      "mrr": 0.605,
+      "mrr_ci": [
+        0.5484,
+        0.6632
+      ],
+      "hit_rate": 0.7463,
+      "precision": 0.281,
+      "recall": 0.2967,
+      "map_at_k": 0.2342,
+      "r_precision": 0.2804,
+      "avg_latency_ms": 99.54
+    }
+  },
+  "gate_check": {
+    "SEMANTIC": {
+      "mrr_pass": true,
+      "hit_rate_pass": true,
+      "latency_pass": true
+    },
+    "INTENT": {
+      "mrr_pass": true,
+      "hit_rate_pass": true,
+      "latency_pass": true
+    },
+    "HYBRID": {
+      "mrr_pass": true,
+      "hit_rate_pass": true,
+      "latency_pass": true
+    },
+    "RERANK": {
+      "mrr_pass": true,
+      "hit_rate_pass": true,
+      "latency_pass": true
+    },
+    "BM25": {
+      "mrr_pass": true,
+      "hit_rate_pass": true,
+      "latency_pass": true
+    },
+    "HYBRID_BM25": {
+      "mrr_pass": true,
+      "hit_rate_pass": true,
+      "latency_pass": true
+    },
+    "CHUNK_SEMANTIC": {
+      "mrr_pass": true,
+      "hit_rate_pass": true,
+      "latency_pass": true
+    },
+    "HYBRID_NO_INTENT": {
+      "mrr_pass": true,
+      "hit_rate_pass": true,
+      "latency_pass": true
+    }
+  },
+  "comparisons": [
+    {
+      "baseline": "semantic",
+      "candidate": "hybrid",
+      "delta_mrr": 0.0233,
+      "mrr_ci": [
+        0.0096,
+        0.0384
+      ],
+      "mrr_significant": true,
+      "delta_hit_rate": 0.0,
+      "recommendation": "approve_candidate"
+    },
+    {
+      "baseline": "hybrid",
+      "candidate": "rerank",
+      "delta_mrr": -0.0051,
+      "mrr_ci": [
+        -0.0078,
+        -0.0026
+      ],
+      "mrr_significant": true,
+      "delta_hit_rate": 0.0,
+      "recommendation": "keep_baseline"
+    },
+    {
+      "baseline": "semantic",
+      "candidate": "bm25",
+      "delta_mrr": -0.5214,
+      "mrr_ci": [
+        -0.5801,
+        -0.4602
+      ],
+      "mrr_significant": true,
+      "delta_hit_rate": -0.6878,
+      "recommendation": "keep_baseline"
+    },
+    {
+      "baseline": "hybrid",
+      "candidate": "hybrid_bm25",
+      "delta_mrr": 0.0026,
+      "mrr_ci": [
+        -0.0074,
+        0.0136
+      ],
+      "mrr_significant": false,
+      "delta_hit_rate": 0.0,
+      "recommendation": "insufficient_evidence"
+    },
+    {
+      "baseline": "chunk_semantic",
+      "candidate": "hybrid",
+      "delta_mrr": 0.0209,
+      "mrr_ci": [
+        -0.0016,
+        0.0425
+      ],
+      "mrr_significant": false,
+      "delta_hit_rate": 0.0439,
+      "recommendation": "insufficient_evidence"
+    },
+    {
+      "baseline": "chunk_semantic",
+      "candidate": "hybrid_no_intent",
+      "delta_mrr": 0.0227,
+      "mrr_ci": [
+        0.0001,
+        0.0443
+      ],
+      "mrr_significant": true,
+      "delta_hit_rate": 0.0439,
+      "recommendation": "approve_candidate"
+    },
+    {
+      "baseline": "hybrid_no_intent",
+      "candidate": "hybrid",
+      "delta_mrr": -0.0018,
+      "mrr_ci": [
+        -0.0076,
+        0.0018
+      ],
+      "mrr_significant": false,
+      "delta_hit_rate": 0.0,
+      "recommendation": "insufficient_evidence"
+    }
+  ]
+}

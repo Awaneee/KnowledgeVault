@@ -2,6 +2,8 @@ import os
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlalchemy.orm import Session
+
+from app.core.config import settings
 from app.database.session import get_db
 from app.api.dependencies.auth import get_current_user
 from app.models.user import User
@@ -13,6 +15,8 @@ router = APIRouter(prefix="/attachments", tags=["attachments"])
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+ALLOWED_EXTENSIONS = {".pdf", ".txt", ".docx", ".png", ".jpg", ".jpeg"}
 
 
 @router.post("/", response_model=AttachmentResponse, status_code=201)
@@ -29,11 +33,24 @@ def upload_attachment(
     if matched_note.user_id != current_user.id:
         raise HTTPException(status_code=403, detail="Access forbidden")
 
-    ext = os.path.splitext(file.filename)[1]
+    ext = os.path.splitext(file.filename or "")[1].lower()
+    if ext not in ALLOWED_EXTENSIONS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported file type '{ext}'. Allowed: {', '.join(sorted(ALLOWED_EXTENSIONS))}"
+        )
+
+    content = file.file.read()
+    if len(content) > settings.MAX_ATTACHMENT_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail=f"File too large. Maximum allowed size is {settings.MAX_ATTACHMENT_BYTES // (1024 * 1024)} MB."
+        )
+
     unique_filename = f"{uuid.uuid4()}{ext}"
     file_path = os.path.join(UPLOAD_DIR, unique_filename)
     with open(file_path, "wb") as f:
-        f.write(file.file.read())
+        f.write(content)
 
     service = AttachmentService(db)
     data = AttachmentCreate(

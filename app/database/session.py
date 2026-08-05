@@ -24,6 +24,7 @@ engine = create_engine(
     max_overflow=20,
     pool_timeout=30,
     pool_recycle=1800,
+    connect_args={"options": "-c statement_timeout=30000"},
 )
 
 SessionLocal = sessionmaker(

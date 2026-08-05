@@ -1,4 +1,5 @@
 import logging
+import os
 import traceback
 
 from sqlalchemy.orm import Session
@@ -11,6 +12,7 @@ from app.schemas.note import NoteSearchResponse
 from app.repositories.note_repository import NoteRepository
 from app.schemas.intent import IntentCategoryResponse
 from app.schemas.intent import NoteIntentResponse
+from app.services.cache_service import CacheService
 from app.services.chunk_service import ChunkService
 from app.services.embedding_service import EmbeddingService
 from app.services.intent_category_service import IntentCategoryService
@@ -106,6 +108,24 @@ class NoteService:
             NoteSearchResponse.model_validate(note)
             for note in notes
         ]
+
+    def delete_note(self, note_id: int, user_id: int) -> bool:
+        """Delete a note owned by user_id. Returns False if not found or not owned."""
+        note = self.repo.get_note_by_id(note_id)
+        if not note or note.user_id != user_id:
+            return False
+        # Collect file paths before the DB cascade removes Attachment records.
+        attachment_paths = [a.file_path for a in note.attachments]
+        deleted = self.repo.delete_note_by_id(note_id)
+        if deleted:
+            for path in attachment_paths:
+                try:
+                    os.remove(path)
+                except OSError as exc:
+                    logger.warning("Could not remove attachment file %s: %s", path, exc)
+            CacheService.delete_pattern(f"ask:{user_id}:*")
+            CacheService.delete_pattern(f"semantic_search:{user_id}:*")
+        return deleted
 
     def get_related_notes(
         self,

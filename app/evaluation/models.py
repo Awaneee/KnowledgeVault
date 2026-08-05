@@ -21,26 +21,38 @@ class RetrievalStrategy(str, Enum):
     """
     Retrieval paths available in the evaluation framework.
 
-    SEMANTIC  → EmbeddingService.search_notes()
-                Returns note-level results ranked by pgvector similarity.
+    SEMANTIC    → EmbeddingService.search_notes()
+                  Returns note-level results ranked by pgvector similarity.
 
-    INTENT    → IntentCategoryService.find_categories_for_query()
-                Keyword-based query intent → category lookup → notes in
-                that category. (The fast, no-LLM path used at query time.)
+    INTENT      → IntentCategoryService.find_categories_for_query()
+                  Keyword-based query intent → category lookup → notes in
+                  that category. (The fast, no-LLM path used at query time.)
 
-    HYBRID    → ChunkService.retrieve_hybrid()
-                Intent-first then semantic fill, operating at chunk level.
-                This is what AskService.ask() uses.
+    HYBRID      → ChunkService.retrieve_hybrid()
+                  Intent-first then semantic fill, operating at chunk level.
+                  This is what AskService.ask() uses.
 
-    RERANK    → ChunkService.retrieve_hybrid() + RerankingService.rerank()
-                Hybrid retrieval with a cross-encoder second-pass reranker.
-                Requires RERANKING_ENABLED=True; degrades to HYBRID ordering
-                if the model is unavailable.
+    RERANK      → ChunkService.retrieve_hybrid() + RerankingService.rerank()
+                  Hybrid retrieval with a cross-encoder second-pass reranker.
+                  Requires RERANKING_ENABLED=True; degrades to HYBRID ordering
+                  if the model is unavailable.
+
+    BM25        → BM25Repository.search() only (pure sparse retrieval).
+                  Baseline for the sparse arm; useful for ablation studies.
+
+    HYBRID_BM25 → ChunkService.retrieve_bm25_hybrid()
+                  Dense semantic + sparse BM25 fused via Reciprocal Rank Fusion.
+                  Requires BM25_ENABLED=True (migration c8d9e0f1a2b3).
     """
     SEMANTIC = "semantic"
     INTENT = "intent"
     HYBRID = "hybrid"
     RERANK = "rerank"
+    BM25 = "bm25"
+    HYBRID_BM25 = "hybrid_bm25"
+    # Intent-arm ablation strategies (Session 1 — 2026-08-03)
+    CHUNK_SEMANTIC = "chunk_semantic"    # ChunkService.retrieve() — chunk-level ANN, no intent
+    HYBRID_NO_INTENT = "hybrid_no_intent"  # retrieve_hybrid(max_intent_boost=0.0)
 
 
 # ---------------------------------------------------------------------------
@@ -248,6 +260,20 @@ class StrategyComparison(BaseModel):
     # Wilcoxon p-values (None when scipy unavailable or all differences are zero)
     p_value_mrr: Optional[float] = None
     p_value_hit_rate: Optional[float] = None
+
+    # Recall@K comparison (optional — populated when per-query recall arrays are available)
+    delta_recall_at_k: Optional[float] = None
+    recall_ci_lower: Optional[float] = None
+    recall_ci_upper: Optional[float] = None
+    recall_significant: Optional[bool] = None
+    p_value_recall: Optional[float] = None
+
+    # nDCG@K comparison (optional — same condition)
+    delta_ndcg_at_k: Optional[float] = None
+    ndcg_ci_lower: Optional[float] = None
+    ndcg_ci_upper: Optional[float] = None
+    ndcg_significant: Optional[bool] = None
+    p_value_ndcg: Optional[float] = None
 
     # Human-readable verdict
     recommendation: str  # "approve_candidate" | "keep_baseline" | "insufficient_evidence"

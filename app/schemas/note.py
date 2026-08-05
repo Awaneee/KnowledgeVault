@@ -1,14 +1,14 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.schemas.intent import IntentCategoryResponse
 from app.schemas.intent import NoteIntentResponse
 
 
 class NoteCreate(BaseModel):
-    content: str
+    content: str = Field(..., min_length=1, max_length=50000)
 class BulkNoteCreate(BaseModel):
     notes: list[str]
 

@@ -5,11 +5,13 @@ Handles chunk creation, embedding storage, and retrieval.
 
 Retrieval modes
 ---------------
-retrieve()         — Pure semantic (vector similarity only).
-retrieve_hybrid()  — Weighted fusion of semantic + intent/category evidence.
+retrieve()              — Pure semantic (vector similarity only).
+retrieve_hybrid()       — Weighted fusion of semantic + intent/category evidence.
+retrieve_bm25_hybrid()  — Semantic + BM25 sparse retrieval fused via RRF
+                          (gated by BM25_ENABLED; falls back to retrieve_hybrid()).
 
-Hybrid scoring
---------------
+Hybrid scoring (retrieve_hybrid)
+---------------------------------
   final_score = (semantic_score × 0.65) + (intent_score × 0.35)
 
 Weights are biased slightly more toward semantic than intent (0.65/0.35)
@@ -22,6 +24,13 @@ Tie-breaking is deterministic:
   3. intent_score (higher wins — purpose-level evidence)
   4. note_id (lower wins — older notes ranked above newer on a tie)
   5. chunk_index (lower wins — earlier chunks first within same note)
+
+RRF fusion (retrieve_bm25_hybrid)
+----------------------------------
+  rrf_score = Σ  1 / (k + rank_i)
+  where k = BM25_RRF_K (default 60, from Cormack et al. 2009) and rank_i is
+  the 1-based position of the note in each arm (semantic, BM25).
+  Deduplication is note-level; the best-ranked chunk per note is returned.
 
 Score filtering
 ---------------
@@ -37,6 +46,7 @@ from sqlalchemy.orm import Session
 from app.core.config import settings
 from app.core.embedding_model import embedding_model
 from app.models.document_chunk import DocumentChunk
+from app.repositories.bm25_repository import BM25Repository
 from app.repositories.chunk_embedding_repository import ChunkEmbeddingRepository
 from app.repositories.chunk_repository import ChunkRepository
 from app.repositories.embedding_repository import EmbeddingRepository
@@ -66,6 +76,7 @@ class ChunkService:
         self.embedding_repo = ChunkEmbeddingRepository(db)
         self.note_embedding_repo = EmbeddingRepository(db)
         self.intent_category_service = IntentCategoryService(db)
+        self.bm25_repo = BM25Repository(db)
 
     # ------------------------------------------------------------------
     # Indexing
@@ -133,13 +144,31 @@ class ChunkService:
         return self._apply_score_filter(results)
 
     def retrieve_hybrid(
-        self, query: str, user_id: int, limit: int = 5
+        self,
+        query: str,
+        user_id: int,
+        limit: int = 5,
+        max_intent_boost: float | None = None,
     ) -> list[dict]:
         """
         Hybrid retrieval: semantic + intent/category evidence.
         Both arms always run. Results are merged, deduplicated, and ranked
         using weighted score fusion.
+
+        Parameters
+        ----------
+        max_intent_boost
+            Override for the maximum additive score boost applied to intent-
+            matched candidates.  When None (default) the class constant
+            _MAX_INTENT_BOOST (0.12) is used — identical to the previous
+            behaviour.  Pass 0.0 to disable the boost while keeping the intent
+            arm active as a candidate-recovery mechanism; this is the correct
+            parameter for ablation studies that isolate the semantic-only
+            ranking within the hybrid pipeline.
         """
+        effective_boost_cap = (
+            self._MAX_INTENT_BOOST if max_intent_boost is None else max_intent_boost
+        )
         pool_size = max(limit * self._SEMANTIC_POOL_FACTOR, self._SEMANTIC_POOL_MIN)
         query_vector = embedding_model.encode(query).tolist()
 
@@ -230,7 +259,7 @@ class ChunkService:
                 continue
                 
             intent_score = max(0.0, min(1.0, match.score * confidence_factor))
-            boost = (self._MAX_INTENT_BOOST * intent_score) if is_boosted else 0.0
+            boost = (effective_boost_cap * intent_score) if is_boosted else 0.0
             
             current = fused.get(note_id)
             if current is None:
@@ -285,6 +314,149 @@ class ChunkService:
         )
 
         return result
+
+    def retrieve_bm25_hybrid(
+        self, query: str, user_id: int, limit: int = 5
+    ) -> list[dict]:
+        """
+        Hybrid retrieval: dense semantic + sparse BM25 fused via Reciprocal Rank Fusion.
+
+        When BM25_ENABLED is False this method is a transparent alias for
+        retrieve_hybrid() so the call site never needs to branch.  The
+        RRF logic lives in _retrieve_rrf_hybrid() which is also callable
+        directly (without the flag check) by the evaluation framework.
+        """
+        if not settings.BM25_ENABLED:
+            return self.retrieve_hybrid(query=query, user_id=user_id, limit=limit)
+        return self._retrieve_rrf_hybrid(
+            query=query,
+            user_id=user_id,
+            limit=limit,
+            k=settings.BM25_RRF_K,
+            pool=settings.BM25_CANDIDATE_POOL,
+        )
+
+    def _retrieve_rrf_hybrid(
+        self,
+        query: str,
+        user_id: int,
+        limit: int = 5,
+        k: int = 60,
+        pool: int = 20,
+    ) -> list[dict]:
+        """
+        Core RRF fusion — always runs both arms regardless of BM25_ENABLED.
+
+        Called by retrieve_bm25_hybrid() (production, flag-gated) and
+        directly by HybridBM25Adapter (evaluation, always-on).
+
+        Algorithm
+        ---------
+        1. Fetch *pool* candidates from each arm independently.
+        2. Deduplicate to note level.
+        3. Compute RRF score:  rrf = Σ  1 / (k + rank_i)
+           A note absent from an arm contributes 0 from that arm.
+        4. Sort by rrf descending; return top *limit* results.
+        """
+        query_vector = embedding_model.encode(query).tolist()
+
+        # --- Semantic arm (note-level) ---
+        semantic_rows = self.note_embedding_repo.search_similar_notes_with_distance(
+            query_vector=query_vector,
+            user_id=user_id,
+            limit=pool,
+        )
+
+        # --- BM25 arm (chunk-level; deduplicate to note-level) ---
+        bm25_raw = self.bm25_repo.search(query=query, user_id=user_id, limit=pool)
+
+        # First occurrence per note_id is the best-scoring BM25 chunk.
+        bm25_note_map: dict[int, dict] = {}
+        for row in bm25_raw:
+            bm25_note_map.setdefault(row["note_id"], row)
+
+        logger.info(
+            "BM25 HYBRID query=%.60s semantic_pool=%d bm25_hits=%d unique_bm25_notes=%d",
+            query,
+            len(semantic_rows),
+            len(bm25_raw),
+            len(bm25_note_map),
+        )
+
+        # --- RRF fusion ---
+        rrf_scores: dict[int, float] = {}
+
+        for rank, (note, _distance) in enumerate(semantic_rows, start=1):
+            rrf_scores[note.id] = rrf_scores.get(note.id, 0.0) + 1.0 / (k + rank)
+
+        for rank, (note_id, _row) in enumerate(bm25_note_map.items(), start=1):
+            rrf_scores[note_id] = rrf_scores.get(note_id, 0.0) + 1.0 / (k + rank)
+
+        ranked_note_ids = sorted(rrf_scores, key=rrf_scores.__getitem__, reverse=True)
+
+        candidate_ids = ranked_note_ids[: max(limit * 2, pool)]
+        note_by_id = {note.id: note for note, _ in semantic_rows}
+
+        chunks_by_note: dict[int, list[DocumentChunk]] = {}
+        for chunk in self.chunk_repo.get_chunks_by_note_ids(candidate_ids):
+            chunks_by_note.setdefault(chunk.note_id, []).append(chunk)
+
+        semantic_ids = {n.id for n, _ in semantic_rows}
+        results: list[dict] = []
+        for note_id in ranked_note_ids[:limit]:
+            rrf = rrf_scores[note_id]
+            note = note_by_id.get(note_id)
+            bm25_row = bm25_note_map.get(note_id)
+
+            if note is not None:
+                note_title = note.title
+            elif bm25_row is not None:
+                note_title = bm25_row["note_title"]
+            else:
+                continue
+
+            chunk = self._best_chunk(query, chunks_by_note.get(note_id, []))
+            if chunk is None:
+                if bm25_row is None:
+                    continue
+                chunk_text  = bm25_row["chunk_text"]
+                chunk_index = bm25_row["chunk_index"]
+                chunk_id    = bm25_row["chunk_id"]
+            else:
+                chunk_text  = chunk.chunk_text
+                chunk_index = chunk.chunk_index
+                chunk_id    = chunk.id
+
+            in_semantic = note_id in semantic_ids
+            in_bm25     = note_id in bm25_note_map
+            if in_semantic and in_bm25:
+                source = "hybrid_bm25"
+            elif in_bm25:
+                source = "bm25"
+            else:
+                source = "semantic"
+
+            results.append({
+                "note_id":         note_id,
+                "note_title":      note_title,
+                "chunk_id":        chunk_id,
+                "chunk_text":      chunk_text,
+                "chunk_index":     chunk_index,
+                "rrf_score":       rrf,
+                "score":           rrf,
+                "semantic_score":  rrf,
+                "intent_score":    0.0,
+                "source":          source,
+                "intent_category": None,
+            })
+
+        logger.info(
+            "BM25 HYBRID RESULT limit=%d returned=%d top_rrf=%.4f",
+            limit,
+            len(results),
+            results[0]["rrf_score"] if results else 0.0,
+        )
+        return results
 
     # ------------------------------------------------------------------
     # Helpers

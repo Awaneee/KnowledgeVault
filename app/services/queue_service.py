@@ -1,6 +1,9 @@
 import json
+import logging
 
 from app.core.redis_client import redis_client
+
+logger = logging.getLogger(__name__)
 
 QUEUE_NAME = "note_processing_queue"
 PROCESSING_QUEUE = "note_processing_inflight"
@@ -9,12 +12,21 @@ PROCESSING_QUEUE = "note_processing_inflight"
 class QueueService:
 
     @staticmethod
-    def enqueue_note_processing(note_id: int, user_id: int):
+    def enqueue_note_processing(note_id: int, user_id: int) -> bool:
+        """Enqueue a note for background processing. Returns False if Redis is unavailable."""
         job_data = {
             "note_id": note_id,
             "user_id": user_id
         }
-        redis_client.lpush(QUEUE_NAME, json.dumps(job_data))
+        try:
+            redis_client.lpush(QUEUE_NAME, json.dumps(job_data))
+            return True
+        except Exception as exc:
+            logger.error(
+                "Failed to enqueue note_id=%s user_id=%s: %s",
+                note_id, user_id, exc
+            )
+            return False
 
     @staticmethod
     def dequeue_note_processing(timeout: int = 0) -> tuple[int, int] | None:

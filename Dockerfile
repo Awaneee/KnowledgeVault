@@ -19,10 +19,10 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
-    # Standard HuggingFace cache path (used by both transformers and sentence-transformers).
-    HF_HOME=/root/.cache/huggingface \
-    TRANSFORMERS_CACHE=/root/.cache/huggingface \
-    SENTENCE_TRANSFORMERS_HOME=/root/.cache/huggingface/sentence-transformers
+    # HuggingFace cache under /home/appuser so the non-root user can write to it at runtime.
+    HF_HOME=/home/appuser/.cache/huggingface \
+    TRANSFORMERS_CACHE=/home/appuser/.cache/huggingface \
+    SENTENCE_TRANSFORMERS_HOME=/home/appuser/.cache/huggingface/sentence-transformers
 
 WORKDIR /app
 
@@ -46,12 +46,21 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 # Layer 3 — Pre-download the embedding model.
 # Uses the BuildKit cache at HF_HOME so the model is not re-fetched on
 # every build — only when this layer's cache key changes (deps or Dockerfile).
-RUN --mount=type=cache,target=/root/.cache/huggingface \
+RUN --mount=type=cache,target=/home/appuser/.cache/huggingface \
+    mkdir -p /home/appuser/.cache/huggingface && \
     python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
 # Layer 4 — Application code.
 # In development this is overridden by a bind mount in docker-compose.
 COPY . .
+
+# C5: Run as non-root. Create the user, set ownership of the app tree and the
+# HF model cache directory so the process can write downloads at runtime.
+RUN useradd -m -u 1001 appuser \
+    && mkdir -p /home/appuser/.cache/huggingface \
+    && chown -R appuser /app /home/appuser
+
+USER appuser
 
 EXPOSE 8000
 

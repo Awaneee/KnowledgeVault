@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.api.dependencies.auth import get_current_user
 from app.database.session import get_db
+from app.models.intent_category import IntentCategory
 from app.models.user import User
 from app.repositories.intent_repository import IntentRepository
 from app.schemas.intent import IntentCategoryResponse
@@ -45,8 +46,15 @@ def list_notes_for_intent_category(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    service = IntentCategoryService(db)
+    category = db.query(IntentCategory).filter(
+        IntentCategory.id == intent_category_id
+    ).first()
+    if not category:
+        raise HTTPException(status_code=404, detail="Intent category not found")
+    if category.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Access forbidden")
 
+    service = IntentCategoryService(db)
     return service.get_notes_for_category(
         intent_category_id=intent_category_id,
         user_id=current_user.id
@@ -88,7 +96,9 @@ def backfill_intents(
 ):
     service = IntentCategoryService(db)
 
+    # Capped at 50: each call is a synchronous LLM round-trip (~1-2 s each).
+    # 500 sequential calls would take ~10 min and risk Gemini quota exhaustion.
     return service.backfill_user_notes(
         user_id=current_user.id,
-        limit=min(max(limit, 1), 500)
+        limit=min(max(limit, 1), 50)
     )

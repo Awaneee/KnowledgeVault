@@ -53,3 +53,6 @@ python-docx
 
 # --- Cache ---
 redis
+
+# --- Rate limiting ---
+slowapi

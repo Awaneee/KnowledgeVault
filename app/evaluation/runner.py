@@ -30,7 +30,10 @@ from uuid import uuid4
 
 from sqlalchemy.orm import Session
 
+from app.evaluation.adapters.bm25 import BM25Adapter, HybridBM25Adapter
+from app.evaluation.adapters.chunk_semantic import ChunkSemanticAdapter
 from app.evaluation.adapters.hybrid import HybridAdapter
+from app.evaluation.adapters.hybrid_no_intent import HybridNoIntentAdapter
 from app.evaluation.adapters.intent import IntentAdapter
 from app.evaluation.adapters.rerank import RerankAdapter
 from app.evaluation.adapters.semantic import SemanticAdapter
@@ -106,6 +109,11 @@ class EvaluationRunner:
             IntentAdapter(db=db, user_id=user_id),
             HybridAdapter(db=db, user_id=user_id),
             RerankAdapter(db=db, user_id=user_id),
+            BM25Adapter(db=db, user_id=user_id),
+            HybridBM25Adapter(db=db, user_id=user_id),
+            # Intent-arm ablation adapters (Session 1 — 2026-08-04)
+            ChunkSemanticAdapter(db=db, user_id=user_id),
+            HybridNoIntentAdapter(db=db, user_id=user_id),
         ]
 
     # ------------------------------------------------------------------ #
@@ -121,6 +129,8 @@ class EvaluationRunner:
 
         per_strategy_rr: dict[RetrievalStrategy, list[float]] = {}
         per_strategy_hit: dict[RetrievalStrategy, list[float]] = {}
+        per_strategy_recall: dict[RetrievalStrategy, list[float]] = {}
+        per_strategy_ndcg: dict[RetrievalStrategy, list[float]] = {}
 
         for adapter in self.adapters:
             adapter_results: list[QueryEvaluation] = []
@@ -140,6 +150,8 @@ class EvaluationRunner:
 
             per_strategy_rr[adapter.strategy] = [e.reciprocal_rank for e in adapter_results]
             per_strategy_hit[adapter.strategy] = [1.0 if e.hit else 0.0 for e in adapter_results]
+            per_strategy_recall[adapter.strategy] = [e.recall_at_k for e in adapter_results]
+            per_strategy_ndcg[adapter.strategy] = [e.ndcg_at_k for e in adapter_results]
 
         # Corpus coverage
         corpus_coverage = 0.0
@@ -147,7 +159,12 @@ class EvaluationRunner:
             corpus_coverage = len(all_retrieved_ids) / self.total_note_count
 
         # Strategy comparisons
-        comparisons = self._compute_comparisons(per_strategy_rr, per_strategy_hit)
+        comparisons = self._compute_comparisons(
+            per_strategy_rr,
+            per_strategy_hit,
+            per_strategy_recall,
+            per_strategy_ndcg,
+        )
 
         return EvaluationReport(
             run_id=str(uuid4()),
@@ -408,13 +425,31 @@ class EvaluationRunner:
         self,
         per_strategy_rr: dict[RetrievalStrategy, list[float]],
         per_strategy_hit: dict[RetrievalStrategy, list[float]],
+        per_strategy_recall: dict[RetrievalStrategy, list[float]] | None = None,
+        per_strategy_ndcg: dict[RetrievalStrategy, list[float]] | None = None,
     ) -> list[StrategyComparison]:
         """
-        Compute pairwise comparisons: RERANK vs HYBRID and HYBRID vs SEMANTIC.
+        Compute pairwise comparisons for all registered strategy pairs.
+
+        MRR and hit-rate are always computed (they drive the recommendation).
+        Recall@K and nDCG@K CIs are also computed when per-query arrays are
+        provided — both use the same bootstrap_delta_ci / wilcoxon_p_value
+        functions; no new statistics code is introduced.
         """
         pairs = [
             (RetrievalStrategy.SEMANTIC, RetrievalStrategy.HYBRID),
             (RetrievalStrategy.HYBRID, RetrievalStrategy.RERANK),
+            # BM25 ablation: sparse alone vs. dense baseline
+            (RetrievalStrategy.SEMANTIC, RetrievalStrategy.BM25),
+            # BM25 RRF vs. production baseline
+            (RetrievalStrategy.HYBRID, RetrievalStrategy.HYBRID_BM25),
+            # Intent-arm ablation (Session 1 — 2026-08-04):
+            #   full delta: chunk-level ANN vs. full hybrid pipeline
+            (RetrievalStrategy.CHUNK_SEMANTIC, RetrievalStrategy.HYBRID),
+            #   granularity-only: chunk-level ANN vs. note-level ANN (no boost in either)
+            (RetrievalStrategy.CHUNK_SEMANTIC, RetrievalStrategy.HYBRID_NO_INTENT),
+            #   boost-only: note-level hybrid with and without the 0–0.12 additive boost
+            (RetrievalStrategy.HYBRID_NO_INTENT, RetrievalStrategy.HYBRID),
         ]
         comparisons: list[StrategyComparison] = []
 
@@ -442,6 +477,26 @@ class EvaluationRunner:
             else:
                 recommendation = "insufficient_evidence"
 
+            # --- Optional recall and nDCG CIs (no new stats code) -----------
+            rec_base = (per_strategy_recall or {}).get(baseline_strat)
+            rec_cand = (per_strategy_recall or {}).get(candidate_strat)
+            ndcg_base = (per_strategy_ndcg or {}).get(baseline_strat)
+            ndcg_cand = (per_strategy_ndcg or {}).get(candidate_strat)
+
+            delta_recall = recall_lo = recall_hi = None
+            recall_sig = p_recall = None
+            if rec_base and rec_cand:
+                recall_lo, recall_hi, recall_sig = bootstrap_delta_ci(rec_cand, rec_base)
+                delta_recall = sum(rec_cand) / len(rec_cand) - sum(rec_base) / len(rec_base)
+                p_recall = wilcoxon_p_value(rec_cand, rec_base)
+
+            delta_ndcg = ndcg_lo = ndcg_hi = None
+            ndcg_sig = p_ndcg = None
+            if ndcg_base and ndcg_cand:
+                ndcg_lo, ndcg_hi, ndcg_sig = bootstrap_delta_ci(ndcg_cand, ndcg_base)
+                delta_ndcg = sum(ndcg_cand) / len(ndcg_cand) - sum(ndcg_base) / len(ndcg_base)
+                p_ndcg = wilcoxon_p_value(ndcg_cand, ndcg_base)
+
             comparisons.append(StrategyComparison(
                 baseline=baseline_strat,
                 candidate=candidate_strat,
@@ -455,6 +510,16 @@ class EvaluationRunner:
                 hit_rate_significant=hit_sig,
                 p_value_mrr=round(p_mrr, 4) if p_mrr is not None else None,
                 p_value_hit_rate=round(p_hit, 4) if p_hit is not None else None,
+                delta_recall_at_k=round(delta_recall, 4) if delta_recall is not None else None,
+                recall_ci_lower=round(recall_lo, 4) if recall_lo is not None else None,
+                recall_ci_upper=round(recall_hi, 4) if recall_hi is not None else None,
+                recall_significant=recall_sig,
+                p_value_recall=round(p_recall, 4) if p_recall is not None else None,
+                delta_ndcg_at_k=round(delta_ndcg, 4) if delta_ndcg is not None else None,
+                ndcg_ci_lower=round(ndcg_lo, 4) if ndcg_lo is not None else None,
+                ndcg_ci_upper=round(ndcg_hi, 4) if ndcg_hi is not None else None,
+                ndcg_significant=ndcg_sig,
+                p_value_ndcg=round(p_ndcg, 4) if p_ndcg is not None else None,
                 recommendation=recommendation,
             ))
 
@@ -518,6 +583,15 @@ def main() -> None:
                     f"[{comp.mrr_ci_lower:.4f},{comp.mrr_ci_upper:.4f}] "
                     f"{sig} → {comp.recommendation}"
                 )
+                if comp.delta_recall_at_k is not None:
+                    rec_sig = "sig" if comp.recall_significant else "n.s."
+                    ndcg_sig = "sig" if comp.ndcg_significant else "n.s."
+                    print(
+                        f"    ΔRecall={comp.delta_recall_at_k:+.4f} "
+                        f"[{comp.recall_ci_lower:.4f},{comp.recall_ci_upper:.4f}] {rec_sig}  "
+                        f"ΔnDCG={comp.delta_ndcg_at_k:+.4f} "
+                        f"[{comp.ndcg_ci_lower:.4f},{comp.ndcg_ci_upper:.4f}] {ndcg_sig}"
+                    )
             print()
 
         print("=" * 70)
