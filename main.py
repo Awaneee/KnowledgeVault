@@ -56,6 +56,12 @@ app.include_router(retrieve_router)
 from app.api.routes.ask import router as ask_router
 app.include_router(ask_router)
 
+from app.api.routes.conversations import router as conversations_router
+app.include_router(conversations_router)
+
+from app.api.routes.agent import router as agent_router
+app.include_router(agent_router)
+
 
 @app.on_event("startup")
 def warm_embedding_model():

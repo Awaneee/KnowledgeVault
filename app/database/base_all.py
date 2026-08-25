@@ -17,3 +17,4 @@ from app.models.intent_category import IntentCategory
 from app.models.intent_category_embedding import IntentCategoryEmbedding
 from app.models.note_intent import NoteIntent
 from app.models.note_intent_assignment import NoteIntentAssignment
+from app.models.conversation import ConversationSession, ConversationMessage
