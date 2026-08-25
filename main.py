@@ -2,6 +2,7 @@ import logging
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
@@ -24,6 +25,9 @@ logging.basicConfig(
 )
 
 app = FastAPI(title="KnowledgeVault")
+
+# Prometheus: auto-instrument all routes → exposes GET /metrics
+Instrumentator().instrument(app).expose(app, include_in_schema=False)
 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)

@@ -3,6 +3,7 @@ from sqlalchemy import text
 
 from app.core.redis_client import redis_client
 from app.database.session import SessionLocal
+from app.services.llm_metrics import metrics
 
 router = APIRouter(tags=["health"])
 
@@ -34,3 +35,13 @@ def health_check():
         status_code=status_code,
         content={"status": overall, "db": db_status, "redis": redis_status},
     )
+
+
+@router.get("/metrics/llm", tags=["observability"])
+def llm_metrics():
+    """
+    Live snapshot of LLM provider telemetry: call counts, latency,
+    fallbacks, and Ask cache hit rate. Scraped in-process — no external
+    collector required. For the full Prometheus scrape target see GET /metrics.
+    """
+    return metrics.snapshot()

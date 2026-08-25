@@ -37,3 +37,10 @@ class NoteSearchResponse(BaseModel):
     content: Optional[str]
 
     model_config = {"from_attributes": True}
+
+
+class RelatedNoteResponse(BaseModel):
+    note_id: int
+    title: str
+    snippet: str
+    similarity: float

@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.database.session import get_db
 from app.api.dependencies.auth import get_current_user
 from app.models.user import User
 from app.services.note_service import NoteService
+from app.services.related_notes_service import RelatedNotesService
 from app.schemas.attachment import AttachmentResponse
 from app.schemas.note import (
     NoteCreate,
@@ -12,6 +13,7 @@ from app.schemas.note import (
     NoteCreateResponse,
     NoteResponse,
     NoteSearchResponse,
+    RelatedNoteResponse,
 )
 
 router = APIRouter(
@@ -85,21 +87,16 @@ def search_notes(
     )
 
 
-@router.get(
-    "/{note_id}/related",
-    response_model=list[NoteSearchResponse]
-)
+@router.get("/{note_id}/related", response_model=list[RelatedNoteResponse])
 def get_related_notes(
     note_id: int,
+    limit: int = Query(default=5, ge=1, le=20),
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user),
 ):
-    service = NoteService(db)
-
-    return service.get_related_notes(
-        note_id=note_id,
-        user_id=current_user.id
-    )
+    """Return the top-N semantically similar notes using pgvector cosine distance."""
+    service = RelatedNotesService(db)
+    return service.get_related(note_id=note_id, user_id=current_user.id, limit=limit)
 
 
 @router.get(

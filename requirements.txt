@@ -56,3 +56,6 @@ redis
 
 # --- Rate limiting ---
 slowapi
+
+# --- Observability ---
+prometheus-fastapi-instrumentator
