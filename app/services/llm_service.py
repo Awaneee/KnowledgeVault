@@ -27,6 +27,7 @@ from app.services.llm_providers import LLMProvider
 from app.services.llm_providers import LLMProviderError
 from app.services.llm_providers import LLMResult
 from app.services.llm_providers import OllamaProvider
+from app.services.llm_providers import OpenRouterProvider
 
 
 logger = logging.getLogger(__name__)
@@ -339,6 +340,8 @@ class LLMService:
                 return GeminiProvider()
             if name == "groq":
                 return GroqProvider()
+            if name == "openrouter":
+                return OpenRouterProvider()
             if name == "ollama":
                 if not settings.OLLAMA_ENABLED:
                     logger.debug(

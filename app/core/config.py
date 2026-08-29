@@ -57,6 +57,23 @@ class Settings(BaseSettings):
     GROQ_API_BASE: str = "https://api.groq.com/openai/v1"
 
     # ------------------------------------------------------------------
+    # Email — Resend transactional email
+    # ------------------------------------------------------------------
+    RESEND_API_KEY: str | None = None
+    EMAIL_FROM: str = "KnowledgeVault <noreply@resend.dev>"
+    # Public URL of the deployed API (used in verification links).
+    APP_BASE_URL: str = "http://localhost:8000"
+
+    # ------------------------------------------------------------------
+    # OpenRouter — OpenAI-compatible gateway to 100+ models including
+    # free-tier options.  https://openrouter.ai/keys
+    # ------------------------------------------------------------------
+    OPENROUTER_API_KEY: str | None = None
+    OPENROUTER_MODEL: str = "google/gemma-3-27b-it:free"
+    OPENROUTER_API_BASE: str = "https://openrouter.ai/api/v1"
+    OPENROUTER_APP_NAME: str = "KnowledgeVault"
+
+    # ------------------------------------------------------------------
     # Ollama — local development only.
     # Set OLLAMA_ENABLED=true to include Ollama in the fallback chain.
     # Disabled by default so production containers never attempt a local

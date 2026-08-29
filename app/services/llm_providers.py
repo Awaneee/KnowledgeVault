@@ -336,6 +336,114 @@ class GroqProvider(LLMProvider):
 
 
 # ---------------------------------------------------------------------------
+# OpenRouter — OpenAI-compatible gateway (answer generation only)
+# ---------------------------------------------------------------------------
+
+class OpenRouterProvider(LLMProvider):
+    """
+    OpenRouter Chat Completions provider.
+
+    Wraps https://openrouter.ai/api/v1/chat/completions — OpenAI-compatible.
+    Supports 100+ models including free-tier options (model id ends in :free).
+    Used for ANSWER GENERATION only (no schema-enforced JSON for intent).
+    """
+
+    name = "openrouter"
+
+    def extract_intent(self, prompt: str) -> LLMResult:
+        raise NotImplementedError(
+            "OpenRouterProvider does not support intent extraction. "
+            "Use GeminiProvider or the rule-based fallback."
+        )
+
+    def __init__(self) -> None:
+        if not settings.OPENROUTER_API_KEY:
+            raise LLMProviderError("OPENROUTER_API_KEY is not configured")
+
+    def _headers(self) -> dict:
+        return {
+            "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
+            "Content-Type": "application/json",
+            "X-Title": settings.OPENROUTER_APP_NAME,
+        }
+
+    def generate_answer(self, prompt: str, model: str | None = None) -> LLMResult:
+        selected_model = model or settings.OPENROUTER_MODEL
+        url = f"{settings.OPENROUTER_API_BASE}/chat/completions"
+        payload = {
+            "model": selected_model,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.2,
+        }
+
+        try:
+            response = requests.post(
+                url,
+                json=payload,
+                headers=self._headers(),
+                timeout=settings.LLM_TIMEOUT_SECONDS,
+            )
+            response.raise_for_status()
+        except requests.exceptions.Timeout as exc:
+            raise LLMProviderError(
+                f"OpenRouter timeout after {settings.LLM_TIMEOUT_SECONDS}s"
+            ) from exc
+        except requests.RequestException as exc:
+            raise LLMProviderError(f"OpenRouter request failed: {exc}") from exc
+
+        try:
+            text = response.json()["choices"][0]["message"]["content"]
+        except (KeyError, IndexError, TypeError, json.JSONDecodeError) as exc:
+            raise LLMProviderError(
+                f"OpenRouter response missing content; raw={response.text[:200]}"
+            ) from exc
+
+        return LLMResult(text=text.strip(), provider=self.name, model=selected_model)
+
+    def generate_stream(self, prompt: str, model: str | None = None):
+        selected_model = model or settings.OPENROUTER_MODEL
+        url = f"{settings.OPENROUTER_API_BASE}/chat/completions"
+        payload = {
+            "model": selected_model,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.2,
+            "stream": True,
+        }
+
+        try:
+            response = requests.post(
+                url,
+                json=payload,
+                headers=self._headers(),
+                timeout=settings.LLM_TIMEOUT_SECONDS,
+                stream=True,
+            )
+            response.raise_for_status()
+        except requests.exceptions.Timeout as exc:
+            raise LLMProviderError(
+                f"OpenRouter stream timeout after {settings.LLM_TIMEOUT_SECONDS}s"
+            ) from exc
+        except requests.RequestException as exc:
+            raise LLMProviderError(f"OpenRouter stream request failed: {exc}") from exc
+
+        for line in response.iter_lines():
+            if not line:
+                continue
+            decoded = line.decode("utf-8") if isinstance(line, bytes) else line
+            if decoded.startswith("data: "):
+                decoded = decoded[6:]
+            if decoded.strip() == "[DONE]":
+                break
+            try:
+                obj = json.loads(decoded)
+                token = obj["choices"][0]["delta"].get("content", "")
+                if token:
+                    yield token
+            except (json.JSONDecodeError, KeyError, IndexError, TypeError):
+                continue
+
+
+# ---------------------------------------------------------------------------
 # Ollama — local development only
 # ---------------------------------------------------------------------------
 

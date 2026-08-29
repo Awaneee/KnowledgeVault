@@ -1,9 +1,13 @@
-from sqlalchemy.orm import Session
+import secrets
+
 from fastapi import HTTPException, status
-from app.repositories.user_repository import UserRepository
+from sqlalchemy.orm import Session
+
 from app.core.security import hash_password, verify_password, create_access_token
-from app.schemas.auth import UserRegister, UserLogin, TokenResponse
 from app.models.user import User
+from app.repositories.user_repository import UserRepository
+from app.schemas.auth import UserRegister, UserLogin, TokenResponse
+from app.services.email_service import EmailService
 
 
 class AuthService:
@@ -14,26 +18,47 @@ class AuthService:
         if self.repo.get_by_email(data.email):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email already registered"
+                detail="Email already registered",
             )
         if self.repo.get_by_username(data.username):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Username already taken"
+                detail="Username already taken",
             )
         hashed = hash_password(data.password)
-        return self.repo.create(
+        token = secrets.token_hex(32)
+        user = self.repo.create(
             username=data.username,
             email=data.email,
-            hashed_password=hashed
+            hashed_password=hashed,
+            verification_token=token,
+            is_verified=False,
         )
+        EmailService.send_verification(
+            to_email=data.email,
+            username=data.username,
+            token=token,
+        )
+        return user
+
+    def verify_email(self, token: str) -> bool:
+        user = self.repo.get_by_verification_token(token)
+        if not user:
+            return False
+        self.repo.mark_verified(user)
+        return True
 
     def login(self, data: UserLogin) -> TokenResponse:
         user = self.repo.get_by_email(data.email)
         if not user or not verify_password(data.password, user.hashed_password):
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid email or password"
+                detail="Invalid email or password",
+            )
+        if not user.is_verified:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Email not verified. Check your inbox for the verification link.",
             )
         token = create_access_token(data={"sub": str(user.id)})
         return TokenResponse(access_token=token, token_type="bearer")

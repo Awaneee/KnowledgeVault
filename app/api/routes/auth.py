@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 
 from app.core.limiter import limiter
@@ -24,6 +24,14 @@ def register(request: Request, data: UserRegister, db: Session = Depends(get_db)
 def login(request: Request, data: UserLogin, db: Session = Depends(get_db)):
     service = AuthService(db)
     return service.login(data)
+
+
+@router.get("/verify/{token}")
+def verify_email(token: str, db: Session = Depends(get_db)):
+    service = AuthService(db)
+    if not service.verify_email(token):
+        raise HTTPException(status_code=400, detail="Invalid or expired verification link.")
+    return {"message": "Email verified successfully. You can now log in."}
 
 
 @router.get("/me", response_model=UserResponse)
