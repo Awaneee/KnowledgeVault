@@ -38,16 +38,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Only depends on requirements.txt so source edits do not invalidate it.
 # BuildKit pip cache avoids re-downloading packages on incremental builds.
 COPY requirements.txt ./
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install \
+RUN pip install \
         --extra-index-url https://download.pytorch.org/whl/cpu \
         -r requirements.txt
 
 # Layer 3 — Pre-download the embedding model.
-# Uses the BuildKit cache at HF_HOME so the model is not re-fetched on
-# every build — only when this layer's cache key changes (deps or Dockerfile).
-RUN --mount=type=cache,target=/home/appuser/.cache/huggingface \
-    mkdir -p /home/appuser/.cache/huggingface && \
+RUN mkdir -p /home/appuser/.cache/huggingface && \
     python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
 # Layer 4 — Application code.
