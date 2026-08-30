@@ -69,6 +69,5 @@ app.include_router(agent_router)
 
 @app.on_event("startup")
 def warm_embedding_model():
-    from app.core.embedding_model import embedding_model
-    embedding_model.encode("")
-    logging.getLogger(__name__).info("Embedding model warmed up")
+    # Model loads lazily on first use to avoid OOM on memory-constrained hosts.
+    logging.getLogger(__name__).info("Startup complete — embedding model will load on first use")

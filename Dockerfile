@@ -42,11 +42,7 @@ RUN pip install \
         --extra-index-url https://download.pytorch.org/whl/cpu \
         -r requirements.txt
 
-# Layer 3 — Pre-download the embedding model.
-RUN mkdir -p /home/appuser/.cache/huggingface && \
-    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
-
-# Layer 4 — Application code.
+# Layer 3 — Application code.
 # In development this is overridden by a bind mount in docker-compose.
 COPY . .
 

@@ -44,7 +44,7 @@ import logging
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
-from app.core.embedding_model import embedding_model
+from app.core.embedding_model import get_embedding_model
 from app.models.document_chunk import DocumentChunk
 from app.repositories.bm25_repository import BM25Repository
 from app.repositories.chunk_embedding_repository import ChunkEmbeddingRepository
@@ -100,7 +100,7 @@ class ChunkService:
             texts=chunk_texts,
         )
 
-        vectors = embedding_model.encode(chunk_texts).tolist()
+        vectors = get_embedding_model().encode(chunk_texts).tolist()
 
         records = [
             {
@@ -120,7 +120,7 @@ class ChunkService:
 
     def retrieve(self, query: str, user_id: int, limit: int = 5) -> list[dict]:
         """Pure semantic retrieval (vector similarity only)."""
-        query_vector = embedding_model.encode(query).tolist()
+        query_vector = get_embedding_model().encode(query).tolist()
         rows = self.embedding_repo.search_similar_chunks_with_distance(
             query_vector=query_vector,
             user_id=user_id,
@@ -170,7 +170,7 @@ class ChunkService:
             self._MAX_INTENT_BOOST if max_intent_boost is None else max_intent_boost
         )
         pool_size = max(limit * self._SEMANTIC_POOL_FACTOR, self._SEMANTIC_POOL_MIN)
-        query_vector = embedding_model.encode(query).tolist()
+        query_vector = get_embedding_model().encode(query).tolist()
 
         # --- Semantic arm -------------------------------------------------
         # Use the same note embeddings as the standalone semantic path.  The
@@ -358,7 +358,7 @@ class ChunkService:
            A note absent from an arm contributes 0 from that arm.
         4. Sort by rrf descending; return top *limit* results.
         """
-        query_vector = embedding_model.encode(query).tolist()
+        query_vector = get_embedding_model().encode(query).tolist()
 
         # --- Semantic arm (note-level) ---
         semantic_rows = self.note_embedding_repo.search_similar_notes_with_distance(

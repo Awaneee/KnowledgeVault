@@ -40,7 +40,7 @@ from dataclasses import dataclass
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
-from app.core.embedding_model import embedding_model
+from app.core.embedding_model import get_embedding_model
 from app.models.intent_category import IntentCategory
 from app.models.note_intent import NoteIntent
 from app.models.notes import Note
@@ -430,7 +430,7 @@ class IntentCategoryService:
         )
 
         signature = self._intent_signature(intent, query=query)
-        vector = embedding_model.encode(signature).tolist()
+        vector = get_embedding_model().encode(signature).tolist()
 
         # A category's embedding may share generic words with a query from a
         # different intent family (for example a Redis study category and a
@@ -505,7 +505,7 @@ class IntentCategoryService:
         # threshold T controls topic proximity instead.
         #
         # When CATEGORY_FUZZY_COMPAT_ENABLED=False the strict Phase-1 path runs.
-        vector = embedding_model.encode(self._intent_signature(intent)).tolist()
+        vector = get_embedding_model().encode(self._intent_signature(intent)).tolist()
 
         if settings.CATEGORY_FUZZY_COMPAT_ENABLED:
             threshold = self._reuse_threshold(intent_type)
@@ -1128,7 +1128,7 @@ class IntentCategoryService:
         # The intent signature captures what this specific note is about, so
         # folding many of them into a running mean gives a centroid that reflects
         # the full distribution of notes in the category.
-        new_vector = embedding_model.encode(
+        new_vector = get_embedding_model().encode(
             self._intent_signature(intent)
         ).tolist()
 

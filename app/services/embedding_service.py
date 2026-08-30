@@ -2,7 +2,7 @@ import logging
 
 from sqlalchemy.orm import Session
 
-from app.core.embedding_model import embedding_model
+from app.core.embedding_model import get_embedding_model
 from app.repositories.embedding_repository import EmbeddingRepository
 from app.services.cache_service import CacheService
 
@@ -21,7 +21,7 @@ class EmbeddingService:
         note_id: int,
         text: str
     ):
-        vector = embedding_model.encode(
+        vector = get_embedding_model().encode(
             text
         ).tolist()
 
@@ -53,7 +53,7 @@ class EmbeddingService:
 
         logger.debug("CACHE MISS semantic_search user_id=%s", user_id)
 
-        query_vector = embedding_model.encode(
+        query_vector = get_embedding_model().encode(
             query
         ).tolist()
 
