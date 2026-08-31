@@ -71,3 +71,29 @@ app.include_router(agent_router)
 def warm_embedding_model():
     # Model loads lazily on first use to avoid OOM on memory-constrained hosts.
     logging.getLogger(__name__).info("Startup complete — embedding model will load on first use")
+
+
+@app.on_event("startup")
+def start_inprocess_note_worker():
+    """Spawn the note-processing worker as a background thread.
+
+    We run the worker in-process (rather than a separate Railway service) to
+    keep the free-tier deployment single-container. Uses a daemon thread so
+    it dies with the API. The worker itself is a blocking loop that polls
+    Redis for jobs; putting it on a background thread means it doesn't block
+    the event loop.
+    """
+    import threading
+    from app.workers.note_worker import main as worker_main
+
+    log = logging.getLogger(__name__)
+
+    def _run():
+        try:
+            worker_main()
+        except Exception:
+            log.exception("in-process note worker crashed")
+
+    t = threading.Thread(target=_run, name="note-worker", daemon=True)
+    t.start()
+    log.info("in-process note worker started on thread=%s", t.name)
