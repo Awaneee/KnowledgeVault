@@ -64,6 +64,16 @@ class NoteRepository:
             .first()
         )
 
+    def set_category(self, note_id: int, category_id: int | None) -> Note | None:
+        note = self.get_note_by_id(note_id)
+        if not note:
+            return None
+        note.category_id = category_id
+        note.organization_status = "organized"
+        self.db.commit()
+        self.db.refresh(note)
+        return note
+
     def delete_note_by_id(self, note_id: int) -> bool:
         """Delete note and all cascaded children. Returns True if deleted."""
         note = self.get_note_by_id(note_id)

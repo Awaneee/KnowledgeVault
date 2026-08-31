@@ -7,9 +7,12 @@ from app.models.user import User
 from app.services.note_service import NoteService
 from app.services.related_notes_service import RelatedNotesService
 from app.schemas.attachment import AttachmentResponse
+from app.models.category import Category
+from app.models.classification_feedback import ClassificationFeedback
 from app.schemas.note import (
     NoteCreate,
     BulkNoteCreate,
+    NoteCategoryUpdate,
     NoteCreateResponse,
     NoteResponse,
     NoteSearchResponse,
@@ -125,6 +128,53 @@ def get_note(
         )
 
     return note
+
+
+@router.patch("/{note_id}/category", response_model=NoteResponse)
+def update_note_category(
+    note_id: int,
+    data: NoteCategoryUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    service = NoteService(db)
+    note = service.repo.get_note_by_id(note_id)
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+    if note.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Access forbidden")
+
+    if data.category_id is not None:
+        category = (
+            db.query(Category)
+            .filter(Category.id == data.category_id, Category.user_id == current_user.id)
+            .first()
+        )
+        if not category:
+            raise HTTPException(status_code=404, detail="Category not found")
+
+    previous_category_id = note.category_id
+    updated = service.repo.set_category(note_id, data.category_id)
+
+    # Record correction so a future classifier can learn from user overrides.
+    # Only meaningful when both sides are known categories.
+    if (
+        previous_category_id is not None
+        and data.category_id is not None
+        and previous_category_id != data.category_id
+    ):
+        db.add(
+            ClassificationFeedback(
+                user_id=current_user.id,
+                note_id=note_id,
+                predicted_category_id=previous_category_id,
+                corrected_category_id=data.category_id,
+                confidence_score=0.0,
+            )
+        )
+        db.commit()
+
+    return updated
 
 
 @router.delete("/{note_id}", status_code=204)

@@ -31,6 +31,10 @@ class NoteCreateResponse(NoteResponse):
     intent_category: Optional[IntentCategoryResponse] = None
 
 
+class NoteCategoryUpdate(BaseModel):
+    category_id: Optional[int] = None
+
+
 class NoteSearchResponse(BaseModel):
     id: int
     title: str
