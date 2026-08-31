@@ -1,4 +1,6 @@
+import hashlib
 import secrets
+from datetime import datetime, timedelta, timezone
 
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
@@ -8,6 +10,13 @@ from app.models.user import User
 from app.repositories.user_repository import UserRepository
 from app.schemas.auth import UserRegister, UserLogin, TokenResponse
 from app.services.email_service import EmailService
+
+
+RESET_CODE_TTL_MINUTES = 30
+
+
+def _hash_code(code: str) -> str:
+    return hashlib.sha256(code.encode()).hexdigest()
 
 
 class AuthService:
@@ -25,28 +34,12 @@ class AuthService:
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Username already taken",
             )
-        hashed = hash_password(data.password)
-        token = secrets.token_hex(32)
-        user = self.repo.create(
+        return self.repo.create(
             username=data.username,
             email=data.email,
-            hashed_password=hashed,
-            verification_token=token,
-            is_verified=False,
+            hashed_password=hash_password(data.password),
+            is_verified=True,
         )
-        EmailService.send_verification(
-            to_email=data.email,
-            username=data.username,
-            token=token,
-        )
-        return user
-
-    def verify_email(self, token: str) -> bool:
-        user = self.repo.get_by_verification_token(token)
-        if not user:
-            return False
-        self.repo.mark_verified(user)
-        return True
 
     def login(self, data: UserLogin) -> TokenResponse:
         user = self.repo.get_by_email(data.email)
@@ -55,10 +48,33 @@ class AuthService:
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid email or password",
             )
-        if not user.is_verified:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Email not verified. Check your inbox for the verification link.",
-            )
         token = create_access_token(data={"sub": str(user.id)})
         return TokenResponse(access_token=token, token_type="bearer")
+
+    def request_password_reset(self, email: str) -> None:
+        """Generate a 6-digit reset code, store its hash, email the code.
+        Returns silently even if no account exists (avoid disclosing enumeration)."""
+        user = self.repo.get_by_email(email)
+        if not user:
+            return
+        code = f"{secrets.randbelow(1_000_000):06d}"
+        expires_at = datetime.now(timezone.utc) + timedelta(minutes=RESET_CODE_TTL_MINUTES)
+        self.repo.set_reset_token(user, _hash_code(code), expires_at)
+        EmailService.send_password_reset(user.email, user.username, code)
+
+    def reset_password(self, email: str, code: str, new_password: str) -> None:
+        user = self.repo.get_by_email(email)
+        invalid = HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid or expired reset code.",
+        )
+        if not user or not user.reset_token_hash or not user.reset_token_expires_at:
+            raise invalid
+        expires_at = user.reset_token_expires_at
+        if expires_at.tzinfo is None:
+            expires_at = expires_at.replace(tzinfo=timezone.utc)
+        if expires_at < datetime.now(timezone.utc):
+            raise invalid
+        if not secrets.compare_digest(user.reset_token_hash, _hash_code(code)):
+            raise invalid
+        self.repo.update_password(user, hash_password(new_password))

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy.orm import Session
 from app.models.user import User
 
@@ -15,22 +17,17 @@ class UserRepository:
     def get_by_username(self, username: str) -> User | None:
         return self.db.query(User).filter(User.username == username).first()
 
-    def get_by_verification_token(self, token: str) -> User | None:
-        return self.db.query(User).filter(User.verification_token == token).first()
-
     def create(
         self,
         username: str,
         email: str,
         hashed_password: str,
-        verification_token: str | None = None,
-        is_verified: bool = False,
+        is_verified: bool = True,
     ) -> User:
         user = User(
             username=username,
             email=email,
             hashed_password=hashed_password,
-            verification_token=verification_token,
             is_verified=is_verified,
         )
         self.db.add(user)
@@ -38,7 +35,13 @@ class UserRepository:
         self.db.refresh(user)
         return user
 
-    def mark_verified(self, user: User) -> None:
-        user.is_verified = True
-        user.verification_token = None
+    def set_reset_token(self, user: User, token_hash: str, expires_at: datetime) -> None:
+        user.reset_token_hash = token_hash
+        user.reset_token_expires_at = expires_at
+        self.db.commit()
+
+    def update_password(self, user: User, hashed_password: str) -> None:
+        user.hashed_password = hashed_password
+        user.reset_token_hash = None
+        user.reset_token_expires_at = None
         self.db.commit()

@@ -57,12 +57,16 @@ class Settings(BaseSettings):
     GROQ_API_BASE: str = "https://api.groq.com/openai/v1"
 
     # ------------------------------------------------------------------
-    # Email — Resend transactional email
+    # Email — SMTP (used only for password-reset codes)
+    # Gmail app password: https://myaccount.google.com/apppasswords (needs 2FA)
     # ------------------------------------------------------------------
-    RESEND_API_KEY: str | None = None
-    EMAIL_FROM: str = "KnowledgeVault <noreply@resend.dev>"
-    # Public URL of the deployed API (used in verification links).
-    APP_BASE_URL: str = "http://localhost:8000"
+    SMTP_HOST: str | None = None
+    SMTP_PORT: int = 587
+    SMTP_USER: str | None = None
+    SMTP_PASSWORD: str | None = None
+    SMTP_USE_TLS: bool = True
+    SMTP_USE_SSL: bool = False
+    EMAIL_FROM: str = "KnowledgeVault <noreply@localhost>"
 
     # ------------------------------------------------------------------
     # OpenRouter — OpenAI-compatible gateway to 100+ models including
