@@ -19,3 +19,5 @@ eval_out.txt
 # include API keys embedded in URLs. Never commit these.
 evaluation_results/ask_debug/
 evaluation_results/ask_summary.json
+
+study/

@@ -16,8 +16,22 @@ class UserResponse(BaseModel):
     id: int
     username: str
     email: str
+    has_avatar: bool = False
 
     model_config = {"from_attributes": True}
+
+    @classmethod
+    def from_user(cls, user) -> "UserResponse":
+        return cls(
+            id=user.id,
+            username=user.username,
+            email=user.email,
+            has_avatar=bool(user.avatar_path),
+        )
+
+
+class UsernameUpdateRequest(BaseModel):
+    username: str = Field(..., min_length=3, max_length=50)
 
 
 class TokenResponse(BaseModel):

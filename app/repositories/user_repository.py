@@ -45,3 +45,15 @@ class UserRepository:
         user.reset_token_hash = None
         user.reset_token_expires_at = None
         self.db.commit()
+
+    def update_username(self, user: User, username: str) -> User:
+        user.username = username
+        self.db.commit()
+        self.db.refresh(user)
+        return user
+
+    def update_avatar_path(self, user: User, avatar_path: str | None) -> User:
+        user.avatar_path = avatar_path
+        self.db.commit()
+        self.db.refresh(user)
+        return user

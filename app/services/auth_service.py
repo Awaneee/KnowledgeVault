@@ -78,3 +78,18 @@ class AuthService:
         if not secrets.compare_digest(user.reset_token_hash, _hash_code(code)):
             raise invalid
         self.repo.update_password(user, hash_password(new_password))
+
+    def update_username(self, user: User, username: str) -> User:
+        username = username.strip()
+        if not username:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Username cannot be empty",
+            )
+        existing = self.repo.get_by_username(username)
+        if existing and existing.id != user.id:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Username already taken",
+            )
+        return self.repo.update_username(user, username)

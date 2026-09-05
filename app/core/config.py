@@ -172,6 +172,10 @@ class Settings(BaseSettings):
     # Default: 10 MB.
     MAX_ATTACHMENT_BYTES: int = 10 * 1024 * 1024
 
+    # Maximum size (bytes) for a profile picture via POST /auth/me/avatar.
+    # Default: 5 MB.
+    MAX_AVATAR_BYTES: int = 5 * 1024 * 1024
+
     # ------------------------------------------------------------------
     # Ask / cache
     # ------------------------------------------------------------------
