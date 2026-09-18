@@ -229,11 +229,11 @@ class TestFindOrCreateCategoryCapHit:
         self.svc.category_repo.count_by_user.return_value = self.MAX
 
         with patch(
-            "app.services.intent_category_service.embedding_model"
+            "app.services.intent_category_service.get_embedding_model"
         ) as mock_model, patch.object(
             self.svc, "_adaptive_max_categories", return_value=self.MAX
         ):
-            mock_model.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
+            mock_model.return_value.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
             return self.svc._find_or_create_category(
                 user_id=1, intent=intent
             )
@@ -273,11 +273,11 @@ class TestFindOrCreateCategoryCapHit:
         self.svc.category_repo.create.return_value = mock_category
 
         with patch(
-            "app.services.intent_category_service.embedding_model"
+            "app.services.intent_category_service.get_embedding_model"
         ) as mock_model, patch.object(
             self.svc, "_adaptive_max_categories", return_value=self.MAX
         ):
-            mock_model.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
+            mock_model.return_value.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
             category, method, _ = self.svc._find_or_create_category(
                 user_id=1, intent=_make_intent()
             )
@@ -408,9 +408,9 @@ class TestRefreshCategoryEmbeddingCentroid:
         self.svc.category_repo.get_embedding.return_value = existing_embedding
 
         with patch(
-            "app.services.intent_category_service.embedding_model"
+            "app.services.intent_category_service.get_embedding_model"
         ) as mock_model:
-            mock_model.encode.return_value = MagicMock(
+            mock_model.return_value.encode.return_value = MagicMock(
                 tolist=lambda: new_vector
             )
             self.svc._refresh_category_embedding(category=category, intent=intent)
@@ -515,13 +515,13 @@ class TestRefreshCategoryEmbeddingCentroid:
         intent = _make_intent(intent_type="study", topic="PostgreSQL", action="study")
 
         with patch(
-            "app.services.intent_category_service.embedding_model"
+            "app.services.intent_category_service.get_embedding_model"
         ) as mock_model:
-            mock_model.encode.return_value = MagicMock(tolist=lambda: [0.0] * 4)
+            mock_model.return_value.encode.return_value = MagicMock(tolist=lambda: [0.0] * 4)
             self.svc.category_repo.get_embedding.return_value = None
             self.svc._refresh_category_embedding(category=category, intent=intent)
 
-        encoded_text = mock_model.encode.call_args[0][0]
+        encoded_text = mock_model.return_value.encode.call_args[0][0]
         # The encoded text must NOT be the category name alone
         assert encoded_text != category.name
         # It must contain intent-derived tokens

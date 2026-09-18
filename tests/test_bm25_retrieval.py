@@ -232,9 +232,9 @@ class TestRetrieveRRFHybrid:
         svc.chunk_repo = MagicMock()
         svc.chunk_repo.get_chunks_by_note_ids.return_value = chunks
 
-        p = patch("app.services.chunk_service.embedding_model")
+        p = patch("app.services.chunk_service.get_embedding_model")
         mock_emb = p.start()
-        mock_emb.encode.return_value = MagicMock(tolist=lambda: [0.0] * 384)
+        mock_emb.return_value.encode.return_value = MagicMock(tolist=lambda: [0.0] * 384)
 
         return svc, p
 

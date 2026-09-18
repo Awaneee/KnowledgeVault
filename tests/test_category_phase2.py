@@ -439,8 +439,8 @@ class TestFindOrCreateCategoryPhase2Pipeline:
             s.CATEGORY_ADAPTIVE_CAP_MAX = 2000
             s.CATEGORY_CONSERVATIVE_GENERAL_ENABLED = True
             s.CATEGORY_INGEST_THRESHOLD = 0.28
-            with patch("app.services.intent_category_service.embedding_model") as em:
-                em.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
+            with patch("app.services.intent_category_service.get_embedding_model") as em:
+                em.return_value.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
                 with patch.object(self.svc, "_adaptive_max_categories", return_value=105):
                     return self.svc._find_or_create_category(user_id=1, intent=intent)
 
@@ -495,13 +495,13 @@ class TestFindOrCreateCategoryPhase2Pipeline:
             "reasoning_summary": None,
         }
         with patch("app.services.intent_category_service.settings") as s, \
-             patch("app.services.intent_category_service.embedding_model") as em, \
+             patch("app.services.intent_category_service.get_embedding_model") as em, \
              patch.object(self.svc, "_adaptive_max_categories", return_value=50):
             s.CATEGORY_FUZZY_COMPAT_ENABLED = True
             s.CATEGORY_ADAPTIVE_CAP_ENABLED = True
             s.CATEGORY_CONSERVATIVE_GENERAL_ENABLED = True
             s.CATEGORY_INGEST_THRESHOLD = 0.28
-            em.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
+            em.return_value.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
             cat, method, score = self.svc._find_or_create_category(user_id=1, intent=intent)
         assert cat is None
         assert method == "cap_hit"
@@ -587,8 +587,8 @@ class TestBackwardsCompatibility:
             s.CATEGORY_INGEST_THRESHOLD = 0.28
             from app.services.intent_category_service import IntentCategoryService
             s_val = IntentCategoryService.MAX_CATEGORIES_PER_USER
-            with patch("app.services.intent_category_service.embedding_model") as em:
-                em.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
+            with patch("app.services.intent_category_service.get_embedding_model") as em:
+                em.return_value.encode.return_value = MagicMock(tolist=lambda: [0.1] * 384)
                 return self.svc._find_or_create_category(user_id=1, intent=intent)
 
     def test_flags_off_still_does_canonical_match(self):
