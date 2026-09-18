@@ -182,6 +182,9 @@ class Settings(BaseSettings):
     # TTL (seconds) for cached Ask responses. Set to 0 to disable caching.
     ASK_CACHE_TTL_SECONDS: int = 3600
 
+    # Per-user limit shared by POST /ask/ and POST /ask/stream (slowapi syntax).
+    ASK_RATE_LIMIT: str = "20/minute"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore"

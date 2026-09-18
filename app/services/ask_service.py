@@ -64,6 +64,13 @@ class ContextEntry:
     intent_category: str | None
 
 
+@dataclass(frozen=True)
+class StreamCitations:
+    """Sentinel yielded by stream_ask() after the last token; carries the
+    citations resolved from the full streamed answer."""
+    citations: list[Citation]
+
+
 class AskService:
 
     def __init__(self, db: Session) -> None:
@@ -150,9 +157,14 @@ class AskService:
 
     def stream_ask(self, question: str, user_id: int):
         """
-        Streaming ask — yields LLM tokens one by one.
+        Streaming ask — yields LLM tokens one by one (str).
         Retrieval runs up front; stream falls back to a plain-text
         degraded message if all providers fail.
+
+        After the last token, yields one StreamCitations if the answer
+        cited any retrieved note. Markers that fall outside the valid
+        range are ignored (their text is already sent, so unlike ask()
+        they cannot be stripped from the answer).
         """
         t0 = time.monotonic()
 
@@ -180,14 +192,17 @@ class AskService:
             time.monotonic() - t0,
         )
 
-        # Citations are not parsed in the streaming path (Sprint 4-C).
-        # _build_context_map is still called so the prompt format is consistent
-        # with the blocking ask() path.
-        context, _context_map = self._build_context_map(chunks)
+        context, context_map = self._build_context_map(chunks)
         prompt = self._build_prompt(question, context)
 
+        streamed: list[str] = []
         try:
-            yield from LLMService.generate_stream(prompt=prompt)
+            for token in LLMService.generate_stream(prompt=prompt):
+                streamed.append(token)
+                yield token
+            citations = self._stream_citations("".join(streamed), context_map)
+            if citations:
+                yield StreamCitations(citations=citations)
         except AllProvidersExhausted:
             logger.warning(
                 "STREAM DEGRADED user_id=%d — all providers failed, returning retrieval-only",
@@ -198,6 +213,19 @@ class AskService:
     # ------------------------------------------------------------------
     # Synthesis helpers
     # ------------------------------------------------------------------
+
+    def _stream_citations(
+        self,
+        text: str,
+        context_map: list[ContextEntry],
+    ) -> list[Citation]:
+        """Resolve [N] markers in fully streamed text; never raises."""
+        try:
+            _, citations = self._parse_citations(text, context_map)
+            return citations
+        except Exception as exc:
+            logger.error("STREAM citation parse failed — sending none: %s", exc)
+            return []
 
     def _synthesise(
         self,

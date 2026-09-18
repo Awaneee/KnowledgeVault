@@ -1,8 +1,8 @@
-import json
 import logging
 
 from fastapi import APIRouter
 from fastapi import Depends
+from fastapi import Request
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 
@@ -15,6 +15,9 @@ from app.schemas.ask import (
     AskResponse
 )
 
+from app.api.sse import sse_stream
+from app.core.config import settings
+from app.core.limiter import limiter, user_or_ip_key
 from app.services.ask_service import AskService
 
 
@@ -26,40 +29,13 @@ router = APIRouter(
 )
 
 
-def _sse_frame(payload: str, event: str | None = None) -> str:
-    """
-    Build a single SSE frame.
-
-    The payload is JSON-encoded so that a token's own newlines and leading
-    spaces survive the transport - SSE is a line-oriented protocol, so a raw
-    token containing "\n" would otherwise be split across frames (or silently
-    reassembled without its whitespace by the client).
-    """
-    prefix = f"event: {event}\n" if event else ""
-    return f"{prefix}data: {payload}\n\n"
-
-
-def _sse_stream(tokens):
-    """Wrap a token generator in SSE frames, always terminating with [DONE]."""
-    try:
-        for token in tokens:
-            if token:
-                yield _sse_frame(json.dumps(token, ensure_ascii=False))
-    except Exception as exc:
-        logger.exception("STREAM failed mid-generation: %s", exc)
-        yield _sse_frame(
-            json.dumps("The answer stream was interrupted. Please try again."),
-            event="error",
-        )
-    finally:
-        yield _sse_frame("[DONE]")
-
-
 @router.post(
     "/",
     response_model=AskResponse
 )
+@limiter.shared_limit(settings.ASK_RATE_LIMIT, scope="ask", key_func=user_or_ip_key)
 def ask_question(
+    request: Request,
     data: AskRequest,
     db: Session = Depends(get_db),
     current_user: User = Depends(
@@ -75,7 +51,9 @@ def ask_question(
 
 
 @router.post("/stream")
+@limiter.shared_limit(settings.ASK_RATE_LIMIT, scope="ask", key_func=user_or_ip_key)
 def ask_question_stream(
+    request: Request,
     data: AskRequest,
     db: Session = Depends(get_db),
     current_user: User = Depends(
@@ -85,24 +63,32 @@ def ask_question_stream(
     """
     Same retrieval+generation as POST /ask/, but streams the answer
     token-by-token as it's generated instead of waiting ~50s+ for the
-    full response. Sources aren't included in this response since a
-    plain text/event-stream body can't carry structured data
-    alongside the token stream - if the client needs sources too,
-    call POST /ask/ instead, or have the client track which notes
-    were already shown via a separate call to /retrieve/hybrid.
+    full response.
 
     Wire format is Server-Sent Events. Each frame carries one
     JSON-encoded string token:
 
         data: "Based"
         data: " on your notes"
-        data: ":\n\n1. "
+        data: ":\n\n1. [1]"
+
+    After the last token, if the answer cited any notes, one
+    `citations` frame carries the resolved citation objects (same shape
+    as `citations` in POST /ask/), then the stream ends:
+
+        event: citations
+        data: [{"ref": 1, "note_id": 7, "note_title": "...", "chunk_id": null, "snippet": "..."}]
+
         data: [DONE]
+
+    Tokens are already on the wire when citations are resolved, so
+    unlike POST /ask/ an out-of-range [N] marker cannot be removed from
+    the text; clients should only link refs that appear in `citations`.
     """
     service = AskService(db)
 
     return StreamingResponse(
-        _sse_stream(
+        sse_stream(
             service.stream_ask(
                 question=data.question,
                 user_id=current_user.id
