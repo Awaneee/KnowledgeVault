@@ -14,8 +14,8 @@
 - **3-provider LLM fallback chain** — Gemini → OpenRouter → Groq → retrieval-only. The API **never returns HTTP 500 due to LLM failure**; the worst case degrades to raw retrieved notes with a `status: "degraded"` flag.
 - **Intent-aware categorisation** via Gemini's schema-enforced JSON, with a rule-based extractor as fallback. User overrides of categories are logged to `classification_feedback` for future classifier tuning.
 - **Async note-processing worker** on a Redis queue with in-flight recovery — jobs are never lost on crash. Runs in-process on Railway (single container), or as a separate service in Docker Compose.
-- **884-test regression suite** across unit, integration, retrieval-quality, and end-to-end RAG scoring.
-- **Production-hardened** — JWT auth, SMTP password reset via hashed 6-digit codes, per-endpoint rate limits, request-ID structured logging, non-root Docker, Alembic auto-migrations on deploy.
+- **900+ test regression suite** across unit, integration, retrieval-quality, and end-to-end RAG scoring.
+- **Production-hardened** — JWT auth, SMTP password reset via hashed 6-digit codes, rate limits (auth endpoints per IP, `/ask` per user), request-ID structured logging, non-root Docker, Alembic auto-migrations on deploy.
 
 ---
 
@@ -110,7 +110,7 @@ Groq is intentionally excluded from intent extraction — schema-enforced struct
 | Auth | JWT (HS256) · bcrypt | 32-character minimum secret enforced at startup |
 | Email | SMTP (Gmail app password by default) | password-reset codes (6-digit, SHA-256 hashed, 30-min TTL) |
 | Runtime | Docker + Docker Compose (5 services) | reproducible local dev; single container on Railway |
-| CI / deploy | GitHub → Railway auto-deploy | Alembic runs on each deploy |
+| CI / deploy | GitHub Actions (tests + fresh-DB migrations) → Railway auto-deploy | Alembic runs on each deploy |
 
 ---
 
@@ -164,7 +164,7 @@ app/
 └─ core/               Config, security, redis, rate limiter, logging
 migrations/versions/   Alembic revisions
 scripts/               evaluate.py, evaluate_ask.py, seed helpers
-tests/                 884 tests — unit, integration, retrieval quality, RAG scoring
+tests/                 900+ tests — unit, integration, retrieval quality, RAG scoring
 docs/                  ADRs, sprint notes, retrieval architecture
 ```
 
